@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Company Information</title>
+    <style>
+        /* General reset and font styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Main container */
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Market Leaders</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Sector</th>
+                <th>Headquarters</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SBI</td>
+                <td>Bank</td>
+                <td>Mumbai</td>
+            </tr>
+            <tr>
+                <td>ITC</td>
+                <td>Tobacco</td>
+                <td>Kolkata</td>
+            </tr>
+            <tr>
+                <td>United Spirits</td>
+                <td>Distillers</td>
+                <td>Bangalore</td>
+            </tr>
+            <tr>
+                <td>Delta Corp</td>
+                <td>Gambling</td>
+                <td>Mumbai</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
