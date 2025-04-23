@@ -1,106 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Karan Agrawal - Stock Broker & Trader</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecos</title>
   <style>
+    /* Modern Vibrant Theme */
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
     body {
       margin: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: #fef3c7;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
       color: #333;
     }
     header {
-      background: #fcd34d;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 1.5em;
       text-align: center;
-      border-bottom: 5px dashed #f59e0b;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     header h1 {
       margin: 0;
       font-size: 2.5em;
+      color: #e85a4f;
     }
-    header p {
-      font-size: 1.2em;
-      margin-top: 5px;
+    nav {
+      margin-top: 0.5em;
     }
-    .avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid #facc15;
-      margin: 20px auto;
-      display: block;
-      background-image: url('https://api.dicebear.com/6.x/fun-emoji/svg?seed=Karan');
+    nav a {
+      margin: 0 1em;
+      text-decoration: none;
+      color: #e85a4f;
+      font-weight: 700;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #333;
+    }
+    .hero {
+      position: relative;
+      height: 350px;
+      background: url('https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=1350&q=80') no-repeat center center;
       background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-    .section {
-      padding: 30px 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .section h2 {
-      color: #ef4444;
+    .hero .tagline {
+      background: rgba(255,255,255,0.85);
+      padding: 1em 2em;
+      border-radius: 30px;
       font-size: 2em;
-      margin-bottom: 10px;
+      font-weight: 700;
+      color: #333;
+      text-align: center;
     }
-    .section p {
-      font-size: 1.1em;
-      line-height: 1.6;
+    section {
+      padding: 2em 1em;
+      background: rgba(255,255,255,0.9);
+      margin: 2em auto;
+      max-width: 1000px;
+      border-radius: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2em;
+    }
+    .service-card {
+      text-align: center;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background: #fff;
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .service-card h3 {
+      margin: 0.5em 0;
+      font-size: 1.4em;
+      color: #e85a4f;
+    }
+    .service-card p {
+      padding: 0 1em 1em;
+      color: #555;
     }
     footer {
-      background: #fde68a;
       text-align: center;
-      padding: 15px;
-      font-size: 0.9em;
-      border-top: 5px dotted #f59e0b;
+      padding: 1.5em;
+      color: #fff;
+      background: rgba(232, 90, 79, 0.9);
+      margin-top: 2em;
     }
-    a {
-      color: #1d4ed8;
+    footer a {
+      color: #fff;
       text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="avatar"></div>
-    <h1>Karan Agrawal</h1>
-    <p>📈 Stock Broker & Trader | 💬 Market Moves with a Smile!</p>
+    <h1>Pecos</h1>
+    <nav>
+      <a href="#hotel">Hotel</a>
+      <a href="#farm">Farm</a>
+      <a href="#pub">Pub</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </header>
 
-  <div class="section">
-    <h2>👋 Hello!</h2>
-    <p>
-      I'm Karan, your friendly neighborhood stock market ninja 🥷. With years of experience in trading,
-      I help clients grow their portfolios with smart analysis and a touch of humor. Whether you're a bull 🐂 or a bear 🐻, I’ve got strategies to match!
-    </p>
+  <div class="hero">
+    <div class="tagline">Experience Comfort, Freshness & Fun at Pecos</div>
   </div>
 
-  <div class="section">
-    <h2>📊 What I Do</h2>
-    <p>
-      • Intraday & Swing Trading <br />
-      • Portfolio Management <br />
-      • Market Research & Analysis <br />
-      • Investor Education 🎨<br />
-    </p>
-  </div>
+  <section id="hotel">
+    <h2>Our Hotel</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80" alt="Hotel Room">
+        <h3>Luxury Rooms</h3>
+        <p>Relax in our spacious, modern rooms with stunning views and top-notch amenities.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80" alt="Hotel Pool">
+        <h3>Swimming Pool</h3>
+        <p>Enjoy a refreshing swim in our outdoor pool surrounded by lush gardens.</p>
+      </div>
+    </div>
+  </section>
 
-  <div class="section">
-    <h2>📬 Get in Touch</h2>
-    <p>
-      Want to collaborate or start your investing journey?<br />
-      Reach out to me at 👉 <a href="mailto:karanscuo@gmail.com">karanscuo@gmail.com</a><br />
-      Or follow my cartoon trades on IG 📸: <a href="https://instagram.com/krnagrl" target="_blank">@krnagrl</a>
-    </p>
-  </div>
+  <section id="farm">
+    <h2>Our Farm</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=800&q=80" alt="Fruit Orchard">
+        <h3>Orchards</h3>
+        <p>Stroll through our fruit orchards and pick your own fresh produce.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1510626176961-4b2f8dd0cc61?auto=format&fit=crop&w=800&q=80" alt="Farm Tour">
+        <h3>Farm Tours</h3>
+        <p>Join guided tours to learn about sustainable farming practices.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pub">
+    <h2>Our Pub</h2>
+    <div class="services">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1541542684-93041d9fb557?auto=format&fit=crop&w=800&q=80" alt="Pub Interior">
+        <h3>Cozy Interior</h3>
+        <p>Relax in our warm, inviting pub space with rustic charm.</p>
+      </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?auto=format&fit=crop&w=800&q=80" alt="Craft Beer">
+        <h3>Craft Drinks</h3>
+        <p>Savor locally brewed beers and signature cocktails made with farm-fresh ingredients.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: <a href="mailto:info@pecos.com">info@pecos.com</a></p>
+    <p>Phone: +1 (555) 123-4567</p>
+    <p>Address: 123 Main Street, Agroville, Country</p>
+  </section>
 
   <footer>
-    &copy; 2025 Karan Agrawal | Designed with ✨ and 📉📈
+    <p>&copy; 2025 Pecos. All Rights Reserved.</p>
+    <p>Follow us on <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">Twitter</a></p>
   </footer>
 </body>
 </html>
