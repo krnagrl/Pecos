@@ -1,117 +1,112 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tom Securities</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f7fa;
-        margin: 0;
-        padding: 0;
-    }
-    .container {
-        margin: 0 auto;
-        width: 60%; /* Leaves 20% margin on both sides */
-        background: white;
-        padding: 20px 30px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        border-radius: 10px;
-    }
-    header {
-        text-align: center;
-        padding: 20px 0;
-        background: #0a2540;
-        border-radius: 10px 10px 0 0;
-        color: #f1c40f;
-    }
-    header h1 {
-        margin: 0;
-        font-size: 2.5em;
-    }
-    header p {
-        margin: 5px 0 0;
-        font-size: 1.1em;
-    }
-    nav {
-        text-align: center;
-        margin: 20px 0;
-    }
-    nav a {
-        margin: 0 15px;
-        text-decoration: none;
-        color: #0a2540;
-        font-weight: bold;
-        padding: 6px 12px;
-        border-radius: 5px;
-        transition: 0.3s;
-    }
-    nav a:hover {
-        background: #f1c40f;
-        color: #0a2540;
-    }
-    section {
-        margin-bottom: 40px;
-    }
-    h2 {
-        color: #0a2540;
-        border-bottom: 2px solid #f1c40f;
-        padding-bottom: 5px;
-    }
-    p {
-        color: #333;
-        line-height: 1.6;
-    }
-    footer {
-        text-align: center;
-        margin-top: 20px;
-        font-size: 0.9em;
-        color: white;
-        background: #0a2540;
-        padding: 10px 0;
-        border-radius: 0 0 10px 10px;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Company Information</title>
+    <style>
+        /* General reset and font styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, Geneva, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Main container */
+        .container {
+            margin-left: 20%;
+            margin-right: 20%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Heading */
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>Tom Securities</h1>
-        <p>Your trusted partner in Finance, Investments, Real Estate & Hospitality</p>
-    </header>
+    <h1>Market Leaders</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Sector</th>
+                <th>Headquarters</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SBI Ltd</td>
+                <td>BFSI</td>
+                <td>Mumbai</td>
+            </tr>
 
-    <nav>
-        <a href="#finance">Finance Broking</a>
-        <a href="#investments">Investments</a>
-        <a href="#realestate">Real Estate</a>
-        <a href="#hospitality">Hospitality</a>
-    </nav>
-
-    <section id="finance">
-        <h2>Finance Broking</h2>
-        <p>We provide expert finance broking services tailored to your needs, helping individuals and businesses secure the right loans and funding solutions at competitive rates.</p>
-    </section>
-
-    <section id="investments">
-        <h2>Investments</h2>
-        <p>Our investment strategies are designed to deliver sustainable growth. We work closely with our clients to identify opportunities in equities, bonds, and alternative investment sectors.</p>
-    </section>
-
-    <section id="realestate">
-        <h2>Real Estate Broking</h2>
-        <p>We connect buyers and sellers with lucrative real estate opportunities, offering trusted guidance in property investments, sales, and leasing.</p>
-    </section>
-
-    <section id="hospitality">
-        <h2>Hospitality</h2>
-        <p>Our hospitality division focuses on luxury hotels, resorts, and fine dining experiences, delivering exceptional service and memorable experiences for our clients.</p>
-    </section>
-
-    <footer>
-        &copy; 2025 Tom Securities. All rights reserved.
-    </footer>
+            <tr>
+                <td>Delta Corp Ltd</td>
+                <td>Gambling</td>
+                <td>Mumbai</td>
+            </tr>
+            <tr>
+                <td>TATA Group</td>
+                <td>Engineering</td>
+                <td>Mumbai</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 
 </body>
