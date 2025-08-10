@@ -1,113 +1,106 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Company Information</title>
+    <title>Pecos - Financial Services</title>
     <style>
-        /* General reset and font styling */
-        body, html {
+        body {
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            font-family: Verdana, Geneva, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
             color: #333;
-            line-height: 1.6;
         }
-
-        /* Main container */
         .container {
-            margin-left: 20%;
-            margin-right: 20%;
-            margin-top: 20px;
-            margin-bottom: 20px;
+            max-width: 60%;
+            margin: auto;
             padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
-
-        /* Heading */
-        h1 {
+        header {
             text-align: center;
-            font-size: 2em;
-            color: #2c3e50;
-            margin-bottom: 20px;
+            padding: 10px 0;
         }
-
-        /* Table styling */
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        h1 {
+            margin-bottom: 5px;
+            font-size: 28px;
+            color: #2c3e50;
+        }
+        p.tagline {
+            font-size: 14px;
+            color: #7f8c8d;
+            margin-top: 0;
+        }
+        section {
             margin-top: 20px;
         }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        h2 {
+            font-size: 20px;
+            color: #34495e;
+            margin-bottom: 10px;
         }
-
-        th {
-            background-color: #2c3e50;
-            color: white;
+        ul {
+            list-style: none;
+            padding: 0;
         }
-
-        tr:hover {
-            background-color: #f1f1f1;
+        ul li {
+            padding: 8px;
+            background: #f1f1f1;
+            margin-bottom: 5px;
+            border-radius: 4px;
         }
-
-        /* Responsive Design */
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
         @media (max-width: 768px) {
             .container {
-                margin-left: 5%;
-                margin-right: 5%;
-            }
-
-            table {
-                font-size: 14px;
-            }
-
-            th, td {
-                padding: 10px;
+                max-width: 90%;
             }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>Pecos</h1>
+            <p class="tagline">Your Trusted Partner in Financial Solutions</p>
+        </header>
 
-<div class="container">
-    <h1>Market Leaders</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Sector</th>
-                <th>Headquarters</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>SBI Ltd</td>
-                <td>BFSI</td>
-                <td>Mumbai</td>
-            </tr>
+        <section>
+            <h2>Our Services</h2>
+            <ul>
+                <li>Cash Services</li>
+                <li>Money Lending</li>
+                <li>Finance Broking</li>
+                <li>Investments</li>
+                <li>Insurance</li>
+                <li>Contract Drafting</li>
+            </ul>
+        </section>
 
-            <tr>
-                <td>Delta Corp Ltd</td>
-                <td>Gambling</td>
-                <td>Mumbai</td>
-            </tr>
-            <tr>
-                <td>TATA Group</td>
-                <td>Engineering</td>
-                <td>Mumbai</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+              <div class="status">
+                  <h2> Current Stats:</h2>
+                <p>Total AUM: ₹2 Cr+</p>
+                <p>Total P2P Transactions: ₹1.5 Cr+</p>
+            </div>
 
+        <section>
+            <h2>Contact Us</h2>
+            <p>Email: pecos.origin@gmail.com</p>
+            <p>Phone: +91-8669334862</p>
+            <p>Circle: Akola, Maharashtra</p>
+        </section>
+
+        <footer>
+            &copy; 2025 Pecos. All rights reserved.
+        </footer>
+    </div>
 </body>
 </html>
