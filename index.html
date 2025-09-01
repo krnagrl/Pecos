@@ -1,275 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MYLTA Group — Farming • Warehousing • Finance</title>
-  <meta name="description" content="MYLTA Group invests and operates across farming, warehousing, and finance with a focus on reliability and long-term value." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecos - Finance & Real Estate</title>
   <style>
-    :root{
-      --bg: #0f172a;          /* slate-900 */
-      --panel: #111827;       /* gray-900 */
-      --muted: #94a3b8;       /* slate-400 */
-      --text: #e5e7eb;        /* gray-200 */
-      --brand: #38bdf8;       /* sky-400 */
-      --brand-2: #22c55e;     /* green-500 */
-      --brand-3: #f59e0b;     /* amber-500 */
-      --card: rgba(255,255,255,0.04);
-      --card-border: rgba(255,255,255,0.08);
-      --ring: rgba(56,189,248,0.45);
-      --shadow: 0 10px 20px rgba(0,0,0,.35), 0 4px 8px rgba(0,0,0,.25);
-      --radius: 18px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff; /* light blue */
+      margin: 0;
+      padding: 0;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
-      color: var(--text);
-      background: radial-gradient(1200px 800px at 50% -20%, rgba(56,189,248,.10), transparent 40%),
-                  radial-gradient(1200px 800px at 80% 20%, rgba(34,197,94,.10), transparent 40%),
-                  var(--bg);
-      line-height:1.6;
+    .container {
+      background-color: #ffffff; /* white background */
+      border: 2px solid black;
+      margin: 0 20%; /* 20% margin on both sides */
+      padding: 20px;
+      min-height: 100vh;
     }
-
-    /* 20% margin on both sides */
-    .wrap{
-      margin-left:20%;
-      margin-right:20%;
+    header {
+      text-align: center;
+      padding: 20px;
+      border-bottom: 2px solid black;
     }
-
-    header{
-      position: sticky; top: 0; z-index: 50;
-      backdrop-filter: saturate(130%) blur(8px);
-      background: rgba(15, 23, 42, 0.55);
-      border-bottom: 1px solid var(--card-border);
+    header h1 {
+      margin: 0;
+      color: #003366;
     }
-    .nav{ display:flex; align-items:center; justify-content:space-between; padding:14px 0; }
-    .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text); }
-    .logo{
-      width:42px; height:42px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), var(--brand-2));
-      box-shadow: var(--shadow);
-      display:grid; place-items:center;
-      font-weight:800; letter-spacing:1px; color:#0b1220;
+    nav {
+      text-align: center;
+      margin: 20px 0;
     }
-    .brand-name{ font-weight:800; font-size:1.05rem; letter-spacing: .4px; }
-    nav a{ color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500; }
-    nav a:hover{ color:#cbd5e1; }
-
-    .hero{ padding:72px 0 32px; }
-    .hero h1{ font-size:2.2rem; line-height:1.15; margin:0; letter-spacing:.3px; }
-    .hero p{ color: var(--muted); margin:14px 0 26px; max-width:60ch; }
-    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
-    .btn{
-      appearance:none; border:1px solid var(--card-border); background: var(--card);
-      color:#e2e8f0; padding:12px 16px; border-radius:999px; cursor:pointer; font-weight:600;
-      transition: transform .06s ease, box-shadow .2s ease, background .2s ease;
-      box-shadow: var(--shadow);
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #003366;
+      font-weight: bold;
     }
-    .btn:hover{ transform: translateY(-1px); }
-    .btn.primary{ background: linear-gradient(135deg, var(--brand), var(--brand-2)); color:#0b1220; border-color: transparent; }
-
-    .panels{ display:grid; gap:18px; grid-template-columns: repeat(12, 1fr); margin:26px 0 60px; }
-    .panel{
-      grid-column: span 12; background: var(--card); border:1px solid var(--card-border);
-      border-radius: var(--radius); box-shadow: var(--shadow); padding:22px 22px; position:relative; overflow:hidden;
+    nav a:hover {
+      text-decoration: underline;
     }
-    .panel h3{ margin:0 0 6px; font-size:1.15rem; }
-    .panel p{ margin:0; color: var(--muted); }
-
-    /* Cards Section */
-    .section{ padding: 18px 0 72px; }
-    .section h2{ font-size:1.6rem; margin:0 0 12px; }
-    .grid{ display:grid; gap:18px; grid-template-columns: repeat(12, 1fr); }
-    .card{
-      grid-column: span 12; background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.03));
-      border:1px solid var(--card-border); border-radius: var(--radius); padding:22px; box-shadow: var(--shadow);
+    section {
+      margin: 30px 0;
     }
-    .card h3{ margin:6px 0 8px; font-size:1.2rem; }
-    .pill{ display:inline-block; font-size:.78rem; border:1px solid var(--card-border); padding:6px 10px; border-radius:999px; color:#cbd5e1; }
-    .meta{ font-size:.9rem; color: var(--muted); margin-top:8px; }
-
-    .kpis{ display:grid; grid-template-columns: repeat(3, 1fr); gap:14px; margin-top:12px; }
-    .kpi{ background: var(--panel); border:1px solid var(--card-border); border-radius: 14px; padding:14px 16px; text-align:center; }
-    .kpi .num{ font-size:1.4rem; font-weight:800; letter-spacing:.3px; }
-    .kpi .sub{ color:var(--muted); font-size:.85rem; }
-
-    /* Timeline */
-    .timeline{ position:relative; margin-top:8px; }
-    .timeline::before{ content:""; position:absolute; left:18px; top:0; bottom:0; width:2px; background:linear-gradient(var(--brand), transparent); opacity:.6; }
-    .tl-item{ display:flex; gap:12px; padding:12px 0; }
-    .tl-dot{ width:12px; height:12px; border-radius:999px; background: var(--brand); margin-left:12px; margin-top:6px; box-shadow: 0 0 0 3px rgba(56,189,248,.25); }
-    .tl-body{ color:var(--muted); }
-    .tl-body b{ color:#e2e8f0; }
-
-    /* Footer */
-    footer{ padding:28px 0 56px; color: var(--muted); border-top:1px solid var(--card-border); margin-top:48px; }
-    .foot{ display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
-    .foot small{ color:#94a3b8; }
-
-    /* Responsive tweaks: preserve 20% side margins on wider screens, adapt slightly on very small screens to avoid overflow */
-    @media (max-width: 820px){
-      .wrap{ margin-left:12%; margin-right:12%; }
-      .kpis{ grid-template-columns: 1fr; }
-      .nav{ gap:10px; }
-      nav{ display:none; }
+    section h2 {
+      border-bottom: 1px solid black;
+      padding-bottom: 5px;
+      color: #003366;
     }
-    @media (min-width: 900px){
-      .grid > .card{ grid-column: span 4; }
-      .panels .panel:nth-child(1){ grid-column: span 7; }
-      .panels .panel:nth-child(2){ grid-column: span 5; }
-    }
-    @media (hover:hover){
-      .card:hover{ transform: translateY(-2px); transition: transform .12s ease; }
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 15px;
+      border-top: 2px solid black;
+      font-size: 0.9em;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="wrap nav">
-      <a class="brand" href="#home" aria-label="MYLTA Group">
-        <div class="logo">M</div>
-        <div class="brand-name">MYLTA Group</div>
-      </a>
-      <nav>
-        <a href="#focus">Focus</a>
-        <a href="#about">About</a>
-        <a href="#impact">Impact</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Pecos</h1>
+      <p>Finance & Real Estate Solutions</p>
+    </header>
 
-  <main id="home" class="wrap">
-    <section class="hero">
-      <h1>Building dependable value in <span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));-webkit-background-clip:text;background-clip:text;color:transparent">Farming, Warehousing & Finance</span></h1>
-      <p>MYLTA Group is a diversified operator with a long-term mindset. We cultivate sustainable agriculture, run modern storage infrastructure, and enable growth capital—keeping quality, safety, and transparency at the core.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="#contact">Partner with us</a>
-        <a class="btn" href="#focus">Explore our focus areas</a>
-      </div>
+    <nav>
+      <a href="#finance">Finance</a>
+      <a href="#realestate">Real Estate</a>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="finance">
+      <h2>Finance</h2>
+      <p>Pecos provides financial services including investment planning, wealth management, and loan advisory. Our team ensures your money works for you with maximum returns.</p>
     </section>
 
-    <section id="focus" class="section">
-      <h2>Our Focus Areas</h2>
-      <div class="grid">
-        <article class="card" aria-labelledby="farming">
-          <span class="pill">Farming</span>
-          <h3 id="farming">Sustainable & Scalable Agriculture</h3>
-          <p>From soil health to post-harvest handling, our farming practice blends field expertise with data-driven decisions. We prioritize crop rotation, residue management, and water stewardship.</p>
-          <div class="meta">Capabilities: contract farming • input planning • quality control • aggregation</div>
-        </article>
-        <article class="card" aria-labelledby="warehousing">
-          <span class="pill">Warehousing</span>
-          <h3 id="warehousing">Smart, Compliant Storage</h3>
-          <p>We develop and operate clean, efficient warehouses designed for agri and industrial goods. Our facilities emphasize airflow, dust control, safety protocols, and predictable SLAs.</p>
-          <div class="meta">Capabilities: inventory mgmt • cold & dry storage • WMS-ready blocks • leasing</div>
-        </article>
-        <article class="card" aria-labelledby="finance">
-          <span class="pill">Finance</span>
-          <h3 id="finance">Working Capital & Risk Solutions</h3>
-          <p>We facilitate ethical, compliant finance to bridge cashflow cycles—enabling suppliers, distributors and growers to operate smoothly with structured risk management.</p>
-          <div class="meta">Capabilities: invoice financing • input credit • collateral-backed lines</div>
-        </article>
-      </div>
+    <section id="realestate">
+      <h2>Real Estate</h2>
+      <p>From property investments to real estate broking, Pecos helps clients find profitable opportunities. We specialize in both commercial and residential projects.</p>
     </section>
 
-    <section class="panels" aria-label="Highlights">
-      <div class="panel">
-        <h3>Why MYLTA</h3>
-        <p>Operator-first thinking, transparent reporting, and relentless service quality. We build assets that compound reliability.</p>
-        <div class="kpis" role="list" aria-label="Key Metrics">
-          <div class="kpi" role="listitem">
-            <div class="num">99.5%</div>
-            <div class="sub">On-time dispatches</div>
-          </div>
-          <div class="kpi" role="listitem">
-            <div class="num">24/7</div>
-            <div class="sub">Facility support</div>
-          </div>
-          <div class="kpi" role="listitem">
-            <div class="num">A+</div>
-            <div class="sub">Safety protocols</div>
-          </div>
-        </div>
-      </div>
-      <div class="panel">
-        <h3>Compliance & Assurance</h3>
-        <p>We operate with clear SOPs, periodic audits, calibrated weighing & moisture testing, and documented chain-of-custody across touchpoints.</p>
-      </div>
+    <section id="about">
+      <h2>About Us</h2>
+      <p>Founded in the early 2000s, Pecos has grown into a trusted name in Finance and Real Estate. Our mission is to provide transparent, reliable, and growth-focused services to our clients.</p>
     </section>
 
-    <section id="about" class="section">
-      <h2>About MYLTA Group</h2>
-      <div class="timeline" aria-label="Company trajectory">
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-body"><b>Foundation</b> — Rooted in agriculture operations, we started with a focus on quality and clean processes.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-body"><b>Diversification</b> — Expanded to warehousing with modern infrastructure and service-level guarantees.</div>
-        </div>
-        <div class="tl-item">
-          <div class="tl-dot" aria-hidden="true"></div>
-          <div class="tl-body"><b>Enablement</b> — Introduced finance solutions to support partners across cycles, with prudent risk management.</div>
-        </div>
-      </div>
-    </section>
-
-    <section id="impact" class="section" aria-labelledby="impact-title">
-      <h2 id="impact-title">Impact & Commitments</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>People</h3>
-          <p>Safe workplaces, fair contracts, and upskilling. We invest in welfare measures and dust-control systems to protect staff and partners.</p>
-        </article>
-        <article class="card">
-          <h3>Planet</h3>
-          <p>Water-positive farming pilots, responsible waste management, and energy-efficient lighting & equipment across facilities.</p>
-        </article>
-        <article class="card">
-          <h3>Governance</h3>
-          <p>Clear SOPs, supplier screening, KYC, and audit trails. We operate with clarity and simple, consistent reporting.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact" class="section">
+    <section id="contact">
       <h2>Contact</h2>
-      <div class="grid">
-        <div class="card" style="grid-column: span 12;">
-          <form onsubmit="event.preventDefault(); alert('Thank you! We will get back to you shortly.');" aria-label="Contact form">
-            <div style="display:grid; gap:12px; grid-template-columns: repeat(2, 1fr);">
-              <label>Full name<br><input required type="text" placeholder="Your name" style="width:100%; padding:12px; border-radius:12px; border:1px solid var(--card-border); background:var(--panel); color:var(--text); outline-color:var(--ring)"></label>
-              <label>Email<br><input required type="email" placeholder="you@example.com" style="width:100%; padding:12px; border-radius:12px; border:1px solid var(--card-border); background:var(--panel); color:var(--text); outline-color:var(--ring)"></label>
-            </div>
-            <label style="display:block; margin-top:12px;">Message<br><textarea required rows="4" placeholder="How can we help?" style="width:100%; padding:12px; border-radius:12px; border:1px solid var(--card-border); background:var(--panel); color:var(--text); outline-color:var(--ring)"></textarea></label>
-            <div style="margin-top:12px; display:flex; gap:10px; align-items:center;">
-              <button class="btn primary" type="submit">Send message</button>
-              <span class="meta">Or email: <a href="mailto:hello@myltagroup.example" style="color:#cbd5e1">hello@myltagroup.example</a></span>
-            </div>
-          </form>
-        </div>
-      </div>
+      <p>Email: contact@pecos.com</p>
+      <p>Phone: +91 98765 43210</p>
     </section>
-  </main>
 
-  <footer>
-    <div class="wrap foot">
-      <div style="display:flex; align-items:center; gap:10px;">
-        <div class="logo" aria-hidden="true" style="width:32px;height:32px;border-radius:9px; font-size:.95rem;">M</div>
-        <small>© <span id="yr"></span> MYLTA Group. All rights reserved.</small>
-      </div>
-      <small>Farming • Warehousing • Finance</small>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+    <footer>
+      <p>© 2025 Pecos Finance & Real Estate. All rights reserved.</p>
+    </footer>
+  </div>
 </body>
 </html>
