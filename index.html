@@ -1,34 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pecos - Home</title>
-  <link rel="stylesheet" href="style.css">
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    table th, table td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    table th {
+      background: #f1f1f1;
+      cursor: pointer;
+    }
+    table tr:nth-child(even) {
+      background: #fafafa;
+    }
+    table tr:hover {
+      background: #f0f8ff;
+    }
+    a {
+      color: #0645ad;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Pecos</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="club.html">Club</a>
-      <a href="Mafia.html">Mafia</a>
-    </nav>
-  </header>
+  <h1>Companies</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Industry</th>
 
-  <div class="container">
-    <h2>Welcome to Pecos</h2>
-    <p>
-      Pecos is the ultimate gathering spot for citizens of the PUBG world. 
-      A place where warriors relax after battle, share stories, and enjoy 
-      food & drinks before heading into the next fight.
-    </p>
-  </div>
+        <th>Founded</th>
 
-  <footer>
-    <p>© 2025 MYLTA Town</p>
-  </footer>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td><a href="#">Nam Securities Ltd</a></td>
+        <td>Investments</td>
+        <td>2021</td>
+        <td>Active</td>
+      </tr>
+      <tr>
+        <td><a href="#">Pecos Hotels & Pubs Ltd</a></td>
+        <td>Leisure</td>
+        <td>2018</td>
+        <td>Active</td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
-
