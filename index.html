@@ -1,87 +1,97 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Company List</title>
+  <title>Pecos</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 40px;
-    }
-    h1 {
+      background: #f8f8f8;
       text-align: center;
-      margin-bottom: 20px;
     }
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      background: #fff;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    .header {
+      border: 1px solid #000;
+      width: 200px;
+      margin: 20px auto;
+      padding: 5px;
+      background: #d6e5f2;
     }
-    table th, table td {
-      border: 1px solid #ccc;
-      padding: 8px 12px;
+    .navbar {
+      border: 1px solid #000;
+      width: 600px;
+      margin: 10px auto;
+      padding: 5px;
+      background: #d6e5f2;
+    }
+    .navbar a {
+      text-decoration: none;
+      color: black;
+      margin: 0 5px;
+    }
+    .content-box {
+      width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #000;
+      background: #d6e5f2;
+      border-radius: 15px;
       text-align: left;
     }
-    table th {
-      background: #f1f1f1;
-      cursor: pointer;
+    .contact-box {
+      width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      border: 1px solid #000;
+      background: #d6e5f2;
+      text-align: left;
+      position: relative;
     }
-    table tr:nth-child(even) {
-      background: #fafafa;
+    .contact-box:after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -15px;
+      border-top: 20px solid transparent;
+      border-left: 15px solid #000;
+      border-bottom: 20px solid transparent;
     }
-    table tr:hover {
-      background: #f0f8ff;
-    }
-    a {
-      color: #0645ad;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
+    .footer {
+      border: 1px solid #000;
+      width: 400px;
+      margin: 30px auto;
+      padding: 5px;
+      background: #d6e5f2;
     }
   </style>
 </head>
 <body>
-  <h1>Companies</h1>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Industry</th>
 
-        <th>Founded</th>
+  <div class="header">Pecos</div>
 
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody>
+  <div class="navbar">
+    <a href="#">About</a> |
+    <a href="#">Facilities</a> |
+    <a href="#">Location</a> |
+    <a href="#">Partners</a> |
+    Visitors Count : 000
+  </div>
 
-      <tr>
-        <td><a href="#">Nam Securities Ltd</a></td>
-        <td>Investments</td>
-        <td>2021</td>
-        <td>Active</td>
-      </tr>
-      <tr>
-        <td><a href="#">Delta Manufacturing Ltd</a></td>
-        <td>Engineering</td>
-        <td>2017</td>
-        <td>Active</td>
-      </tr>
+  <div class="content-box">
+    <b>Divisions :</b><br><br>
+    Financial Services <br>
+    Investments <br>
+    Engineering <br>
+    Food & Beverage
+  </div>
 
-      <tr>
-        <td><a href="#">Pecos Hotels & Pubs Ltd</a></td>
-        <td>Leisure</td>
-        <td>2018</td>
-        <td>Active</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="contact-box">
+    <p>Email : <a href="mailto:Pecos@gmail.com">Pecos@gmail.com</a></p>
+    <p>Phone : 489434343</p>
+    <p>Other Channels : Insta, FB, WB, Twitter</p>
+  </div>
+
+  <div class="footer">
+    Copyright 2025 PEcos
+  </div>
+
 </body>
 </html>
-
-
-
