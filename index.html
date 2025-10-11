@@ -118,6 +118,14 @@
       font-size: 15px;
     }
 
+    header img {
+  vertical-align: middle;
+}
+
+header nav a {
+  margin-right: 15px;
+}
+
     footer {
       background-color: #4a4a7d;
       color: white;
@@ -135,21 +143,27 @@
 </head>
 <body>
   <div class="container">
-    <header>
-      <a href="#">Home</a> |
-      <a href="#">About</a> |
-      <a href="#">Help</a> |
-      <a href="#">Corporate Services</a>
-    </header>
+<header style="display: flex; align-items: center; justify-content: space-between;">
+  <div style="display: flex; align-items: center;">
+    <img src="pecos.png" alt="Pecos Logo" style="height: 40px; margin-right: 15px;">
+    <span style="font-size: 20px; font-weight: bold;">Ask Pecos!</span>
+  </div>
+  <nav>
+    <a href="#">Home</a> |
+    <a href="#">About</a> |
+    <a href="#">Help</a> |
+    <a href="#">Corporate Services</a>
+  </nav>
+</header>
 
     <div class="content">
       <div class="sidebar">
         <h3>May I Suggest:</h3>
         <ul>
-          <li><a href="#">Finance</a></li>
-          <li><a href="#">Investments</a></li>
-          <li><a href="#">Broking</a></li>
-          <li><a href="#">Real Estate</a></li>
+          <li><a href="finance.html">Finance</a></li>
+          <li><a href="investment.html">Investments</a></li>
+          <li><a href="broking.html">Broking</a></li>
+          <li><a href="realestate.html">Real Estate</a></li>
           <li><a href="#">Leisure</a></li>
           <li><a href="#">Ask Pecos for Kids!</a></li>
           <li><a href="#">Just Curious, Pecos</a></li>
