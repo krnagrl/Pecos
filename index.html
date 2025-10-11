@@ -1,97 +1,166 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Pecos</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecos Group - Finance, Investments, Broking & Leisure</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f8f8f8;
+      background-color: #f4f1e9;
+      font-family: "Times New Roman", serif;
+      color: #222;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #2e2e2e;
+      color: #f4f1e9;
       text-align: center;
+      padding: 20px;
+      border-bottom: 4px double #b18c57;
     }
-    .header {
-      border: 1px solid #000;
-      width: 200px;
-      margin: 20px auto;
-      padding: 5px;
-      background: #d6e5f2;
+
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+      letter-spacing: 2px;
     }
-    .navbar {
-      border: 1px solid #000;
-      width: 600px;
-      margin: 10px auto;
-      padding: 5px;
-      background: #d6e5f2;
+
+    header p {
+      margin: 5px 0 0;
+      font-size: 16px;
+      color: #d9c9a5;
     }
-    .navbar a {
+
+    nav {
+      background-color: #e3d8c3;
+      text-align: center;
+      border-bottom: 2px solid #b18c57;
+      padding: 10px 0;
+    }
+
+    nav a {
       text-decoration: none;
-      color: black;
-      margin: 0 5px;
+      color: #2e2e2e;
+      margin: 0 15px;
+      font-weight: bold;
     }
-    .content-box {
-      width: 600px;
-      margin: 20px auto;
-      padding: 15px;
-      border: 1px solid #000;
-      background: #d6e5f2;
-      border-radius: 15px;
-      text-align: left;
+
+    nav a:hover {
+      text-decoration: underline;
     }
-    .contact-box {
-      width: 600px;
-      margin: 20px auto;
-      padding: 15px;
-      border: 1px solid #000;
-      background: #d6e5f2;
-      text-align: left;
-      position: relative;
+
+    .container {
+      width: 80%;
+      margin: 40px auto;
+      background-color: #fff;
+      border: 1px solid #b18c57;
+      padding: 30px;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
     }
-    .contact-box:after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: -15px;
-      border-top: 20px solid transparent;
-      border-left: 15px solid #000;
-      border-bottom: 20px solid transparent;
+
+    h2 {
+      color: #4b3828;
+      border-bottom: 2px solid #b18c57;
+      padding-bottom: 5px;
     }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
     .footer {
-      border: 1px solid #000;
-      width: 400px;
-      margin: 30px auto;
-      padding: 5px;
-      background: #d6e5f2;
+      text-align: center;
+      background-color: #2e2e2e;
+      color: #d9c9a5;
+      padding: 15px 0;
+      font-size: 14px;
+      border-top: 4px double #b18c57;
+    }
+
+    button {
+      background-color: #b18c57;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8c7143;
+    }
+
+    .quote-box {
+      background: #f9f7f3;
+      padding: 20px;
+      border-left: 4px solid #b18c57;
+      font-style: italic;
+      color: #444;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>Pecos Group</h1>
+    <p>Finance | Investments | Broking | Leisure</p>
+  </header>
 
-  <div class="header">Pecos</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </nav>
 
-  <div class="navbar">
-    <a href="#">About</a> |
-    <a href="#">Facilities</a> |
-    <a href="#">Location</a> |
-    <a href="#">Partners</a> |
-    Visitors Count : 000
+  <div class="container">
+    <section class="section">
+      <h2>Welcome to Pecos</h2>
+      <p>
+        Established with a vision to provide trusted financial and leisure services, 
+        <strong>Pecos Group</strong> combines expertise in <em>Finance, Investments, Broking, and Leisure</em> 
+        to help individuals and businesses grow with confidence.  
+      </p>
+    </section>
+
+    <section class="section">
+      <h2>Our Core Divisions</h2>
+      <ul>
+        <li><b>Finance:</b> Tailored financial solutions for individuals and enterprises.</li>
+        <li><b>Investments:</b> Strategic investment guidance for long-term growth.</li>
+        <li><b>Broking:</b> Trusted stock and commodity broking services with transparency.</li>
+        <li><b>Leisure:</b> Creating experiences that enrich life beyond business.</li>
+      </ul>
+    </section>
+
+    <section class="section">
+      <h2>Our Philosophy</h2>
+      <div class="quote-box" id="quoteBox">
+        “Trust and Transparency form the foundation of every partnership we build.”
+      </div>
+      <button onclick="newQuote()">Inspire Me</button>
+    </section>
   </div>
 
-  <div class="content-box">
-    <b>Divisions :</b><br><br>
-    <p>Financial Services</p> <br>
-    <p>Food & Beverage</p> <br>
-    <p>Engineering</p>
-  </div>
+  <footer class="footer">
+    © 2025 Pecos Group. All Rights Reserved.
+  </footer>
 
-  <div class="contact-box">
-    <p>Email : <a href="mailto:Pecos@gmail.com">Pecos@gmail.com</a></p>
-    <p>Phone : 489434343</p>
-    <p>Other Channels : Insta, FB, WB, Twitter</p>
-  </div>
+  <script>
+    const quotes = [
+      "“Trust and Transparency form the foundation of every partnership we build.”",
+      "“We invest in people before we invest in numbers.”",
+      "“Simplicity in finance, strength in strategy.”",
+      "“Building wealth is an art — and we are the craftsmen.”",
+      "“At Pecos, we believe leisure is a part of success.”"
+    ];
 
-  <div class="footer">
-    Copyright 2025 PEcos
-  </div>
-
+    function newQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById('quoteBox').innerHTML = quotes[randomIndex];
+    }
+  </script>
 </body>
 </html>
-
