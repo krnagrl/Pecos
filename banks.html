@@ -61,45 +61,50 @@
 
     <!-- Your existing content like list of banks can go here -->
     <ul>
-        Updated
+        <li>State Bank of India</li>
+        <li>HDFC Bank</li>
+        <li>ICICI Bank</li>
+        <li>Axis Bank</li>
     </ul>
 
     <!-- Contact Form -->
-  
-
     <form id="contact-form">
-  <label>Name:</label>
-  <input type="text" name="name" required>
+      <label>Name:</label>
+      <input type="text" name="name" required>
 
-  <label>Email:</label>
-  <input type="email" name="email" required>
+      <label>Email:</label>
+      <input type="email" name="email" required>
 
-  <label>Message:</label>
-  <textarea name="message" required></textarea>
+      <label>Message:</label>
+      <textarea name="message" required></textarea>
 
-  <button type="submit">Send</button>
-</form>
+      <button type="submit">Send</button>
+    </form>
+</div>
 
 <script>
   const form = document.getElementById('contact-form');
   form.addEventListener('submit', e => {
     e.preventDefault();
-    
-    const params = new URLSearchParams({
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value
-    });
-    
-    fetch("https://script.google.com/macros/s/AKfycbyvhXJX_aI9yvnptDLDGPk88LO0zRT2z_aUk49Te3VtwGm6OUMXQqXBwmAU1jlsvyL-/exec" + params.toString())
-      .then(response => response.text())
-      .then(data => {
+    fetch("https://script.google.com/macros/s/AKfycbyaBFH4O2uOIKhy1b5o0pTxrgynuw_pnr7Gm4BTDzmDYSJkukBTNxzI6wNjJLwSg1EUhA/exec", {
+      method: "POST",
+      body: JSON.stringify({
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value
+      }),
+      headers: { "Content-Type": "application/json" }
+    })
+    .then(response => {
+      if (response.ok) {
         alert("Message sent successfully!");
         form.reset();
-      })
-      .catch(error => alert("Error: " + error.message));
+      } else {
+        alert("Something went wrong. Try again.");
+      }
+    })
+    .catch(error => alert("Error: " + error.message));
   });
 </script>
-
 </body>
 </html>
