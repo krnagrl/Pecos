@@ -91,7 +91,7 @@
       message: form.message.value
     });
     
-    fetch("YOUR_WEB_APP_URL_HERE?" + params.toString())
+    fetch("https://script.google.com/macros/s/AKfycbyvhXJX_aI9yvnptDLDGPk88LO0zRT2z_aUk49Te3VtwGm6OUMXQqXBwmAU1jlsvyL-/exec" + params.toString())
       .then(response => response.text())
       .then(data => {
         alert("Message sent successfully!");
