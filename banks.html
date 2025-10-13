@@ -65,43 +65,41 @@
     </ul>
 
     <!-- Contact Form -->
+  
+
     <form id="contact-form">
-      <label>Name:</label>
-      <input type="text" name="name" required>
+  <label>Name:</label>
+  <input type="text" name="name" required>
 
-      <label>Email:</label>
-      <input type="email" name="email" required>
+  <label>Email:</label>
+  <input type="email" name="email" required>
 
-      <label>Message:</label>
-      <textarea name="message" required></textarea>
+  <label>Message:</label>
+  <textarea name="message" required></textarea>
 
-      <button type="submit">Send</button>
-    </form>
-</div>
+  <button type="submit">Send</button>
+</form>
 
 <script>
   const form = document.getElementById('contact-form');
   form.addEventListener('submit', e => {
     e.preventDefault();
-    fetch("https://script.google.com/macros/s/AKfycbzjtAy5GXhzT9wqMPdn3lz9CXyec0-L2P-SEETtMN1lEu3aCRKO-U-PcVBsjWQ8pQ7Gqg/exec", {
-      method: "POST",
-      body: JSON.stringify({
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value
-      }),
-      headers: { "Content-Type": "application/json" }
-    })
-    .then(response => {
-      if (response.ok) {
+    
+    const params = new URLSearchParams({
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    });
+    
+    fetch("YOUR_WEB_APP_URL_HERE?" + params.toString())
+      .then(response => response.text())
+      .then(data => {
         alert("Message sent successfully!");
         form.reset();
-      } else {
-        alert("Something went wrong. Try again.");
-      }
-    })
-    .catch(error => alert("Error: " + error.message));
+      })
+      .catch(error => alert("Error: " + error.message));
   });
 </script>
+
 </body>
 </html>
