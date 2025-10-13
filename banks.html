@@ -53,7 +53,7 @@
   const form = document.getElementById('contact-form');
   form.addEventListener('submit', e => {
     e.preventDefault();
-    fetch("YOUR_WEB_APP_URL_HERE", {
+    fetch("https://script.google.com/macros/s/AKfycbzjtAy5GXhzT9wqMPdn3lz9CXyec0-L2P-SEETtMN1lEu3aCRKO-U-PcVBsjWQ8pQ7Gqg/exec", {
       method: "POST",
       body: JSON.stringify({
         name: form.name.value,
