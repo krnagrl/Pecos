@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login | Club Pecos</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+</head>
+<body style="font-family: Arial; padding: 40px;">
+  <h2>Club Member Login</h2>
+  <input id="email" type="email" placeholder="Email" /><br><br>
+  <input id="password" type="password" placeholder="Password" /><br><br>
+  <button onclick="login()">Login</button>
+
+  <p id="msg"></p>
+  <a href="#" onclick="resetPassword()">Forgot Password?</a>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    // Login function
+    async function login() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const userCred = await auth.signInWithEmailAndPassword(email, password);
+        if (!userCred.user.emailVerified) {
+          await auth.signOut();
+          document.getElementById('msg').innerText = "Please verify your email first.";
+          return;
+        }
+        // Redirect to member area
+        window.location.href = "member.html";
+      } catch (err) {
+        document.getElementById('msg').innerText = err.message;
+        console.log(err);
+      }
+    }
+
+    // Password reset function
+    async function resetPassword() {
+      const email = prompt("Enter your registered email:");
+      if (!email) return;
+      try {
+        await auth.sendPasswordResetEmail(email);
+        document.getElementById('msg').innerText = "Password reset link sent! Check your inbox.";
+      } catch (e) {
+        document.getElementById('msg').innerText = e.message;
+        console.log(e);
+      }
+    }
+  </script>
+</body>
+</html>

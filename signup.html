@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign Up | Club Pecos</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+</head>
+<body style="font-family: Arial; padding: 40px;">
+  <h2>Join Club Pecos</h2>
+  <input id="email" type="email" placeholder="Email" /><br><br>
+  <input id="password" type="password" placeholder="Password" /><br><br>
+  <button onclick="signup()">Sign Up</button>
+
+  <p id="msg"></p>
+
+  <script>
+    // 🔧 Your Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    async function signup() {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      try {
+        const userCred = await auth.createUserWithEmailAndPassword(email, password);
+        await userCred.user.sendEmailVerification();
+        document.getElementById('msg').innerText = 
+          "Verification email sent! Please verify before logging in.";
+      } catch (err) {
+        document.getElementById('msg').innerText = err.message;
+      }
+    }
+  </script>
+</body>
+</html>
