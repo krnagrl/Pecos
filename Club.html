@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Club Pecos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fdfbe7;
+      color: #333;
+    }
+
+    header {
+      background-color: #464573;
+      color: white;
+      padding: 10px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.6em;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      display: flex;
+      margin: 0;
+      min-height: 80vh;
+    }
+
+    .sidebar {
+      background-color: #f7f3c6;
+      width: 220px;
+      padding: 20px;
+    }
+
+    .sidebar h2 {
+      background-color: #c93a3a;
+      color: white;
+      padding: 10px;
+      font-size: 1.1em;
+      margin-top: 0;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin: 15px 0;
+    }
+
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .sidebar ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .content {
+      flex: 1;
+      padding: 30px;
+      background-color: #fffdf4;
+    }
+
+    .content h2 {
+      color: #464573;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .section {
+      margin-bottom: 30px;
+    }
+
+    .join-btn {
+      background-color: #c93a3a;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-size: 1em;
+      border-radius: 4px;
+    }
+
+    .join-btn:hover {
+      background-color: #a52f2f;
+    }
+
+    footer {
+      background-color: #464573;
+      color: white;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Club Pecos</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="club.html">Club</a> |
+      <a href="about.html">About</a> |
+      <a href="investors.html">Investors</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Sections</h2>
+      <ul>
+        <li><a href="#about">About Club Pecos</a></li>
+        <li><a href="#benefits">Membership Benefits</a></li>
+        <li><a href="#events">Events & Gatherings</a></li>
+        <li><a href="#join">Join & Contact</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <section id="about" class="section">
+        <h2>About Club Pecos</h2>
+        <p>
+          Club Pecos is an exclusive members-only community built to connect and empower individuals across industries. 
+          The club is dedicated to fostering relationships, creating business opportunities, and providing a trusted 
+          support system for its members.
+        </p>
+        <p>
+          Whether you're an entrepreneur, investor, or professional, Club Pecos offers a space to grow, collaborate, 
+          and make meaningful connections that last a lifetime.
+        </p>
+      </section>
+
+      <section id="benefits" class="section">
+        <h2>Membership Benefits</h2>
+        <ul>
+          <li>Access to exclusive Club Pecos events and gatherings.</li>
+          <li>Networking opportunities with influential members and leaders.</li>
+          <li>Business collaborations and brand-building support.</li>
+          <li>Club assistance in ventures and growth opportunities.</li>
+          <li>Free entries to all official Club Pecos events.</li>
+        </ul>
+      </section>
+
+      <section id="events" class="section">
+        <h2>Events & Gatherings</h2>
+        <p>
+          Club Pecos hosts a variety of events throughout the year, including business networking meets, 
+          social gatherings, workshops, and retreats designed to strengthen community bonds and open 
+          doors to new opportunities.
+        </p>
+        <p><i>Stay tuned for upcoming events and updates shared exclusively with our members.</i></p>
+      </section>
+
+      <section id="join" class="section">
+        <h2>Join & Contact</h2>
+        <p>
+          Interested in becoming part of Club Pecos? We welcome individuals who value growth, 
+          networking, and contribution to a trusted community.
+        </p>
+        <p>
+          <b>Contact:</b> pecos.origin@gmail.com
+        </p>
+        <button class="join-btn">Become a Member</button>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    © 2025 Pecos | Registered in 2020<br>
+    <a href="#">Claim Rewards</a> •
+    <a href="#">Advertise</a> •
+    <a href="#">Careers</a>
+  </footer>
+</body>
+</html>
