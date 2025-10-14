@@ -1,16 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Member Area | Club Pecos</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Member Dashboard | Pecos</title>
+
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-</head>
-<body style="font-family: Arial; padding: 40px;">
-  <h2>Welcome to Club Pecos Members Area</h2>
-  <p id="welcome"></p>
-  <button onclick="logout()">Logout</button>
 
+  <style>
+    body {
+      background-color: #f9f5d7;
+      font-family: "Verdana", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 95%;
+      margin: 40px auto;
+      border: 4px solid #4a4a7d;
+      background-color: #fffce8;
+      box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+    }
+
+    header {
+      background-color: #4a4a7d;
+      color: white;
+      text-align: left;
+      padding: 8px 20px;
+      font-size: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      margin-right: 20px;
+      cursor: pointer;
+    }
+
+    header img {
+      vertical-align: middle;
+    }
+
+    header nav a {
+      margin-right: 15px;
+    }
+
+    .content {
+      display: flex;
+      padding: 15px;
+    }
+
+    .sidebar {
+      width: 220px;
+      border-right: 2px solid #ccc;
+      background-color: #f7f3c6;
+      padding: 10px;
+    }
+
+    .sidebar h3 {
+      background-color: #c33;
+      color: white;
+      padding: 6px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
+    }
+
+    .sidebar li {
+      margin: 8px 0;
+      font-size: 15px;
+    }
+
+    .sidebar li a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px;
+      background-color: #fffef0;
+      line-height: 1.8;
+    }
+
+    .main h2 {
+      color: #c33;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background-color: #fff8cc;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      flex: 1;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card h3 {
+      margin: 0;
+      color: #4a4a7d;
+    }
+
+    .events, .referrals, .account {
+      margin-top: 25px;
+    }
+
+    button {
+      background-color: #c33;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #4a4a7d;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
+
+    #welcome-message {
+      font-weight: bold;
+      font-size: 14px;
+      margin-right: 15px;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      animation: fadeIn ease 1s forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+      }
+
+      .stats {
+        flex-direction: column;
+      }
+
+      .card {
+        margin-bottom: 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header nav {
+        margin-top: 10px;
+      }
+
+      header nav a {
+        margin-right: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container fade-in">
+    <header>
+      <div style="display: flex; align-items: center;">
+        <img src="pecos.png" alt="Pecos Logo" style="height: 40px; margin-right: 15px;">
+        <span style="font-size: 20px; font-weight: bold;">Pecos</span>
+      </div>
+      <nav>
+        <span id="welcome-message">Checking login...</span>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="sidebar">
+        <h3>Dashboard Menu</h3>
+        <ul>
+          <li><a href="#">Overview</a></li>
+          <li><a href="#">My Finances</a></li>
+          <li><a href="#">Investments</a></li>
+          <li><a href="#">Club Events</a></li>
+          <li><a href="#">Referrals</a></li>
+          <li><a href="#">Account Settings</a></li>
+        </ul>
+      </div>
+
+      <div class="main">
+        <h2>Welcome, Member!</h2>
+        <p>Your personalized Club Pecos dashboard gives you full access to your finances, investments, and club benefits.</p>
+
+        <div class="stats">
+          <div class="card">
+            <h3>Finance Requests</h3>
+            <p>2 Pending | 3 Approved</p>
+          </div>
+          <div class="card">
+            <h3>Investments</h3>
+            <p>₹2,50,000 Active</p>
+          </div>
+          <div class="card">
+            <h3>Club Events</h3>
+            <p>3 Upcoming</p>
+          </div>
+        </div>
+
+        <div class="events">
+          <h2>Upcoming Events</h2>
+          <ul>
+            <li>📅 Finance Meetup - 20 Oct 2025</li>
+            <li>🎯 Business Growth Workshop - 25 Oct 2025</li>
+            <li>🎉 Annual Club Gala - 10 Nov 2025</li>
+          </ul>
+          <button><a href="Club.html">View All Events</a></button>
+        </div>
+
+        <div class="referrals">
+          <h2>Referral Program</h2>
+          <p>Invite your friends to join Pecos and earn rewards for every successful registration!</p>
+          <p><strong>Your Referral Code:</strong> PECOS2025</p>
+          <button onclick="copyReferral()">Copy Link</button>
+        </div>
+
+        <div class="account">
+          <h2>Account Settings</h2>
+          <p>Update your profile, password, or payment details.</p>
+          <button><a href="#">Manage Account</a></button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Pecos | Registered in 2020</p>
+      <p><a href="#">Claim Rewards</a> • <a href="#">Advertise</a> • <a href="#">Careers</a></p>
+    </footer>
+  </div>
+
+  <!-- Firebase Logic -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -21,17 +294,26 @@
     const auth = firebase.auth();
 
     auth.onAuthStateChanged(user => {
+      const welcomeEl = document.getElementById("welcome-message");
       if (user && user.emailVerified) {
-        document.getElementById('welcome').innerText = `Logged in as: ${user.email}`;
+        const displayName = user.displayName || user.email;
+        welcomeEl.innerText = `Welcome, ${displayName}`;
       } else {
-        // If not logged in or not verified → redirect
         window.location.href = "login.html";
       }
     });
 
     function logout() {
-      auth.signOut();
-      window.location.href = "login.html";
+      auth.signOut().then(() => {
+        window.location.href = "login.html";
+      });
+    }
+
+    function copyReferral() {
+      const code = "PECOS2025";
+      navigator.clipboard.writeText(`Join Club Pecos with my referral code: ${code}`)
+        .then(() => alert("Referral code copied to clipboard!"))
+        .catch(() => alert("Failed to copy referral code."));
     }
   </script>
 </body>
