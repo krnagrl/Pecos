@@ -484,9 +484,12 @@
     // utility to download sample file
     // downloadStatement();
 
+        auth.onAuthStateChanged(async user => {
+
     // For first-time users, pre-fill settings display name
     auth.onAuthStateChanged(user=>{ if(user){ $('settings-displayname').value = user.displayName || '' } })
 
+    
     // NOTES:
     // Firestore structure (suggested):
     // collection: members -> doc: <uid> {
