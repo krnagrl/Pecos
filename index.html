@@ -6,7 +6,21 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
      crossorigin="anonymous"></script>
   <title>Ask Pecos!</title>
+
+  <!-- Google Custom Search -->
   <script async src="https://cse.google.com/cse.js?cx=67298cf1b0fec4621"></script>
+  <script>
+    // Wait until the Google Search box is loaded, then change placeholder
+    window.onload = function() {
+      const interval = setInterval(() => {
+        const input = document.querySelector('input.gsc-input');
+        if (input) {
+          input.placeholder = "Search Pecos...";
+          clearInterval(interval);
+        }
+      }, 300);
+    };
+  </script>
 
   <style>
     body {
@@ -70,9 +84,7 @@
     }
 
     .description {
-
-       line-height: 1.8;
-
+      line-height: 1.8;
     }
 
     .sidebar li a {
@@ -149,13 +161,9 @@
         
       <nav>
         <a href="index.html">Home</a> |
-          
         <a href="#">Club</a> |
-          
         <a href="about.html">About</a> |
-          
         <a href="login.html">Member Login</a>
-          
       </nav>
         
     </header>
@@ -167,73 +175,36 @@
         <h3>Services</h3>
           
         <ul>
-            
           <li><a href="#">Finance</a></li>
-            
-          <li><a href="#">Investments</li>
-            
-          <li><a href="Club.html">Club Pecos</li>
-            
+          <li><a href="#">Investments</a></li>
+          <li><a href="Club.html">Club Pecos</a></li>
           <li><a href="#">Other links</a></li>
-            
         </ul>
           
       </div>
 
       <div class="main">
-
-
-
         <div class="search-section">
-            
           <!-- Google Search Widget -->
-            
           <div class="gcse-search"></div>
-            
         </div>
 
         <div class="recent">
-            
           <p class="description">
-              Get in Touch<br>
-              We'd love to hear from you! Whether you have a question, idea, or partnership proposal, feel free to contact us.
+            Get in Touch<br>
+            We'd love to hear from you! Whether you have a question, idea, or partnership proposal, feel free to contact us.
           </p>
-            <p>Contact : <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
-            <p><button><a href="signup.html">Become a Member</a></button></p>
+          <p>Contact : <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
+          <p><button><a href="signup.html">Become a Member</a></button></p>
         </div>
       </div>
     </div>
 
     <footer>
-        
       <p>© 2025 Pecos | Registered in 2020</p>
-        
       <p><a href="#">Claim Rewards</a> • <a href="#">Advertise</a> • <a href="#">Careers</a></p>
-        
     </footer>
       
   </div>
-    
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
