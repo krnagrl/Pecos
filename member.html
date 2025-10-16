@@ -1,65 +1,47 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
-     crossorigin="anonymous"></script>
-  <title>Member Dashboard | Pecos</title>
+  <title>Member Dashboard | Club Pecos</title>
 
-  <!-- Firebase SDKs (compat for simpler migration) -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
-    /* --- base --- */
-    :root{--accent:#4a4a7d;--accent-2:#c33;--bg:#f9f5d7}
-    body{background-color:var(--bg);font-family:Verdana,Segoe UI,Roboto,sans-serif;margin:0;padding:0}
-    .container{max-width:1100px;width:95%;margin:30px auto;border:4px solid var(--accent);background-color:#fffce8;box-shadow:0 0 10px rgba(0,0,0,.12)}
-    header{background-color:var(--accent);color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-    header .brand{display:flex;align-items:center;gap:12px}
-    header img{height:40px}
-    header nav{display:flex;align-items:center;gap:12px}
-    header nav a{color:#fff;text-decoration:none}
+    body{margin:0;font-family:Verdana,Segoe UI,sans-serif;background:#f9f5d7;color:#333;}
+    .container{max-width:1100px;width:95%;margin:30px auto;}
+    header{background:#4a4a7d;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    header .brand{display:flex;align-items:center;gap:12px} header img{height:40px}
+    header nav{display:flex;align-items:center;gap:12px} header nav a{color:#fff;text-decoration:none;cursor:pointer}
+    
+    .content{display:flex;gap:18px;margin-top:20px}
+    .sidebar{width:250px;background:#f7f3c6;padding:12px;border-right:2px solid #ddd}
+    .sidebar h3{background:#c33;color:white;padding:8px;text-align:center;margin:0}
+    .sidebar ul{list-style:none;padding:0;margin:8px 0} .sidebar li{margin:8px 0}
+    .sidebar a{color:#333;text-decoration:none;display:block;padding:4px}
+    .sidebar a:hover{background:#e0d8a0;border-radius:4px}
 
-    .content{display:flex;gap:18px;padding:18px}
-    .sidebar{width:260px;background:#f7f3c6;padding:12px;border-right:2px solid #ddd}
-    .sidebar h3{background-color:var(--accent-2);color:white;padding:8px;text-align:center;margin:0}
-    .sidebar ul{list-style:none;padding:8px;margin:8px 0}
-    .sidebar li{margin:8px 0}
-    .sidebar a{color:#333;text-decoration:none}
-
-    .main{flex:1;background:#fffef0;padding:16px}
-    .grid{display:grid;grid-template-columns:260px 1fr;gap:18px}
-
-    /* profile card */
-    .profile-card{background:#fff8cc;border:1px solid #ddd;padding:12px;border-radius:8px}
-    .profile-photo{width:100%;height:200px;background:#eee;border-radius:6px;object-fit:cover}
-    .profile-row{display:flex;gap:10px;align-items:center}
-    .profile-meta{display:flex;flex-direction:column;gap:4px}
-
-    /* dashboard cards */
+    .main{flex:1;padding:16px;background:#fffef0;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    .section{display:none}
+    .section h2{color:#4a4a7d;margin-bottom:12px}
+    .profile-card{background:#fff8cc;border:1px solid #ddd;padding:12px;border-radius:8px;line-height:2;margin-bottom:20px}
     .cards{display:flex;flex-wrap:wrap;gap:12px}
     .card{flex:1;min-width:200px;background:#fff8cc;border-radius:6px;padding:12px;border:1px solid #ddd}
-    .card h4{margin:0 0 6px 0;color:var(--accent)}
-    .muted{color:#666;font-size:13px}
+    .card h4{margin:0 0 6px 0;color:#4a4a7d}
+    button{background:#c33;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer}
+    button:hover{background:#a00}
 
-    /* events list */
-    .events-list{list-style:none;padding:0;margin:0}
-    .events-list li{padding:8px;border-bottom:1px dashed #e0e0e0}
+    input[type=number]{width:100%;padding:6px;border:1px solid #ccc;border-radius:4px}
 
-    /* settings */
-    .form-row{display:flex;flex-direction:column;margin-bottom:10px}
-    label{font-weight:600;margin-bottom:6px}
-    input[type=text],input[type=email],select,textarea{padding:8px;border:1px solid #ccc;border-radius:4px}
-    button{background:var(--accent-2);color:#fff;border:none;padding:8px 12px;border-radius:4px;cursor:pointer}
+    footer{text-align:center;padding:10px;margin-top:20px;background:#4a4a7d;color:#fff}
 
-    footer{background:var(--accent);color:#fff;text-align:center;padding:10px;margin-top:18px}
-
-    @media(max-width:900px){.content{flex-direction:column}.sidebar{width:100%}.grid{grid-template-columns:1fr}}
+    @media(max-width:900px){.content{flex-direction:column}.sidebar{width:100%}}
   </style>
 </head>
 <body>
@@ -69,12 +51,12 @@
         <img src="pecos.png" alt="Pecos Logo" />
         <div>
           <div style="font-weight:700;font-size:18px">Pecos</div>
-          <div style="font-size:12px;color:#fffaa0">Member dashboard</div>
+          <div style="font-size:12px;color:#fffaa0">Member Dashboard</div>
         </div>
       </div>
       <nav>
         <div id="welcome-message">Checking login...</div>
-        <a href="#" id="nav-logout">Logout</a>
+        <a id="nav-logout">Logout</a>
       </nav>
     </header>
 
@@ -82,191 +64,54 @@
       <aside class="sidebar">
         <h3>Dashboard Menu</h3>
         <ul>
-          <li><a href="#overview" onclick="showSection('overview')">Overview</a></li>
-          <li><a href="#profile" onclick="showSection('profile')">Profile</a></li>
-          <li><a href="#dashboard" onclick="showSection('dashboard')">Financial Dashboard</a></li>
-          <li><a href="#">Club Funds : <b>300,000</b></a></li>
-          <li><a href="#">PST : <b>10,000</b></a></li>
-          <li><a href="#events" onclick="showSection('events')">Events</a></li>
-          <li><a href="#referrals" onclick="showSection('referrals')">Referrals</a></li>
-          <li><a href="#settings" onclick="showSection('settings')">Account Settings</a></li>
+          <li><a onclick="showSection('overview')">Overview</a></li>
+          <li><a onclick="showSection('profile')">Profile</a></li>
+          <li><a onclick="showSection('activity')">Activity</a></li>
         </ul>
       </aside>
 
       <main class="main">
+        <!-- OVERVIEW -->
         <div id="overview" class="section">
-          <div class="grid">
-            <div class="profile-card">
-              <div class="profile-row">
-                <img id="profile-photo" class="profile-photo" src="https://via.placeholder.com/400x200?text=No+Photo" alt="Profile Photo" />
-              </div>
-              <div style="margin-top:8px">
-                <div style="font-weight:700;font-size:16px" id="profile-name">Member Name</div>
-                <div class="muted" id="profile-id">Member ID: -</div>
-                <div class="muted" id="profile-since">Member since: -</div>
-                <div class="muted" id="profile-tokens">Total Tokens: -</div>
-              </div>
-              <div style="margin-top:10px;display:flex;gap:8px">
-                <button onclick="showSection('profile')">Edit Profile</button>
-                <button onclick="downloadStatement()">Download Statement</button>
-              </div>
-            </div>
-
-            <div>
-              <div class="cards" id="summary-cards">
-                <div class="card">
-                  <h4>Membership Revenue</h4>
-                  <div id="membership-revenue">₹0</div>
-                  <div class="muted">Revenue from membership fees</div>
-                </div>
-                <div class="card">
-                  <h4>Events & Ticket Sales</h4>
-                  <div id="events-revenue">₹0</div>
-                  <div class="muted">Tickets & event income</div>
-                </div>
-                <div class="card">
-                  <h4>PST Token Summary</h4>
-                  <div id="pst-summary">0 PST</div>
-                  <div class="muted">Token balance & value</div>
-                </div>
-                <div class="card">
-                  <h4>Affiliate Earnings</h4>
-                  <div id="affiliate-earnings">₹0</div>
-                  <div class="muted">Earnings from referrals</div>
-                </div>
-                <div class="card">
-                  <h4>Club Investments</h4>
-                  <div id="club-investments">₹0</div>
-                  <div class="muted">Member's share or visible investments</div>
-                </div>
-                <div class="card">
-                  <h4>Total Club Income</h4>
-                  <div id="total-club-income">₹0</div>
-                  <div class="muted">All sources combined</div>
-                </div>
-              </div>
-
-              <div style="margin-top:12px" class="card">
-                <h4>Quick Actions</h4>
-                <div style="display:flex;gap:8px;flex-wrap:wrap">
-                  <button onclick="showSection('events')">View Events</button>
-                  <button onclick="showSection('referrals')">Share Referral</button>
-                  <button onclick="showSection('settings')">Account Settings</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="margin-top:16px">
-            <h3>Upcoming Events</h3>
-            <ul id="upcoming-events" class="events-list">
-              <li>Loading upcoming events...</li>
-            </ul>
-          </div>
+          <h2>Overview</h2>
+          <p>Welcome to your member dashboard. Navigate using the menu to see your profile and activity details.</p>
         </div>
 
-        <!-- PROFILE EDIT -->
-        <div id="profile" class="section" style="display:none">
+        <!-- PROFILE -->
+        <div id="profile" class="section">
           <h2>Profile</h2>
-          <div style="display:flex;gap:12px;flex-wrap:wrap">
-            <div style="flex:1;min-width:260px">
-              <img id="edit-photo-preview" src="https://via.placeholder.com/400x200?text=No+Photo" style="width:100%;height:200px;object-fit:cover;border-radius:6px;border:1px solid #ddd" />
-              <input type="file" id="upload-photo" accept="image/*" style="margin-top:8px" />
-            </div>
-            <div style="flex:2;min-width:260px">
-              <div class="form-row">
-                <label>Name</label>
-                <input id="edit-name" type="text" />
-              </div>
-              <div class="form-row">
-                <label>Email (readonly)</label>
-                <input id="edit-email" type="email" readonly />
-              </div>
-              <div class="form-row">
-                <label>Member ID</label>
-                <input id="edit-member-id" type="text" readonly />
-              </div>
-              <div class="form-row">
-                <label>Member Since</label>
-                <input id="edit-member-since" type="text" readonly />
-              </div>
-              <div class="form-row">
-                <label>Total Tokens</label>
-                <input id="edit-tokens" type="text" readonly />
-              </div>
-              <div style="display:flex;gap:8px;margin-top:10px">
-                <button id="save-profile">Save Profile</button>
-                <button onclick="showSection('overview')">Back</button>
-              </div>
-            </div>
+          <div class="profile-card">
+            <p><strong>Name:</strong> <span id="profile-name">-</span></p>
+            <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+            <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
+            <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
           </div>
         </div>
 
-        <!-- FINANCIAL DASHBOARD -->
-        <div id="dashboard" class="section" style="display:none">
-          <h2>Financial Dashboard</h2>
-          <p class="muted">Track revenue from memberships, events & ticket sales, PST token summary, affiliate earnings and club investments.</p>
-
-          <div class="cards" style="margin-top:10px">
+        <!-- ACTIVITY -->
+        <div id="activity" class="section">
+          <h2>Activity</h2>
+          <div class="cards">
             <div class="card">
-              <h4>Membership Revenue (YTD)</h4>
-              <div id="fd-membership">₹0</div>
+              <h4>Total Tokens</h4>
+              <p id="activity-tokens">-</p>
+              <input type="number" id="update-tokens" placeholder="Update tokens" />
+              <button onclick="updateTokens()">Save</button>
             </div>
             <div class="card">
-              <h4>Events & Tickets (YTD)</h4>
-              <div id="fd-events">₹0</div>
+              <h4>Upcoming Events</h4>
+              <ul id="activity-events" style="padding-left:18px;margin:0"></ul>
             </div>
             <div class="card">
-              <h4>Affiliate Earnings</h4>
-              <div id="fd-affiliate">₹0</div>
+              <h4>Membership Info</h4>
+              <p id="activity-member-since">-</p>
             </div>
-            <div class="card">
-              <h4>PST Tokens (balance)</h4>
-              <div id="fd-pst">0 PST</div>
-            </div>
-          </div>
-
-          <div style="margin-top:12px" class="card">
-            <h4>Club Investments Detail</h4>
-            <div id="fd-investments">No investments yet</div>
-          </div>
-        </div>
-
-        <!-- EVENTS -->
-        <div id="events" class="section" style="display:none">
-          <h2>Events</h2>
-          <p class="muted">Upcoming & past events. Members may view tickets / buy if enabled.</p>
-          <ul id="events-list" class="events-list"></ul>
-        </div>
-
-        <!-- REFERRALS -->
-        <div id="referrals" class="section" style="display:none">
-          <h2>Referral Program</h2>
-          <p>Invite friends and earn rewards.</p>
-          <div style="display:flex;gap:8px;align-items:center">
-            <input id="referral-code" type="text" readonly value="PECOS2025" style="flex:1" />
-            <button onclick="copyReferral()">Copy</button>
-          </div>
-          <div style="margin-top:8px" id="referral-stats"></div>
-        </div>
-
-        <!-- SETTINGS -->
-        <div id="settings" class="section" style="display:none">
-          <h2>Account Settings</h2>
-          <div class="card">
-            <h4>Change display name</h4>
-            <div class="form-row">
-              <label>Display name</label>
-              <input id="settings-displayname" type="text" />
-            </div>
-            <div style="display:flex;gap:8px">
-              <button id="save-settings">Save</button>
-              <button id="send-verification">Send Email Verification</button>
-              <button id="change-password">Change Password</button>
+            <div class="card" style="flex-basis:100%;">
+              <h4>Tokens Activity (Last 7 updates)</h4>
+              <canvas id="tokensChart" height="150"></canvas>
             </div>
           </div>
         </div>
-
       </main>
     </div>
 
@@ -276,233 +121,101 @@
   </div>
 
   <script>
-    // Firebase config (kept from your original file)
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
       projectId: "pecos-432b5",
       storageBucket: "pecos-432b5.appspot.com"
     };
-
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
-    const storage = firebase.storage();
 
-    // UI helpers
-    function $(id){return document.getElementById(id)}
+    let tokensHistory = [];
+
     function showSection(id){
       document.querySelectorAll('.section').forEach(s=>s.style.display='none');
-      const el = $(id);
+      const el = document.getElementById(id);
       if(el) el.style.display='block';
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
-    // auth state
     auth.onAuthStateChanged(async user => {
-      const welcomeEl = $('welcome-message');
-      if(!user){
-        window.location.href = 'login.html';
-        return;
+      if(!user) window.location.href='login.html';
+      else{
+        document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
+        await loadMemberData(user);
+        showSection('overview');
       }
-      welcomeEl.innerText = `Welcome, ${user.displayName || user.email}`;
-      // load profile and dashboard
-      await loadMemberData(user);
-      showSection('overview');
     });
 
-    // logout
-    $('nav-logout').addEventListener('click', e=>{e.preventDefault();auth.signOut().then(()=>window.location.href='login.html')});
+    document.getElementById('nav-logout').addEventListener('click', e=>{
+      e.preventDefault(); auth.signOut().then(()=>window.location.href='login.html');
+    });
 
-    // load member data from Firestore
     async function loadMemberData(user){
       try{
         const docRef = db.collection('members').doc(user.uid);
         const snap = await docRef.get();
-        let data = {};
-        if(snap.exists){
-          data = snap.data();
-        } else {
-          // create a minimal profile if missing
-          data = {
-            displayName: user.displayName || user.email.split('@')[0],
-            email: user.email,
-            memberID: 'M-'+user.uid.slice(0,6).toUpperCase(),
-            memberSince: new Date().toISOString().slice(0,10),
-            tokens: 0,
-            membershipRevenue: 0,
-            eventsRevenue: 0,
-            ticketSales:0,
-            pstTokens:0,
-            affiliateEarnings:0,
-            clubInvestments:0,
-            totalClubIncome:0,
-            photoURL: user.photoURL || null,
-            upcomingEvents:[]
-          };
-          await docRef.set(data);
-        }
+        if(!snap.exists) return alert('Member data not found');
+        const data = snap.data();
 
-        // populate profile
-        $('profile-name').innerText = data.displayName || user.email;
-        $('profile-id').innerText = 'Member ID: ' + (data.memberID || '-');
-        $('profile-since').innerText = 'Member since: ' + (data.memberSince || '-');
-        $('profile-tokens').innerText = 'Total Tokens: ' + (data.tokens ?? 0);
-        $('profile-photo').src = data.photoURL || 'https://via.placeholder.com/400x200?text=No+Photo';
+        // Profile
+        document.getElementById('profile-name').innerText = data.displayName || '-';
+        document.getElementById('profile-email').innerText = data.email || '-';
+        document.getElementById('profile-id').innerText = data.memberID || '-';
+        document.getElementById('profile-since').innerText = data.memberSince || '-';
 
-        // edit form
-        $('edit-name').value = data.displayName || '';
-        $('edit-email').value = data.email || user.email;
-        $('edit-member-id').value = data.memberID || '';
-        $('edit-member-since').value = data.memberSince || '';
-        $('edit-tokens').value = data.tokens ?? 0;
-        $('edit-photo-preview').src = data.photoURL || 'https://via.placeholder.com/400x200?text=No+Photo';
+        // Activity
+        document.getElementById('activity-tokens').innerText = data.tokens ?? 0;
+        document.getElementById('activity-member-since').innerText = data.memberSince || '-';
 
-        // dashboard numbers
-        $('membership-revenue').innerText = formatMoney(data.membershipRevenue || 0);
-        $('events-revenue').innerText = formatMoney((data.eventsRevenue || 0) + (data.ticketSales || 0));
-        $('pst-summary').innerText = (data.pstTokens || 0) + ' PST';
-        $('affiliate-earnings').innerText = formatMoney(data.affiliateEarnings || 0);
-        $('club-investments').innerText = formatMoney(data.clubInvestments || 0);
-        $('total-club-income').innerText = formatMoney(data.totalClubIncome || 0);
-
-        // financial dashboard
-        $('fd-membership').innerText = formatMoney(data.membershipRevenue || 0);
-        $('fd-events').innerText = formatMoney((data.eventsRevenue || 0) + (data.ticketSales || 0));
-        $('fd-affiliate').innerText = formatMoney(data.affiliateEarnings || 0);
-        $('fd-pst').innerText = (data.pstTokens || 0) + ' PST';
-        $('fd-investments').innerText = data.clubInvestments ? formatMoney(data.clubInvestments) : 'No investments yet';
-
-        // upcoming events
-        const ul = $('upcoming-events'); ul.innerHTML='';
-        const events = data.upcomingEvents || [];
-        if(events.length===0){
-          ul.innerHTML = '<li>No upcoming events</li>';
-        } else {
-          events.forEach(evt=>{
-            const li = document.createElement('li');
-            li.innerHTML = `<strong>${evt.title}</strong> — ${evt.date} ${evt.venue?'- '+evt.venue:''}`;
-            ul.appendChild(li);
-          });
-        }
-
-        // full events list
-        const eventsList = $('events-list'); eventsList.innerHTML='';
-        (data.allEvents || events).forEach(evt=>{
+        // Upcoming events placeholder
+        const upcoming = data.upcomingEvents || []; 
+        const eventsList = document.getElementById('activity-events');
+        eventsList.innerHTML = '';
+        if(upcoming.length===0) eventsList.innerHTML='<li>No upcoming events</li>';
+        else upcoming.forEach(evt=>{
           const li = document.createElement('li');
-          li.innerHTML = `<strong>${evt.title}</strong> <div class="muted">${evt.date} • ${evt.ticketPrice? '₹'+evt.ticketPrice : 'Free'}</div>`;
+          li.innerText = `${evt.title} — ${evt.date}`;
           eventsList.appendChild(li);
-        })
+        });
 
-        // referral stats (example)
-        $('referral-stats').innerText = `Referrals: ${data.referralsCount || 0} • Rewards earned: ${formatMoney(data.referralRewards || 0)}`;
+        // Tokens history (simulate last 7 updates)
+        tokensHistory.push(data.tokens ?? 0);
+        if(tokensHistory.length>7) tokensHistory.shift();
+        renderTokensChart(tokensHistory);
 
-      }catch(err){
-        console.error('Error loading member data',err);
-      }
+      }catch(err){console.error(err); alert('Error loading member data');}
     }
 
-    function formatMoney(x){
-      return '₹' + Number(x||0).toLocaleString('en-IN');
-    }
-
-    // Save profile changes (name & photo)
-    $('save-profile').addEventListener('click', async ()=>{
-      const user = auth.currentUser; if(!user) return alert('Not logged in');
-      const name = $('edit-name').value.trim();
-      const file = $('upload-photo').files[0];
-      const docRef = db.collection('members').doc(user.uid);
+    async function updateTokens(){
+      const user = auth.currentUser;
+      const newTokens = parseInt(document.getElementById('update-tokens').value);
+      if(isNaN(newTokens)) return alert('Enter a valid number');
       try{
-        let photoURL = $('edit-photo-preview').src;
-        if(file){
-          const storageRef = storage.ref().child(`members/${user.uid}/profile.jpg`);
-          const snap = await storageRef.put(file);
-          photoURL = await snap.ref.getDownloadURL();
-        }
-        await docRef.update({displayName:name,photoURL});
-        // also update firebase auth profile
-        await user.updateProfile({displayName:name,photoURL});
-        alert('Profile updated');
-        await loadMemberData(user);
-        showSection('overview');
-      }catch(err){console.error(err);alert('Failed to save profile')}
-    });
-
-    // photo preview
-    $('upload-photo').addEventListener('change', e=>{
-      const f = e.target.files[0]; if(!f) return; const url = URL.createObjectURL(f); $('edit-photo-preview').src = url;
-    });
-
-    // REFERRAL copy
-    function copyReferral(){
-      const code = $('referral-code').value;
-      navigator.clipboard.writeText(`Join Club Pecos with referral code ${code}`).then(()=>alert('Copied!'))
+        await db.collection('members').doc(user.uid).update({tokens:newTokens});
+        document.getElementById('activity-tokens').innerText = newTokens;
+        tokensHistory.push(newTokens);
+        if(tokensHistory.length>7) tokensHistory.shift();
+        renderTokensChart(tokensHistory);
+        alert('Tokens updated successfully');
+      }catch(err){console.error(err); alert('Failed to update tokens')}
     }
 
-    // Save settings
-    $('save-settings').addEventListener('click', async ()=>{
-      const user = auth.currentUser; if(!user) return alert('Not logged in');
-      const newName = $('settings-displayname').value.trim();
-      if(!newName) return alert('Enter a name');
-      try{
-        await user.updateProfile({displayName:newName});
-        await db.collection('members').doc(user.uid).update({displayName:newName});
-        alert('Saved');
-        loadMemberData(user);
-      }catch(err){console.error(err);alert('Failed to save')}
-    });
-
-    // send verification
-    $('send-verification').addEventListener('click', ()=>{
-      const user = auth.currentUser; if(!user) return alert('Not logged in');
-      user.sendEmailVerification().then(()=>alert('Verification sent to '+user.email)).catch(e=>alert('Error: '+e.message));
-    });
-
-    // change password (sends reset email)
-    $('change-password').addEventListener('click', ()=>{
-      const user = auth.currentUser; if(!user) return alert('Not logged in');
-      const email = user.email;
-      auth.sendPasswordResetEmail(email).then(()=>alert('Password reset email sent to '+email)).catch(e=>alert('Error: '+e.message));
-    });
-
-    // download statement (simple CSV)
-    function downloadStatement(){
-      const user = auth.currentUser; if(!user) return alert('Not logged in');
-      db.collection('members').doc(user.uid).get().then(snap=>{
-        const data = snap.data()||{};
-        const rows = [
-          ['Member','',data.displayName || ''],
-          ['Email','',data.email || ''],
-          ['Member ID','',data.memberID || ''],
-          ['Member Since','',data.memberSince || ''],
-          ['Tokens','',data.tokens || 0],
-          ['Membership Revenue','',data.membershipRevenue || 0],
-          ['Events Revenue','',data.eventsRevenue || 0]
-        ];
-        const csv = rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-        const blob = new Blob([csv],{type:'text/csv'});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a'); a.href=url; a.download='pecos-statement.csv'; a.click(); URL.revokeObjectURL(url);
-      })
+    function renderTokensChart(data){
+      const ctx = document.getElementById('tokensChart').getContext('2d');
+      if(window.tokensChartInstance) window.tokensChartInstance.destroy();
+      window.tokensChartInstance = new Chart(ctx, {
+        type:'bar',
+        data:{
+          labels:data.map((_,i)=>`#${i+1}`),
+          datasets:[{label:'Tokens',data:data,backgroundColor:'#4a4a7d'}]
+        },
+        options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+      });
     }
-
-    // utility to download sample file
-    // downloadStatement();
-
-
-
-    // For first-time users, pre-fill settings display name
-    auth.onAuthStateChanged(user=>{ if(user){ $('settings-displayname').value = user.displayName || '' } })
-
-    
-    // NOTES:
-    // Firestore structure (suggested):
-    // collection: members -> doc: <uid> {
-    //   displayName, email, memberID, memberSince, tokens, membershipRevenue, eventsRevenue, ticketSales, pstTokens, affiliateEarnings, clubInvestments, totalClubIncome, photoURL, upcomingEvents: [{title,date,venue,ticketPrice}], referralsCount, referralRewards, allEvents: [...] }
-    // collection: events -> doc: <eventId> { title, date, venue, ticketPrice, attendees: [...] }
-
-    // SECURITY: Keep strict Firestore rules so members can only read their own member doc and read public events collection.
-
   </script>
 </body>
 </html>
