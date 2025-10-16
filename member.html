@@ -10,9 +10,6 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
   <style>
     body{margin:0;font-family:Verdana,Segoe UI,sans-serif;background:#f9f5d7;color:#333;}
     .container{max-width:1100px;width:95%;margin:30px auto;}
@@ -30,14 +27,12 @@
     .main{flex:1;padding:16px;background:#fffef0;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
     .section{display:none}
     .section h2{color:#4a4a7d;margin-bottom:12px}
-    .profile-card{background:#fff8cc;border:1px solid #ddd;padding:12px;border-radius:8px;line-height:2;margin-bottom:20px}
+    .profile-card{background:#fff8cc;border:1px solid #ddd;padding:12px;border-radius:8px;line-height:1.6;margin-bottom:20px}
     .cards{display:flex;flex-wrap:wrap;gap:12px}
     .card{flex:1;min-width:200px;background:#fff8cc;border-radius:6px;padding:12px;border:1px solid #ddd}
     .card h4{margin:0 0 6px 0;color:#4a4a7d}
     button{background:#c33;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer}
     button:hover{background:#a00}
-
-    input[type=number]{width:100%;padding:6px;border:1px solid #ccc;border-radius:4px}
 
     footer{text-align:center;padding:10px;margin-top:20px;background:#4a4a7d;color:#fff}
 
@@ -95,8 +90,6 @@
             <div class="card">
               <h4>Total Tokens</h4>
               <p id="activity-tokens">-</p>
-              <input type="number" id="update-tokens" placeholder="Update tokens" />
-              <button onclick="updateTokens()">Save</button>
             </div>
             <div class="card">
               <h4>Upcoming Events</h4>
@@ -105,10 +98,6 @@
             <div class="card">
               <h4>Membership Info</h4>
               <p id="activity-member-since">-</p>
-            </div>
-            <div class="card" style="flex-basis:100%;">
-              <h4>Tokens Activity (Last 7 updates)</h4>
-              <canvas id="tokensChart" height="150"></canvas>
             </div>
           </div>
         </div>
@@ -132,8 +121,7 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    let tokensHistory = [];
-
+    // Show selected section
     function showSection(id){
       document.querySelectorAll('.section').forEach(s=>s.style.display='none');
       const el = document.getElementById(id);
@@ -141,6 +129,7 @@
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
+    // Auth state
     auth.onAuthStateChanged(async user => {
       if(!user) window.location.href='login.html';
       else{
@@ -150,10 +139,12 @@
       }
     });
 
+    // Logout
     document.getElementById('nav-logout').addEventListener('click', e=>{
       e.preventDefault(); auth.signOut().then(()=>window.location.href='login.html');
     });
 
+    // Load member data
     async function loadMemberData(user){
       try{
         const docRef = db.collection('members').doc(user.uid);
@@ -170,9 +161,9 @@
         // Activity
         document.getElementById('activity-tokens').innerText = data.tokens ?? 0;
         document.getElementById('activity-member-since').innerText = data.memberSince || '-';
-
-        // Upcoming events placeholder
-        const upcoming = data.upcomingEvents || []; 
+        
+        // Upcoming events placeholder (extend later)
+        const upcoming = data.upcomingEvents || []; // optional array in DB
         const eventsList = document.getElementById('activity-events');
         eventsList.innerHTML = '';
         if(upcoming.length===0) eventsList.innerHTML='<li>No upcoming events</li>';
@@ -182,39 +173,7 @@
           eventsList.appendChild(li);
         });
 
-        // Tokens history (simulate last 7 updates)
-        tokensHistory.push(data.tokens ?? 0);
-        if(tokensHistory.length>7) tokensHistory.shift();
-        renderTokensChart(tokensHistory);
-
       }catch(err){console.error(err); alert('Error loading member data');}
-    }
-
-    async function updateTokens(){
-      const user = auth.currentUser;
-      const newTokens = parseInt(document.getElementById('update-tokens').value);
-      if(isNaN(newTokens)) return alert('Enter a valid number');
-      try{
-        await db.collection('members').doc(user.uid).update({tokens:newTokens});
-        document.getElementById('activity-tokens').innerText = newTokens;
-        tokensHistory.push(newTokens);
-        if(tokensHistory.length>7) tokensHistory.shift();
-        renderTokensChart(tokensHistory);
-        alert('Tokens updated successfully');
-      }catch(err){console.error(err); alert('Failed to update tokens')}
-    }
-
-    function renderTokensChart(data){
-      const ctx = document.getElementById('tokensChart').getContext('2d');
-      if(window.tokensChartInstance) window.tokensChartInstance.destroy();
-      window.tokensChartInstance = new Chart(ctx, {
-        type:'bar',
-        data:{
-          labels:data.map((_,i)=>`#${i+1}`),
-          datasets:[{label:'Tokens',data:data,backgroundColor:'#4a4a7d'}]
-        },
-        options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
-      });
     }
   </script>
 </body>
