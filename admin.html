@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Club Pecos</title>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: "Montserrat", sans-serif;
+      margin: 0;
+      background-color: #f8f7ed;
+      color: #333;
+    }
+    header {
+      background: #3b3b6d;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header img { height: 40px; border-radius: 5px; }
+    nav a { color: #fff; text-decoration: none; margin-left: 15px; }
+    nav a:hover { text-decoration: underline; }
+    .container { padding: 20px; max-width: 1100px; margin: auto; }
+    h2 { color: #3b3b6d; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .card h3 { color: #3b3b6d; margin-bottom: 10px; }
+    .logout-btn {
+      background: #c33;
+      border: none;
+      color: #fff;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .logout-btn:hover { background: #a00; }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="https://www.pecos.in/pecos.png" alt="Pecos Logo">
+      <h1 style="margin:0;font-size:20px;">Club Pecos - Admin</h1>
+    </div>
+    <nav>
+      <span id="admin-email"></span>
+      <button id="logout" class="logout-btn">Logout</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Admin Dashboard</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Total Members</h3>
+        <p id="total-members">Loading...</p>
+      </div>
+      <div class="card">
+        <h3>Total Events Held</h3>
+        <p id="total-events">Loading...</p>
+      </div>
+      <div class="card">
+        <h3>Club Funds (₹)</h3>
+        <p id="club-funds">Loading...</p>
+      </div>
+      <div class="card">
+        <h3>Available PST Tokens</h3>
+        <p id="pst-tokens">Loading...</p>
+      </div>
+      <div class="card">
+        <h3>Club Investments (₹)</h3>
+        <p id="club-investments">Loading...</p>
+      </div>
+      <div class="card">
+        <h3>Advertisement Revenue (₹)</h3>
+        <p id="ad-revenue">Loading...</p>
+      </div>
+    </div>
+
+    <section style="margin-top:30px;">
+      <h2>Admin Profile</h2>
+      <div class="card">
+        <p><strong>Name:</strong> <span id="admin-name">Karan Agrawal</span></p>
+        <p><strong>Email:</strong> <span id="admin-mail">-</span></p>
+        <p><strong>Role:</strong> Super Admin</p>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.appspot.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    const ADMIN_EMAIL = "karanscuo@gmail.com"; // 🔐 Replace with your real admin email
+
+    // Auth Guard
+    auth.onAuthStateChanged(async (user) => {
+      if (!user || user.email !== ADMIN_EMAIL) {
+        alert("Access Denied: Admins Only!");
+        window.location.href = "login.html";
+        return;
+      }
+
+      document.getElementById("admin-mail").innerText = user.email;
+      document.getElementById("admin-email").innerText = "Logged in as " + user.email;
+
+      loadAdminData();
+    });
+
+    document.getElementById("logout").addEventListener("click", () => {
+      auth.signOut().then(() => window.location.href = "login.html");
+    });
+
+    // Load Dashboard Stats
+    async function loadAdminData() {
+      try {
+        // Fetch total members
+        const membersSnap = await db.collection("members").get();
+        document.getElementById("total-members").innerText = membersSnap.size;
+
+        // Fetch total events
+        const eventsSnap = await db.collection("events").get();
+        document.getElementById("total-events").innerText = eventsSnap.size;
+
+        // Fetch club data (stored in a single document)
+        const clubRef = db.collection("club").doc("stats");
+        const clubDoc = await clubRef.get();
+
+        if (clubDoc.exists) {
+          const data = clubDoc.data();
+          document.getElementById("club-funds").innerText = data.funds ?? 0;
+          document.getElementById("pst-tokens").innerText = data.tokens ?? 0;
+          document.getElementById("club-investments").innerText = data.investments ?? 0;
+          document.getElementById("ad-revenue").innerText = data.adRevenue ?? 0;
+        } else {
+          console.warn("No club stats found");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error loading admin data.");
+      }
+    }
+  </script>
+</body>
+</html>
