@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,194 +11,36 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Verdana, Segoe UI, sans-serif;
-      background: #f9f5d7;
-      color: #333;
-    }
+    body{margin:0;font-family:Verdana,Segoe UI,sans-serif;background:#f9f5d7;color:#333;}
+    .container{max-width:1100px;width:95%;margin:30px auto;}
+    header{background:#4a4a7d;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+    header .brand{display:flex;align-items:center;gap:12px} header img{height:40px}
+    header nav{display:flex;align-items:center;gap:12px} header nav a{color:#fff;text-decoration:none;cursor:pointer}
+    
+    .content{display:flex;gap:18px;margin-top:20px}
+    .sidebar{width:250px;background:#f7f3c6;padding:12px;border-right:2px solid #ddd}
+    .sidebar h3{background:#c33;color:white;padding:8px;text-align:center;margin:0}
+    .sidebar ul{list-style:none;padding:0;margin:8px 0} .sidebar li{margin:8px 0}
+    .sidebar a{color:#333;text-decoration:none;display:block;padding:4px}
+    .sidebar a:hover{background:#e0d8a0;border-radius:4px}
 
-    .container {
-      max-width: 1100px;
-      width: 95%;
-      margin: 30px auto;
-    }
+    .main{flex:1;padding:16px;background:#fffef0;border-radius:6px;box-shadow:0 2px 6px rgba(0,0,0,.1)}
+    .section{display:none}
+    .section h2{color:#4a4a7d;margin-bottom:12px}
+    .profile-card{background:#fff8cc;border:1px solid #ddd;padding:12px;border-radius:8px;line-height:1.6;margin-bottom:20px}
+    .cards{display:flex;flex-wrap:wrap;gap:12px}
+    .card{flex:1;min-width:200px;background:#fff8cc;border-radius:6px;padding:12px;border:1px solid #ddd}
+    .card h4{margin:0 0 6px 0;color:#4a4a7d}
+    button{background:#c33;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer}
+    button:hover{background:#a00}
 
-    header {
-      background: #4a4a7d;
-      color: #fff;
-      padding: 12px 18px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-    }
+    footer{text-align:center;padding:10px;margin-top:20px;background:#4a4a7d;color:#fff}
 
-    header .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    header img {
-      height: 40px;
-    }
-
-    header nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    header nav a {
-      color: #fff;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    .content {
-      display: flex;
-      gap: 18px;
-      margin-top: 20px;
-    }
-
-    .sidebar {
-      width: 250px;
-      background: #f7f3c6;
-      padding: 12px;
-      border-right: 2px solid #ddd;
-    }
-
-    .sidebar h3 {
-      background: #c33;
-      color: white;
-      padding: 8px;
-      text-align: center;
-      margin: 0;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 8px 0;
-    }
-
-    .sidebar li {
-      margin: 8px 0;
-    }
-
-    .sidebar a {
-      color: #333;
-      text-decoration: none;
-      display: block;
-      padding: 4px;
-    }
-
-    .sidebar a:hover {
-      background: #e0d8a0;
-      border-radius: 4px;
-    }
-
-    .main {
-      flex: 1;
-      padding: 16px;
-      background: #fffef0;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
-    }
-
-    .section {
-      display: none;
-    }
-
-    .section h2 {
-      color: #4a4a7d;
-      margin-bottom: 12px;
-    }
-
-    .profile-card {
-      background: #fff8cc;
-      border: 1px solid #ddd;
-      padding: 12px;
-      border-radius: 8px;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .card {
-      flex: 1;
-      min-width: 200px;
-      background: #fff8cc;
-      border-radius: 6px;
-      padding: 12px;
-      border: 1px solid #ddd;
-    }
-
-    .card h4 {
-      margin: 0 0 6px 0;
-      color: #4a4a7d;
-    }
-
-    button {
-      background: #c33;
-      color: #fff;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #a00;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 6px;
-      border: 1px solid #aaa;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-
-    label {
-      font-weight: bold;
-    }
-
-    form {
-      max-width: 400px;
-      margin-top: 10px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 10px;
-      margin-top: 20px;
-      background: #4a4a7d;
-      color: #fff;
-    }
-
-    @media(max-width:900px) {
-      .content {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-      }
-    }
+    @media(max-width:900px){.content{flex-direction:column}.sidebar{width:100%}}
   </style>
 </head>
-
 <body>
   <div class="container">
-
     <header>
       <div class="brand">
         <img src="pecos.png" alt="Pecos Logo" />
@@ -215,46 +56,45 @@
     </header>
 
     <div class="content">
-
       <aside class="sidebar">
         <h3>Dashboard Menu</h3>
         <ul>
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('activity')">Activity</a></li>
-          <li><a onclick="showSection('finance')">Finance</a></li>
         </ul>
       </aside>
 
       <main class="main">
-
         <!-- OVERVIEW -->
-        <div id="overview" class="section">
-          <h2>Welcome to Club Pecos!</h2>
-          <div style="background:#fff8cc;padding:16px;border-radius:8px;margin-bottom:16px;line-height:1.8">
-            <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
-            <p>Discover all the benefits, events, and activities our club offers. Navigate through your dashboard to track your tokens, upcoming events, and profile info.</p>
-          </div>
+<!-- OVERVIEW -->
+<div id="overview" class="section">
+  <h2>Welcome to Club Pecos!</h2>
+  <div style="background:#fff8cc;padding:16px;border-radius:8px;margin-bottom:16px;line-height:1.8">
+    <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
+    <p>Discover all the benefits, events, and activities our club offers. Navigate through your dashboard to track your tokens, upcoming events, and profile info.</p>
+  </div>
 
-          <div class="cards">
-            <div class="card" style="cursor:pointer" onclick="alert('Redirect to How the Club Works page!')">
-              <h4>How Our Club Works?</h4>
-              <p>Learn the mission, structure, and perks of being a member.</p>
-            </div>
-            <div class="card" style="cursor:pointer" onclick="showSection('activity')">
-              <h4>Your Activity</h4>
-              <p>Quickly access your tokens, upcoming events, and membership info.</p>
-            </div>
-            <div class="card" style="cursor:pointer" onclick="alert('Redirect to Member Benefits page!')">
-              <h4>Member Benefits</h4>
-              <p>Explore all the exclusive rewards and privileges you enjoy.</p>
-            </div>
-            <div class="card" style="cursor:pointer" onclick="alert('Redirect to Club Events page!')">
-              <h4>Events & Activities</h4>
-              <p>See all upcoming events and join the fun!</p>
-            </div>
-          </div>
-        </div>
+  <div class="cards">
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to How the Club Works page!')">
+      <h4>How Our Club Works?</h4>
+      <p>Learn the mission, structure, and perks of being a member.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="showSection('activity')">
+      <h4>Your Activity</h4>
+      <p>Quickly access your tokens, upcoming events, and membership info.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Member Benefits page!')">
+      <h4>Member Benefits</h4>
+      <p>Explore all the exclusive rewards and privileges you enjoy.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Club Events page!')">
+      <h4>Events & Activities</h4>
+      <p>See all upcoming events and join the fun!</p>
+    </div>
+  </div>
+</div>
+
 
         <!-- PROFILE -->
         <div id="profile" class="section">
@@ -285,40 +125,12 @@
             </div>
           </div>
         </div>
-
-        <!-- FINANCE -->
-        <div id="finance" class="section">
-          <h2>Finance Request</h2>
-          <p>Submit a finance request by filling in the details below. Our team will get in touch soon.</p>
-
-          <form id="finance-form" onsubmit="submitFinanceRequest(event)">
-            <label>Amount Required:</label>
-            <input type="number" id="finance-amount" required>
-
-            <label>Finance Type:</label>
-            <select id="finance-type" required>
-              <option value="">Select Type</option>
-              <option value="Personal">Personal</option>
-              <option value="Business">Business</option>
-            </select>
-
-            <label>Bank Name:</label>
-            <input type="text" id="finance-bank" required>
-
-            <label>Account Number:</label>
-            <input type="text" id="finance-account" required>
-
-            <label>IFSC Code:</label>
-            <input type="text" id="finance-ifsc" required>
-
-            <button type="submit">Submit Request</button>
-          </form>
-        </div>
-
       </main>
     </div>
 
-    <footer>© 2025 Pecos | All Rights Reserved.</footer>
+    <footer>
+      © 2025 Pecos | All Rights Reserved.
+    </footer>
   </div>
 
   <script>
@@ -334,17 +146,17 @@
     const db = firebase.firestore();
 
     // Show selected section
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    function showSection(id){
+      document.querySelectorAll('.section').forEach(s=>s.style.display='none');
       const el = document.getElementById(id);
-      if (el) el.style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if(el) el.style.display='block';
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     // Auth state
     auth.onAuthStateChanged(async user => {
-      if (!user) window.location.href = 'login.html';
-      else {
+      if(!user) window.location.href='login.html';
+      else{
         document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
         await loadMemberData(user);
         showSection('overview');
@@ -352,78 +164,43 @@
     });
 
     // Logout
-    document.getElementById('nav-logout').addEventListener('click', e => {
-      e.preventDefault();
-      auth.signOut().then(() => window.location.href = 'login.html');
+    document.getElementById('nav-logout').addEventListener('click', e=>{
+      e.preventDefault(); auth.signOut().then(()=>window.location.href='login.html');
     });
 
     // Load member data
-    async function loadMemberData(user) {
-      try {
+    async function loadMemberData(user){
+      try{
         const docRef = db.collection('members').doc(user.uid);
         const snap = await docRef.get();
-        if (!snap.exists) return alert('Member data not found');
+        if(!snap.exists) return alert('Member data not found');
         const data = snap.data();
-
+        // Inside loadMemberData(user)
         document.getElementById('overview-name').innerText = data.displayName || user.email;
+
+        // Profile
         document.getElementById('profile-name').innerText = data.displayName || '-';
         document.getElementById('profile-email').innerText = data.email || '-';
         document.getElementById('profile-id').innerText = data.memberID || '-';
         document.getElementById('profile-since').innerText = data.memberSince || '-';
+
+        // Activity
         document.getElementById('activity-tokens').innerText = data.tokens ?? 0;
         document.getElementById('activity-member-since').innerText = data.memberSince || '-';
-
-        const upcoming = data.upcomingEvents || [];
+        
+        // Upcoming events placeholder (extend later)
+        const upcoming = data.upcomingEvents || []; // optional array in DB
         const eventsList = document.getElementById('activity-events');
         eventsList.innerHTML = '';
-        if (upcoming.length === 0) eventsList.innerHTML = '<li>No upcoming events</li>';
-        else upcoming.forEach(evt => {
+        if(upcoming.length===0) eventsList.innerHTML='<li>No upcoming events</li>';
+        else upcoming.forEach(evt=>{
           const li = document.createElement('li');
           li.innerText = `${evt.title} — ${evt.date}`;
           eventsList.appendChild(li);
         });
-      } catch (err) {
-        console.error(err);
-        alert('Error loading member data');
-      }
-    }
 
-    // Handle Finance form submit
-    async function submitFinanceRequest(e) {
-      e.preventDefault();
-      const user = auth.currentUser;
-      if (!user) return alert("Please login again.");
-
-      const amount = document.getElementById("finance-amount").value;
-      const type = document.getElementById("finance-type").value;
-      const bank = document.getElementById("finance-bank").value;
-      const acc = document.getElementById("finance-account").value;
-      const ifsc = document.getElementById("finance-ifsc").value;
-
-      if (!amount || !type || !bank || !acc || !ifsc) {
-        return alert("Please fill all fields!");
-      }
-
-      try {
-        await db.collection("financeRequests").add({
-          userId: user.uid,
-          name: user.displayName || "Unknown",
-          email: user.email,
-          amount: parseFloat(amount),
-          financeType: type,
-          bankName: bank,
-          accountNumber: acc,
-          ifscCode: ifsc,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        alert("Finance request submitted successfully!");
-        document.getElementById("finance-form").reset();
-      } catch (err) {
-        console.error(err);
-        alert("Error submitting request. Please try again.");
-      }
+      }catch(err){console.error(err); alert('Error loading member data');}
     }
   </script>
-
 </body>
 </html>
