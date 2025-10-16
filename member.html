@@ -129,34 +129,49 @@
           </div>
         </div>
 
-        <!-- FINANCE -->
-        <div id="finance" class="section">
-          <h2>Finance Request</h2>
-          <p>Submit a finance request by filling in the details below. Our team will get in touch soon.</p>
+        
+<!-- FINANCE -->
+<div id="finance" class="section">
+  <h2>Finance Request</h2>
+  <p style="margin-bottom:20px;">Need funds? Submit your finance request below. Once submitted, you can track your recent requests right below.</p>
 
-          <form id="finance-form" onsubmit="submitFinanceRequest(event)">
-            <label>Amount Required:</label>
-            <input type="number" id="finance-amount" required>
+  <div style="display:flex;flex-wrap:wrap;gap:30px;align-items:flex-start;">
+    <!-- FORM -->
+    <form id="finance-form" onsubmit="submitFinanceRequest(event)" style="flex:1;min-width:300px;max-width:400px;background:#fffbe0;padding:20px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1)">
+      <h3 style="color:#4a4a7d;margin-top:0;">Submit Request</h3>
 
-            <label>Finance Type:</label>
-            <select id="finance-type" required>
-              <option value="">Select Type</option>
-              <option value="Personal">Personal</option>
-              <option value="Business">Business</option>
-            </select>
+      <label>Amount Required (₹)</label>
+      <input type="number" id="finance-amount" placeholder="Enter amount" required>
 
-            <label>Bank Name:</label>
-            <input type="text" id="finance-bank" required>
+      <label>Finance Type</label>
+      <select id="finance-type" required>
+        <option value="">Select Type</option>
+        <option value="Personal">Personal</option>
+        <option value="Business">Business</option>
+      </select>
 
-            <label>Account Number:</label>
-            <input type="text" id="finance-account" required>
+      <label>Bank Name</label>
+      <input type="text" id="finance-bank" placeholder="e.g. HDFC Bank" required>
 
-            <label>IFSC Code:</label>
-            <input type="text" id="finance-ifsc" required>
+      <label>Account Number</label>
+      <input type="text" id="finance-account" placeholder="Enter account number" required>
 
-            <button type="submit">Submit Request</button>
-          </form>
-        </div>
+      <label>IFSC Code</label>
+      <input type="text" id="finance-ifsc" placeholder="e.g. HDFC0001234" required>
+
+      <button type="submit" style="width:100%;font-weight:bold;">Submit Request</button>
+    </form>
+
+    <!-- RECENT REQUESTS -->
+    <div style="flex:1;min-width:300px;">
+      <h3 style="color:#4a4a7d;margin-bottom:10px;">Recent Requests</h3>
+      <div id="recent-requests" style="background:#fffef6;padding:15px;border-radius:8px;border:1px solid #ddd;max-height:320px;overflow-y:auto;">
+        <p style="color:#777">Loading recent requests...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       </main>
     </div>
@@ -228,40 +243,52 @@
     }
 
     // Handle Finance form submit
-    async function submitFinanceRequest(e) {
-      e.preventDefault();
-      const user = auth.currentUser;
-      if (!user) return alert("Please login again.");
+// Reload recent requests after submitting a form
+async function submitFinanceRequest(e) {
+  e.preventDefault();
+  const user = auth.currentUser;
+  if (!user) return alert("Please login again.");
 
-      const amount = document.getElementById("finance-amount").value;
-      const type = document.getElementById("finance-type").value;
-      const bank = document.getElementById("finance-bank").value;
-      const acc = document.getElementById("finance-account").value;
-      const ifsc = document.getElementById("finance-ifsc").value;
+  const amount = document.getElementById("finance-amount").value;
+  const type = document.getElementById("finance-type").value;
+  const bank = document.getElementById("finance-bank").value;
+  const acc = document.getElementById("finance-account").value;
+  const ifsc = document.getElementById("finance-ifsc").value;
 
-      if (!amount || !type || !bank || !acc || !ifsc) {
-        return alert("Please fill all fields!");
-      }
+  if (!amount || !type || !bank || !acc || !ifsc) return alert("Please fill all fields!");
 
-      try {
-        await db.collection("financeRequests").add({
-          userId: user.uid,
-          name: user.displayName || "Unknown",
-          email: user.email,
-          amount: parseFloat(amount),
-          financeType: type,
-          bankName: bank,
-          accountNumber: acc,
-          ifscCode: ifsc,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-        alert("Finance request submitted successfully!");
-        document.getElementById("finance-form").reset();
-      } catch (err) {
-        console.error(err);
-        alert("Error submitting request. Please try again.");
-      }
-    }
+  try {
+    await db.collection("financeRequests").add({
+      userId: user.uid,
+      name: user.displayName || "Unknown",
+      email: user.email,
+      amount: parseFloat(amount),
+      financeType: type,
+      bankName: bank,
+      accountNumber: acc,
+      ifscCode: ifsc,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    alert("Finance request submitted successfully!");
+    document.getElementById("finance-form").reset();
+    loadRecentRequests(); // refresh list
+  } catch (err) {
+    console.error(err);
+    alert("Error submitting request. Please try again.");
+  }
+}
+
+// Load requests when finance section is shown
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(s => s.style.display = "none");
+  const el = document.getElementById(id);
+  if (el) {
+    el.style.display = "block";
+    if (id === "finance") loadRecentRequests();
+  }
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
   </script>
 </body>
 </html>
