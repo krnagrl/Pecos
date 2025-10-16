@@ -2,68 +2,137 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
-     crossorigin="anonymous"></script>
   <title>Login | Club Pecos</title>
 
+  <!-- Google Ads (optional, same as before) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
+     crossorigin="anonymous"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f5d7;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
     }
-    .container {
-      width: 80%;
-      margin: 20px auto;
-      background-color: #fffde9;
-      box-shadow: 0 0 5px rgba(0,0,0,0.2);
-      border: 1px solid #ccc;
+
+    body {
+      background: linear-gradient(135deg, #f8f5d7, #f0e9b0);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+
     header {
       background-color: #474477;
       color: white;
-      padding: 15px 20px;
+      padding: 15px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
+
     header h1 {
-      margin: 0;
+      display: flex;
+      align-items: center;
       font-size: 22px;
     }
+
+    header img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 10px;
+      transition: 0.3s;
     }
+
     nav a:hover {
-      text-decoration: underline;
+      color: #ffb400;
     }
-    .content {
-      display: flex;
-    }
-    .sidebar {
-      background-color: #f4efba;
-      width: 25%;
-      padding: 15px;
-      border-right: 1px solid #ccc;
-    }
-    .sidebar h3 {
-      background-color: #c52e2e;
-      color: white;
-      padding: 8px;
-      margin-top: 0;
-    }
-    .sidebar a {
-      display: block;
-      text-decoration: none;
-      color: black;
-      margin: 8px 0;
-    }
+
     .main {
       flex: 1;
-      padding: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
     }
+
+    .login-box {
+      background-color: #fffde9;
+      padding: 40px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    .login-box h2 {
+      color: #474477;
+      margin-bottom: 10px;
+    }
+
+    .login-box p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #c52e2e;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #a02222;
+    }
+
+    #msg {
+      margin-top: 12px;
+      font-size: 14px;
+      color: green;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 12px;
+      color: #474477;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
     footer {
       background-color: #474477;
       color: white;
@@ -71,84 +140,44 @@
       padding: 15px;
       font-size: 14px;
     }
-    input {
-      width: 250px;
-      padding: 8px;
-      margin: 5px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      background-color: #c52e2e;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #a02222;
-    }
-    #msg {
-      margin-top: 10px;
-      color: green;
-    }
-    a.link {
-      display: inline-block;
-      margin-top: 10px;
-      color: #474477;
-      text-decoration: underline;
-      cursor: pointer;
+
+    @media(max-width: 480px) {
+      .login-box {
+        padding: 30px 20px;
+      }
     }
   </style>
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 </head>
 
 <body>
-  <div class="container">
-    <header style="display: flex; align-items: center; justify-content: space-between;">
-      <div style="display: flex; align-items: center;">
-        <img src="pecos.png" alt="Pecos Logo" style="height: 40px; margin-right: 15px;">
-        <span style="font-size: 20px; font-weight: bold;">Pecos</span>
-      </div>
-      <nav>
-        <a href="index.html">Home</a> |
-        <a href="Club.html">Club</a> |
-        <a href="#">About</a> |
-        <a href="#">Investors</a>
-      </nav>
-    </header>
+  <header>
+    <h1><img src="pecos.png" alt="Pecos Logo"> Pecos</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="Club.html">Club</a> |
+      <a href="#">About</a> |
+      <a href="#">Investors</a>
+    </nav>
+  </header>
 
-    <div class="content">
-      <div class="sidebar">
-        <h3>Services</h3>
-        <a href="#">Finance</a>
-        <a href="#">Investments</a>
-        <a href="#">Club Pecos</a>
-        <a href="#">Other links</a>
-      </div>
+  <div class="main">
+    <div class="login-box">
+      <h2>Club Member Login</h2>
+      <p>Access your member area below:</p>
 
-      <div class="main">
-        <h2>Club Member Login</h2>
-        <p>Access your member area below:</p>
+      <input id="email" type="email" placeholder="Email" required />
+      <input id="password" type="password" placeholder="Password" required />
+      <button onclick="login()">Login</button>
 
-        <input id="email" type="email" placeholder="Email" /><br>
-        <input id="password" type="password" placeholder="Password" /><br>
-        <button onclick="login()">Login</button>
-        <p id="msg"></p>
-        <a class="link" onclick="resetPassword()">Forgot Password?</a>
-      </div>
+      <p id="msg"></p>
+      <a class="link" onclick="resetPassword()">Forgot Password?</a>
     </div>
-
-    <footer>
-      © 2025 Pecos | Registered in 2020 <br>
-      Claim Rewards • Advertise • Careers
-    </footer>
   </div>
+
+  <footer>
+    © 2025 Pecos | Registered in 2020 <br>
+    Claim Rewards • Advertise • Careers
+  </footer>
 
   <script>
     // Firebase config
@@ -163,9 +192,15 @@
 
     // Login function
     async function login() {
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
       const msg = document.getElementById('msg');
+
+      if (!email || !password) {
+        msg.style.color = "red";
+        msg.innerText = "Please fill out all fields.";
+        return;
+      }
 
       try {
         const userCred = await auth.signInWithEmailAndPassword(email, password);
@@ -179,14 +214,13 @@
         }
 
         msg.style.color = "green";
-        msg.innerText = "Login successful! Checking access...";
+        msg.innerText = "Login successful! Redirecting...";
 
-        // Check if user is admin
         const doc = await db.collection('members').doc(user.uid).get();
         const data = doc.data();
 
         setTimeout(() => {
-          if (data && data.isAdmin === true) {
+          if (data && data.isAdmin) {
             window.location.href = "admin.html";
           } else {
             window.location.href = "member.html";
@@ -199,18 +233,19 @@
       }
     }
 
-    // Password reset function
+    // Password reset
     async function resetPassword() {
       const email = prompt("Enter your registered email:");
       if (!email) return;
       try {
         await auth.sendPasswordResetEmail(email);
-        document.getElementById('msg').style.color = "green";
-        document.getElementById('msg').innerText =
-          "Password reset link sent! Check your inbox.";
+        const msg = document.getElementById('msg');
+        msg.style.color = "green";
+        msg.innerText = "Password reset link sent! Check your inbox.";
       } catch (e) {
-        document.getElementById('msg').style.color = "red";
-        document.getElementById('msg').innerText = e.message;
+        const msg = document.getElementById('msg');
+        msg.style.color = "red";
+        msg.innerText = e.message;
       }
     }
   </script>
