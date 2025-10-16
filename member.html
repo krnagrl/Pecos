@@ -11,16 +11,19 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    body{margin:0;font-family:Verdana,Segoe UI,sans-serif;background:#f9f5d7;color:#333;}
+    body {margin:0;font-family:Verdana,Segoe UI,sans-serif;background:#f9f5d7;color:#333;}
     .container{max-width:1100px;width:95%;margin:30px auto;}
     header{background:#4a4a7d;color:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px}
-    header .brand{display:flex;align-items:center;gap:12px} header img{height:40px}
-    header nav{display:flex;align-items:center;gap:12px} header nav a{color:#fff;text-decoration:none;cursor:pointer}
+    header .brand{display:flex;align-items:center;gap:12px} 
+    header img{height:40px}
+    header nav{display:flex;align-items:center;gap:12px} 
+    header nav a{color:#fff;text-decoration:none;cursor:pointer}
     
     .content{display:flex;gap:18px;margin-top:20px}
     .sidebar{width:250px;background:#f7f3c6;padding:12px;border-right:2px solid #ddd}
     .sidebar h3{background:#c33;color:white;padding:8px;text-align:center;margin:0}
-    .sidebar ul{list-style:none;padding:0;margin:8px 0} .sidebar li{margin:8px 0}
+    .sidebar ul{list-style:none;padding:0;margin:8px 0} 
+    .sidebar li{margin:8px 0}
     .sidebar a{color:#333;text-decoration:none;display:block;padding:4px}
     .sidebar a:hover{background:#e0d8a0;border-radius:4px}
 
@@ -31,14 +34,16 @@
     .cards{display:flex;flex-wrap:wrap;gap:12px}
     .card{flex:1;min-width:200px;background:#fff8cc;border-radius:6px;padding:12px;border:1px solid #ddd}
     .card h4{margin:0 0 6px 0;color:#4a4a7d}
-    button{background:#c33;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer}
+    button{background:#c33;color:#fff;border:none;padding:8px 14px;border-radius:4px;cursor:pointer}
     button:hover{background:#a00}
 
+    input, select {width:100%;padding:8px;margin:5px 0 12px 0;border:1px solid #ccc;border-radius:4px;}
+    label{font-weight:bold;font-size:14px;}
     footer{text-align:center;padding:10px;margin-top:20px;background:#4a4a7d;color:#fff}
-
     @media(max-width:900px){.content{flex-direction:column}.sidebar{width:100%}}
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -62,39 +67,34 @@
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('activity')">Activity</a></li>
+          <li><a onclick="showSection('finance')">Finance</a></li>
         </ul>
       </aside>
 
       <main class="main">
         <!-- OVERVIEW -->
-<!-- OVERVIEW -->
-<div id="overview" class="section">
-  <h2>Welcome to Club Pecos!</h2>
-  <div style="background:#fff8cc;padding:16px;border-radius:8px;margin-bottom:16px;line-height:1.8">
-    <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
-    <p>Discover all the benefits, events, and activities our club offers. Navigate through your dashboard to track your tokens, upcoming events, and profile info.</p>
-  </div>
+        <div id="overview" class="section">
+          <h2>Welcome to Club Pecos!</h2>
+          <div style="background:#fff8cc;padding:16px;border-radius:8px;margin-bottom:16px;line-height:1.8">
+            <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
+            <p>Explore your member dashboard to view your activities, manage your profile, and request financial support.</p>
+          </div>
 
-  <div class="cards">
-    <div class="card" style="cursor:pointer" onclick="alert('Redirect to How the Club Works page!')">
-      <h4>How Our Club Works?</h4>
-      <p>Learn the mission, structure, and perks of being a member.</p>
-    </div>
-    <div class="card" style="cursor:pointer" onclick="showSection('activity')">
-      <h4>Your Activity</h4>
-      <p>Quickly access your tokens, upcoming events, and membership info.</p>
-    </div>
-    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Member Benefits page!')">
-      <h4>Member Benefits</h4>
-      <p>Explore all the exclusive rewards and privileges you enjoy.</p>
-    </div>
-    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Club Events page!')">
-      <h4>Events & Activities</h4>
-      <p>See all upcoming events and join the fun!</p>
-    </div>
-  </div>
-</div>
-
+          <div class="cards">
+            <div class="card" onclick="alert('Redirect to How the Club Works page!')">
+              <h4>How Our Club Works?</h4>
+              <p>Learn about our mission, values, and structure.</p>
+            </div>
+            <div class="card" onclick="showSection('activity')">
+              <h4>Your Activity</h4>
+              <p>Check your participation and tokens.</p>
+            </div>
+            <div class="card" onclick="showSection('finance')">
+              <h4>Finance Request</h4>
+              <p>Need financial assistance? Apply here.</p>
+            </div>
+          </div>
+        </div>
 
         <!-- PROFILE -->
         <div id="profile" class="section">
@@ -125,12 +125,38 @@
             </div>
           </div>
         </div>
+
+        <!-- FINANCE -->
+        <div id="finance" class="section">
+          <h2>Finance Request</h2>
+          <p>Submit your finance request below. Our team will review and get back to you.</p>
+          <form id="finance-form">
+            <label>Amount Required (₹):</label>
+            <input type="number" id="amount" required placeholder="Enter amount" />
+
+            <label>Finance Type:</label>
+            <select id="finance-type">
+              <option value="Business">Business</option>
+              <option value="Personal">Personal</option>
+            </select>
+
+            <label>Bank Name:</label>
+            <input type="text" id="bank" required placeholder="Enter your bank name" />
+
+            <label>Account Number:</label>
+            <input type="text" id="account" required placeholder="Enter your account number" />
+
+            <label>IFSC Code:</label>
+            <input type="text" id="ifsc" required placeholder="Enter IFSC code" />
+
+            <button type="button" onclick="submitFinance()">Submit Request</button>
+            <p id="finance-msg" style="margin-top:10px;font-weight:bold;"></p>
+          </form>
+        </div>
       </main>
     </div>
 
-    <footer>
-      © 2025 Pecos | All Rights Reserved.
-    </footer>
+    <footer>© 2025 Pecos | All Rights Reserved.</footer>
   </div>
 
   <script>
@@ -145,61 +171,72 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Show selected section
+    // Section toggler
     function showSection(id){
       document.querySelectorAll('.section').forEach(s=>s.style.display='none');
-      const el = document.getElementById(id);
+      const el=document.getElementById(id);
       if(el) el.style.display='block';
       window.scrollTo({top:0,behavior:'smooth'});
     }
 
     // Auth state
-    auth.onAuthStateChanged(async user => {
+    auth.onAuthStateChanged(async user=>{
       if(!user) window.location.href='login.html';
       else{
-        document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
+        document.getElementById('welcome-message').innerText=`Welcome, ${user.displayName || user.email}`;
         await loadMemberData(user);
         showSection('overview');
       }
     });
 
     // Logout
-    document.getElementById('nav-logout').addEventListener('click', e=>{
-      e.preventDefault(); auth.signOut().then(()=>window.location.href='login.html');
+    document.getElementById('nav-logout').addEventListener('click',e=>{
+      e.preventDefault();auth.signOut().then(()=>window.location.href='login.html');
     });
 
     // Load member data
     async function loadMemberData(user){
       try{
-        const docRef = db.collection('members').doc(user.uid);
-        const snap = await docRef.get();
+        const docRef=db.collection('members').doc(user.uid);
+        const snap=await docRef.get();
         if(!snap.exists) return alert('Member data not found');
-        const data = snap.data();
-        // Inside loadMemberData(user)
-        document.getElementById('overview-name').innerText = data.displayName || user.email;
+        const data=snap.data();
 
-        // Profile
-        document.getElementById('profile-name').innerText = data.displayName || '-';
-        document.getElementById('profile-email').innerText = data.email || '-';
-        document.getElementById('profile-id').innerText = data.memberID || '-';
-        document.getElementById('profile-since').innerText = data.memberSince || '-';
+        document.getElementById('overview-name').innerText=data.displayName||user.email;
+        document.getElementById('profile-name').innerText=data.displayName||'-';
+        document.getElementById('profile-email').innerText=data.email||'-';
+        document.getElementById('profile-id').innerText=data.memberID||'-';
+        document.getElementById('profile-since').innerText=data.memberSince||'-';
+        document.getElementById('activity-tokens').innerText=data.tokens??0;
+        document.getElementById('activity-member-since').innerText=data.memberSince||'-';
+      }catch(err){console.error(err);alert('Error loading member data');}
+    }
 
-        // Activity
-        document.getElementById('activity-tokens').innerText = data.tokens ?? 0;
-        document.getElementById('activity-member-since').innerText = data.memberSince || '-';
-        
-        // Upcoming events placeholder (extend later)
-        const upcoming = data.upcomingEvents || []; // optional array in DB
-        const eventsList = document.getElementById('activity-events');
-        eventsList.innerHTML = '';
-        if(upcoming.length===0) eventsList.innerHTML='<li>No upcoming events</li>';
-        else upcoming.forEach(evt=>{
-          const li = document.createElement('li');
-          li.innerText = `${evt.title} — ${evt.date}`;
-          eventsList.appendChild(li);
-        });
+    // Submit finance request
+    async function submitFinance(){
+      const user=auth.currentUser;
+      if(!user) return alert("Please log in first.");
 
-      }catch(err){console.error(err); alert('Error loading member data');}
+      const financeData={
+        userId:user.uid,
+        amount:document.getElementById('amount').value,
+        type:document.getElementById('finance-type').value,
+        bank:document.getElementById('bank').value,
+        account:document.getElementById('account').value,
+        ifsc:document.getElementById('ifsc').value,
+        date:new Date().toISOString()
+      };
+
+      const msg=document.getElementById('finance-msg');
+      try{
+        await db.collection('financeRequests').add(financeData);
+        msg.style.color="green";
+        msg.innerText="Request submitted successfully!";
+        document.getElementById('finance-form').reset();
+      }catch(err){
+        msg.style.color="red";
+        msg.innerText="Error submitting request: "+err.message;
+      }
     }
   </script>
 </body>
