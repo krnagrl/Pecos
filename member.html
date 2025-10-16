@@ -67,10 +67,34 @@
 
       <main class="main">
         <!-- OVERVIEW -->
-        <div id="overview" class="section">
-          <h2>Overview</h2>
-          <p>Welcome to your member dashboard. Navigate using the menu to see your profile and activity details.</p>
-        </div>
+<!-- OVERVIEW -->
+<div id="overview" class="section">
+  <h2>Welcome to Club Pecos!</h2>
+  <div style="background:#fff8cc;padding:16px;border-radius:8px;margin-bottom:16px;line-height:1.8">
+    <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
+    <p>Discover all the benefits, events, and activities our club offers. Navigate through your dashboard to track your tokens, upcoming events, and profile info.</p>
+  </div>
+
+  <div class="cards">
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to How the Club Works page!')">
+      <h4>How Our Club Works?</h4>
+      <p>Learn the mission, structure, and perks of being a member.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="showSection('activity')">
+      <h4>Your Activity</h4>
+      <p>Quickly access your tokens, upcoming events, and membership info.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Member Benefits page!')">
+      <h4>Member Benefits</h4>
+      <p>Explore all the exclusive rewards and privileges you enjoy.</p>
+    </div>
+    <div class="card" style="cursor:pointer" onclick="alert('Redirect to Club Events page!')">
+      <h4>Events & Activities</h4>
+      <p>See all upcoming events and join the fun!</p>
+    </div>
+  </div>
+</div>
+
 
         <!-- PROFILE -->
         <div id="profile" class="section">
@@ -151,6 +175,8 @@
         const snap = await docRef.get();
         if(!snap.exists) return alert('Member data not found');
         const data = snap.data();
+        // Inside loadMemberData(user)
+        document.getElementById('overview-name').innerText = data.displayName || user.email;
 
         // Profile
         document.getElementById('profile-name').innerText = data.displayName || '-';
