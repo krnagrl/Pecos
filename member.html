@@ -3,229 +3,679 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Club Pecos | Member Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-
+  <title>Member Dashboard | Club Pecos</title>
   <style>
+    :root {
+      --accent: #4a4a7d;
+      --accent-2: #c33;
+      --bg: #f9f5d7;
+      --card-bg: #fff8cc;
+      --text-muted: #666;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
       margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #f8f8f8;
-    }
-    header {
-      background: #222;
-      color: #fff;
-      padding: 15px 25px;
-      font-size: 22px;
-      font-weight: 600;
-      text-align: center;
+      padding: 0;
+      font-family: Verdana, Segoe UI, Roboto, sans-serif;
+      background-color: var(--bg);
+      color: #333;
     }
     .container {
+      max-width: 1100px;
+      width: 95%;
+      margin: 30px auto;
+      border: 4px solid var(--accent);
+      background-color: #fffce8;
+      box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    }
+    header {
+      background-color: var(--accent);
+      color: #fff;
+      padding: 12px 18px;
       display: flex;
-      height: calc(100vh - 60px);
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    header .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header .brand img {
+      height: 40px;
+    }
+    header nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 12px;
+    }
+
+    .content {
+      display: flex;
+      gap: 18px;
+      padding: 18px;
     }
     .sidebar {
-      width: 230px;
-      background: #111;
+      width: 260px;
+      background: #f7f3c6;
+      padding: 12px;
+      border-right: 2px solid #ddd;
+    }
+    .sidebar h3 {
+      background-color: var(--accent-2);
       color: white;
-      display: flex;
-      flex-direction: column;
-      padding-top: 20px;
+      padding: 8px;
+      text-align: center;
+      margin: 0;
+    }
+    .sidebar ul {
+      list-style: none;
+      padding: 8px;
+      margin: 8px 0;
+    }
+    .sidebar li {
+      margin: 8px 0;
     }
     .sidebar a {
-      padding: 14px 20px;
-      color: #ccc;
+      color: #333;
       text-decoration: none;
-      display: block;
-      transition: 0.3s;
     }
-    .sidebar a:hover, .sidebar a.active {
-      background: #444;
-      color: #fff;
-    }
-    .content {
+
+    .main {
       flex: 1;
-      padding: 25px;
-      overflow-y: auto;
-      background-color: #f5f5f5;
+      background: #fffef0;
+      padding: 16px;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 18px;
+    }
+
+    .profile-card {
+      background: var(--card-bg);
+      border: 1px solid #ddd;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .profile-photo {
+      width: 100%;
+      height: 200px;
+      background: #eee;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+    .profile-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
     .card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-bottom: 20px;
+      flex: 1;
+      min-width: 200px;
+      background: var(--card-bg);
+      border-radius: 6px;
+      padding: 12px;
+      border: 1px solid #ddd;
+    }
+    .card h4 {
+      margin: 0 0 6px 0;
+      color: var(--accent);
+    }
+    .muted {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .events-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .events-list li {
+      padding: 8px;
+      border-bottom: 1px dashed #e0e0e0;
+    }
+
+    .form-row {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
     button {
-      background: #222;
+      background: var(--accent-2);
       color: #fff;
       border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
+      padding: 8px 12px;
+      border-radius: 4px;
       cursor: pointer;
-      font-weight: 600;
     }
-    button:hover {
-      background: #444;
-    }
-    input, select {
-      padding: 10px;
-      margin: 8px 0;
-      width: 100%;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
+
+    footer {
+      background: var(--accent);
+      color: #fff;
       text-align: center;
-      gap: 5px;
-      margin-top: 10px;
-    }
-    .calendar div {
-      background: #eee;
       padding: 10px;
-      border-radius: 6px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 900px) {
+      .content {
+        flex-direction: column;
+      }
+      .sidebar {
+        width: 100%;
+      }
+      .grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
-
 <body>
-  <header>Club Pecos Member Dashboard</header>
-
   <div class="container">
-    <div class="sidebar">
-      <a href="#" class="tablink active" onclick="showTab('home')">Home</a>
-      <a href="#" class="tablink" onclick="showTab('members')">Members</a>
-      <a href="#" class="tablink" onclick="showTab('events')">Events</a>
-      <a href="#" class="tablink" onclick="showTab('profile')">Profile</a>
-      <a href="#" onclick="logout()">Logout</a>
-    </div>
+    <header>
+      <div class="brand">
+        <img src="pecos.png" alt="Logo">
+        <div>
+          <div style="font-weight:700;font-size:18px">Pecos</div>
+          <div style="font-size:12px;color:#fffaa0">Member dashboard</div>
+        </div>
+      </div>
+      <nav>
+        <span id="welcome-message">Checking login…</span>
+        <a href="#" id="nav-logout">Logout</a>
+      </nav>
+    </header>
 
     <div class="content">
-      <div id="home" class="tabcontent">
-        <div class="card">
-          <h2>Welcome to Club Pecos!</h2>
-          <p>Exclusive member dashboard for managing tokens, events, and profile details.</p>
-        </div>
-      </div>
+      <aside class="sidebar">
+        <h3>Dashboard Menu</h3>
+        <ul>
+          <li><a href="#" data-section="overview">Overview</a></li>
+          <li><a href="#" data-section="profile">Profile</a></li>
+          <li><a href="#" data-section="dashboard">Financial Dashboard</a></li>
+          <li>Club Funds : <strong id="club-funds">—</strong></li>
+          <li>PST : <strong id="pst-funds">—</strong></li>
+          <li><a href="#" data-section="events">Events</a></li>
+          <li><a href="#" data-section="referrals">Referrals</a></li>
+          <li><a href="#" data-section="settings">Account Settings</a></li>
+        </ul>
+      </aside>
 
-      <div id="members" class="tabcontent" style="display:none;">
-        <div class="card">
-          <h2>Token Balance</h2>
-          <p><strong>Your Tokens:</strong> <span id="tokenBalance">0</span></p>
-          <button onclick="buyToken()">Buy Tokens</button>
-          <button onclick="sellToken()">Sell Tokens</button>
+      <main class="main">
+        <div id="overview" class="section active">
+          <div class="grid">
+            <div class="profile-card">
+              <div class="profile-row">
+                <img id="profile-photo" class="profile-photo"
+                     src="https://via.placeholder.com/400x200?text=No+Photo"
+                     alt="Profile Photo">
+              </div>
+              <div style="margin-top:8px;">
+                <div id="profile-name" style="font-weight:700;font-size:16px">Member Name</div>
+                <div class="muted" id="profile-id">Member ID: —</div>
+                <div class="muted" id="profile-since">Member since: —</div>
+                <div class="muted" id="profile-tokens">Total Tokens: —</div>
+              </div>
+              <div style="margin-top:10px;display:flex;gap:8px">
+                <button data-section="profile">Edit Profile</button>
+                <button id="btn-download-statement">Download Statement</button>
+              </div>
+            </div>
+
+            <div>
+              <div class="cards">
+                <div class="card">
+                  <h4>Membership Revenue</h4>
+                  <div id="membership-revenue">₹0</div>
+                  <div class="muted">Revenue from membership fees</div>
+                </div>
+                <div class="card">
+                  <h4>Events &amp; Ticket Sales</h4>
+                  <div id="events-revenue">₹0</div>
+                  <div class="muted">Tickets &amp; event income</div>
+                </div>
+                <div class="card">
+                  <h4>PST Token Summary</h4>
+                  <div id="pst-summary">0 PST</div>
+                  <div class="muted">Token balance &amp; value</div>
+                </div>
+                <div class="card">
+                  <h4>Affiliate Earnings</h4>
+                  <div id="affiliate-earnings">₹0</div>
+                  <div class="muted">Earnings from referrals</div>
+                </div>
+                <div class="card">
+                  <h4>Club Investments</h4>
+                  <div id="club-investments">₹0</div>
+                  <div class="muted">Member’s share or visible investments</div>
+                </div>
+                <div class="card">
+                  <h4>Total Club Income</h4>
+                  <div id="total-club-income">₹0</div>
+                  <div class="muted">All sources combined</div>
+                </div>
+              </div>
+              <div style="margin-top:12px" class="card">
+                <h4>Quick Actions</h4>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                  <button data-section="events">View Events</button>
+                  <button data-section="referrals">Share Referral</button>
+                  <button data-section="settings">Account Settings</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:16px">
+            <h3>Upcoming Events</h3>
+            <ul id="upcoming-events" class="events-list">
+              <li>No upcoming events</li>
+            </ul>
+          </div>
         </div>
 
-        <div class="card">
-          <h2>Organize an Event</h2>
-          <input type="text" id="eventName" placeholder="Event Name" />
-          <input type="date" id="eventDate" />
-          <button onclick="organizeEvent()">Submit</button>
+        <div id="profile" class="section">
+          <h2>Profile</h2>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;">
+            <div style="flex:1;min-width:260px;">
+              <img id="edit-photo-preview" src="https://via.placeholder.com/400x200?text=No+Photo"
+                   style="width:100%; height:200px; object-fit:cover; border-radius:6px; border:1px solid #ddd;">
+              <input type="file" id="upload-photo" accept="image/*" style="margin-top:8px;">
+            </div>
+            <div style="flex:2;min-width:260px;">
+              <div class="form-row">
+                <label for="edit-name">Name</label>
+                <input id="edit-name" type="text">
+              </div>
+              <div class="form-row">
+                <label for="edit-email">Email (readonly)</label>
+                <input id="edit-email" type="email" readonly>
+              </div>
+              <div class="form-row">
+                <label for="edit-member-id">Member ID</label>
+                <input id="edit-member-id" type="text" readonly>
+              </div>
+              <div class="form-row">
+                <label for="edit-member-since">Member Since</label>
+                <input id="edit-member-since" type="text" readonly>
+              </div>
+              <div class="form-row">
+                <label for="edit-tokens">Total Tokens</label>
+                <input id="edit-tokens" type="text" readonly>
+              </div>
+              <div style="display:flex;gap:8px;margin-top:10px;">
+                <button id="btn-save-profile">Save Profile</button>
+                <button data-section="overview">Back</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="card">
-          <h2>Upcoming Event Calendar</h2>
-          <div class="calendar" id="calendar"></div>
+        <div id="dashboard" class="section">
+          <h2>Financial Dashboard</h2>
+          <p class="muted">Track revenue from memberships, events &amp; ticket sales, PST token summary, affiliate earnings and club investments.</p>
+          <div class="cards" style="margin-top:10px;">
+            <div class="card">
+              <h4>Membership Revenue (YTD)</h4>
+              <div id="fd-membership">₹0</div>
+            </div>
+            <div class="card">
+              <h4>Events &amp; Tickets (YTD)</h4>
+              <div id="fd-events">₹0</div>
+            </div>
+            <div class="card">
+              <h4>Affiliate Earnings</h4>
+              <div id="fd-affiliate">₹0</div>
+            </div>
+            <div class="card">
+              <h4>PST Tokens (balance)</h4>
+              <div id="fd-pst">0 PST</div>
+            </div>
+          </div>
+          <div style="margin-top:12px" class="card">
+            <h4>Club Investments Detail</h4>
+            <div id="fd-investments">No investments yet</div>
+          </div>
         </div>
-      </div>
 
-      <div id="events" class="tabcontent" style="display:none;">
-        <div class="card">
-          <h2>Upcoming Events</h2>
-          <ul id="eventList"></ul>
+        <div id="events" class="section">
+          <h2>Events</h2>
+          <p class="muted">Upcoming & past events. Members may view tickets / buy if enabled.</p>
+          <ul id="events-list" class="events-list"></ul>
         </div>
-      </div>
 
-      <div id="profile" class="tabcontent" style="display:none;">
-        <div class="card">
-          <h2>Profile Information</h2>
-          <p><strong>Name:</strong> <span id="userName">Loading...</span></p>
-          <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
-          <p><strong>Contact:</strong> <span id="userContact">+91 XXXXX XXXXX</span></p>
+        <div id="referrals" class="section">
+          <h2>Referral Program</h2>
+          <p>Invite friends and earn rewards.</p>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <input id="referral-code" type="text" readonly value="PECOS2025" style="flex:1;">
+            <button id="btn-copy-referral">Copy</button>
+          </div>
+          <div style="margin-top:8px;" id="referral-stats"></div>
         </div>
-      </div>
+
+        <div id="settings" class="section">
+          <h2>Account Settings</h2>
+          <div class="card">
+            <h4>Change display name</h4>
+            <div class="form-row">
+              <label for="settings-displayname">Display name</label>
+              <input id="settings-displayname" type="text">
+            </div>
+            <div style="display:flex;gap:8px;">
+              <button id="btn-save-settings">Save</button>
+              <button id="btn-send-verification">Send Email Verification</button>
+              <button id="btn-change-password">Change Password</button>
+            </div>
+          </div>
+        </div>
+      </main>
     </div>
+
+    <footer>
+      © 2025 Pecos | Registered in 2020
+    </footer>
   </div>
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-storage-compat.js"></script>
+
   <script>
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
       projectId: "pecos-432b5",
-      storageBucket: "pecos-432b5.appspot.com",
-      messagingSenderId: "918415143301",
-      appId: "1:918415143301:web:e277538863f8606d5094ec",
-      measurementId: "G-VE4VZE5SJX"
+      storageBucket: "pecos-432b5.appspot.com"
     };
 
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
+    const storage = firebase.storage();
 
-    function showTab(tabId) {
-      document.querySelectorAll('.tabcontent').forEach(div => div.style.display = 'none');
-      document.querySelectorAll('.tablink').forEach(link => link.classList.remove('active'));
-      document.getElementById(tabId).style.display = 'block';
-      event.target.classList.add('active');
+    const $ = id => document.getElementById(id);
+
+    function showSection(sectionId) {
+      document.querySelectorAll('.section').forEach(sec => {
+        sec.classList.remove('active');
+      });
+      const sel = $(sectionId);
+      if (sel) sel.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function logout() {
+    // Navigation links
+    document.querySelectorAll('[data-section]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        const sec = el.getAttribute('data-section');
+        showSection(sec);
+      });
+    });
+
+    auth.onAuthStateChanged(async user => {
+      if (!user) {
+        window.location.href = 'login.html';
+        return;
+      }
+      $('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
+      await loadMemberData(user);
+      showSection('overview');
+    });
+
+    $('nav-logout').addEventListener('click', e => {
+      e.preventDefault();
       auth.signOut().then(() => {
-        alert("You have logged out successfully.");
-        window.location.href = "login.html";
+        window.location.href = 'login.html';
       });
-    }
+    });
 
-    function buyToken() {
-      alert("Token purchase feature coming soon!");
-    }
+    async function loadMemberData(user) {
+      try {
+        const docRef = db.collection('members').doc(user.uid);
+        const snap = await docRef.get();
+        let data = {};
+        if (snap.exists) {
+          data = snap.data();
+        } else {
+          // default if no doc
+          data = {
+            displayName: user.displayName || user.email.split('@')[0],
+            email: user.email,
+            memberID: 'M-' + user.uid.slice(0, 6).toUpperCase(),
+            memberSince: new Date().toISOString().substring(0, 10),
+            tokens: 0,
+            membershipRevenue: 0,
+            eventsRevenue: 0,
+            ticketSales: 0,
+            pstTokens: 0,
+            affiliateEarnings: 0,
+            clubInvestments: 0,
+            totalClubIncome: 0,
+            photoURL: user.photoURL || null,
+            upcomingEvents: [],
+            referralsCount: 0,
+            referralRewards: 0,
+            allEvents: []
+          };
+          await docRef.set(data);
+        }
 
-    function sellToken() {
-      alert("Token sell feature coming soon!");
-    }
+        // Fill profile / overview
+        $('profile-name').innerText = data.displayName;
+        $('profile-id').innerText = 'Member ID: ' + data.memberID;
+        $('profile-since').innerText = 'Member since: ' + data.memberSince;
+        $('profile-tokens').innerText = 'Total Tokens: ' + (data.tokens ?? 0);
+        $('profile-photo').src = data.photoURL || 'https://via.placeholder.com/400x200?text=No+Photo';
 
-    function organizeEvent() {
-      const name = document.getElementById("eventName").value;
-      const date = document.getElementById("eventDate").value;
-      if (name && date) {
-        db.collection("events").add({ name, date })
-          .then(() => alert("Event organized successfully!"))
-          .catch(err => alert("Error: " + err.message));
-      } else {
-        alert("Please fill all fields!");
+        // Edit form
+        $('edit-name').value = data.displayName;
+        $('edit-email').value = data.email;
+        $('edit-member-id').value = data.memberID;
+        $('edit-member-since').value = data.memberSince;
+        $('edit-tokens').value = data.tokens;
+        $('edit-photo-preview').src = data.photoURL || 'https://via.placeholder.com/400x200?text=No+Photo';
+
+        // Summary cards
+        $('membership-revenue').innerText = formatMoney(data.membershipRevenue);
+        $('events-revenue').innerText = formatMoney((data.eventsRevenue || 0) + (data.ticketSales || 0));
+        $('pst-summary').innerText = (data.pstTokens || 0) + ' PST';
+        $('affiliate-earnings').innerText = formatMoney(data.affiliateEarnings);
+        $('club-investments').innerText = formatMoney(data.clubInvestments);
+        $('total-club-income').innerText = formatMoney(data.totalClubIncome);
+
+        // Financial dashboard
+        $('fd-membership').innerText = formatMoney(data.membershipRevenue);
+        $('fd-events').innerText = formatMoney((data.eventsRevenue || 0) + (data.ticketSales || 0));
+        $('fd-affiliate').innerText = formatMoney(data.affiliateEarnings);
+        $('fd-pst').innerText = (data.pstTokens || 0) + ' PST';
+        $('fd-investments').innerText = data.clubInvestments
+          ? formatMoney(data.clubInvestments)
+          : 'No investments yet';
+
+        // Upcoming events
+        const ulUp = $('upcoming-events');
+        ulUp.innerHTML = '';
+        if (!Array.isArray(data.upcomingEvents) || data.upcomingEvents.length === 0) {
+          ulUp.innerHTML = '<li>No upcoming events</li>';
+        } else {
+          data.upcomingEvents.forEach(evt => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${evt.title}</strong> — ${evt.date}` +
+              (evt.venue ? ` - ${evt.venue}` : '');
+            ulUp.appendChild(li);
+          });
+        }
+
+        // All events
+        const ulAll = $('events-list');
+        ulAll.innerHTML = '';
+        if (Array.isArray(data.allEvents)) {
+          data.allEvents.forEach(evt => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${evt.title}</strong> <div class="muted">${evt.date} • ${evt.ticketPrice ? '₹' + evt.ticketPrice : 'Free'}</div>`;
+            ulAll.appendChild(li);
+          });
+        }
+
+        // Referral
+        $('referral-stats').innerText = `Referrals: ${data.referralsCount} • Rewards earned: ${formatMoney(data.referralRewards)}`;
+
+        // Sidebar funds
+        $('club-funds').innerText = formatMoney(
+          (data.membershipRevenue || 0) + (data.eventsRevenue || 0) + (data.clubInvestments || 0)
+        );
+        $('pst-funds').innerText = (data.pstTokens || 0) + ' PST';
+
+      } catch (err) {
+        console.error('Error in loadMemberData:', err);
+        alert('Error loading data: ' + err.message);
       }
     }
 
-    function loadCalendar() {
-      const calendar = document.getElementById("calendar");
-      calendar.innerHTML = "";
-      const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-      days.forEach(day => {
-        const div = document.createElement("div");
-        div.textContent = day;
-        div.style.background = "#222";
-        div.style.color = "#fff";
-        calendar.appendChild(div);
-      });
-      for (let i = 1; i <= 30; i++) {
-        const div = document.createElement("div");
-        div.textContent = i;
-        calendar.appendChild(div);
-      }
+    function formatMoney(x = 0) {
+      return '₹' + Number(x).toLocaleString('en-IN');
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      loadCalendar();
+    $('btn-save-profile').addEventListener('click', async () => {
       const user = auth.currentUser;
+      if (!user) {
+        return alert('Not logged in');
+      }
+      const name = $('edit-name').value.trim();
+      const file = $('upload-photo').files[0];
+      const docRef = db.collection('members').doc(user.uid);
+      try {
+        let photoURL = $('edit-photo-preview').src;
+        if (file) {
+          const storageRef = storage.ref().child(`members/${user.uid}/profile.jpg`);
+          const snap = await storageRef.put(file);
+          photoURL = await snap.ref.getDownloadURL();
+        }
+        await docRef.update({ displayName: name, photoURL });
+        await user.updateProfile({ displayName: name, photoURL });
+        alert('Profile updated');
+        await loadMemberData(user);
+        showSection('overview');
+      } catch (err) {
+        console.error('Error saving profile:', err);
+        alert('Error saving profile: ' + err.message);
+      }
+    });
+
+    $('upload-photo').addEventListener('change', e => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      $('edit-photo-preview').src = url;
+    });
+
+    $('btn-download-statement').addEventListener('click', () => {
+      const user = auth.currentUser;
+      if (!user) {
+        return alert('Not logged in');
+      }
+      db.collection('members').doc(user.uid).get().then(snap => {
+        const data = snap.data() || {};
+        const rows = [
+          ['Member', '', data.displayName || ''],
+          ['Email', '', data.email || ''],
+          ['Member ID', '', data.memberID || ''],
+          ['Member Since', '', data.memberSince || ''],
+          ['Tokens', '', data.tokens || 0],
+          ['Membership Revenue', '', data.membershipRevenue || 0],
+          ['Events Revenue', '', data.eventsRevenue || 0]
+        ];
+        const csv = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(',')).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'pecos-statement.csv';
+        a.click();
+        URL.revokeObjectURL(url);
+      }).catch(err => {
+        console.error('Error downloading statement:', err);
+        alert('Error: ' + err.message);
+      });
+    });
+
+    $('btn-copy-referral').addEventListener('click', () => {
+      const code = $('referral-code').value;
+      navigator.clipboard.writeText(`Join Club Pecos with referral code ${code}`)
+        .then(() => alert('Copied!'))
+        .catch(err => alert('Copy failed: ' + err));
+    });
+
+    $('btn-save-settings').addEventListener('click', async () => {
+      const user = auth.currentUser;
+      if (!user) return alert('Not logged in');
+      const newName = $('settings-displayname').value.trim();
+      if (!newName) return alert('Enter a name');
+      try {
+        await user.updateProfile({ displayName: newName });
+        await db.collection('members').doc(user.uid).update({ displayName: newName });
+        alert('Saved');
+        await loadMemberData(user);
+      } catch (err) {
+        console.error('Error saving settings:', err);
+        alert('Error: ' + err.message);
+      }
+    });
+
+    $('btn-send-verification').addEventListener('click', () => {
+      const user = auth.currentUser;
+      if (!user) return alert('Not logged in');
+      user.sendEmailVerification()
+        .then(() => alert('Verification sent to ' + user.email))
+        .catch(err => alert('Error sending verification: ' + err.message));
+    });
+
+    $('btn-change-password').addEventListener('click', () => {
+      const user = auth.currentUser;
+      if (!user) return alert('Not logged in');
+      const email = user.email;
+      auth.sendPasswordResetEmail(email)
+        .then(() => alert('Password reset email sent to ' + email))
+        .catch(err => alert('Error sending reset email: ' + err.message));
+    });
+
+    auth.onAuthStateChanged(user => {
       if (user) {
-        document.getElementById("userName").textContent = user.displayName || "Member";
-        document.getElementById("userEmail").textContent = user.email;
+        $('settings-displayname').value = user.displayName || '';
       }
     });
   </script>
