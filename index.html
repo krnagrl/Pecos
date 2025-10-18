@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
-     crossorigin="anonymous"></script>
   <title>Pecos Finance | Smart Investments for a Better Future</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284" crossorigin="anonymous"></script>
   <script async src="https://cse.google.com/cse.js?cx=67298cf1b0fec4621"></script>
 
   <style>
@@ -14,117 +13,163 @@
       font-family: "Verdana", sans-serif;
       margin: 0;
       padding: 0;
+      color: #222;
     }
 
     .container {
-      width: 900px;
-      margin: 40px auto;
-      border: 4px solid #4a4a7d;
-      background-color: #fffce8;
-      box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
+      max-width: 1100px;
+      margin: 20px auto;
+      border: 3px solid #4a4a7d;
+      background-color: #fffef5;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
+    /* Header */
     header {
       background-color: #4a4a7d;
       color: white;
-      text-align: left;
-      padding: 8px 20px;
-      font-size: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
     }
 
-    header a {
+    header img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    nav a {
       color: white;
       text-decoration: none;
-      margin-right: 20px;
+      font-size: 15px;
+      margin-left: 15px;
     }
 
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Layout */
     .content {
       display: flex;
-      padding: 15px;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
     }
 
     .sidebar {
-      width: 220px;
-      border-right: 2px solid #ccc;
+      flex: 1 1 240px;
       background-color: #f7f3c6;
-      padding: 10px;
+      border: 2px solid #e0dca3;
+      border-radius: 6px;
+      padding: 15px;
+      min-width: 250px;
     }
 
     .sidebar h3 {
       background-color: #c33;
       color: white;
-      padding: 6px;
-      font-size: 16px;
+      padding: 8px;
       text-align: center;
+      font-size: 16px;
+      border-radius: 4px;
     }
 
     .sidebar ul {
-      list-style-type: none;
+      list-style: none;
       padding: 0;
-      margin-top: 10px;
+      margin: 15px 0 0;
     }
 
     .sidebar li {
-      margin: 8px 0;
+      margin: 10px 0;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #333;
       font-size: 15px;
     }
 
-    .sidebar li a {
-      text-decoration: none;
-      color: #333;
+    .sidebar a:hover {
+      color: #c33;
     }
 
     .main {
-      flex: 1;
-      padding: 20px;
+      flex: 3 1 500px;
       background-color: #fffef0;
+      border-radius: 6px;
+      padding: 15px 20px;
     }
 
     .main h1 {
       color: #c33;
-      font-size: 26px;
+      font-size: 24px;
       margin-bottom: 10px;
-    }
-
-    .description {
-       line-height: 1.8;
-       font-size: 15px;
-       color: #222;
     }
 
     .highlight {
       background-color: #fef7c0;
+      border-left: 5px solid #c33;
       padding: 10px;
-      border-left: 4px solid #c33;
+      border-radius: 4px;
       margin-bottom: 20px;
+      font-size: 15px;
     }
 
-    .gcse-searchbox-only {
-      margin-bottom: 20px;
+    .description {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #c33;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a22;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
     }
 
     .recent {
       margin-top: 30px;
-      border-top: 2px solid #ccc;
+      border-top: 1px solid #ddd;
       padding-top: 10px;
-      font-size: 15px;
     }
 
-    header img {
-      vertical-align: middle;
-    }
-
-    header nav a {
-      margin-right: 15px;
-    }
-
+    /* Footer */
     footer {
       background-color: #4a4a7d;
       color: white;
       text-align: center;
-      font-size: 12px;
-      padding: 10px;
-      margin-top: 20px;
+      font-size: 13px;
+      padding: 15px 10px;
     }
 
     footer a {
@@ -132,41 +177,67 @@
       text-decoration: none;
     }
 
-    button a {
-      text-decoration: none;
-      color: #000;
+    footer a:hover {
+      text-decoration: underline;
     }
 
-    button {
-      background-color: #c33;
-      color: white;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
+    /* Mobile Optimizations */
+    @media (max-width: 768px) {
+      .container {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
 
-    button:hover {
-      background-color: #a22;
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .content {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+
+      .main {
+        order: 1;
+      }
+
+      .main h1 {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-      
-    <header style="display: flex; align-items: center; justify-content: space-between;">
-      <div style="display: flex; align-items: center;">
-        <img src="pecos.png" alt="Pecos Logo" style="height: 40px; margin-right: 15px;">
-        <span style="font-size: 20px; font-weight: bold;">Pecos Finance</span>
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo">
+        <span>Pecos Finance</span>
       </div>
       <nav>
-        <a href="index.html">Home</a> |
+        <a href="index.html">Home</a>
         <a href="login.html">Investor Login</a>
       </nav>
     </header>
 
     <div class="content">
-      <div class="sidebar">
+      <aside class="sidebar">
         <h3>Finance Topics</h3>
         <ul>
           <li><a href="#">Investments</a></li>
@@ -179,9 +250,9 @@
           <li><a href="#">Retirement Plans</a></li>
           <li><a href="#">Market Insights</a></li>
         </ul>
-      </div>
+      </aside>
 
-      <div class="main">
+      <main class="main">
         <h1>Welcome to Pecos Finance</h1>
         <div class="highlight">
           Your one-stop hub for all things finance — from smart investments and steady income plans to real estate and insurance solutions.
@@ -198,7 +269,7 @@
           <h3>Search Financial Topics</h3>
           <div class="gcse-search"></div>
         </div>
-      </div>
+      </main>
     </div>
 
     <footer>
