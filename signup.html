@@ -115,17 +115,16 @@
     </div>
     <nav>
       <a href="index.html">Home</a> |
-      <a href="Club.html">Club</a> |
-      <a href="#">About</a> |
-      <a href="#">Investors</a>
+      <a href="#">Club</a> |
+
     </nav>
   </header>
 
   <div class="container">
-    <h2>Join Club Pecos</h2>
+    <h2>Join Pecos</h2>
     <p>Become a part of our exclusive members-only club.</p>
 
-    <input id="name" type="text" placeholder="Full Name"><br>
+
     <input id="email" type="email" placeholder="Email"><br>
     <input id="password" type="password" placeholder="Password"><br>
     <button onclick="signup()">Sign Up</button>
@@ -151,8 +150,6 @@
     async function signup() {
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
-      const name = document.getElementById('name').value;
-
       try {
         const userCred = await auth.createUserWithEmailAndPassword(email, password);
         await userCred.user.sendEmailVerification();
