@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Requests | Club Pecos Admin</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8cc;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #222;
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    table {
+      width: 95%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      background: #fffaf0;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background-color: #ffe97d;
+      font-weight: bold;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #logoutBtn {
+      background: #fffaa0;
+      color: #333;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    #logoutBtn:hover {
+      background: #fff27a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h2>Finance Requests Dashboard</h2>
+    <button id="logoutBtn">Logout</button>
+  </header>
+
+  <h1>All Finance Requests</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Member Email</th>
+        <th>Amount Required</th>
+        <th>Bank Name</th>
+        <th>Account No.</th>
+        <th>IFSC Code</th>
+        <th>Loan Type</th>
+        <th>Date Submitted</th>
+      </tr>
+    </thead>
+    <tbody id="requestsTable">
+      <tr><td colspan="7">Loading data...</td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.appspot.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+    const auth = firebase.auth();
+
+    // Logout button
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      auth.signOut().then(() => window.location.href = 'login.html');
+    });
+
+    // Fetch and render finance requests
+    function loadFinanceRequests() {
+      const tableBody = document.getElementById('requestsTable');
+      db.collection('financeRequests').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+        tableBody.innerHTML = '';
+        if (snapshot.empty) {
+          tableBody.innerHTML = '<tr><td colspan="7">No finance requests found.</td></tr>';
+          return;
+        }
+
+        snapshot.forEach(doc => {
+          const data = doc.data();
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${data.email || '-'}</td>
+            <td>₹${data.amount || '-'}</td>
+            <td>${data.bankName || '-'}</td>
+            <td>${data.accountNumber || '-'}</td>
+            <td>${data.ifscCode || '-'}</td>
+            <td>${data.loanType || '-'}</td>
+            <td>${data.createdAt ? new Date(data.createdAt.toDate()).toLocaleString() : '-'}</td>
+          `;
+          tableBody.appendChild(row);
+        });
+      });
+    }
+
+    // Auth protection (optional)
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = 'login.html';
+      } else {
+        loadFinanceRequests();
+      }
+    });
+  </script>
+</body>
+</html>
