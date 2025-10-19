@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login | Club Pecos</title>
-
-  <!-- Google Ads (optional, same as before) -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284"
-     crossorigin="anonymous"></script>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -25,19 +22,20 @@
     }
 
     body {
-      background: linear-gradient(135deg, #f8f5d7, #f0e9b0);
-      min-height: 100vh;
+      background-color: #f8f5d7;
       display: flex;
       flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
       background-color: #474477;
-      color: white;
-      padding: 15px 25px;
+      color: #fff;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 15px 25px;
+      flex-wrap: wrap;
     }
 
     header h1 {
@@ -55,11 +53,12 @@
       color: white;
       text-decoration: none;
       margin: 0 10px;
+      font-weight: 500;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #ffb400;
+      color: #ffcc33;
     }
 
     .main {
@@ -72,23 +71,25 @@
 
     .login-box {
       background-color: #fffde9;
-      padding: 40px 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-      max-width: 380px;
+      padding: 40px 35px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
       width: 100%;
+      max-width: 400px;
       text-align: center;
       border: 1px solid #ddd;
     }
 
     .login-box h2 {
-      color: #474477;
-      margin-bottom: 10px;
+      color: #c52e2e;
+      margin-bottom: 8px;
+      font-size: 22px;
     }
 
     .login-box p {
       color: #555;
       margin-bottom: 25px;
+      font-size: 15px;
     }
 
     input {
@@ -119,33 +120,41 @@
     }
 
     #msg {
-      margin-top: 12px;
+      margin-top: 15px;
       font-size: 14px;
-      color: green;
+      font-weight: 500;
     }
 
     .link {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 14px;
       color: #474477;
       text-decoration: underline;
       cursor: pointer;
       font-size: 14px;
+      font-weight: 500;
     }
-
-
 
     footer {
-      background-color: #4a4a7d;
+      background-color: #474477;
       color: white;
       text-align: center;
-      font-size: 12px;
-      padding: 10px;
-      margin-top: 20px;
+      font-size: 13px;
+      padding: 15px;
     }
-    @media(max-width: 480px) {
+
+    @media (max-width: 600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .login-box {
         padding: 30px 20px;
+      }
+
+      input, button {
+        font-size: 16px;
       }
     }
   </style>
@@ -156,14 +165,14 @@
     <h1><img src="pecos.png" alt="Pecos Logo">Pecos</h1>
     <nav>
       <a href="index.html">Home</a>
-      <a href="#">Club</a>
+      <a href="signup.html">Join</a>
     </nav>
   </header>
 
   <div class="main">
     <div class="login-box">
       <h2>Member Login</h2>
-      <p>Access your member area below:</p>
+      <p>Welcome back! Please log in to access your member dashboard.</p>
 
       <input id="email" type="email" placeholder="Email" required />
       <input id="password" type="password" placeholder="Password" required />
@@ -175,8 +184,8 @@
   </div>
 
   <footer>
-    © 2025 Pecos | All Rights Registered. <br>
-    Disclaimer • Privacy Policy • Contact
+    © 2025 Pecos | All Rights Reserved<br>
+    Privacy Policy • Terms • Contact
   </footer>
 
   <script>
@@ -198,7 +207,7 @@
 
       if (!email || !password) {
         msg.style.color = "red";
-        msg.innerText = "Please fill out all fields.";
+        msg.innerText = "⚠️ Please fill out all fields.";
         return;
       }
 
@@ -214,7 +223,7 @@
         }
 
         msg.style.color = "green";
-        msg.innerText = "Login successful! Redirecting...";
+        msg.innerText = "✅ Login successful! Redirecting...";
 
         const doc = await db.collection('members').doc(user.uid).get();
         const data = doc.data();
@@ -229,7 +238,7 @@
 
       } catch (err) {
         msg.style.color = "red";
-        msg.innerText = err.message;
+        msg.innerText = "❌ " + err.message;
       }
     }
 
