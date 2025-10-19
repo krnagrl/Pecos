@@ -49,10 +49,6 @@
       font-size: 14px;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
-
     main {
       padding: 25px;
     }
@@ -68,6 +64,7 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 15px;
+      box-sizing: border-box;
     }
 
     button {
@@ -79,10 +76,12 @@
       cursor: pointer;
       font-size: 15px;
       width: 100%;
+      box-sizing: border-box;
     }
 
-    button:hover {
-      background-color: #a02222;
+    button[disabled] {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     #msg {
@@ -90,6 +89,25 @@
       font-size: 14px;
       font-weight: bold;
       text-align: center;
+    }
+
+    .small {
+      font-size: 13px;
+      margin-top: 8px;
+      color: #555;
+      text-align: center;
+    }
+
+    .resend-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .resend-row button {
+      width: auto;
+      padding: 8px 12px;
+      font-size: 14px;
     }
 
     footer {
@@ -141,8 +159,17 @@
       <input id="city" type="text" placeholder="City">
       <input id="password" type="password" placeholder="Password">
 
-      <button onclick="signup()">Sign Up</button>
-      <p id="msg"></p>
+      <button id="signupBtn" onclick="signup()">Sign Up</button>
+
+      <div id="msg"></div>
+
+      <!-- Resend verification row (hidden until sign up) -->
+      <div id="afterSignup" style="display:none; text-align:center;">
+        <p class="small">Didn't receive the email? You can resend the verification link.</p>
+        <div class="resend-row" style="justify-content:center;">
+          <button id="resendBtn" onclick="resendVerification()" disabled>Resend Verification</button>
+        </div>
+      </div>
     </main>
 
     <footer>
@@ -170,26 +197,43 @@
       return 'PEC' + Math.floor(100000 + Math.random() * 900000);
     }
 
+    // Utility: show message
+    function showMsg(text, color = 'green') {
+      const el = document.getElementById('msg');
+      el.style.color = color;
+      el.innerText = text;
+    }
+
+    // Sign up & send verification
     async function signup() {
       const displayName = document.getElementById('displayName').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const city = document.getElementById('city').value.trim();
       const password = document.getElementById('password').value.trim();
-      const msg = document.getElementById('msg');
+      const signupBtn = document.getElementById('signupBtn');
+      const resendBtn = document.getElementById('resendBtn');
 
       if (!displayName || !email || !phone || !city || !password) {
-        msg.style.color = "red";
-        msg.innerText = "⚠️ Please fill in all fields.";
+        showMsg('⚠️ Please fill in all fields.', 'red');
         return;
       }
 
+      signupBtn.disabled = true;
+      signupBtn.innerText = 'Creating account...';
+      showMsg('', 'green');
+
       try {
+        // 1) Create user
         const userCred = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCred.user;
+
+        // 2) Update displayName in auth profile (optional but useful)
+        await user.updateProfile({ displayName });
+
+        // 3) Save member record in Firestore with fields matching your DB
         const memberID = generateMemberID();
         const memberSince = new Date().toLocaleDateString();
-
         await db.collection("members").doc(user.uid).set({
           displayName,
           email,
@@ -197,15 +241,76 @@
           city,
           memberID,
           memberSince,
-          tokens: 0
+          tokens: 0,
+          verified: false
         });
 
-        msg.style.color = "green";
-        msg.innerText = "✅ Signup successful! Welcome to Club Pecos.";
+        // 4) Send verification email
+        await user.sendEmailVerification();
+        showMsg(`✅ Verification email sent to ${email}. Please check your inbox (and spam).`, 'green');
+
+        // 5) Show resend controls
+        document.getElementById('afterSignup').style.display = 'block';
+        // Disable resend for 20 seconds to prevent abuse
+        resendBtn.disabled = true;
+        let cooldown = 20;
+        resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+        const countdown = setInterval(() => {
+          cooldown--;
+          resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+          if (cooldown <= 0) {
+            clearInterval(countdown);
+            resendBtn.innerText = 'Resend Verification';
+            resendBtn.disabled = false;
+          }
+        }, 1000);
+
+        // Optionally keep user signed in or sign them out to force verification before using dashboard
+        // If you prefer to sign them out so they must verify before logging in, uncomment the next line:
+        // await auth.signOut();
 
       } catch (err) {
-        msg.style.color = "red";
-        msg.innerText = "❌ " + err.message;
+        console.error(err);
+        showMsg('❌ ' + err.message, 'red');
+      } finally {
+        signupBtn.disabled = false;
+        signupBtn.innerText = 'Sign Up';
+      }
+    }
+
+    // Resend verification function
+    async function resendVerification() {
+      const resendBtn = document.getElementById('resendBtn');
+      const user = auth.currentUser;
+
+      if (!user) {
+        showMsg('⚠️ You must be signed in to resend verification. Please sign in or recreate the account.', 'red');
+        return;
+      }
+
+      try {
+        resendBtn.disabled = true;
+        resendBtn.innerText = 'Sending...';
+        await user.sendEmailVerification();
+        showMsg(`✅ Verification email resent to ${user.email}. Check inbox/spam.`, 'green');
+
+        // small cooldown to avoid spamming
+        let cooldown = 20;
+        resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+        const countdown = setInterval(() => {
+          cooldown--;
+          resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+          if (cooldown <= 0) {
+            clearInterval(countdown);
+            resendBtn.innerText = 'Resend Verification';
+            resendBtn.disabled = false;
+          }
+        }, 1000);
+      } catch (err) {
+        console.error(err);
+        showMsg('❌ ' + err.message, 'red');
+        resendBtn.disabled = false;
+        resendBtn.innerText = 'Resend Verification';
       }
     }
   </script>
