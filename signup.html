@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up | Pecos</title>
+  <title>Sign Up | Club Pecos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Firebase SDKs -->
@@ -28,7 +28,7 @@
     }
 
     header {
-      background-color: #474477;
+      background-color: #222;
       color: white;
       padding: 15px 20px;
       display: flex;
@@ -78,6 +78,7 @@
       border-radius: 4px;
       cursor: pointer;
       font-size: 15px;
+      width: 100%;
     }
 
     button:hover {
@@ -88,10 +89,11 @@
       margin-top: 15px;
       font-size: 14px;
       font-weight: bold;
+      text-align: center;
     }
 
     footer {
-      background-color: #474477;
+      background-color: #222;
       color: white;
       text-align: center;
       padding: 15px;
@@ -125,8 +127,7 @@
       </div>
       <nav>
         <a href="index.html">Home</a> |
-        <a href="login.html">Login</a> |
- 
+        <a href="login.html">Login</a>
       </nav>
     </header>
 
@@ -134,7 +135,7 @@
       <h2>Join Pecos</h2>
       <p>Become a member and start connecting with like-minded investors and entrepreneurs.</p>
 
-      <input id="name" type="text" placeholder="Full Name">
+      <input id="displayName" type="text" placeholder="Full Name">
       <input id="email" type="email" placeholder="Email">
       <input id="phone" type="tel" placeholder="Phone Number">
       <input id="city" type="text" placeholder="City">
@@ -150,57 +151,58 @@
   </div>
 
   <script>
+    // Firebase Config
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.appspot.com",
+      messagingSenderId: "918415143301",
+      appId: "1:918415143301:web:e277538863f8606d5094ec",
+      measurementId: "G-VE4VZE5SJX"
+    };
 
-
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain: "pecos-432b5.firebaseapp.com",
-  projectId: "pecos-432b5",
-  storageBucket: "pecos-432b5.appspot.com",
-  messagingSenderId: "918415143301",
-  appId: "1:918415143301:web:e277538863f8606d5094ec",
-  measurementId: "G-VE4VZE5SJX"
-};
-      
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
+    function generateMemberID() {
+      return 'PEC' + Math.floor(100000 + Math.random() * 900000);
+    }
+
     async function signup() {
-      const name = document.getElementById('name').value.trim();
+      const displayName = document.getElementById('displayName').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const city = document.getElementById('city').value.trim();
       const password = document.getElementById('password').value.trim();
       const msg = document.getElementById('msg');
 
-      if (!name || !email || !phone || !city || !password) {
+      if (!displayName || !email || !phone || !city || !password) {
         msg.style.color = "red";
         msg.innerText = "⚠️ Please fill in all fields.";
         return;
       }
 
       try {
-        // Create user in Firebase Authentication
         const userCred = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCred.user;
+        const memberID = generateMemberID();
+        const memberSince = new Date().toLocaleDateString();
 
-        // Send verification email
-        await user.sendEmailVerification();
-
-        // Store user details in Firestore
         await db.collection("members").doc(user.uid).set({
-          name,
+          displayName,
           email,
           phone,
           city,
-          joinedAt: new Date().toISOString(),
-          verified: false
+          memberID,
+          memberSince,
+          tokens: 0
         });
 
         msg.style.color = "green";
-        msg.innerText = "✅ Signup successful! Verification email sent.";
+        msg.innerText = "✅ Signup successful! Welcome to Club Pecos.";
+
       } catch (err) {
         msg.style.color = "red";
         msg.innerText = "❌ " + err.message;
