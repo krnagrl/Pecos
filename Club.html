@@ -3,32 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Club Pecos</title>
+  <title>Club Pecos | Luxury, Leisure & Lifestyle</title>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284" crossorigin="anonymous"></script>
+  <script async src="https://cse.google.com/cse.js?cx=67298cf1b0fec4621"></script>
+
   <style>
     body {
+      background-color: #f9f5d7;
+      font-family: "Verdana", sans-serif;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fdfbe7;
-      color: #333;
+      padding: 0;
+      color: #222;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      border: 3px solid #4a4a7d;
+      background-color: #fffef5;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
     }
 
     header {
-      background-color: #464573;
+      background-color: #4a4a7d;
       color: white;
-      padding: 10px 30px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.6em;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo span {
+      font-size: 20px;
+      font-weight: bold;
     }
 
     nav a {
       color: white;
       text-decoration: none;
+      font-size: 15px;
       margin-left: 15px;
     }
 
@@ -36,171 +58,218 @@
       text-decoration: underline;
     }
 
-    .container {
+    .content {
       display: flex;
-      margin: 0;
-      min-height: 80vh;
+      flex-wrap: wrap;
+      padding: 20px;
+      gap: 20px;
     }
 
     .sidebar {
+      flex: 1 1 240px;
       background-color: #f7f3c6;
-      width: 220px;
-      padding: 20px;
+      border: 2px solid #e0dca3;
+      border-radius: 6px;
+      padding: 15px;
+      min-width: 250px;
     }
 
-    .sidebar h2 {
-      background-color: #c93a3a;
+    .sidebar h3 {
+      background-color: #c33;
       color: white;
-      padding: 10px;
-      font-size: 1.1em;
-      margin-top: 0;
+      padding: 8px;
       text-align: center;
+      font-size: 16px;
+      border-radius: 4px;
     }
 
     .sidebar ul {
       list-style: none;
       padding: 0;
-      margin: 15px 0;
+      margin: 15px 0 0;
     }
 
-    .sidebar ul li {
+    .sidebar li {
       margin: 10px 0;
     }
 
-    .sidebar ul li a {
+    .sidebar a {
       text-decoration: none;
       color: #333;
+      font-size: 15px;
     }
 
-    .sidebar ul li a:hover {
-      text-decoration: underline;
+    .sidebar a:hover {
+      color: #c33;
     }
 
-    .content {
-      flex: 1;
-      padding: 30px;
-      background-color: #fffdf4;
+    .main {
+      flex: 3 1 500px;
+      background-color: #fffef0;
+      border-radius: 6px;
+      padding: 15px 20px;
     }
 
-    .content h2 {
-      color: #464573;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 5px;
+    .main h1 {
+      color: #c33;
+      font-size: 24px;
+      margin-bottom: 10px;
     }
 
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .join-btn {
-      background-color: #c93a3a;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      cursor: pointer;
-      font-size: 1em;
+    .highlight {
+      background-color: #fef7c0;
+      border-left: 5px solid #c33;
+      padding: 10px;
       border-radius: 4px;
+      margin-bottom: 20px;
+      font-size: 15px;
     }
 
-    .join-btn:hover {
-      background-color: #a52f2f;
+    .description {
+      font-size: 15px;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background-color: #c33;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #a22;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .recent {
+      margin-top: 30px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
     }
 
     footer {
-      background-color: #464573;
+      background-color: #4a4a7d;
       color: white;
       text-align: center;
+      font-size: 13px;
       padding: 15px 10px;
-      font-size: 0.9em;
     }
 
     footer a {
-      color: white;
+      color: #fffaa0;
       text-decoration: none;
-      margin: 0 5px;
     }
 
     footer a:hover {
       text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 0;
+        border: none;
+        box-shadow: none;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav {
+        margin-top: 10px;
+      }
+
+      nav a {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 14px;
+      }
+
+      .content {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      .sidebar {
+        order: 2;
+      }
+
+      .main {
+        order: 1;
+      }
+
+      .main h1 {
+        font-size: 22px;
+      }
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Club Pecos</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="club.html">Club</a> |
-      <a href="about.html">About</a> |
-      <a href="investors.html">Investors</a>
-    </nav>
-  </header>
-
   <div class="container">
-    <aside class="sidebar">
-      <h2>Sections</h2>
-      <ul>
-        <li><a href="#about">About Club Pecos</a></li>
-        <li><a href="#benefits">Membership Benefits</a></li>
-        <li><a href="#events">Events & Gatherings</a></li>
-        <li><a href="#join">Join & Contact</a></li>
-      </ul>
-    </aside>
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Club Pecos Logo" style="height:40px;">
+        <span>Club Pecos</span>
+      </div>
+      <nav>
+        <a href="#rooms">Rooms</a>
+        <a href="#restaurant">Restaurant</a>
+        <a href="#events">Events</a>
+        <a href="#membership">Membership</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
 
-    <main class="content">
-      <section id="about" class="section">
-        <h2>About Club Pecos</h2>
-        <p>
-          Club Pecos is an exclusive members-only community built to connect and empower individuals across industries. 
-          The club is dedicated to fostering relationships, creating business opportunities, and providing a trusted 
-          support system for its members.
-        </p>
-        <p>
-          Whether you're an entrepreneur, investor, or professional, Club Pecos offers a space to grow, collaborate, 
-          and make meaningful connections that last a lifetime.
-        </p>
-      </section>
-
-      <section id="benefits" class="section">
-        <h2>Membership Benefits</h2>
+    <div class="content">
+      <aside class="sidebar">
+        <h3>Explore Club Pecos</h3>
         <ul>
-          <li>Access to exclusive Club Pecos events and gatherings.</li>
-          <li>Networking opportunities with influential members and leaders.</li>
-          <li>Business collaborations and brand-building support.</li>
-          <li>Club assistance in ventures and growth opportunities.</li>
-          <li>Free entries to all official Club Pecos events.</li>
+          <li><a href="#rooms">Luxury Rooms</a></li>
+          <li><a href="#restaurant">Fine Dining</a></li>
+          <li><a href="#events">Private Events</a></li>
+          <li><a href="#wellness">Spa & Wellness</a></li>
+          <li><a href="#membership">Membership Benefits</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#contact">Get in Touch</a></li>
         </ul>
-      </section>
+      </aside>
 
-      <section id="events" class="section">
-        <h2>Events & Gatherings</h2>
-        <p>
-          Club Pecos hosts a variety of events throughout the year, including business networking meets, 
-          social gatherings, workshops, and retreats designed to strengthen community bonds and open 
-          doors to new opportunities.
-        </p>
-        <p><i>Stay tuned for upcoming events and updates shared exclusively with our members.</i></p>
-      </section>
+      <main class="main">
+        <h1>Welcome to Club Pecos</h1>
+        <div class="highlight">
+          Your private gateway to leisure, luxury, and lifestyle — where business meets comfort and celebrations find a home.
+        </div>
 
-      <section id="join" class="section">
-        <h2>Join & Contact</h2>
-        <p>
-          Interested in becoming part of Club Pecos? We welcome individuals who value growth, 
-          networking, and contribution to a trusted community.
+        <p class="description">
+          <strong>Club Pecos</strong> offers a premium experience through its exclusive rooms, gourmet restaurant, and tailored events. Whether you’re planning a corporate gathering, a private staycation, or an evening with friends, we provide world-class amenities and an unforgettable atmosphere.
         </p>
-        <p>
-          <b>Contact:</b> pecos.origin@gmail.com
-        </p>
-        <button class="join-btn">Become a Member</button>
-      </section>
-    </main>
+
+
+        <p>📧 Contact: <a href="mailto:clubpecosindia@gmail.com">clubpecosindia@gmail.com</a></p>
+        <p><button><a href="#membership">Join as a Member</a></button></p>
+
+        <div class="recent">
+          <h3>Search Our Facilities</h3>
+          <div class="gcse-search"></div>
+        </div>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2025 Club Pecos | All Rights Reserved.</p>
+      <p><a href="#privacy">Privacy Policy</a> • <a href="#terms">Terms</a> • <a href="#contact">Contact Us</a></p>
+    </footer>
   </div>
-
-  <footer>
-    © 2025 Pecos | Registered in 2020<br>
-    <a href="#">Claim Rewards</a> •
-    <a href="#">Advertise</a> •
-    <a href="#">Careers</a>
-  </footer>
 </body>
 </html>
