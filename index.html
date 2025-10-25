@@ -1,65 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="pecos.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="pecos.png"/>
   <title>Pecos Finance | Smart Investments for a Better Future</title>
 
+  <!-- Google custom search (kept as in original) -->
   <script async src="https://cse.google.com/cse.js?cx=67298cf1b0fec4621"></script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6936643122971284" crossorigin="anonymous"></script>
 
   <style>
+    :root{
+      --accent:#c33;
+      --accent-dark:#a22;
+      --nav:#4a4a7d;
+      --bg:#f9f5d7;
+      --card:#fffef5;
+      --muted:#666;
+    }
+
+    *{box-sizing: border-box}
     body {
-      background-color: #f9f5d7;
+      margin:0;
       font-family: "Verdana", sans-serif;
-      margin: 0;
-      padding: 0;
-      color: #222;
+      background-color: var(--bg);
+      color:#222;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    .container {max-width: 1100px;margin: 20px auto;border: 3px solid #4a4a7d;background-color: #fffef5;
-      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);border-radius: 8px;overflow: hidden;}
-    header {background-color: #4a4a7d;color: white;display: flex;justify-content: space-between;
-      align-items: center;padding: 12px 20px;flex-wrap: wrap;}
-    header img {height: 40px;margin-right: 10px;}
-    .logo {display: flex;align-items: center;gap: 10px;}
-    .logo span {font-size: 20px;font-weight: bold;}
-    nav a {color: white;text-decoration: none;font-size: 15px;margin-left: 15px;}
-    nav a:hover {text-decoration: underline;}
-    .content {display: flex;flex-wrap: wrap;padding: 20px;gap: 20px;}
-    .sidebar {flex: 1 1 240px;background-color: #f7f3c6;border: 2px solid #e0dca3;border-radius: 6px;padding: 15px;min-width: 250px;}
-    .sidebar h3 {background-color: #c33;color: white;padding: 8px;text-align: center;font-size: 16px;border-radius: 4px;}
-    .sidebar ul {list-style: none;padding: 0;margin: 15px 0 0;}
-    .sidebar li {margin: 10px 0;}
-    .sidebar a {text-decoration: none;color: #333;font-size: 15px;cursor: pointer;}
-    .sidebar a:hover {color: #c33;}
-    .main {flex: 3 1 500px;background-color: #fffef0;border-radius: 6px;padding: 15px 20px;}
-    .main h1 {color: #c33;font-size: 24px;margin-bottom: 10px;}
-    .highlight {background-color: #fef7c0;border-left: 5px solid #c33;padding: 10px;border-radius: 4px;margin-bottom: 20px;font-size: 15px;}
-    .description {font-size: 15px;line-height: 1.8;margin-bottom: 15px;}
-    button {background-color: #c33;color: white;padding: 10px 15px;border: none;border-radius: 4px;font-size: 15px;cursor: pointer;}
-    button:hover {background-color: #a22;}
-    button a {color: white;text-decoration: none;}
-    .recent {margin-top: 30px;border-top: 1px solid #ddd;padding-top: 10px;}
-    footer {background-color: #4a4a7d;color: white;text-align: center;font-size: 13px;padding: 15px 10px;}
-    footer a {color: #fffaa0;text-decoration: none;}
-    footer a:hover {text-decoration: underline;}
-    @media (max-width: 768px) {.container {margin: 0;border: none;box-shadow: none;}
-      header {flex-direction: column;align-items: flex-start;}
-      nav {margin-top: 10px;}
-      nav a {display: inline-block;margin-right: 10px;font-size: 14px;}
-      .content {flex-direction: column;padding: 15px;}
-      .sidebar {order: 2;}
-      .main {order: 1;}
-      .main h1 {font-size: 22px;}
+
+    .container {
+      max-width: 1100px;
+      margin: 20px auto;
+      border: 3px solid var(--nav);
+      background-color: var(--card);
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.08);
+      border-radius: 8px;
+      overflow: hidden;
     }
+
+    /* Header */
+    header {
+      background-color: var(--nav);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo img{height:40px}
+    .logo span{font-size:20px;font-weight:700}
+
+    nav a {color:white;text-decoration:none;font-size:15px;margin-left:15px}
+    nav a:hover {text-decoration:underline}
+
+    /* Layout */
+    .content {display:flex; gap:20px; padding:20px; align-items:flex-start; flex-wrap:wrap}
+    .sidebar {
+      flex:1 1 240px;
+      min-width:250px;
+      background:#f7f3c6;
+      border:2px solid #e0dca3;
+      border-radius:6px;
+      padding:12px;
+      height: auto;
+    }
+
+    .sidebar h3 {
+      background-color: var(--accent);
+      color: white;
+      padding:8px;
+      text-align:center;
+      font-size:16px;
+      border-radius:4px;
+      margin:0 0 12px 0;
+    }
+
+    .sidebar ul{list-style:none;padding:0;margin:0}
+    .sidebar li{margin:8px 0}
+    .sidebar a {
+      display:block;
+      text-decoration:none;
+      color:#333;
+      font-size:15px;
+      padding:8px 10px;
+      border-radius:4px;
+      cursor:pointer;
+    }
+    .sidebar a:hover{color:var(--accent)}
+    .sidebar a.active{
+      background: linear-gradient(90deg, rgba(195,51,51,0.12), rgba(195,51,51,0.06));
+      border-left:4px solid var(--accent);
+      color: var(--accent-dark);
+      font-weight:600;
+    }
+
+    .main {
+      flex:3 1 600px;
+      background:#fffef0;
+      border-radius:6px;
+      padding:18px 20px;
+      min-width:300px;
+    }
+
+    .main h1{color:var(--accent);font-size:24px;margin:0 0 8px}
+    .highlight{background:#fef7c0;border-left:5px solid var(--accent);padding:10px;border-radius:4px;margin:12px 0;font-size:15px}
+    .description{font-size:15px;line-height:1.8;margin-bottom:15px;color:var(--muted)}
+    button.cta{
+      background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:4px; cursor:pointer; font-size:15px;
+    }
+    button.cta:hover{background:var(--accent-dark)}
+    button.cta a{ color:white; text-decoration:none }
+
+    .recent{margin-top:26px;border-top:1px solid #e6e6e6;padding-top:12px}
+
+    footer{background:var(--nav); color:white; text-align:center; font-size:13px; padding:15px 10px;margin-top:0}
+
+    /* Slide-in panel (for Disclaimer / Privacy / Contact) */
+    .panel {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 420px;
+      max-width: 95%;
+      height: 100vh;
+      background: #fffef5;
+      box-shadow: -12px 0 24px rgba(0,0,0,0.12);
+      z-index: 1500;
+      transition: right 300ms ease;
+      padding: 20px;
+      overflow-y:auto;
+    }
+    .panel.open{ right:0; }
+    .panel header{ display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:14px }
+    .panel header h2{ margin:0; color:var(--accent) }
+    .panel .close-btn{
+      background:transparent; border:1px solid #ddd; padding:6px 8px; border-radius:4px; cursor:pointer;
+    }
+    .panel .content{ font-size:14px; color: #333; line-height:1.7 }
+
+    /* small helper to dim background when panel open */
+    .backdrop{
+      position:fixed; inset:0; background: rgba(0,0,0,0.36); z-index:1400; opacity:0; pointer-events:none; transition:opacity 200ms;
+    }
+    .backdrop.show{ opacity:1; pointer-events:auto; }
+
+    /* Mobile */
+    @media (max-width: 768px){
+      .container{ margin:0;border-radius:0; border-left:none; border-right:none}
+      header{ padding:10px 14px }
+      .content{ padding:14px; flex-direction:column }
+      .sidebar{ order:2 }
+      .main{ order:1 }
+      .panel{ width:100%; max-width:100% }
+    }
+
+    /* small accessibility focus */
+    a:focus, button:focus { outline: 3px solid rgba(195,51,51,0.18); outline-offset:2px }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container" id="pageRoot">
     <header>
       <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo">
+        <img src="pecos.png" alt="Pecos Logo" />
         <span>Pecos Finance</span>
       </div>
       <nav>
@@ -69,26 +177,43 @@
     </header>
 
     <div class="content">
-      <aside class="sidebar">
+      <aside class="sidebar" aria-label="Main sidebar">
         <h3>Services</h3>
         <ul>
-          <li><a onclick="showContent('finance')">Finance</a></li>
-          <li><a onclick="showContent('investments')">Investments</a></li>
-          <li><a onclick="showContent('realestate')">Real Estate</a></li>
-          <li><a onclick="showContent('mutualfunds')">Mutual Funds</a></li>
+          <li><a id="link-finance" class="active" onclick="showContent('finance', this)">Finance</a></li>
+          <li><a id="link-investments" onclick="showContent('investments', this)">Investments</a></li>
+          <li><a id="link-realestate" onclick="showContent('realestate', this)">Real Estate</a></li>
+          <li><a id="link-mutualfunds" onclick="showContent('mutualfunds', this)">Mutual Funds</a></li>
+        </ul>
+
+        <h3 style="margin-top:18px">Info</h3>
+        <ul>
+          <li><a onclick="openPanel('disclaimer')">Disclaimer</a></li>
+          <li><a onclick="openPanel('privacy')">Privacy Policy</a></li>
+          <li><a onclick="openPanel('contact')">Contact Us</a></li>
         </ul>
       </aside>
 
-      <main class="main" id="mainContent">
+      <main class="main" id="mainContent" tabindex="0" role="main" aria-live="polite">
+        <!-- initial content (finance) -->
         <h1>Welcome to Pecos Finance</h1>
         <div class="highlight">
           Your one-stop hub for all things finance — from smart investments and steady income plans to real estate and insurance solutions.
         </div>
+
         <p class="description">
-          At <strong>Pecos Finance</strong>, we help you explore and understand a wide range of financial instruments. Whether you’re planning to grow wealth through <em>mutual funds</em>, secure your future with <em>insurance</em>, or explore modern investment avenues like <em>REITs</em> and <em>InvITs</em> — we’ve got you covered.
+          At <strong>Pecos Finance</strong>, we help you explore and understand a wide range of financial instruments. Whether you’re planning to grow
+          wealth through <em>mutual funds</em>, secure your future with <em>insurance</em>, or explore modern investment avenues like <em>REITs</em>
+          and <em>InvITs</em> — we’ve got you covered.
         </p>
+
         <p>Contact: <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
-        <p><button><a href="signup.html">Join as an Investor</a></button></p>
+        <p><button class="cta"><a href="signup.html">Join as an Investor</a></button></p>
+
+        <div class="recent">
+          <h3>Search Financial Topics</h3>
+          <div class="gcse-search"></div>
+        </div>
       </main>
     </div>
 
@@ -98,44 +223,221 @@
     </footer>
   </div>
 
+  <!-- Slide-in panels -->
+  <div id="backdrop" class="backdrop" onclick="closePanel()"></div>
+
+  <aside id="panel-disclaimer" class="panel" aria-hidden="true" aria-labelledby="panelTitle-disclaimer">
+    <header>
+      <h2 id="panelTitle-disclaimer">Disclaimer</h2>
+      <div>
+        <button class="close-btn" aria-label="Close" onclick="closePanel()">Close</button>
+      </div>
+    </header>
+    <div class="content">
+      <p><strong>Pecos Finance Disclaimer</strong></p>
+      <p>
+        The information provided on this website is for educational and informational purposes only and does not constitute
+        financial advice. Past performance is not indicative of future results. Investors should consult with a registered
+        financial advisor or conduct their own research before making any investment decisions.
+      </p>
+      <p>
+        Pecos Finance and its affiliates are not responsible for any losses arising directly or indirectly from the use of information
+        on this site. All content is provided "as is" without warranty of any kind.
+      </p>
+    </div>
+  </aside>
+
+  <aside id="panel-privacy" class="panel" aria-hidden="true" aria-labelledby="panelTitle-privacy">
+    <header>
+      <h2 id="panelTitle-privacy">Privacy Policy</h2>
+      <div>
+        <button class="close-btn" aria-label="Close" onclick="closePanel()">Close</button>
+      </div>
+    </header>
+    <div class="content">
+      <p><strong>Privacy Policy — Pecos Finance</strong></p>
+      <p>
+        We respect your privacy. We collect only the information necessary to provide our services (such as contact details,
+        KYC information if you invest, and anonymized usage data). We do not sell personal data to third parties.
+      </p>
+      <p>
+        Data may be shared with service providers (payment processors, KYC partners, hosting providers) only to the extent required
+        to deliver our services and subject to appropriate safeguards. You may contact us to request data deletion or export.
+      </p>
+      <p>
+        This policy is a summary — please contact us for the full privacy policy document.
+      </p>
+    </div>
+  </aside>
+
+  <aside id="panel-contact" class="panel" aria-hidden="true" aria-labelledby="panelTitle-contact">
+    <header>
+      <h2 id="panelTitle-contact">Contact Us</h2>
+      <div>
+        <button class="close-btn" aria-label="Close" onclick="closePanel()">Close</button>
+      </div>
+    </header>
+    <div class="content">
+      <p><strong>Get in touch</strong></p>
+      <p>Email: <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
+      <p>Phone: +91-XXXXXXXXXX</p>
+      <p>Address: Pecos Finance (Head office) — Akola, Maharashtra, India</p>
+
+      <hr style="margin:12px 0">
+
+      <form id="contactForm" onsubmit="submitContactForm(event)" aria-label="Contact form">
+        <div style="margin-bottom:8px">
+          <label for="cname">Name</label><br>
+          <input id="cname" name="name" required style="width:100%; padding:8px; border:1px solid #e6e6e6; border-radius:4px">
+        </div>
+        <div style="margin-bottom:8px">
+          <label for="cemail">Email</label><br>
+          <input id="cemail" name="email" type="email" required style="width:100%; padding:8px; border:1px solid #e6e6e6; border-radius:4px">
+        </div>
+        <div style="margin-bottom:10px">
+          <label for="cmessage">Message</label><br>
+          <textarea id="cmessage" name="message" rows="4" required style="width:100%; padding:8px; border:1px solid #e6e6e6; border-radius:4px"></textarea>
+        </div>
+        <div>
+          <button type="submit" class="cta">Send Message</button>
+        </div>
+        <div id="contactStatus" style="margin-top:10px; font-size:14px"></div>
+      </form>
+    </div>
+  </aside>
+
   <script>
-    function showContent(section) {
-      const content = {
-        finance: `
-          <h1>Finance Solutions</h1>
-          <div class="highlight">Empowering your financial journey with expert-backed guidance.</div>
-          <p class="description">
-            Pecos Finance provides a range of financial services including personal finance planning, credit consulting,
-            business funding advice, and wealth management strategies tailored to your goals.
-          </p>
-        `,
-        investments: `
-          <h1>Investment Opportunities</h1>
-          <div class="highlight">Grow your wealth through safe, high-return investment options.</div>
-          <p class="description">
-            Explore diversified investment options such as equity, bonds, SIPs, and alternative assets. 
-            Our experts analyze market trends and offer research-driven recommendations for steady returns.
-          </p>
-        `,
-        realestate: `
-          <h1>Real Estate Advisory</h1>
-          <div class="highlight">Building wealth through land, property, and REITs.</div>
-          <p class="description">
-            From residential to commercial real estate, Pecos Finance helps you identify high-value assets, 
-            evaluate ROI, and access trusted property partners for long-term gains.
-          </p>
-        `,
-        mutualfunds: `
-          <h1>Mutual Fund Investments</h1>
-          <div class="highlight">Your gateway to smart, hassle-free mutual fund investing.</div>
-          <p class="description">
-            Compare and invest in top-performing mutual funds across equity, debt, and hybrid categories.
-            Set up SIPs or lump-sum plans, track performance, and achieve your financial goals with confidence.
-          </p>
-        `
-      };
-      document.getElementById("mainContent").innerHTML = content[section];
+    // content blocks for services
+    const contentBlocks = {
+      finance: `
+        <h1>Finance Solutions</h1>
+        <div class="highlight">Empowering your financial journey with expert-backed guidance.</div>
+        <p class="description">
+          Pecos Finance provides a range of financial services including personal finance planning, credit consulting,
+          business funding advice, and wealth management strategies tailored to your goals.
+        </p>
+        <p><strong>Popular services:</strong> Financial planning, loan advisory, tax planning, business finance structuring.</p>
+      `,
+      investments: `
+        <h1>Investment Opportunities</h1>
+        <div class="highlight">Grow your wealth through safe, well-researched investments.</div>
+        <p class="description">
+          Explore diversified investment options such as equity, bonds, SIPs, and alternative assets.
+          Our experts analyze market trends and offer research-driven recommendations for steady returns.
+        </p>
+        <p><strong>Tip:</strong> Consider SIPs for long-term systematic wealth building.</p>
+      `,
+      realestate: `
+        <h1>Real Estate Advisory</h1>
+        <div class="highlight">Building wealth through land, property, and REITs.</div>
+        <p class="description">
+          From residential to commercial real estate, Pecos Finance helps you identify high-value assets,
+          evaluate ROI, and access trusted property partners for long-term gains.
+        </p>
+      `,
+      mutualfunds: `
+        <h1>Mutual Fund Investments</h1>
+        <div class="highlight">Your gateway to smart, hassle-free mutual fund investing.</div>
+        <p class="description">
+          Compare and invest in top-performing mutual funds across equity, debt, and hybrid categories.
+          Set up SIPs or lump-sum plans, track performance, and achieve your financial goals with confidence.
+        </p>
+        <p><strong>Get started:</strong> Pass NISM certification or partner with a distributor to enable transactions on your platform.</p>
+      `
+    };
+
+    // show service content and mark active
+    function showContent(section, el){
+      const main = document.getElementById('mainContent');
+      if(!contentBlocks[section]) return;
+      main.innerHTML = contentBlocks[section] + `
+        <p>Contact: <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
+        <p><button class="cta"><a href="signup.html">Join as an Investor</a></button></p>
+        <div class="recent">
+          <h3>Search Financial Topics</h3>
+          <div class="gcse-search"></div>
+        </div>
+      `;
+      // manage active class
+      document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+      if(el) el.classList.add('active');
+      // focus main for accessibility
+      main.focus();
     }
+
+    // Slide panels handling
+    const panels = {
+      disclaimer: document.getElementById('panel-disclaimer'),
+      privacy: document.getElementById('panel-privacy'),
+      contact: document.getElementById('panel-contact')
+    };
+    const backdrop = document.getElementById('backdrop');
+
+    function openPanel(name){
+      // close other panels first
+      Object.values(panels).forEach(p=>p.classList.remove('open'));
+      // open requested
+      const panel = panels[name];
+      if(!panel) return;
+      panel.classList.add('open');
+      panel.setAttribute('aria-hidden', 'false');
+      backdrop.classList.add('show');
+      // trap focus (simple)
+      setTimeout(()=> panel.querySelector('.close-btn')?.focus(), 250);
+      // disable body scroll
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePanel(){
+      Object.values(panels).forEach(p=>{
+        p.classList.remove('open');
+        p.setAttribute('aria-hidden', 'true');
+      });
+      backdrop.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    // close panels on Escape
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closePanel();
+    });
+
+    // contact form (demo: shows a success message; hook to server as required)
+    function submitContactForm(e){
+      e.preventDefault();
+      const name = document.getElementById('cname').value.trim();
+      const email = document.getElementById('cemail').value.trim();
+      const message = document.getElementById('cmessage').value.trim();
+      const status = document.getElementById('contactStatus');
+
+      // Basic client-side validation
+      if(!name || !email || !message){
+        status.textContent = 'Please fill all fields.';
+        status.style.color = '#c33';
+        return;
+      }
+
+      // Simulate form send (replace with real AJAX / fetch to your backend)
+      status.textContent = 'Sending...';
+      status.style.color = '#333';
+
+      setTimeout(()=>{
+        status.textContent = 'Thank you, your message has been sent. We will contact you shortly.';
+        status.style.color = 'green';
+        // optionally close panel after short delay
+        setTimeout(()=> {
+          closePanel();
+          status.textContent = '';
+          document.getElementById('contactForm').reset();
+        }, 1500);
+      }, 900);
+    }
+
+    // init: ensure finance content visible (in case user opens fresh copy)
+    document.addEventListener('DOMContentLoaded', ()=>{
+      // keep initial content as-is; ensure active link present
+      // No extra action required.
+    });
   </script>
 </body>
 </html>
