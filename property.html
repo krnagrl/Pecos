@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="pecos.png"/>
+  <title>Pecos Finance | Real Estate Listings</title>
+
+  <style>
+    :root{
+      --accent:#c33;
+      --accent-dark:#a22;
+      --nav:#4a4a7d;
+      --bg:#f9f5d7;
+      --card:#fffef5;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    body {margin:0;font-family:"Verdana",sans-serif;background-color:var(--bg);color:#222;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    .container{max-width:1100px;margin:20px auto;border:3px solid var(--nav);background-color:var(--card);box-shadow:0px 0px 10px rgba(0,0,0,0.08);border-radius:8px;overflow:hidden}
+    header{background-color:var(--nav);color:white;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;flex-wrap:wrap}
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo img{height:40px}
+    .logo span{font-size:20px;font-weight:700}
+    nav a {color:white;text-decoration:none;font-size:15px;margin-left:15px}
+    nav a:hover{text-decoration:underline}
+    .content{display:flex; gap:20px; padding:20px; align-items:flex-start; flex-wrap:wrap}
+    .sidebar{flex:1 1 240px;min-width:250px;background:#f7f3c6;border:2px solid #e0dca3;border-radius:6px;padding:12px;height:auto}
+    .sidebar h3{background-color: var(--accent);color:white;padding:8px;text-align:center;font-size:16px;border-radius:4px;margin:0 0 12px 0}
+    .sidebar ul{list-style:none;padding:0;margin:0}
+    .sidebar li{margin:8px 0}
+    .sidebar a{display:block;text-decoration:none;color:#333;font-size:15px;padding:8px 10px;border-radius:4px;cursor:pointer}
+    .sidebar a:hover{color:var(--accent)}
+    .sidebar a.active{background:linear-gradient(90deg, rgba(195,51,51,0.12), rgba(195,51,51,0.06));border-left:4px solid var(--accent);color: var(--accent-dark);font-weight:600}
+    .main{flex:3 1 600px;background:#fffef0;border-radius:6px;padding:18px 20px;min-width:300px}
+    .main h1{color:var(--accent);font-size:24px;margin:0 0 8px}
+    .filter-bar{margin-bottom:16px; display:flex; gap:10px; flex-wrap:wrap}
+    .filter-bar select{padding:6px 10px; border-radius:4px; border:1px solid #ccc; font-size:14px}
+    .property-card{border:1px solid #ddd;background:white;border-radius:6px;margin-bottom:14px;padding:12px;display:flex;gap:12px;flex-wrap:wrap;box-shadow:0 0 6px rgba(0,0,0,0.06)}
+    .property-card img{width:200px;height:140px;object-fit:cover;border-radius:4px;flex-shrink:0;cursor:pointer}
+    .property-details{flex:1; min-width:200px}
+    .property-details h2{margin:0 0 6px;font-size:18px;color:var(--accent)}
+    .property-details p{margin:4px 0;font-size:14px;color:#444}
+    .property-details button{margin-top:8px}
+    button.cta{background:var(--accent); color:white; border:none; padding:10px 14px; border-radius:4px; cursor:pointer; font-size:15px}
+    button.cta:hover{background:var(--accent-dark)}
+    /* Lightbox */
+    #lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:none;justify-content:center;align-items:center;z-index:2000}
+    #lightbox img{max-width:90%;max-height:90%;border-radius:6px;box-shadow:0 0 12px rgba(0,0,0,0.5)}
+    #lightbox.close{display:none;cursor:pointer}
+    @media(max-width:768px){.content{flex-direction:column}.sidebar{order:2}.main{order:1}.property-card{flex-direction:column;align-items:center}.property-card img{width:100%;height:auto}}
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <img src="pecos.png" alt="Pecos Logo" />
+      <span>Pecos Finance</span>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+    </nav>
+  </header>
+
+  <div class="content">
+    <aside class="sidebar">
+      <h3>Property Type</h3>
+      <ul>
+        <li><a class="active" onclick="showProperties('residential', this)">Residential</a></li>
+        <li><a onclick="showProperties('commercial', this)">Commercial</a></li>
+      </ul>
+    </aside>
+
+    <main class="main" id="mainContent">
+      <!-- Listings appear here -->
+    </main>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="hideLightbox()"><img id="lightboxImg" src=""></div>
+
+<script>
+  const properties = [
+    {type:'residential', saleRent:'Sale', image:'https://via.placeholder.com/200x140?text=Res+1', title:'2 BHK Apartment in Mumbai', location:'Andheri, Mumbai', price:'₹1.2 Cr', area:'1050 sq.ft', description:'Spacious 2 bedroom apartment with modern amenities and parking.'},
+    {type:'residential', saleRent:'Sale', image:'https://via.placeholder.com/200x140?text=Res+2', title:'Villa in Pune', location:'Kothrud, Pune', price:'₹2.5 Cr', area:'2500 sq.ft', description:'Luxury villa with garden, swimming pool, and private parking.'},
+    {type:'commercial', saleRent:'Rent', image:'https://via.placeholder.com/200x140?text=Comm+1', title:'Office Space in Bangalore', location:'MG Road, Bangalore', price:'₹4 Lakh/month', area:'1800 sq.ft', description:'Prime office space with furnished interiors and 24/7 security.'},
+    {type:'commercial', saleRent:'Sale', image:'https://via.placeholder.com/200x140?text=Comm+2', title:'Retail Shop in Delhi', location:'Connaught Place, Delhi', price:'₹15 Lakh', area:'800 sq.ft', description:'High footfall retail property ideal for showroom or boutique.'}
+  ];
+
+  let currentType='residential';
+  let currentSaleRent='All';
+
+  function showProperties(type, el){
+    currentType = type;
+    renderProperties();
+    document.querySelectorAll('.sidebar a').forEach(a=>a.classList.remove('active'));
+    if(el) el.classList.add('active');
+  }
+
+  function renderProperties(){
+    const main = document.getElementById('mainContent');
+    let filtered = properties.filter(p=>{
+      return p.type===currentType && (currentSaleRent==='All' || p.saleRent===currentSaleRent);
+    });
+
+    let html = `<h1>${currentType.charAt(0).toUpperCase()+currentType.slice(1)} Properties</h1>
+                <div class="filter-bar">
+                  <label>Filter: 
+                    <select onchange="filterSaleRent(this.value)">
+                      <option value="All">All</option>
+                      <option value="Sale">Sale</option>
+                      <option value="Rent">Rent</option>
+                    </select>
+                  </label>
+                </div>`;
+
+    filtered.forEach(p=>{
+      html += `
+        <div class="property-card">
+          <img src="${p.image}" alt="${p.title}" onclick="showLightbox('${p.image}')"/>
+          <div class="property-details">
+            <h2>${p.title}</h2>
+            <p><strong>Location:</strong> ${p.location}</p>
+            <p><strong>Price/Rent:</strong> ${p.price}</p>
+            <p><strong>Area:</strong> ${p.area}</p>
+            <p>${p.description}</p>
+            <button class="cta">Enquire</button>
+          </div>
+        </div>
+      `;
+    });
+
+    main.innerHTML = html;
+  }
+
+  function filterSaleRent(value){
+    currentSaleRent = value;
+    renderProperties();
+  }
+
+  function showLightbox(imgSrc){
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightboxImg');
+    lbImg.src = imgSrc;
+    lb.style.display='flex';
+  }
+
+  function hideLightbox(){
+    document.getElementById('lightbox').style.display='none';
+  }
+
+  document.addEventListener('DOMContentLoaded', ()=>{
+    renderProperties();
+  });
+</script>
+</body>
+</html>
