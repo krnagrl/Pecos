@@ -7,51 +7,58 @@
   <title>Pecos - Finance | Mutual Funds | Stocks & Shares</title>
   <style>
     body {
-      background-color: #f2ecd7;
-      font-family: "Times New Roman", serif;
-      color: #000;
+      background-color: #f9f5d7;
+      font-family: "Verdana", sans-serif;
       margin: 0;
       padding: 0;
     }
 
     .container {
-      max-width: 950px;
-      margin: 30px auto;
-      border: 3px double #555;
-      background-color: #fffaf0;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      max-width: 1000px;
+      margin: 20px auto;
+      border: 4px solid #4a4a7d;
+      background-color: #fffce8;
+      box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
     }
 
     header {
       background-color: #4a4a7d;
       color: white;
-      padding: 10px 15px;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .logo img {
-      height: 50px;
-      width: 50px;
-      vertical-align: middle;
+      height: 40px;
+      width: 40px;
     }
 
     .logo span {
-      font-size: 28px;
+      font-size: 20px;
       font-weight: bold;
-      margin-left: 10px;
       color: #fffaa0;
-      vertical-align: middle;
     }
 
     .nav-links {
-      margin-top: 10px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     .nav-links a {
-      color: #fff;
-      text-decoration: underline;
-      margin: 0 8px;
+      color: white;
+      text-decoration: none;
       font-size: 14px;
+      transition: color 0.3s;
     }
 
     .nav-links a:hover {
@@ -60,117 +67,129 @@
 
     .content {
       display: flex;
+      padding: 15px;
       flex-wrap: wrap;
-      border-top: 2px solid #999;
     }
 
     .sidebar {
-      width: 200px;
-      background-color: #ede3b4;
-      border-right: 2px solid #aaa;
+      width: 220px;
+      border-right: 2px solid #ccc;
+      background-color: #f7f3c6;
       padding: 10px;
+      flex-shrink: 0;
     }
 
     .sidebar h3 {
-      background-color: #b33;
+      background-color: #c33;
       color: white;
-      font-size: 16px;
       padding: 6px;
+      font-size: 16px;
       text-align: center;
-      border: 1px solid #800;
     }
 
     .sidebar ul {
-      list-style-type: square;
-      padding-left: 20px;
-      margin: 10px 0;
+      list-style-type: none;
+      padding: 0;
+      margin-top: 10px;
     }
 
     .sidebar li {
-      margin: 5px 0;
+      margin: 8px 0;
+      font-size: 15px;
     }
 
-    .sidebar a {
+    .sidebar li a {
       text-decoration: none;
-      color: #000;
-    }
-
-    .sidebar a:hover {
-      text-decoration: underline;
+      color: #333;
     }
 
     .main {
       flex: 1;
-      padding: 20px;
-      background-color: #fffef2;
-      border-left: none;
+      padding: 30px 20px;
+      background-color: #fffef0;
     }
 
     .ask-title {
-      font-size: 32px;
-      color: #a22;
+      font-size: 36px;
       font-weight: bold;
-      text-decoration: underline;
+      color: #c33;
     }
 
-    .open-account h2 {
-      color: #a22;
-      font-size: 22px;
-      border-bottom: 1px dashed #a22;
-      display: inline-block;
+    .ask-title span {
+      color: #000;
+    }
+
+    .open-account,
+    .contact-section {
+      margin-top: 40px;
+    }
+
+    .open-account h2,
+    .contact-section h2 {
+      font-size: 24px;
+      color: #c33;
+      margin-bottom: 10px;
     }
 
     .open-account button {
-      background-color: #a22;
+      background-color: #c33;
       color: white;
-      border: 2px outset #a22;
-      padding: 8px 16px;
+      border: none;
+      padding: 10px 18px;
       font-size: 16px;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     .open-account button:hover {
-      background-color: #c33;
+      background-color: #a22;
     }
 
-    .location {
-      margin-top: 15px;
-      font-size: 15px;
+    /* Contact section styling */
+    .contact-section p {
+      font-size: 16px;
+      margin: 8px 0;
     }
 
-    .location a {
-      color: #a22;
+    .contact-section a {
+      color: #c33;
       text-decoration: none;
+      font-weight: bold;
     }
 
-    .location a:hover {
+    .contact-section a:hover {
       text-decoration: underline;
+    }
+
+    .social-links {
+      margin-top: 20px;
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      font-size: 20px;
+      color: #4a4a7d;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #c33;
     }
 
     footer {
       background-color: #4a4a7d;
-      color: #fff;
+      color: white;
       text-align: center;
-      font-size: 13px;
-      padding: 15px 10px;
-      border-top: 2px solid #333;
+      font-size: 12px;
+      padding: 10px;
+      margin-top: 20px;
     }
 
-    .social-links {
-      margin-top: 10px;
-    }
-
-    .social-links a {
+    footer a {
       color: #fffaa0;
       text-decoration: none;
-      margin: 0 8px;
-      font-weight: bold;
-      font-family: monospace;
-    }
-
-    .social-links a:hover {
-      color: #fff;
-      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
@@ -181,7 +200,24 @@
       .sidebar {
         width: 100%;
         border-right: none;
-        border-bottom: 2px solid #aaa;
+        border-bottom: 2px solid #ccc;
+        margin-bottom: 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .open-account button {
+        width: 100%;
       }
     }
   </style>
@@ -194,7 +230,7 @@
         <span>Pecos</span>
       </div>
       <nav class="nav-links">
-        <a href="index.html">Home</a> |
+        <a href="index.html">Home</a>
         <a href="login.html">Login</a>
       </nav>
     </header>
@@ -210,34 +246,34 @@
       </div>
 
       <div class="main">
-        <div class="ask-title">Welcome to <span style="color:#000;">Pecos!</span></div>
+        <div class="ask-title"><span>Pecos!</span></div>
         <hr>
 
+        <!-- Open an Account section -->
         <div class="open-account">
-          <h2>Open an Account</h2>
-          <p>Begin your journey into financial success. Register with us below:</p>
+          <h2>Open an Account with Us</h2>
+          <p>Start your financial journey with us! Click below to register:</p>
           <a href="signup.html"><button>Register</button></a>
         </div>
 
-        <div class="location">
-          📧 <strong>Email:</strong> 
-          <a href="mailto:pecos.origin@gmail.com">Pecos.origin@gmail.com</a>
-        </div>
-        <div class="location">
-          📍 <strong>Location:</strong> Akola, Maharashtra 444001
+        <!-- Contact & Social Section -->
+        <div class="contact-section">
+          <h2>Contact</h2>
+          <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
+          <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
+
+          <div class="social-links">
+            <a href="#" title="Facebook">🌐</a>
+            <a href="#" title="Twitter">🐦</a>
+            <a href="#" title="LinkedIn">💼</a>
+            <a href="#" title="Instagram">📸</a>
+          </div>
         </div>
       </div>
     </div>
 
     <footer>
       <p>© 2025 Pecos | All Rights Reserved</p>
-      <div class="social-links">
-        <a href="#">[Facebook]</a>
-        <a href="#">[Twitter]</a>
-        <a href="#">[Instagram]</a>
-        <a href="#">[LinkedIn]</a>
-        <a href="#">[YouTube]</a>
-      </div>
     </footer>
   </div>
 </body>
