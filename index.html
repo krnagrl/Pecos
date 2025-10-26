@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="pecos.png" />
   <title>Ask Pecos! - Live Market Dashboard</title>
+
   <style>
     body {
       background-color: #f9f5d7;
@@ -164,7 +165,7 @@
     .updated {
       font-size: 12px;
       color: #666;
-      margin-top: 10px;
+      margin-top: 15px;
     }
 
     .blink {
@@ -276,37 +277,24 @@
   <script>
     const ALPHA_VANTAGE_API_KEY = "JEC4Z2XV61NPTUUN";
 
-    async function fetchAlpha(symbol, elementId) {
-      const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+    // Fetch Sensex and Nifty from Yahoo Finance
+    async function fetchYahoo(symbol, elementId) {
+      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?region=IN&interval=1d`;
       try {
         const response = await fetch(url);
         const data = await response.json();
-        const quote = data["Global Quote"];
-        if (quote && quote["05. price"]) {
-          const el = document.getElementById(elementId);
-          el.classList.add("blink");
-          el.innerText = "₹" + parseFloat(quote["05. price"]).toLocaleString("en-IN");
-          setTimeout(() => el.classList.remove("blink"), 600);
-        }
+        const price = data.chart.result[0].meta.regularMarketPrice;
+        const el = document.getElementById(elementId);
+        el.classList.add("blink");
+        el.innerText = "₹" + parseFloat(price).toLocaleString("en-IN");
+        setTimeout(() => el.classList.remove("blink"), 600);
       } catch (err) {
+        console.error("Yahoo error:", err);
         document.getElementById(elementId).innerText = "N/A";
       }
     }
 
-    async function fetchBTC() {
-      const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr";
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const el = document.getElementById("btc");
-        el.classList.add("blink");
-        el.innerText = "₹" + data.bitcoin.inr.toLocaleString("en-IN");
-        setTimeout(() => el.classList.remove("blink"), 600);
-      } catch {
-        document.getElementById("btc").innerText = "N/A";
-      }
-    }
-
+    // Fetch INR/USD exchange rate from Alpha Vantage
     async function fetchINRUSD() {
       const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=INR&apikey=${ALPHA_VANTAGE_API_KEY}`;
       try {
@@ -317,21 +305,40 @@
         el.classList.add("blink");
         el.innerText = "₹" + parseFloat(rate).toFixed(2);
         setTimeout(() => el.classList.remove("blink"), 600);
-      } catch {
+      } catch (err) {
+        console.error("INR/USD error:", err);
         document.getElementById("inr_usd").innerText = "N/A";
       }
     }
 
+    // Fetch Bitcoin price in INR from CoinGecko
+    async function fetchBTC() {
+      const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr";
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const el = document.getElementById("btc");
+        el.classList.add("blink");
+        el.innerText = "₹" + data.bitcoin.inr.toLocaleString("en-IN");
+        setTimeout(() => el.classList.remove("blink"), 600);
+      } catch (err) {
+        console.error("BTC error:", err);
+        document.getElementById("btc").innerText = "N/A";
+      }
+    }
+
+    // Main update function
     function updateMarketData() {
-      fetchAlpha("BSE:SENSEX", "sensex");
-      fetchAlpha("NSE:NIFTY_50", "nifty");
+      fetchYahoo("^BSESN", "sensex"); // Sensex
+      fetchYahoo("^NSEI", "nifty");   // Nifty 50
       fetchINRUSD();
       fetchBTC();
-      document.getElementById("last-updated").innerText = "Last updated: " + new Date().toLocaleTimeString();
+      document.getElementById("last-updated").innerText =
+        "Last updated: " + new Date().toLocaleTimeString();
     }
 
     updateMarketData();
-    setInterval(updateMarketData, 300000); // refresh every 5 min
+    setInterval(updateMarketData, 300000); // Refresh every 5 minutes
   </script>
 </body>
 
