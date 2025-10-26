@@ -1,297 +1,326 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link rel="icon" type="image/png" href="pecos.png"/>
-  <title>Ask Pecos!</title>
-  <style>
-    body {
-      background-color: #f9f5d7;
-      font-family: "Verdana", sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="pecos.png" />
+    <title>Ask Pecos!</title>
+    <style>
+        body {
+            background-color: #f9f5d7;
+            font-family: "Verdana", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
-    header {
-      background-color: #4a4a7d;
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      padding: 10px 20px;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            border: 4px solid #4a4a7d;
+            background-color: #fffce8;
+            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+        }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+        header {
+            background-color: #4a4a7d;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            flex-wrap: wrap;
+        }
 
-    .logo img {
-      height: 40px;
-      width: 40px;
-      border-radius: 50%;
-    }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .logo span {
-      font-size: 20px;
-      font-weight: bold;
-    }
+        .logo img {
+            height: 40px;
+            width: 40px;
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+        .logo span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #fffaa0;
+        }
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
 
-    .nav-links a:hover {
-      text-decoration: underline;
-    }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      border: 4px solid #4a4a7d;
-      background-color: #fffce8;
-      box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
-    }
+        .nav-links a:hover {
+            color: #fffaa0;
+        }
 
-    .content {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 15px;
-    }
+        .content {
+            display: flex;
+            padding: 15px;
+            flex-wrap: wrap;
+        }
 
-    .sidebar {
-      width: 220px;
-      border-right: 2px solid #ccc;
-      background-color: #f7f3c6;
-      padding: 10px;
-    }
+        .sidebar {
+            width: 220px;
+            border-right: 2px solid #ccc;
+            background-color: #f7f3c6;
+            padding: 10px;
+            flex-shrink: 0;
+        }
 
-    .sidebar h3 {
-      background-color: #c33;
-      color: white;
-      padding: 6px;
-      font-size: 16px;
-      text-align: center;
-    }
+        .sidebar h3 {
+            background-color: #c33;
+            color: white;
+            padding: 6px;
+            font-size: 16px;
+            text-align: center;
+        }
 
-    .sidebar ul {
-      list-style-type: none;
-      padding: 0;
-      margin-top: 10px;
-    }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 10px;
+        }
 
-    .sidebar li {
-      margin: 8px 0;
-      font-size: 15px;
-    }
+        .sidebar li {
+            margin: 8px 0;
+            font-size: 15px;
+        }
 
-    .sidebar li a {
-      text-decoration: none;
-      color: #333;
-    }
+        .sidebar li a {
+            text-decoration: none;
+            color: #333;
+        }
 
-    .main {
-      flex: 1;
-      padding: 20px;
-      background-color: #fffef0;
-    }
+        .main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fffef0;
+        }
 
-    .ask-title {
-      font-size: 36px;
-      font-weight: bold;
-      color: #c33;
-    }
+        .ask-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #c33;
+        }
 
-    .ask-title span {
-      color: #000;
-    }
+        .ask-title span {
+            color: #000;
+        }
 
-    input[type="text"] {
-      width: 70%;
-      padding: 8px;
-      font-size: 16px;
-      border: 2px solid #c33;
-    }
+        .search-section {
+            margin-top: 10px;
+        }
 
-    button {
-      background-color: #c33;
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      font-size: 16px;
-      cursor: pointer;
-      margin-left: 5px;
-    }
+        input[type="text"] {
+            width: 70%;
+            padding: 8px;
+            font-size: 16px;
+            border: 2px solid #c33;
+        }
 
-    button:hover {
-      background-color: #a22;
-    }
+        button {
+            background-color: #c33;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
 
-    .market-section {
-      margin-top: 25px;
-      border: 2px solid #ccc;
-      background-color: #f9f5d7;
-      padding: 15px;
-      border-radius: 8px;
-    }
+        button:hover {
+            background-color: #a22;
+        }
 
-    .market-section h3 {
-      color: #c33;
-      font-size: 20px;
-      margin-top: 0;
-      text-align: center;
-    }
+        .recent {
+            margin-top: 30px;
+            border-top: 2px solid #ccc;
+            padding-top: 10px;
+            font-size: 15px;
+        }
 
-    .market-tickers {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 10px;
-    }
+        footer {
+            background-color: #4a4a7d;
+            color: white;
+            text-align: center;
+            font-size: 12px;
+            padding: 10px;
+            margin-top: 20px;
+        }
 
-    .ticker-box {
-      background-color: #fffef0;
-      border: 2px solid #4a4a7d;
-      border-radius: 10px;
-      padding: 10px;
-      width: 160px;
-      text-align: center;
-      font-size: 14px;
-      box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
-    }
+        footer a {
+            color: #fffaa0;
+            text-decoration: none;
+        }
 
-    footer {
-      background-color: #4a4a7d;
-      color: white;
-      text-align: center;
-      font-size: 12px;
-      padding: 10px;
-      margin-top: 20px;
-    }
+        /* New sections for live market, news, and products */
+        .live-market {
+            background-color: #4a4a7d;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+        }
 
-    footer a {
-      color: #fffaa0;
-      text-decoration: none;
-    }
+        .news,
+        .featured-products {
+            margin-top: 20px;
+            padding: 15px;
+        }
 
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
+        .news h3,
+        .featured-products h3 {
+            font-size: 24px;
+            color: #c33;
+        }
 
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 2px solid #ccc;
-      }
+        .news ul,
+        .featured-products ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-      input[type="text"] {
-        width: 100%;
-      }
-    }
-  </style>
+        .news li,
+        .featured-products li {
+            margin: 10px 0;
+            font-size: 14px;
+        }
+
+        .news a,
+        .featured-products a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #ccc;
+                margin-bottom: 10px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: flex-start;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+
+            input[type="text"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">
-      <img src="pecos.png" alt="Pecos Logo">
-      <span>Ask Pecos!</span>
-    </div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="pecos.png" alt="Pecos Logo">
+                <span>Ask Pecos!</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Help</a>
+                <a href="#">Corporate Services</a>
+            </nav>
+        </header>
 
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Help</a>
-      <a href="#">Corporate Services</a>
-    </nav>
-  </header>
-
-  <div class="container">
-    <div class="content">
-      <div class="sidebar">
-        <h3>Services</h3>
-        <ul>
-          <li><a href="#">Finance</a></li>
-          <li><a href="#">Mutual Funds</a></li>
-          <li><a href="#">Stocks & Shares</a></li>
-        </ul>
-      </div>
-
-      <div class="main">
-        <div class="ask-title">Ask <span>Pecos!</span></div>
-        <p style="font-size:18px; color:#333;">Have a <strong>Question?</strong> Just type it in and click <strong>Ask!</strong></p>
-
-        <form action="https://www.google.com/search" method="get" target="_blank">
-          <input type="text" name="q" placeholder="Type your question here...">
-          <button type="submit">Ask!</button>
-        </form>
-
-        <!-- Market Section -->
-        <div class="market-section">
-          <h3>📈 Live Market Updates</h3>
-          <div class="market-tickers">
-            <div class="ticker-box">
-              <strong>SENSEX</strong>
-              <div class="tradingview-widget-container" style="height:40px;">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                {
-                  "symbol": "BSE:SENSEX",
-                  "width": "100%",
-                  "colorTheme": "light",
-                  "isTransparent": true,
-                  "locale": "en"
-                }
-                </script>
-              </div>
+        <div class="content">
+            <div class="sidebar">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Finance</a></li>
+                    <li><a href="#">Mutual Funds</a></li>
+                    <li><a href="#">Stocks & Shares</a></li>
+                </ul>
             </div>
 
-            <div class="ticker-box">
-              <strong>SBIN</strong>
-              <div class="tradingview-widget-container" style="height:40px;">
-                <div class="tradingview-widget-container__widget"></div>
-                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js" async>
-                {
-                  "symbol": "BSE:SBIN",
-                  "width": "100%",
-                  "colorTheme": "light",
-                  "isTransparent": true,
-                  "locale": "en"
-                }
-                </script>
-              </div>
+            <div class="main">
+                <div class="ask-title">Ask <span>Pecos!</span></div>
+                <p style="font-size:18px; color:#333;">Have a <strong>Question?</strong> Just type it in and click <strong>Ask!</strong></p>
+                <div class="search-section">
+                    <form action="https://www.google.com/search" method="get" target="_blank">
+                        <input type="text" name="q" placeholder="Type your question here...">
+                        <button type="submit">Ask!</button>
+                    </form>
+                </div>
+
+                <div class="recent">
+                    <p><strong>Most Recent Questions About:</strong> Finance</p>
+                    <ul>
+                        <li>How can I start investing in mutual funds?</li>
+                        <li>What is the safest way to grow my savings?</li>
+                        <li>How does stock broking actually work?</li>
+                    </ul>
+                    <p><a href="#">What are people asking <strong>right now?</strong></a></p>
+                </div>
+
+                <!-- Live Market Dashboard -->
+                <div class="live-market">
+                    <h3>Live Market Dashboard</h3>
+                    <p><strong>Stock Market:</strong> Dow Jones: 34,000 ↑ 2% | S&P 500: 4,100 ↑ 1.5% | NASDAQ: 13,000 ↑ 1.8%</p>
+                    <p><strong>Currency:</strong> EUR/USD: 1.15 ↑ 0.5% | GBP/USD: 1.37 ↑ 0.3%</p>
+                    <p><strong>Crypto:</strong> Bitcoin: $45,000 ↑ 3% | Ethereum: $3,000 ↑ 4%</p>
+                </div>
+
+                <!-- Latest Financial News -->
+                <div class="news">
+                    <h3>Latest Financial News</h3>
+                    <ul>
+                        <li><a href="#">Stock Market Hits All-Time High Amid Economic Recovery</a></li>
+                        <li><a href="#">Central Banks Around the World Prepare for Interest Rate Hike</a></li>
+                        <li><a href="#">How the Rising Dollar is Impacting Global Markets</a></li>
+                    </ul>
+                </div>
+
+                <!-- Featured Financial Products -->
+                <div class="featured-products">
+                    <h3>Featured Financial Products</h3>
+                    <ul>
+                        <li><a href="#">Best Mutual Funds for 2025 - Top Picks</a></li>
+                        <li><a href="#">Invest in High-Yield Bonds Now!</a></li>
+                        <li><a href="#">Start Trading Stocks with Low Fees - Opening a Trading Account</a></li>
+                    </ul>
+                </div>
             </div>
-          </div>
         </div>
 
-        <div class="recent">
-          <p><strong>Most Recent Questions About:</strong> Finance</p>
-          <ul>
-            <li>How can I start investing in mutual funds?</li>
-            <li>What is the safest way to grow my savings?</li>
-            <li>How does stock broking actually work?</li>
-          </ul>
-          <p><a href="#">What are people asking <strong>right now?</strong></a></p>
-        </div>
-      </div>
+        <footer>
+            <p>© 2025 Ask Pecos, Inc. | Inspired by Ask Jeeves (1996-1999)</p>
+            <p><a href="#">Make Pecos Your Homepage</a> • <a href="#">Advertise</a> • <a href="#">Investor Relations</a></p>
+        </footer>
     </div>
-
-    <footer>
-      <p>© 2025 Ask Pecos, Inc. | Inspired by Ask Jeeves (1996-1999)</p>
-      <p><a href="#">Make Pecos Your Homepage</a> • <a href="#">Advertise</a> • <a href="#">Investor Relations</a></p>
-    </footer>
-  </div>
 </body>
+
 </html>
