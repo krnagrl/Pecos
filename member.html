@@ -265,39 +265,6 @@
       </main>
     </div>
 
-    <!-- MUTUAL FUND SECTION -->
-<div id="mutualfunds" class="section">
-  <h2>Top Performing Mutual Funds</h2>
-
-  <div class="card" style="overflow-x:auto;">
-    <table style="width:100%; border-collapse:collapse;">
-      <thead>
-        <tr style="background:#fff27a;">
-          <th style="padding:10px;">Scheme Name</th>
-          <th style="padding:10px;">NAV (₹)</th>
-          <th style="padding:10px;">Fund Size (Cr)</th>
-          <th style="padding:10px;">1 Yr Return</th>
-          <th style="padding:10px;">3 Yr Return</th>
-          <th style="padding:10px;">5 Yr Return</th>
-          <th style="padding:10px;">Since Inception</th>
-        </tr>
-      </thead>
-      <tbody id="fundTableBody"></tbody>
-    </table>
-  </div>
-
-  <h3 style="margin-top:30px;">📈 Return Calculator</h3>
-  <div class="card">
-    <form id="returnCalcForm">
-      <input type="number" id="investmentAmount" placeholder="Investment Amount (₹)" required />
-      <input type="number" id="expectedRate" placeholder="Expected Annual Return (%)" required />
-      <input type="number" id="years" placeholder="Investment Period (Years)" required />
-      <button type="submit">Calculate</button>
-    </form>
-    <p id="calcResult" style="font-weight:bold; color:green;"></p>
-  </div>
-</div>
-
 
     <footer>© 2025 Pecos | All Rights Reserved.</footer>
   </div>
@@ -373,50 +340,7 @@
       }
     });
 
-// --- Mutual Fund Data (Static Example) ---
-const mutualFunds = [
-  { name: "Axis Bluechip Fund", nav: 58.2, size: 35200, oneYr: "24%", threeYr: "16%", fiveYr: "14%", inception: "13%" },
-  { name: "Parag Parikh Flexi Cap Fund", nav: 75.1, size: 46000, oneYr: "22%", threeYr: "18%", fiveYr: "15%", inception: "14%" },
-  { name: "Mirae Asset Large Cap Fund", nav: 93.4, size: 31700, oneYr: "23%", threeYr: "17%", fiveYr: "14%", inception: "13%" },
-  { name: "HDFC Flexi Cap Fund", nav: 45.8, size: 52000, oneYr: "21%", threeYr: "15%", fiveYr: "13%", inception: "12%" },
-  { name: "Canara Robeco Bluechip Equity Fund", nav: 65.9, size: 12400, oneYr: "25%", threeYr: "17%", fiveYr: "14%", inception: "13%" },
-  { name: "Kotak Flexicap Fund", nav: 73.5, size: 27800, oneYr: "22%", threeYr: "16%", fiveYr: "13%", inception: "12%" },
-  { name: "SBI Equity Hybrid Fund", nav: 171.2, size: 58000, oneYr: "20%", threeYr: "14%", fiveYr: "12%", inception: "11%" },
-  { name: "ICICI Prudential Bluechip Fund", nav: 84.6, size: 30000, oneYr: "23%", threeYr: "15%", fiveYr: "13%", inception: "12%" },
-  { name: "Nippon India Large Cap Fund", nav: 72.3, size: 15000, oneYr: "22%", threeYr: "16%", fiveYr: "13%", inception: "12%" },
-  { name: "Motilal Oswal Flexi Cap Fund", nav: 53.7, size: 8700, oneYr: "24%", threeYr: "17%", fiveYr: "14%", inception: "13%" }
-];
 
-function loadMutualFunds() {
-  const tbody = document.getElementById('fundTableBody');
-  tbody.innerHTML = '';
-  mutualFunds.forEach(fund => {
-    const row = `
-      <tr style="border-bottom:1px solid #ddd;">
-        <td style="padding:10px;">${fund.name}</td>
-        <td style="padding:10px;">${fund.nav}</td>
-        <td style="padding:10px;">${fund.size}</td>
-        <td style="padding:10px;">${fund.oneYr}</td>
-        <td style="padding:10px;">${fund.threeYr}</td>
-        <td style="padding:10px;">${fund.fiveYr}</td>
-        <td style="padding:10px;">${fund.inception}</td>
-      </tr>`;
-    tbody.insertAdjacentHTML('beforeend', row);
-  });
-}
-
-// Return Calculator
-document.getElementById('returnCalcForm').addEventListener('submit', e => {
-  e.preventDefault();
-  const P = parseFloat(document.getElementById('investmentAmount').value);
-  const r = parseFloat(document.getElementById('expectedRate').value) / 100;
-  const t = parseFloat(document.getElementById('years').value);
-  const amount = P * Math.pow(1 + r, t);
-  document.getElementById('calcResult').innerText = 
-    `Estimated Value After ${t} Years: ₹${amount.toFixed(2).toLocaleString()}`;
-});
-
-document.querySelector("a[onclick=\"showSection('mutualfunds')\"]").addEventListener("click", loadMutualFunds);
 
   </script>
 </body>
