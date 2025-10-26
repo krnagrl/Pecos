@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Member Dashboard | Club Pecos</title>
+  <title>Member Dashboard | Pecos</title>
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -241,58 +241,6 @@
           </div>
         </div>
 
-        
-<!-- ACTIVITY -->
-<div id="activity" class="section">
-  <h2>Activity</h2>
-
-  <!-- Token Summary -->
-  <div class="card">
-    <h4>Your Tokens</h4>
-    <p><strong>Owned:</strong> <span id="activity-tokens">0</span></p>
-    <p><strong>Total Available in System:</strong> <span id="available-tokens">Loading...</span></p>
-    <p><strong>Token Price:</strong> ₹500</p>
-  </div>
-
-  <!-- Buy Tokens -->
-  <div class="card">
-    <h4>Buy Tokens</h4>
-    <form id="buyForm">
-      <input type="number" id="buyAmount" placeholder="Number of tokens to buy" min="1" required />
-      <button type="submit">Buy Tokens</button>
-    </form>
-    <p id="buyMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
-  </div>
-
-  <!-- Sell Tokens -->
-  <div class="card">
-    <h4>Sell Tokens</h4>
-    <form id="sellForm">
-      <input type="number" id="sellAmount" placeholder="Number of tokens to sell" min="1" required />
-      <button type="submit" style="background:#c62828;">Sell Tokens</button>
-    </form>
-    <p id="sellMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
-  </div>
-
-  <!-- Transaction History -->
-  <div class="card">
-    <h4>Transaction History</h4>
-    <table id="txTable" style="width:100%;border-collapse:collapse;margin-top:10px;font-size:14px;">
-      <thead>
-        <tr style="background:#fff5a1;">
-          <th style="padding:8px;border:1px solid #ddd;">Date</th>
-          <th style="padding:8px;border:1px solid #ddd;">Type</th>
-          <th style="padding:8px;border:1px solid #ddd;">Tokens</th>
-          <th style="padding:8px;border:1px solid #ddd;">Amount (₹)</th>
-        </tr>
-      </thead>
-      <tbody id="txBody">
-        <tr><td colspan="4" style="text-align:center;padding:8px;color:#777;">No transactions yet.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
 
         <!-- FINANCE REQUEST -->
         <div id="finance" class="section">
@@ -387,159 +335,7 @@
         document.getElementById('financeMsg').innerText = 'Error submitting request.';
       }
     });
-// ========== TOKEN SYSTEM ==========
-const TOKEN_PRICE = 500;
-const TOTAL_SUPPLY = 10000;
 
-async function loadTokenSystem() {
-  const systemRef = db.collection('system').doc('tokens');
-  const docSnap = await systemRef.get();
-
-  if (!docSnap.exists) {
-    await systemRef.set({ available: TOTAL_SUPPLY });
-    document.getElementById('available-tokens').innerText = TOTAL_SUPPLY;
-  } else {
-    document.getElementById('available-tokens').innerText = docSnap.data().available;
-  }
-}
-
-// 🔹 Buy Tokens
-document.getElementById('buyForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return alert('Please log in first.');
-
-  const amount = parseInt(document.getElementById('buyAmount').value);
-  if (amount <= 0) return alert('Enter a valid amount.');
-
-  const systemRef = db.collection('system').doc('tokens');
-  const userRef = db.collection('members').doc(user.uid);
-  const txRef = db.collection('transactions');
-
-  try {
-    await db.runTransaction(async (tx) => {
-      const sysDoc = await tx.get(systemRef);
-      const userDoc = await tx.get(userRef);
-
-      const available = sysDoc.data().available;
-      const userTokens = userDoc.data().tokens || 0;
-
-      if (amount > available) throw new Error('Not enough tokens available.');
-
-      tx.update(systemRef, { available: available - amount });
-      tx.update(userRef, { tokens: userTokens + amount });
-
-      txRef.add({
-        userId: user.uid,
-        type: 'Buy',
-        tokens: amount,
-        amountINR: amount * TOKEN_PRICE,
-        date: new Date()
-      });
-    });
-
-    document.getElementById('buyMsg').innerText = `Successfully purchased ${amount} tokens for ₹${amount * TOKEN_PRICE}.`;
-    document.getElementById('buyForm').reset();
-    await refreshTokens();
-  } catch (err) {
-    alert(err.message);
-  }
-});
-
-// 🔹 Sell Tokens
-document.getElementById('sellForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return alert('Please log in first.');
-
-  const amount = parseInt(document.getElementById('sellAmount').value);
-  if (amount <= 0) return alert('Enter a valid amount.');
-
-  const systemRef = db.collection('system').doc('tokens');
-  const userRef = db.collection('members').doc(user.uid);
-  const txRef = db.collection('transactions');
-
-  try {
-    await db.runTransaction(async (tx) => {
-      const sysDoc = await tx.get(systemRef);
-      const userDoc = await tx.get(userRef);
-
-      const available = sysDoc.data().available;
-      const userTokens = userDoc.data().tokens || 0;
-
-      if (amount > userTokens) throw new Error('You don’t have enough tokens.');
-
-      tx.update(systemRef, { available: available + amount });
-      tx.update(userRef, { tokens: userTokens - amount });
-
-      txRef.add({
-        userId: user.uid,
-        type: 'Sell',
-        tokens: amount,
-        amountINR: amount * TOKEN_PRICE,
-        date: new Date()
-      });
-    });
-
-    document.getElementById('sellMsg').innerText = `Sold ${amount} tokens for ₹${amount * TOKEN_PRICE}.`;
-    document.getElementById('sellForm').reset();
-    await refreshTokens();
-  } catch (err) {
-    alert(err.message);
-  }
-});
-
-// 🔹 Refresh displayed tokens
-async function refreshTokens() {
-  const user = auth.currentUser;
-  if (!user) return;
-  const userSnap = await db.collection('members').doc(user.uid).get();
-  const sysSnap = await db.collection('system').doc('tokens').get();
-  document.getElementById('activity-tokens').innerText = userSnap.data().tokens || 0;
-  document.getElementById('available-tokens').innerText = sysSnap.data().available;
-  loadTransactions();
-}
-
-// 🔹 Load user’s transaction history
-async function loadTransactions() {
-  const user = auth.currentUser;
-  if (!user) return;
-  const txBody = document.getElementById('txBody');
-  txBody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:8px;">Loading...</td></tr>';
-
-  const querySnap = await db.collection('transactions')
-    .where('userId', '==', user.uid)
-    .orderBy('date', 'desc')
-    .limit(10)
-    .get();
-
-  if (querySnap.empty) {
-    txBody.innerHTML = '<tr><td colspan="4" style="text-align:center;padding:8px;color:#777;">No transactions yet.</td></tr>';
-    return;
-  }
-
-  txBody.innerHTML = '';
-  querySnap.forEach(doc => {
-    const tx = doc.data();
-    const dateStr = tx.date.toDate().toLocaleString('en-IN');
-    txBody.innerHTML += `
-      <tr>
-        <td style="border:1px solid #ddd;padding:8px;">${dateStr}</td>
-        <td style="border:1px solid #ddd;padding:8px;">${tx.type}</td>
-        <td style="border:1px solid #ddd;padding:8px;">${tx.tokens}</td>
-        <td style="border:1px solid #ddd;padding:8px;">₹${tx.amountINR}</td>
-      </tr>
-    `;
-  });
-}
-
-// Load token system when user logs in
-auth.onAuthStateChanged(async (user) => {
-  if (user) {
-    await loadTokenSystem();
-    await refreshTokens();
-  }
-});
 
   </script>
 </body>
