@@ -162,6 +162,17 @@
     footer a {
       color: #fffaa0;
       text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer .social-links a {
+      font-size: 18px;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    footer .social-links a:hover {
+      color: #fffaa0;
     }
 
     /* Responsive adjustments */
@@ -205,13 +216,11 @@
     <header>
       <div class="logo">
         <img src="pecos.png" alt="Pecos Logo">
-        <span>Ask Pecos!</span>
+        <span>Pecos</span>
       </div>
       <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Help</a>
-        <a href="#">Corporate Services</a>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
       </nav>
     </header>
 
@@ -227,28 +236,39 @@
 
       <div class="main">
         <div class="ask-title"><span>Pecos!</span></div>
-<hr>
+        <hr>
         <!-- Open an Account section -->
         <div class="open-account">
           <h2>Open an Account with Us</h2>
           <p>Start your financial journey with us! Click below to register:</p>
-          <button>Register</button>
+          <a href="signup.html"><button>Register</button></a>
         </div>
 
         <!-- Contact Form -->
         <div class="contact-form">
           <h2>Contact</h2>
           <p><a href="mailto:pecos.origin@gmail.com">Email Us</a></p>
-          </form>
+        </div>
+        <div class="location">
+          📍 <strong>Location:</strong> Akola, Maharashtra 444001
         </div>
       </div>
     </div>
 
     <footer>
       <p>© 2025 Pecos | All Rights Reserved</p>
-
+      <div class="social-links">
+        <a href="https://www.facebook.com/yourprofile" target="_blank" title="Facebook">
+          <img src="facebook-icon.png" alt="Facebook" style="height: 24px; width: 24px;">
+        </a>
+        <a href="https://www.twitter.com/yourprofile" target="_blank" title="Twitter">
+          <img src="twitter-icon.png" alt="Twitter" style="height: 24px; width: 24px;">
+        </a>
+        <a href="https://www.instagram.com/yourprofile" target="_blank" title="Instagram">
+          <img src="instagram-icon.png" alt="Instagram" style="height: 24px; width: 24px;">
+        </a>
+      </div>
     </footer>
   </div>
 </body>
 </html>
-
