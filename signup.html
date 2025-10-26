@@ -13,58 +13,121 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f5d7;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #fefbe6;
     }
 
-    .container {
-      width: 90%;
-      max-width: 700px;
-      margin: 30px auto;
-      background-color: #fffde9;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
+    /* Navbar */
     header {
-      background-color: #222;
+      background-color: #4b4b89;
       color: white;
-      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      padding: 15px 30px;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
 
     header h1 {
       margin: 0;
       font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header img {
+      height: 35px;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin: 0 10px;
-      font-size: 14px;
+      margin-left: 20px;
+      font-size: 15px;
     }
 
-    main {
-      padding: 25px;
+    nav a:hover {
+      text-decoration: underline;
     }
 
-    main h2 {
+    /* Main content container */
+    .container {
+      display: flex;
+      max-width: 950px;
+      margin: 40px auto;
+      background-color: #fffdf0;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.25);
+      overflow: hidden;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: #fff9cc;
+      width: 32%;
+      padding: 25px 20px;
+      border-right: 1px solid #e0dca8;
+    }
+
+    .sidebar h2 {
+      background-color: #c52e2e;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 18px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 25px;
+    }
+
+    .sidebar li {
+      padding: 10px 0;
+      font-size: 15px;
+      color: #222;
+      border-bottom: 1px dashed #ddd;
+    }
+
+    /* Signup form section */
+    .form-section {
+      flex: 1;
+      padding: 35px 45px;
+    }
+
+    .form-section h2 {
       color: #c52e2e;
+      font-size: 24px;
+      margin-top: 0;
+    }
+
+    .form-section p {
+      color: #333;
+      font-size: 15px;
+      line-height: 1.5;
     }
 
     input {
       width: 100%;
       padding: 10px;
-      margin: 8px 0;
+      margin: 10px 0;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
       font-size: 15px;
       box-sizing: border-box;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #c52e2e;
+      box-shadow: 0 0 5px rgba(197,46,46,0.3);
     }
 
     button {
@@ -72,11 +135,18 @@
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
-      font-size: 15px;
+      font-size: 16px;
       width: 100%;
-      box-sizing: border-box;
+      margin-top: 8px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    button:hover {
+      background-color: #a62323;
+      transform: translateY(-1px);
     }
 
     button[disabled] {
@@ -101,55 +171,60 @@
     .resend-row {
       display: flex;
       gap: 8px;
+      justify-content: center;
       margin-top: 10px;
     }
 
-    .resend-row button {
-      width: auto;
-      padding: 8px 12px;
-      font-size: 14px;
-    }
-
     footer {
-      background-color: #222;
+      background-color: #4b4b89;
       color: white;
       text-align: center;
       padding: 15px;
       font-size: 13px;
-      margin-top: 20px;
+      border-radius: 0 0 10px 10px;
+      margin-top: 40px;
+      box-shadow: 0 -3px 6px rgba(0,0,0,0.2);
     }
 
-    @media (max-width: 600px) {
-      header {
+    @media (max-width: 800px) {
+      .container {
         flex-direction: column;
-        align-items: flex-start;
+        width: 90%;
       }
 
-      nav {
-        margin-top: 10px;
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #e0dca8;
       }
 
-      input, button {
-        font-size: 16px;
+      .form-section {
+        padding: 25px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <div style="display:flex; align-items:center; gap:10px;">
-        <img src="pecos.png" alt="Pecos Logo" style="height:40px;">
-        <h1>Club Pecos</h1>
-      </div>
-      <nav>
-        <a href="index.html">Home</a> |
-        <a href="login.html">Login</a>
-      </nav>
-    </header>
+  <header>
+    <h1><img src="pecos.png" alt="Pecos Logo"> Pecos</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
 
-    <main>
+  <div class="container">
+    <div class="sidebar">
+      <h2>Services</h2>
+      <ul>
+        <li>Finance</li>
+        <li>Mutual Funds</li>
+        <li>Stocks & Shares</li>
+      </ul>
+    </div>
+
+    <div class="form-section">
       <h2>Join Pecos</h2>
       <p>Become a member and start connecting with like-minded investors and entrepreneurs.</p>
 
@@ -163,22 +238,20 @@
 
       <div id="msg"></div>
 
-      <!-- Resend verification row (hidden until sign up) -->
       <div id="afterSignup" style="display:none; text-align:center;">
         <p class="small">Didn't receive the email? You can resend the verification link.</p>
-        <div class="resend-row" style="justify-content:center;">
+        <div class="resend-row">
           <button id="resendBtn" onclick="resendVerification()" disabled>Resend Verification</button>
         </div>
       </div>
-    </main>
-
-    <footer>
-      © 2025 Pecos | All Rights Reserved
-    </footer>
+    </div>
   </div>
 
+  <footer>
+    © 2025 Pecos | All Rights Reserved
+  </footer>
+
   <script>
-    // Firebase Config
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
@@ -197,14 +270,12 @@
       return 'PEC' + Math.floor(100000 + Math.random() * 900000);
     }
 
-    // Utility: show message
     function showMsg(text, color = 'green') {
       const el = document.getElementById('msg');
       el.style.color = color;
       el.innerText = text;
     }
 
-    // Sign up & send verification
     async function signup() {
       const displayName = document.getElementById('displayName').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -224,14 +295,10 @@
       showMsg('', 'green');
 
       try {
-        // 1) Create user
         const userCred = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCred.user;
-
-        // 2) Update displayName in auth profile (optional but useful)
         await user.updateProfile({ displayName });
 
-        // 3) Save member record in Firestore with fields matching your DB
         const memberID = generateMemberID();
         const memberSince = new Date().toLocaleDateString();
         await db.collection("members").doc(user.uid).set({
@@ -245,13 +312,10 @@
           verified: false
         });
 
-        // 4) Send verification email
         await user.sendEmailVerification();
-        showMsg(`✅ Verification email sent to ${email}. Please check your inbox (and spam).`, 'green');
+        showMsg(`✅ Verification email sent to ${email}. Please check your inbox.`, 'green');
 
-        // 5) Show resend controls
         document.getElementById('afterSignup').style.display = 'block';
-        // Disable resend for 20 seconds to prevent abuse
         resendBtn.disabled = true;
         let cooldown = 20;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
@@ -264,11 +328,6 @@
             resendBtn.disabled = false;
           }
         }, 1000);
-
-        // Optionally keep user signed in or sign them out to force verification before using dashboard
-        // If you prefer to sign them out so they must verify before logging in, uncomment the next line:
-        // await auth.signOut();
-
       } catch (err) {
         console.error(err);
         showMsg('❌ ' + err.message, 'red');
@@ -278,23 +337,19 @@
       }
     }
 
-    // Resend verification function
     async function resendVerification() {
       const resendBtn = document.getElementById('resendBtn');
       const user = auth.currentUser;
-
       if (!user) {
-        showMsg('⚠️ You must be signed in to resend verification. Please sign in or recreate the account.', 'red');
+        showMsg('⚠️ Please sign in to resend verification.', 'red');
         return;
       }
-
       try {
         resendBtn.disabled = true;
         resendBtn.innerText = 'Sending...';
         await user.sendEmailVerification();
-        showMsg(`✅ Verification email resent to ${user.email}. Check inbox/spam.`, 'green');
+        showMsg(`✅ Verification email resent to ${user.email}.`, 'green');
 
-        // small cooldown to avoid spamming
         let cooldown = 20;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
         const countdown = setInterval(() => {
