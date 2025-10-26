@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="pecos.png" />
-  <title>Ask Pecos! - Live Market Dashboard</title>
-
+  <link rel="icon" type="image/png" href="pecos.png"/>
+  <title>Pecos - Finance | Mutual Funds | Stocks & shares</title>
   <style>
     body {
       background-color: #f9f5d7;
-      font-family: "Segoe UI", "Verdana", sans-serif;
+      font-family: "Verdana", sans-serif;
       margin: 0;
       padding: 0;
-      color: #333;
     }
 
     .container {
       max-width: 1000px;
       margin: 20px auto;
       border: 4px solid #4a4a7d;
-      background-color: #fffef6;
-      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
+      background-color: #fffce8;
+      box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
     }
 
     header {
@@ -31,10 +27,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 20px;
+      padding: 10px 20px;
       flex-wrap: wrap;
-      border-top-left-radius: 5px;
-      border-top-right-radius: 5px;
     }
 
     .logo {
@@ -49,7 +43,7 @@
     }
 
     .logo span {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
       color: #fffaa0;
     }
@@ -73,36 +67,35 @@
 
     .content {
       display: flex;
-      flex-wrap: wrap;
       padding: 15px;
+      flex-wrap: wrap;
     }
 
     .sidebar {
       width: 220px;
-      border-right: 2px solid #ddd;
+      border-right: 2px solid #ccc;
       background-color: #f7f3c6;
-      padding: 15px;
-      border-radius: 5px;
+      padding: 10px;
+      flex-shrink: 0;
     }
 
     .sidebar h3 {
       background-color: #c33;
       color: white;
-      padding: 8px;
+      padding: 6px;
       font-size: 16px;
       text-align: center;
-      border-radius: 4px;
-      margin-top: 0;
     }
 
     .sidebar ul {
-      list-style: none;
+      list-style-type: none;
       padding: 0;
       margin-top: 10px;
     }
 
     .sidebar li {
-      margin: 10px 0;
+      margin: 8px 0;
+      font-size: 15px;
     }
 
     .sidebar li a {
@@ -110,76 +103,52 @@
       color: #333;
     }
 
-    .sidebar li a:hover {
-      color: #c33;
-    }
-
     .main {
       flex: 1;
       padding: 20px;
+      background-color: #fffef0;
     }
 
-    .dashboard {
-      background: #ffffff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-
-    .dashboard h2 {
-      color: #4a4a7d;
-      margin-bottom: 20px;
-    }
-
-    .market-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-    }
-
-    .market-card {
-      background-color: #f8f8ff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .market-card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    }
-
-    .market-card h4 {
-      color: #c33;
-      margin: 0 0 10px 0;
-    }
-
-    .market-card p {
-      font-size: 20px;
+    .ask-title {
+      font-size: 36px;
       font-weight: bold;
-      color: #333;
+      color: #c33;
     }
 
-    .updated {
-      font-size: 12px;
-      color: #666;
-      margin-top: 15px;
+    .ask-title span {
+      color: #000;
     }
 
-    .blink {
-      animation: blinkFade 0.6s ease;
+    .search-section {
+      margin-top: 10px;
     }
 
-    @keyframes blinkFade {
-      0% {
-        background-color: #fff8a0;
-      }
+    input[type="text"] {
+      width: 70%;
+      padding: 8px;
+      font-size: 16px;
+      border: 2px solid #c33;
+    }
 
-      100% {
-        background-color: transparent;
-      }
+    button {
+      background-color: #c33;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    button:hover {
+      background-color: #a22;
+    }
+
+    .recent {
+      margin-top: 30px;
+      border-top: 2px solid #ccc;
+      padding-top: 10px;
+      font-size: 15px;
     }
 
     footer {
@@ -189,8 +158,6 @@
       font-size: 12px;
       padding: 10px;
       margin-top: 20px;
-      border-bottom-left-radius: 5px;
-      border-bottom-right-radius: 5px;
     }
 
     footer a {
@@ -198,6 +165,7 @@
       text-decoration: none;
     }
 
+    /* Responsive adjustments */
     @media (max-width: 768px) {
       .content {
         flex-direction: column;
@@ -207,16 +175,32 @@
         width: 100%;
         border-right: none;
         border-bottom: 2px solid #ccc;
+        margin-bottom: 10px;
       }
 
       header {
         flex-direction: column;
         align-items: flex-start;
       }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      button {
+        width: 100%;
+      }
     }
   </style>
 </head>
-
 <body>
   <div class="container">
     <header>
@@ -243,27 +227,24 @@
       </div>
 
       <div class="main">
-        <div class="dashboard">
-          <h2>📈 Live Market Dashboard</h2>
-          <div class="market-grid">
-            <div class="market-card">
-              <h4>Sensex</h4>
-              <p id="sensex">Loading...</p>
-            </div>
-            <div class="market-card">
-              <h4>Nifty 50</h4>
-              <p id="nifty">Loading...</p>
-            </div>
-            <div class="market-card">
-              <h4>INR / USD</h4>
-              <p id="inr_usd">Loading...</p>
-            </div>
-            <div class="market-card">
-              <h4>Bitcoin (BTC)</h4>
-              <p id="btc">Loading...</p>
-            </div>
-          </div>
-          <div class="updated" id="last-updated">Last updated: Fetching...</div>
+        <div class="ask-title">Ask <span>Pecos!</span></div>
+        <p style="font-size:18px; color:#333;">Have a <strong>Question?</strong> Just type it in and click <strong>Ask!</strong></p>
+
+        <div class="search-section">
+          <form action="https://www.google.com/search" method="get" target="_blank">
+            <input type="text" name="q" placeholder="Type your question here...">
+            <button type="submit">Ask!</button>
+          </form>
+        </div>
+
+        <div class="recent">
+          <p><strong>Most Recent Questions About:</strong> Finance</p>
+          <ul>
+            <li>How can I start investing in mutual funds?</li>
+            <li>What is the safest way to grow my savings?</li>
+            <li>How does stock broking actually work?</li>
+          </ul>
+          <p><a href="#">What are people asking <strong>right now?</strong></a></p>
         </div>
       </div>
     </div>
@@ -273,73 +254,5 @@
       <p><a href="#">Make Pecos Your Homepage</a> • <a href="#">Advertise</a> • <a href="#">Investor Relations</a></p>
     </footer>
   </div>
-
-  <script>
-    const ALPHA_VANTAGE_API_KEY = "JEC4Z2XV61NPTUUN";
-
-    // Fetch Sensex and Nifty from Yahoo Finance
-    async function fetchYahoo(symbol, elementId) {
-      const url = `https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?region=IN&interval=1d`;
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const price = data.chart.result[0].meta.regularMarketPrice;
-        const el = document.getElementById(elementId);
-        el.classList.add("blink");
-        el.innerText = "₹" + parseFloat(price).toLocaleString("en-IN");
-        setTimeout(() => el.classList.remove("blink"), 600);
-      } catch (err) {
-        console.error("Yahoo error:", err);
-        document.getElementById(elementId).innerText = "N/A";
-      }
-    }
-
-    // Fetch INR/USD exchange rate from Alpha Vantage
-    async function fetchINRUSD() {
-      const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=INR&apikey=${ALPHA_VANTAGE_API_KEY}`;
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const rate = data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
-        const el = document.getElementById("inr_usd");
-        el.classList.add("blink");
-        el.innerText = "₹" + parseFloat(rate).toFixed(2);
-        setTimeout(() => el.classList.remove("blink"), 600);
-      } catch (err) {
-        console.error("INR/USD error:", err);
-        document.getElementById("inr_usd").innerText = "N/A";
-      }
-    }
-
-    // Fetch Bitcoin price in INR from CoinGecko
-    async function fetchBTC() {
-      const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr";
-      try {
-        const response = await fetch(url);
-        const data = await response.json();
-        const el = document.getElementById("btc");
-        el.classList.add("blink");
-        el.innerText = "₹" + data.bitcoin.inr.toLocaleString("en-IN");
-        setTimeout(() => el.classList.remove("blink"), 600);
-      } catch (err) {
-        console.error("BTC error:", err);
-        document.getElementById("btc").innerText = "N/A";
-      }
-    }
-
-    // Main update function
-    function updateMarketData() {
-      fetchYahoo("^BSESN", "sensex"); // Sensex
-      fetchYahoo("^NSEI", "nifty");   // Nifty 50
-      fetchINRUSD();
-      fetchBTC();
-      document.getElementById("last-updated").innerText =
-        "Last updated: " + new Date().toLocaleTimeString();
-    }
-
-    updateMarketData();
-    setInterval(updateMarketData, 300000); // Refresh every 5 minutes
-  </script>
 </body>
-
 </html>
