@@ -11,26 +11,35 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
+    /* --- Global Reset and Base Theme --- */
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f8f5d7;
+      font-family: "Verdana", sans-serif;
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      color: #333;
     }
 
     .container {
       width: 90%;
       max-width: 700px;
-      margin: 30px auto;
-      background-color: #fffde9;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin: 40px auto;
+      background: rgba(255, 252, 232, 0.85);
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
       border-radius: 10px;
       overflow: hidden;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(74,74,125,0.3);
     }
 
+    /* --- Header --- */
     header {
-      background-color: #222;
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
-      padding: 15px 20px;
+      padding: 15px 25px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -40,6 +49,12 @@
     header h1 {
       margin: 0;
       font-size: 22px;
+      letter-spacing: 0.5px;
+      color: #fffaa0;
+    }
+
+    header img {
+      height: 40px;
     }
 
     nav a {
@@ -47,36 +62,80 @@
       text-decoration: none;
       margin: 0 10px;
       font-size: 14px;
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s ease;
     }
 
+    nav a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: #fffaa0;
+      width: 0;
+      transition: width 0.3s;
+      margin-top: 4px;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* --- Main Form Section --- */
     main {
-      padding: 25px;
+      padding: 30px 25px 40px;
+      text-align: left;
     }
 
     main h2 {
-      color: #c52e2e;
+      color: #c33;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    main p {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 20px;
     }
 
     input {
       width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      padding: 10px 12px;
+      margin: 8px 0 12px;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 5px;
       font-size: 15px;
       box-sizing: border-box;
+      background: rgba(255,255,255,0.9);
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #4a4a7d;
+      box-shadow: 0 0 5px rgba(74,74,125,0.3);
+      background: rgba(255,255,255,1);
     }
 
     button {
-      background-color: #c52e2e;
+      background-color: #c33;
       color: white;
       border: none;
-      padding: 10px 20px;
-      border-radius: 4px;
+      padding: 12px 20px;
+      border-radius: 6px;
       cursor: pointer;
       font-size: 15px;
       width: 100%;
-      box-sizing: border-box;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover:not([disabled]) {
+      background-color: #a22;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     button[disabled] {
@@ -102,35 +161,53 @@
       display: flex;
       gap: 8px;
       margin-top: 10px;
+      justify-content: center;
     }
 
     .resend-row button {
       width: auto;
-      padding: 8px 12px;
+      padding: 8px 14px;
       font-size: 14px;
+      border-radius: 5px;
     }
 
+    /* --- Footer --- */
     footer {
-      background-color: #222;
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
       text-align: center;
       padding: 15px;
       font-size: 13px;
-      margin-top: 20px;
+      letter-spacing: 0.4px;
     }
 
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* --- Responsive --- */
     @media (max-width: 600px) {
       header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 10px;
       }
 
       nav {
-        margin-top: 10px;
+        margin-top: 5px;
       }
 
       input, button {
         font-size: 16px;
+      }
+
+      main {
+        padding: 25px 20px 35px;
       }
     }
   </style>
@@ -140,7 +217,7 @@
   <div class="container">
     <header>
       <div style="display:flex; align-items:center; gap:10px;">
-        <img src="pecos.png" alt="Pecos Logo" style="height:40px;">
+        <img src="pecos.png" alt="Pecos Logo">
         <h1>Club Pecos</h1>
       </div>
       <nav>
@@ -163,10 +240,9 @@
 
       <div id="msg"></div>
 
-      <!-- Resend verification row (hidden until sign up) -->
       <div id="afterSignup" style="display:none; text-align:center;">
         <p class="small">Didn't receive the email? You can resend the verification link.</p>
-        <div class="resend-row" style="justify-content:center;">
+        <div class="resend-row">
           <button id="resendBtn" onclick="resendVerification()" disabled>Resend Verification</button>
         </div>
       </div>
@@ -197,14 +273,12 @@
       return 'PEC' + Math.floor(100000 + Math.random() * 900000);
     }
 
-    // Utility: show message
     function showMsg(text, color = 'green') {
       const el = document.getElementById('msg');
       el.style.color = color;
       el.innerText = text;
     }
 
-    // Sign up & send verification
     async function signup() {
       const displayName = document.getElementById('displayName').value.trim();
       const email = document.getElementById('email').value.trim();
@@ -224,14 +298,11 @@
       showMsg('', 'green');
 
       try {
-        // 1) Create user
         const userCred = await auth.createUserWithEmailAndPassword(email, password);
         const user = userCred.user;
 
-        // 2) Update displayName in auth profile (optional but useful)
         await user.updateProfile({ displayName });
 
-        // 3) Save member record in Firestore with fields matching your DB
         const memberID = generateMemberID();
         const memberSince = new Date().toLocaleDateString();
         await db.collection("members").doc(user.uid).set({
@@ -245,13 +316,10 @@
           verified: false
         });
 
-        // 4) Send verification email
         await user.sendEmailVerification();
         showMsg(`✅ Verification email sent to ${email}. Please check your inbox (and spam).`, 'green');
 
-        // 5) Show resend controls
         document.getElementById('afterSignup').style.display = 'block';
-        // Disable resend for 20 seconds to prevent abuse
         resendBtn.disabled = true;
         let cooldown = 20;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
@@ -264,11 +332,6 @@
             resendBtn.disabled = false;
           }
         }, 1000);
-
-        // Optionally keep user signed in or sign them out to force verification before using dashboard
-        // If you prefer to sign them out so they must verify before logging in, uncomment the next line:
-        // await auth.signOut();
-
       } catch (err) {
         console.error(err);
         showMsg('❌ ' + err.message, 'red');
@@ -278,7 +341,6 @@
       }
     }
 
-    // Resend verification function
     async function resendVerification() {
       const resendBtn = document.getElementById('resendBtn');
       const user = auth.currentUser;
@@ -294,7 +356,6 @@
         await user.sendEmailVerification();
         showMsg(`✅ Verification email resent to ${user.email}. Check inbox/spam.`, 'green');
 
-        // small cooldown to avoid spamming
         let cooldown = 20;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
         const countdown = setInterval(() => {
