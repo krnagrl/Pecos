@@ -20,14 +20,23 @@
       box-sizing: border-box;
     }
 
-    body {
-      background: linear-gradient(135deg, #f9f5d7, #fffce8);
-      font-family: "Verdana", sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      color: #333;
     }
-   /* --- Header --- */
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      font-family: "Verdana", sans-serif;
+      color: #333;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    /* --- Header --- */
     header {
       background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
@@ -36,6 +45,8 @@
       align-items: center;
       padding: 15px 25px;
       flex-wrap: wrap;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
 
     .logo {
@@ -85,7 +96,6 @@
       width: 100%;
     }
 
- 
     /* --- Main Section --- */
     .main {
       flex: 1;
@@ -98,7 +108,7 @@
     .login-box {
       background: #F5EFE9;
       padding: 40px 35px;
-      border-radius: 12px;
+      border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       width: 100%;
       max-width: 420px;
@@ -179,7 +189,6 @@
       color: #c33;
     }
 
-
     /* --- Footer --- */
     footer {
       background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
@@ -188,6 +197,9 @@
       font-size: 13px;
       padding: 15px;
       letter-spacing: 0.4px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-top: auto;
     }
 
     footer a {
@@ -219,17 +231,16 @@
 </head>
 
 <body>
-    <header>
-      <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo">
-        <span>Pecos</span>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="signup.html">Register</a>
-      </nav>
-    </header>
-
+  <header>
+    <div class="logo">
+      <img src="pecos.png" alt="Pecos Logo">
+      <span>Pecos</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="signup.html">Register</a>
+    </nav>
+  </header>
 
   <div class="main">
     <div class="login-box">
