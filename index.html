@@ -2,247 +2,337 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="pecos.png" />
-    <title>Ask Pecos!</title>
-    <style>
-        body {
-            background-color: #f9f5d7;
-            font-family: "Verdana", sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="pecos.png" />
+  <title>Ask Pecos! - Live Market Dashboard</title>
+  <style>
+    body {
+      background-color: #f9f5d7;
+      font-family: "Segoe UI", "Verdana", sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            border: 4px solid #4a4a7d;
-            background-color: #fffce8;
-            box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
-        }
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      border: 4px solid #4a4a7d;
+      background-color: #fffef6;
+      box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
 
-        header {
-            background-color: #4a4a7d;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            flex-wrap: wrap;
-        }
+    header {
+      background-color: #4a4a7d;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      flex-wrap: wrap;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-        .logo img {
-            height: 40px;
-            width: 40px;
-        }
+    .logo img {
+      height: 40px;
+      width: 40px;
+    }
 
-        .logo span {
-            font-size: 20px;
-            font-weight: bold;
-            color: #fffaa0;
-        }
+    .logo span {
+      font-size: 22px;
+      font-weight: bold;
+      color: #fffaa0;
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
-        }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
 
-        .nav-links a:hover {
-            color: #fffaa0;
-        }
+    .nav-links a:hover {
+      color: #fffaa0;
+    }
 
-        .content {
-            display: flex;
-            padding: 15px;
-            flex-wrap: wrap;
-        }
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 15px;
+    }
 
-        .sidebar {
-            width: 220px;
-            border-right: 2px solid #ccc;
-            background-color: #f7f3c6;
-            padding: 10px;
-            flex-shrink: 0;
-        }
+    .sidebar {
+      width: 220px;
+      border-right: 2px solid #ddd;
+      background-color: #f7f3c6;
+      padding: 15px;
+      border-radius: 5px;
+    }
 
-        .sidebar h3 {
-            background-color: #c33;
-            color: white;
-            padding: 6px;
-            font-size: 16px;
-            text-align: center;
-        }
+    .sidebar h3 {
+      background-color: #c33;
+      color: white;
+      padding: 8px;
+      font-size: 16px;
+      text-align: center;
+      border-radius: 4px;
+      margin-top: 0;
+    }
 
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 10px;
-        }
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+    }
 
-        .sidebar li {
-            margin: 8px 0;
-            font-size: 15px;
-        }
+    .sidebar li {
+      margin: 10px 0;
+    }
 
-        .sidebar li a {
-            text-decoration: none;
-            color: #333;
-        }
+    .sidebar li a {
+      text-decoration: none;
+      color: #333;
+    }
 
-        .main {
-            flex: 1;
-            padding: 20px;
-            background-color: #fffef0;
-        }
+    .sidebar li a:hover {
+      color: #c33;
+    }
 
-        .live-market {
-            background-color: #4a4a7d;
-            color: white;
-            padding: 15px;
-            margin-top: 20px;
-        }
+    .main {
+      flex: 1;
+      padding: 20px;
+    }
 
-        .live-market p {
-            font-size: 18px;
-        }
+    .dashboard {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
 
-        footer {
-            background-color: #4a4a7d;
-            color: white;
-            text-align: center;
-            font-size: 12px;
-            padding: 10px;
-            margin-top: 20px;
-        }
+    .dashboard h2 {
+      color: #4a4a7d;
+      margin-bottom: 20px;
+    }
 
-        footer a {
-            color: #fffaa0;
-            text-decoration: none;
-        }
+    .market-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .content {
-                flex-direction: column;
-            }
+    .market-card {
+      background-color: #f8f8ff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
 
-            .sidebar {
-                width: 100%;
-                border-right: none;
-                border-bottom: 2px solid #ccc;
-                margin-bottom: 10px;
-            }
+    .market-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
 
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+    .market-card h4 {
+      color: #c33;
+      margin: 0 0 10px 0;
+    }
 
-            .nav-links {
-                width: 100%;
-                justify-content: flex-start;
-                margin-top: 10px;
-                flex-wrap: wrap;
-            }
-        }
-    </style>
+    .market-card p {
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .updated {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+    }
+
+    .blink {
+      animation: blinkFade 0.6s ease;
+    }
+
+    @keyframes blinkFade {
+      0% {
+        background-color: #fff8a0;
+      }
+
+      100% {
+        background-color: transparent;
+      }
+    }
+
+    footer {
+      background-color: #4a4a7d;
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      padding: 10px;
+      margin-top: 20px;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 2px solid #ccc;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">
-                <img src="pecos.png" alt="Pecos Logo">
-                <span>Ask Pecos!</span>
-            </div>
-            <nav class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Help</a>
-                <a href="#">Corporate Services</a>
-            </nav>
-        </header>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo">
+        <span>Ask Pecos!</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Help</a>
+        <a href="#">Corporate Services</a>
+      </nav>
+    </header>
 
-        <div class="content">
-            <div class="sidebar">
-                <h3>Services</h3>
-                <ul>
-                    <li><a href="#">Finance</a></li>
-                    <li><a href="#">Mutual Funds</a></li>
-                    <li><a href="#">Stocks & Shares</a></li>
-                </ul>
-            </div>
+    <div class="content">
+      <div class="sidebar">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Finance</a></li>
+          <li><a href="#">Mutual Funds</a></li>
+          <li><a href="#">Stocks & Shares</a></li>
+        </ul>
+      </div>
 
-            <div class="main">
-                <!-- Live Market Dashboard -->
-                <div class="live-market">
-                    <h3>Live Market Dashboard</h3>
-                    <p><strong>Sensex:</strong> ₹<span id="sensex">Loading...</span></p>
-                    <p><strong>Nifty:</strong> ₹<span id="nifty">Loading...</span></p>
-                    <p><strong>INR/USD:</strong> ₹<span id="inr_usd">Loading...</span></p>
-                    <p><strong>Bitcoin (BTC):</strong> ₹<span id="btc">Loading...</span></p>
-                </div>
+      <div class="main">
+        <div class="dashboard">
+          <h2>📈 Live Market Dashboard</h2>
+          <div class="market-grid">
+            <div class="market-card">
+              <h4>Sensex</h4>
+              <p id="sensex">Loading...</p>
             </div>
+            <div class="market-card">
+              <h4>Nifty 50</h4>
+              <p id="nifty">Loading...</p>
+            </div>
+            <div class="market-card">
+              <h4>INR / USD</h4>
+              <p id="inr_usd">Loading...</p>
+            </div>
+            <div class="market-card">
+              <h4>Bitcoin (BTC)</h4>
+              <p id="btc">Loading...</p>
+            </div>
+          </div>
+          <div class="updated" id="last-updated">Last updated: Fetching...</div>
         </div>
-
-        <footer>
-            <p>© 2025 Ask Pecos, Inc. | Inspired by Ask Jeeves (1996-1999)</p>
-            <p><a href="#">Make Pecos Your Homepage</a> • <a href="#">Advertise</a> • <a href="#">Investor Relations</a></p>
-        </footer>
+      </div>
     </div>
 
-    <script>
-        const ALPHA_VANTAGE_API_KEY = 'YOUR_ALPHA_VANTAGE_API_KEY'; // Replace with your API Key
-        const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr';
-        const ALPHA_VANTAGE_API_URL = 'https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=NSE:SENSEX&apikey=' + ALPHA_VANTAGE_API_KEY;
+    <footer>
+      <p>© 2025 Ask Pecos, Inc. | Inspired by Ask Jeeves (1996-1999)</p>
+      <p><a href="#">Make Pecos Your Homepage</a> • <a href="#">Advertise</a> • <a href="#">Investor Relations</a></p>
+    </footer>
+  </div>
 
-        // Fetch live data for Sensex, Nifty, INR/USD, Bitcoin (BTC)
-        async function fetchLiveMarketData() {
-            try {
-                // Fetch Sensex & Nifty from Alpha Vantage (you can switch to real market data)
-                const response = await fetch(ALPHA_VANTAGE_API_URL);
-                const data = await response.json();
-                const sensex = data["Time Series (Daily)"] ? Object.values(data["Time Series (Daily)"])[0]["4. close"] : "Data not available";
-                document.getElementById('sensex').innerText = sensex;
+  <script>
+    const ALPHA_VANTAGE_API_KEY = "JEC4Z2XV61NPTUUN";
 
-                // Fetch Bitcoin data from CoinGecko API
-                const btcResponse = await fetch(COINGECKO_API_URL);
-                const btcData = await btcResponse.json();
-                const bitcoinPrice = btcData.bitcoin.inr;
-                document.getElementById('btc').innerText = bitcoinPrice;
-
-                // Dummy data for Nifty and INR/USD (Replace with real data from APIs)
-                document.getElementById('nifty').innerText = "18,500"; // Replace with real data API
-                document.getElementById('inr_usd').innerText = "83.50"; // Replace with real data API
-
-            } catch (error) {
-                console.error("Error fetching live data:", error);
-                document.getElementById('sensex').innerText = "Error";
-                document.getElementById('nifty').innerText = "Error";
-                document.getElementById('inr_usd').innerText = "Error";
-                document.getElementById('btc').innerText = "Error";
-            }
+    async function fetchAlpha(symbol, elementId) {
+      const url = `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${ALPHA_VANTAGE_API_KEY}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const quote = data["Global Quote"];
+        if (quote && quote["05. price"]) {
+          const el = document.getElementById(elementId);
+          el.classList.add("blink");
+          el.innerText = "₹" + parseFloat(quote["05. price"]).toLocaleString("en-IN");
+          setTimeout(() => el.classList.remove("blink"), 600);
         }
+      } catch (err) {
+        document.getElementById(elementId).innerText = "N/A";
+      }
+    }
 
-        // Call the function to fetch live data
-        fetchLiveMarketData();
-    </script>
+    async function fetchBTC() {
+      const url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr";
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const el = document.getElementById("btc");
+        el.classList.add("blink");
+        el.innerText = "₹" + data.bitcoin.inr.toLocaleString("en-IN");
+        setTimeout(() => el.classList.remove("blink"), 600);
+      } catch {
+        document.getElementById("btc").innerText = "N/A";
+      }
+    }
 
+    async function fetchINRUSD() {
+      const url = `https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=USD&to_currency=INR&apikey=${ALPHA_VANTAGE_API_KEY}`;
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        const rate = data["Realtime Currency Exchange Rate"]["5. Exchange Rate"];
+        const el = document.getElementById("inr_usd");
+        el.classList.add("blink");
+        el.innerText = "₹" + parseFloat(rate).toFixed(2);
+        setTimeout(() => el.classList.remove("blink"), 600);
+      } catch {
+        document.getElementById("inr_usd").innerText = "N/A";
+      }
+    }
+
+    function updateMarketData() {
+      fetchAlpha("BSE:SENSEX", "sensex");
+      fetchAlpha("NSE:NIFTY_50", "nifty");
+      fetchINRUSD();
+      fetchBTC();
+      document.getElementById("last-updated").innerText = "Last updated: " + new Date().toLocaleTimeString();
+    }
+
+    updateMarketData();
+    setInterval(updateMarketData, 300000); // refresh every 5 min
+  </script>
 </body>
 
 </html>
