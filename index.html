@@ -1,211 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="pecos.png"/>
-
-  <title>Pecos Advertisers</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="pecos.png"/>
+  <title>Pecos - Finance | Mutual Funds | Stocks & Shares</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background-color: #fffbea;
+    /* --- Global Reset and Base --- */
+    * {
+      box-sizing: border-box;
     }
 
-    /* Header */
+    body {
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      font-family: "Verdana", sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      border: 1px solid rgba(74,74,125,0.3);
+      background: rgba(255, 252, 232, 0.85);
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* --- Header --- */
     header {
-      background: linear-gradient(to right, #3f3cbb, #443ea2);
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
-      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
+      padding: 15px 25px;
+      flex-wrap: wrap;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    nav a {
+    .logo img {
+      height: 42px;
+      width: 42px;
+    }
+
+    .logo span {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
       color: white;
       text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
-    nav a:hover {
-      text-decoration: underline;
+    .nav-links a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: #fffaa0;
+      width: 0;
+      transition: width 0.3s;
+      margin-top: 4px;
     }
 
-    /* Layout */
-    .container {
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* --- Content Layout --- */
+    .content {
       display: flex;
-      padding: 0;
-      min-height: 80vh;
-    }
-
-    /* Sidebar */
-    aside {
-      background-color: #fff4cc;
-      width: 220px;
       padding: 20px;
-      border-right: 1px solid #ddd;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+      flex-wrap: wrap;
     }
 
-    aside h2 {
-      background-color: #c62828;
+    .sidebar {
+      width: 220px;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      background: rgba(247, 243, 198, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h3 {
+      background-color: #c33;
       color: white;
-      padding: 10px;
+      padding: 8px;
+      font-size: 17px;
       text-align: center;
-      border-radius: 6px;
-      margin-top: 0;
+      border-radius: 5px;
+      margin-bottom: 12px;
     }
 
-    aside ul {
+    .sidebar ul {
       list-style-type: none;
       padding: 0;
+      margin: 0;
     }
 
-    aside ul li {
-      margin: 15px 0;
+    .sidebar li {
+      margin: 10px 0;
+      font-size: 15px;
+    }
+
+    .sidebar li a {
+      text-decoration: none;
       color: #333;
-      font-weight: bold;
+      padding: 6px 8px;
+      display: block;
+      border-radius: 4px;
+      transition: background 0.3s;
     }
 
-    /* Main content */
-    main {
-      flex-grow: 1;
-      background-color: #fff;
-      margin: 20px;
+    .sidebar li a:hover {
+      background-color: rgba(204,51,51,0.1);
+      color: #c33;
+    }
+
+    .main {
+      flex: 1;
       padding: 25px;
+      background-color: rgba(255, 255, 255, 0.8);
       border-radius: 8px;
-      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+      margin-left: 10px;
+      box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
     }
 
-    main h1 {
-      color: #c62828;
-      font-size: 1.8rem;
+    /* --- Typography and Section Styling --- */
+    .ask-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4a4a7d;
+      margin-bottom: 8px;
     }
 
-    h2, h3 {
-      color: #c62828;
-      margin-bottom: 10px;
+    .ask-title span {
+      color: #c33;
     }
 
-    p, li {
-      color: #333;
+    .open-account,
+    .contact-section {
+      margin-top: 40px;
       line-height: 1.6;
     }
 
-    ul {
-      padding-left: 20px;
+    .open-account h2,
+    .contact-section h2 {
+      font-size: 18px;
+      color: #c33;
+      margin-bottom: 10px;
     }
 
-    button, .register-btn {
-      background-color: #c62828;
+    .open-account button,
+    .contact-section button {
+      background-color: #c33;
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 6px;
+      font-size: 16px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .open-account button:hover,
+    .contact-section button:hover {
+      background-color: #a22;
+      transform: translateY(-2px);
+    }
+
+    .contact-section p {
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .contact-section a {
+      color: #4a4a7d;
       text-decoration: none;
-      display: inline-block;
     }
 
-    button:hover, .register-btn:hover {
-      background-color: #a31616;
+    .contact-section a:hover {
+      text-decoration: underline;
     }
 
+
+    /* --- Footer --- */
     footer {
-      background: linear-gradient(to right, #3f3cbb, #443ea2);
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
       text-align: center;
-      padding: 10px;
-      font-size: 0.9rem;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      font-size: 13px;
+      padding: 12px;
+      letter-spacing: 0.5px;
     }
 
-    a {
-      color: #c62828;
+    footer a {
+      color: #fffaa0;
       text-decoration: none;
     }
 
-    a:hover {
+    footer a:hover {
       text-decoration: underline;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+        flex-wrap: wrap;
+      }
+
+      .open-account button {
+        width: 100%;
+      }
+
+      .main {
+        margin-left: 0;
+      }
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Pecos Advertisers</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="advertisers.html">Advertisers</a>
-      <a href="login.html">Login</a>
-    </nav>
-  </header>
-
   <div class="container">
-    <aside>
-      <h2>Services</h2>
-      <ul>
-        <li>Digital Advertisements</li>
-        <li>Offline Advertisements</li>
-        <li>Analytics & Strategy</li>
-      </ul>
-    </aside>
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo">
+        <span>Pecos</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
 
-    <main>
-      <h1>Pecos Advertisers!</h1>
-      <hr />
+    <div class="content">
+      <div class="sidebar">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="#">Finance</a></li>
+          <li><a href="#">Mutual Funds</a></li>
+          <li><a href="#">Stocks & Shares</a></li>
+          <li><a href="advertisers.html">Advertising</a></li>
 
-      <h2>Your Brand, Our Strategy</h2>
-      <p>
-        Expand your business visibility with Pecos Advertisers.  
-        We specialize in creating impactful digital and offline campaigns  
-        that help you reach customers effectively and efficiently.
-      </p>
+        </ul>
+      </div>
 
-      <h3>Digital Advertisements</h3>
-      <ul>
-        <li>Social Media Campaigns (Facebook, Instagram, YouTube)</li>
-        <li>Creative Video Ads & Brand Posts</li>
-        <li>Google Search & Display Ads</li>
-        <li>Website Development & SEO</li>
-        <li>App Development & Maintenance</li>
-        <li>Performance Analytics & Reporting</li>
-      </ul>
+      <div class="main">
+        <div class="ask-title"><span>Pecos</span>!</div>
+        <hr>
+        <!-- Open Account Section -->
+        <div class="open-account">
+          <h2>Open an Account with Us</h2>
+          <p>Start your financial journey with confidence. Our process is secure, transparent, and customer-focused.</p>
+          <a href="signup.html"><button>Register</button></a>
+        </div>
 
-      <h3>Offline Advertisements</h3>
-      <ul>
-        <li>Railway & Metro Station Branding</li>
-        <li>Bus Stand & Roadside Hoardings</li>
-        <li>Commercial & Retail Displays</li>
-        <li>Local Event & Sponsorship Promotions</li>
-      </ul>
+        <!-- Contact Section -->
+        <div class="contact-section">
+          <h2>Contact</h2>
+          <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
+          <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
+        </div>
+      </div>
+    </div>
 
-      <h3>Contact</h3>
-      <p>
-        <b>Email:</b> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a><br>
-        <b>Location:</b> Akola, Maharashtra 444001
-      </p>
-
-      <a href="register.html" class="register-btn">Register / Enquire</a>
-    </main>
+    <footer>
+      <p>© 2025 Pecos | All Rights Reserved</p>
+    </footer>
   </div>
-
-  <footer>
-    © 2025 Pecos Advertisers | All Rights Reserved
-  </footer>
-
 </body>
 </html>
+
+
+
+
+
+
