@@ -212,21 +212,50 @@
     }
 
     /* --- Responsive --- */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
 
-      .login-box {
-        padding: 30px 20px;
-      }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+  }
 
-      input, button {
-        font-size: 16px;
-      }
-    }
+  /* Keep logo + links inline */
+  header {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  .logo span {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .open-account button {
+    width: 100%;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
+
   </style>
 </head>
 
