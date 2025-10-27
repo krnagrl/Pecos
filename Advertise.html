@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="pecos.png"/>
+  <title>Pecos Advertisers | Digital & Offline Marketing</title>
+  <style>
+    /* --- Base theme (keeps Pecos style) --- */
+    * { box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      font-family: "Verdana", sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      border: 1px solid rgba(74,74,125,0.3);
+      background: rgba(255, 252, 232, 0.85);
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      flex-wrap: wrap;
+    }
+    .logo { display:flex; align-items:center; gap:10px; }
+    .logo img { height:42px; width:42px; }
+    .logo span { font-size:22px; font-weight:bold; color:white; }
+
+    .nav-links { display:flex; gap:25px; flex-wrap:wrap; }
+    .nav-links a { color:white; text-decoration:none; font-size:15px; font-weight:500; transition:all .3s; }
+
+    .content { display:flex; padding:20px; flex-wrap:wrap; }
+    .sidebar {
+      width:220px;
+      border-right:1px solid rgba(0,0,0,0.1);
+      background: rgba(247,243,198,0.6);
+      padding:15px;
+      border-radius:8px;
+      flex-shrink:0;
+    }
+    .sidebar h3 {
+      background-color:#c33; color:white; padding:8px; font-size:17px; text-align:center; border-radius:5px; margin-bottom:12px;
+    }
+    .sidebar ul { list-style:none; padding:0; margin:0; }
+    .sidebar li { margin:10px 0; font-size:15px; }
+    .sidebar li a {
+      text-decoration:none; color:#333; padding:6px 8px; display:block; border-radius:4px; transition:background .3s; cursor:pointer;
+    }
+    .sidebar li a:hover, .sidebar li a.active { background-color: rgba(204,51,51,0.1); color:#c33; }
+
+    .main {
+      flex:1; padding:25px; background-color: rgba(255,255,255,0.8);
+      border-radius:8px; margin-left:10px; box-shadow: inset 0 0 5px rgba(0,0,0,0.05);
+    }
+
+    .title { font-size:28px; font-weight:bold; color:#4a4a7d; margin-bottom:10px; }
+    .title span { color:#c33; }
+
+    .section-title { font-size:22px; color:#4a4a7d; margin:10px 0 12px; border-bottom:2px solid rgba(197,46,46,0.12); padding-bottom:6px; }
+
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap:18px;
+      margin-top:10px;
+    }
+
+    .card {
+      background:#fffdf0; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.08); overflow:hidden; transition:transform .25s, box-shadow .25s;
+    }
+    .card:hover { transform: translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.12); }
+    .card img { width:100%; height:150px; object-fit:cover; display:block; }
+    .card-body { padding:14px; }
+    .card-body h3 { color:#c33; margin:0 0 6px; font-size:16px; }
+    .card-body p { margin:0; font-size:14px; line-height:1.4; }
+
+    /* service small icon cards used in toggled view */
+    .services { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:16px; margin-top:12px; }
+    .service-card {
+      background:#fffdf2; border:1px solid rgba(0,0,0,0.06); border-radius:10px; padding:12px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04);
+      transition: transform .2s;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-card img { width:56px; height:56px; object-fit:contain; margin-bottom:8px; }
+    .service-card h4 { color:#c33; margin:6px 0; font-size:15px; }
+    .service-card p { font-size:13px; margin:0; color:#333; }
+
+    .contact-section {
+      margin-top:28px; text-align:center; background: rgba(247,243,198,0.6); padding:20px; border-radius:10px;
+    }
+    .contact-section h2 { color:#4a4a7d; margin-bottom:8px; }
+    .contact-section p { margin:6px 0 12px; }
+
+    .contact-section input, .contact-section textarea {
+      width:92%; max-width:560px; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; font-family:inherit;
+    }
+    .contact-section button {
+      background-color:#c33; color:white; border:none; padding:10px 24px; border-radius:6px; cursor:pointer; font-size:15px;
+      transition: all .2s;
+    }
+    .contact-section button:disabled { opacity:0.6; cursor:not-allowed; }
+    .contact-section button:hover:not(:disabled) { background-color:#a22; transform: translateY(-2px); }
+
+    footer {
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
+      color: white; text-align:center; font-size:13px; padding:12px;
+    }
+
+    @media (max-width:768px) {
+      .content { flex-direction:column; }
+      .sidebar { width:100%; margin-bottom:10px; border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); }
+      .main { margin-left:0; }
+      .card img { height:120px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo">
+        <span>Pecos Advertisers</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="sidebar">
+        <h3>Ad Services</h3>
+        <ul>
+          <li><a id="digitalBtn" class="active">Digital Marketing</a></li>
+          <li><a id="offlineBtn">Offline Marketing</a></li>
+        </ul>
+      </div>
+
+      <div class="main" id="mainContent">
+        <!-- filled dynamically -->
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Pecos Advertisers | Powered by Pecos.in | All Rights Reserved</p>
+    </footer>
+  </div>
+
+  <!-- Firebase (modular SDK) + App code -->
+  <script type="module">
+    // Import modular Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+    // Your provided config (kept exactly as you gave)
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.firebasestorage.app",
+      messagingSenderId: "918415143301",
+      appId: "1:918415143301:web:e277538863f8606d5094ec",
+      measurementId: "G-VE4VZE5SJX"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    // DOM refs
+    const mainContent = document.getElementById("mainContent");
+    const digitalBtn = document.getElementById("digitalBtn");
+    const offlineBtn = document.getElementById("offlineBtn");
+
+    // Full lists of services (restored + complete)
+    const digitalCardsHTML = `
+      <div class="title"><span>Pecos</span> Advertisers - Digital</div>
+      <p>We provide end-to-end digital marketing services to scale your brand online.</p>
+
+      <h3 class="section-title">Core Digital Services</h3>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/06/29/00/44/social-2457842_1280.jpg" alt="Social Media Marketing">
+          <div class="card-body">
+            <h3>Social Media Marketing</h3>
+            <p>Social content, influencer campaigns, paid ads, community growth on Instagram, Facebook, LinkedIn & more.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/11/18/15/36/seo-1837456_1280.jpg" alt="SEO & Google Ads">
+          <div class="card-body">
+            <h3>SEO & Google Ads</h3>
+            <p>On-page, technical & off-page SEO plus targeted PPC (search + display) to acquire high-intent customers.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/08/06/07/32/web-2599153_1280.jpg" alt="Website Development">
+          <div class="card-body">
+            <h3>Website Development</h3>
+            <p>Responsive, fast, secure websites built to convert — with SEO best practices and analytics integrated.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/09/18/18/58/apps-1675853_1280.jpg" alt="App Development">
+          <div class="card-body">
+            <h3>App Development</h3>
+            <p>Android & iOS applications with intuitive UX to retain users and increase lifetime value.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2018/03/12/12/40/video-marketing-3218464_1280.jpg" alt="Video Ads & Promotions">
+          <div class="card-body">
+            <h3>Video Ads & Promotions</h3>
+            <p>High-impact creative videos for YouTube, social platforms and OTT to build awareness and conversions.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2015/05/31/10/55/email-791893_1280.jpg" alt="Email & Marketing Automation">
+          <div class="card-body">
+            <h3>Email & Marketing Automation</h3>
+            <p>Automated nurture flows, transactional emails, and personalization to improve retention and revenue.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/03/27/22/22/analytics-1285341_1280.jpg" alt="Analytics & Reporting">
+          <div class="card-body">
+            <h3>Analytics & Reporting</h3>
+            <p>Detailed dashboards, conversion tracking and optimization to improve ROI across channels.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- compact services view -->
+      <h3 class="section-title">Other Digital Services</h3>
+      <div class="services">
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/3187/3187880.png"><h4>Social Media</h4><p>Organic + Paid</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1042/1042339.png"><h4>SEO</h4><p>Technical & Content</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2904/2904976.png"><h4>PPC</h4><p>Search & Display</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png"><h4>Content</h4><p>Blogs, Video, Infographics</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1042/1042355.png"><h4>Email</h4><p>Automation & Drips</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png"><h4>Web & App</h4><p>Dev & UX</p></div>
+      </div>
+    `;
+
+    const offlineCardsHTML = `
+      <div class="title"><span>Pecos</span> Advertisers - Offline</div>
+      <p>Offline & out-of-home marketing that builds presence on-ground and drives real-world conversions.</p>
+
+      <h3 class="section-title">Core Offline Services</h3>
+      <div class="grid">
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/11/29/13/05/poster-1867195_1280.jpg" alt="Print Advertising">
+          <div class="card-body">
+            <h3>Print Advertising</h3>
+            <p>Newspapers, magazines, flyers, brochures and catalogs to reach local & regional audiences.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/01/10/19/05/advertising-1966367_1280.jpg" alt="Outdoor & Transit">
+          <div class="card-body">
+            <h3>Outdoor & Transit Advertising</h3>
+            <p>Billboards, hoardings, metro, railway & bus station branding for high visibility.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2017/06/06/09/53/expo-2376321_1280.jpg" alt="Event Marketing">
+          <div class="card-body">
+            <h3>Event & Roadshow Marketing</h3>
+            <p>Trade shows, exhibitions, sponsorships and on-ground activations to engage audiences directly.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/03/09/15/10/phone-1245714_1280.jpg" alt="Direct Mail & Telemarketing">
+          <div class="card-body">
+            <h3>Direct Mail & Telemarketing</h3>
+            <p>Posters, mailers, SMS & targeted calling campaigns for direct customer outreach.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/car-690326_1280.jpg" alt="Vehicle Branding">
+          <div class="card-body">
+            <h3>Vehicle Branding</h3>
+            <p>Eye-catching vehicle wraps and decals for mobile advertising on cabs, vans and trucks.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/01/19/15/05/store-1149500_1280.jpg" alt="In-store Branding">
+          <div class="card-body">
+            <h3>In-store & Retail Branding</h3>
+            <p>Standees, shelf-talkers and display designs to convert walk-ins into buyers.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="https://cdn.pixabay.com/photo/2016/10/29/12/54/marketing-1776319_1280.jpg" alt="Guerrilla Marketing">
+          <div class="card-body">
+            <h3>Guerrilla & Street Marketing</h3>
+            <p>Creative offline stunts, street art and installations that create buzz.</p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-title">Other Offline Services</h3>
+      <div class="services">
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/747/747310.png"><h4>Print</h4><p>Newspapers & Flyers</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721312.png"><h4>Hoardings</h4><p>High-impact locations</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png"><h4>Transit</h4><p>Bus & Metro Ads</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721258.png"><h4>Events</h4><p>Roadshows & Expos</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/747/747291.png"><h4>Retail</h4><p>In-store displays</p></div>
+        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721301.png"><h4>Vehicles</h4><p>Mobile branding</p></div>
+      </div>
+    `;
+
+    // Contact form HTML appended after each view (keeps same IDs)
+    const contactHTML = `
+      <div class="contact-section" id="contactSection">
+        <h2>Get a Quote</h2>
+        <p>Share your requirements and we’ll get back with a custom proposal.</p>
+
+        <input type="text" id="enq_name" placeholder="Your Name" required><br>
+        <input type="email" id="enq_email" placeholder="Email" required><br>
+        <textarea id="enq_description" rows="4" placeholder="Describe your project..." required></textarea><br>
+
+        <button id="enq_submit">Submit</button>
+        <div id="enq_msg" style="margin-top:10px;font-size:14px;"></div>
+      </div>
+    `;
+
+    // Render functions
+    function showDigital() {
+      mainContent.innerHTML = digitalCardsHTML + contactHTML;
+      digitalBtn.classList.add("active");
+      offlineBtn.classList.remove("active");
+      attachEnquiryHandler();
+    }
+
+    function showOffline() {
+      mainContent.innerHTML = offlineCardsHTML + contactHTML;
+      offlineBtn.classList.add("active");
+      digitalBtn.classList.remove("active");
+      attachEnquiryHandler();
+    }
+
+    // Attach form submit handler (uses Firestore)
+    function attachEnquiryHandler() {
+      const submitBtn = document.getElementById("enq_submit");
+      const nameInput = document.getElementById("enq_name");
+      const emailInput = document.getElementById("enq_email");
+      const descInput = document.getElementById("enq_description");
+      const msgDiv = document.getElementById("enq_msg");
+
+      if (!submitBtn) return;
+
+      // Remove previous listeners by cloning node (simple way)
+      const newBtn = submitBtn.cloneNode(true);
+      submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+
+      newBtn.addEventListener("click", async () => {
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const description = descInput.value.trim();
+
+        msgDiv.style.color = "#333";
+        msgDiv.textContent = "";
+
+        if (!name || !email || !description) {
+          msgDiv.style.color = "#c33";
+          msgDiv.textContent = "Please fill all fields.";
+          return;
+        }
+
+        newBtn.disabled = true;
+        newBtn.textContent = "Submitting...";
+
+        try {
+          await addDoc(collection(db, "enquiry"), {
+            name: name,
+            email: email,
+            description: description,
+            timestamp: serverTimestamp()
+          });
+
+          msgDiv.style.color = "green";
+          msgDiv.textContent = "✅ Thank you — your enquiry has been submitted.";
+
+          // Clear inputs
+          nameInput.value = "";
+          emailInput.value = "";
+          descInput.value = "";
+        } catch (err) {
+          console.error("Enquiry save error:", err);
+          msgDiv.style.color = "#c33";
+          msgDiv.textContent = "Error submitting. Please try again.";
+        } finally {
+          newBtn.disabled = false;
+          newBtn.textContent = "Submit";
+        }
+      });
+    }
+
+    // Wire sidebar buttons
+    digitalBtn.addEventListener("click", showDigital);
+    offlineBtn.addEventListener("click", showOffline);
+
+    // Default view
+    showDigital();
+  </script>
+</body>
+</html>
