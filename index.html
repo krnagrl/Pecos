@@ -225,39 +225,50 @@
     }
 
     /* --- Responsive --- */
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
 
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid rgba(0,0,0,0.1);
-        margin-bottom: 10px;
-      }
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+  }
 
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
+  /* Keep logo + links inline */
+  header {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+  }
 
-      .nav-links {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 10px;
-        flex-wrap: wrap;
-      }
+  .logo span {
+    font-size: 18px;
+  }
 
-      .open-account button {
-        width: 100%;
-      }
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
 
-      .main {
-        margin-left: 0;
-      }
-    }
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .open-account button {
+    width: 100%;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -309,3 +320,4 @@
   </div>
 </body>
 </html>
+
