@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos Advertisers | Advertising & Marketing Services</title>
-  <link rel="icon" type="image/png" href="pecos.png"/>
-
+  <title>Pecos Advertisers</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,16 +21,11 @@
       align-items: center;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
-      flex-wrap: wrap;
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.6rem;
-    }
-
-    nav {
-      margin-top: 10px;
+      font-size: 1.5rem;
     }
 
     nav a {
@@ -49,96 +42,93 @@
     /* Layout */
     .container {
       display: flex;
-      flex-wrap: wrap;
+      padding: 0;
       min-height: 80vh;
     }
 
     /* Sidebar */
-    .sidebar {
-      width: 220px;
+    aside {
       background-color: #fff4cc;
+      width: 220px;
       padding: 20px;
       border-right: 1px solid #ddd;
-      flex-shrink: 0;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
     }
 
-    .sidebar h2 {
+    aside h2 {
       background-color: #c62828;
       color: white;
       padding: 10px;
       text-align: center;
       border-radius: 6px;
       margin-top: 0;
-      font-size: 1.1rem;
     }
 
-    .sidebar ul {
+    aside ul {
       list-style-type: none;
       padding: 0;
     }
 
-    .sidebar li {
+    aside ul li {
       margin: 15px 0;
+      color: #333;
       font-weight: bold;
-      font-size: 0.95rem;
     }
 
     /* Main content */
-    .content {
+    main {
       flex-grow: 1;
-      padding: 30px;
-      min-width: 280px;
+      background-color: #fff;
+      margin: 20px;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
     }
 
-    h2 {
+    main h1 {
       color: #c62828;
-      margin-top: 0;
+      font-size: 1.8rem;
     }
 
-    h3 {
-      color: #b71c1c;
+    h2, h3 {
+      color: #c62828;
+      margin-bottom: 10px;
     }
 
-    p {
-      line-height: 1.6;
+    p, li {
       color: #333;
+      line-height: 1.6;
     }
 
     ul {
-      line-height: 1.6;
-      color: #333;
+      padding-left: 20px;
     }
 
-    .section {
-      margin-bottom: 30px;
-    }
-
-    .register-btn {
+    button, .register-btn {
       background-color: #c62828;
       color: white;
       border: none;
       padding: 10px 20px;
-      font-size: 1rem;
       border-radius: 6px;
       cursor: pointer;
+      font-size: 1rem;
       text-decoration: none;
       display: inline-block;
-      margin-top: 10px;
     }
 
-    .register-btn:hover {
+    button:hover, .register-btn:hover {
       background-color: #a31616;
     }
 
-    /* Footer */
     footer {
-      text-align: center;
       background: linear-gradient(to right, #3f3cbb, #443ea2);
       color: white;
-      padding: 15px 10px;
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9rem;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
-      font-size: 0.9rem;
     }
 
     a {
@@ -148,60 +138,6 @@
 
     a:hover {
       text-decoration: underline;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 900px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav a {
-        display: inline-block;
-        margin: 8px;
-      }
-
-      .container {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-        text-align: center;
-      }
-
-      .sidebar ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 15px;
-      }
-
-      .sidebar li {
-        margin: 5px 0;
-      }
-
-      .content {
-        padding: 20px;
-      }
-
-      h2 {
-        font-size: 1.3rem;
-      }
-
-      h3 {
-        font-size: 1.1rem;
-      }
-
-      .register-btn {
-        width: 100%;
-        padding: 12px;
-        text-align: center;
-        font-size: 1.05rem;
-      }
     }
   </style>
 </head>
@@ -217,59 +153,52 @@
   </header>
 
   <div class="container">
-    <div class="sidebar">
+    <aside>
       <h2>Services</h2>
       <ul>
         <li>Digital Advertisements</li>
         <li>Offline Advertisements</li>
         <li>Analytics & Strategy</li>
       </ul>
-    </div>
+    </aside>
 
-    <div class="content">
-      <div class="section">
-        <h2>Welcome to Pecos Advertisers</h2>
-        <p>
-          Pecos Advertisers is your trusted partner for complete advertising and marketing solutions. 
-          We help brands connect with audiences through strategic digital and offline campaigns — 
-          ensuring visibility, engagement, and measurable results.
-        </p>
-      </div>
+    <main>
+      <h1>Pecos Advertisers!</h1>
+      <hr />
 
-      <div class="section">
-        <h3>💻 Digital Advertisements</h3>
-        <p>
-          We offer full-spectrum online marketing services to boost your brand visibility:
-        </p>
-        <ul>
-          <li>Social Media Campaigns (Instagram, Facebook, YouTube)</li>
-          <li>Video Ads & Creative Posts</li>
-          <li>Internet & Google Search Marketing</li>
-          <li>Website & App Development</li>
-          <li>Analytics and Performance Tracking</li>
-        </ul>
-      </div>
+      <h2>Your Brand, Our Strategy</h2>
+      <p>
+        Expand your business visibility with Pecos Advertisers.  
+        We specialize in creating impactful digital and offline campaigns  
+        that help you reach customers effectively and efficiently.
+      </p>
 
-      <div class="section">
-        <h3>🚉 Offline Advertisements</h3>
-        <p>
-          Reach real-world audiences with impactful outdoor advertising placements:
-        </p>
-        <ul>
-          <li>Railway & Metro Stations</li>
-          <li>Bus Stands & Roadways</li>
-          <li>Commercial & Retail Spaces</li>
-          <li>Local Events and Sponsorships</li>
-        </ul>
-      </div>
+      <h3>Digital Advertisements</h3>
+      <ul>
+        <li>Social Media Campaigns (Facebook, Instagram, YouTube)</li>
+        <li>Creative Video Ads & Brand Posts</li>
+        <li>Google Search & Display Ads</li>
+        <li>Website Development & SEO</li>
+        <li>App Development & Maintenance</li>
+        <li>Performance Analytics & Reporting</li>
+      </ul>
 
-      <div class="section">
-        <h3>📞 Contact Us</h3>
-        <p><b>Email:</b> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
-        <p><b>Location:</b> Akola, Maharashtra 444001</p>
-        <a href="register.html" class="register-btn">Register / Enquire</a>
-      </div>
-    </div>
+      <h3>Offline Advertisements</h3>
+      <ul>
+        <li>Railway & Metro Station Branding</li>
+        <li>Bus Stand & Roadside Hoardings</li>
+        <li>Commercial & Retail Displays</li>
+        <li>Local Event & Sponsorship Promotions</li>
+      </ul>
+
+      <h3>Contact</h3>
+      <p>
+        <b>Email:</b> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a><br>
+        <b>Location:</b> Akola, Maharashtra 444001
+      </p>
+
+      <a href="register.html" class="register-btn">Register / Enquire</a>
+    </main>
   </div>
 
   <footer>
