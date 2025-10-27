@@ -83,7 +83,7 @@
     }
     .card:hover { transform: translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.12); }
 
-    /* new icon style replacing images */
+    /* card icon style (using same flaticon style as other-services) */
     .card-icon {
       width: 80px;
       height: 80px;
@@ -185,6 +185,11 @@
     const digitalBtn = document.getElementById("digitalBtn");
     const offlineBtn = document.getElementById("offlineBtn");
 
+    /* --------------------------
+       DIGITAL CARDS (icons matched
+       to the "Other Digital Services"
+       icons you already used)
+       -------------------------- */
     const digitalCardsHTML = `
       <div class="title"><span>Pecos</span> Advertisers - Digital</div>
       <p>We provide end-to-end digital marketing services to scale your brand online.</p>
@@ -192,41 +197,52 @@
       <h3 class="section-title">Core Digital Services</h3>
       <div class="grid">
         <div class="card">
+          <!-- Social Media - same icon used in Other Digital Services -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/3187/3187880.png" alt="Social Media Marketing">
           <div class="card-body">
             <h3>Social Media Marketing</h3>
             <p>Social content, influencer campaigns, paid ads, community growth on Instagram, Facebook, LinkedIn & more.</p>
           </div>
         </div>
+
         <div class="card">
+          <!-- SEO & Google Ads - same icon used in Other Digital Services -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1042/1042339.png" alt="SEO & Google Ads">
           <div class="card-body">
             <h3>SEO & Google Ads</h3>
             <p>On-page, technical & off-page SEO plus targeted PPC (search + display) to acquire high-intent customers.</p>
           </div>
         </div>
+
         <div class="card">
+          <!-- Website Development - same icon used in Other Digital Services -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png" alt="Website Development">
           <div class="card-body">
             <h3>Website Development</h3>
             <p>Responsive, fast, secure websites built to convert — with SEO best practices and analytics integrated.</p>
           </div>
         </div>
+
         <div class="card">
-          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png" alt="Video Ads">
+          <!-- Video Ads & Promotions - using the 'content' style icon from Other Digital Services -->
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png" alt="Video Ads & Promotions">
           <div class="card-body">
             <h3>Video Ads & Promotions</h3>
             <p>High-impact creative videos for YouTube, social platforms and OTT to build awareness and conversions.</p>
           </div>
         </div>
+
         <div class="card">
-          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1042/1042355.png" alt="Email Marketing">
+          <!-- Email & Automation - same icon as Other Digital Services -->
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1042/1042355.png" alt="Email & Marketing Automation">
           <div class="card-body">
             <h3>Email & Marketing Automation</h3>
             <p>Automated nurture flows, transactional emails, and personalization to improve retention and revenue.</p>
           </div>
         </div>
+
         <div class="card">
+          <!-- Analytics & Reporting - same icon as Other Digital Services -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2904/2904976.png" alt="Analytics & Reporting">
           <div class="card-body">
             <h3>Analytics & Reporting</h3>
@@ -236,6 +252,11 @@
       </div>
     `;
 
+    /* --------------------------
+       OFFLINE CARDS (icons matched
+       to the "Other Offline Services"
+       icons you already used)
+       -------------------------- */
     const offlineCardsHTML = `
       <div class="title"><span>Pecos</span> Advertisers - Offline</div>
       <p>Offline & out-of-home marketing that builds presence on-ground and drives real-world conversions.</p>
@@ -243,42 +264,53 @@
       <h3 class="section-title">Core Offline Services</h3>
       <div class="grid">
         <div class="card">
+          <!-- Print Advertising -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Print Advertising">
           <div class="card-body">
             <h3>Print Advertising</h3>
             <p>Newspapers, magazines, flyers, brochures and catalogs to reach local & regional audiences.</p>
           </div>
         </div>
+
         <div class="card">
-          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721312.png" alt="Outdoor Advertising">
+          <!-- Outdoor & Transit (hoardings style) -->
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721312.png" alt="Outdoor & Transit">
           <div class="card-body">
             <h3>Outdoor & Transit Advertising</h3>
             <p>Billboards, hoardings, metro, railway & bus station branding for high visibility.</p>
           </div>
         </div>
+
         <div class="card">
+          <!-- Event & Roadshow -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721258.png" alt="Event Marketing">
           <div class="card-body">
             <h3>Event & Roadshow Marketing</h3>
             <p>Trade shows, exhibitions, sponsorships and on-ground activations to engage audiences directly.</p>
           </div>
         </div>
+
         <div class="card">
-          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747291.png" alt="Direct Mail">
+          <!-- Direct Mail & Telemarketing (uses Transit/communication style icon from other offline set) -->
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png" alt="Direct Mail & Telemarketing">
           <div class="card-body">
             <h3>Direct Mail & Telemarketing</h3>
             <p>Posters, mailers, SMS & targeted calling campaigns for direct customer outreach.</p>
           </div>
         </div>
+
         <div class="card">
+          <!-- Vehicle Branding -->
           <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721301.png" alt="Vehicle Branding">
           <div class="card-body">
             <h3>Vehicle Branding</h3>
             <p>Eye-catching vehicle wraps and decals for mobile advertising on cabs, vans and trucks.</p>
           </div>
         </div>
+
         <div class="card">
-          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="In-store Branding">
+          <!-- In-store & Retail Branding -->
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747291.png" alt="In-store & Retail Branding">
           <div class="card-body">
             <h3>In-store & Retail Branding</h3>
             <p>Standees, shelf-talkers and display designs to convert walk-ins into buyers.</p>
