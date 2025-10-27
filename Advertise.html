@@ -6,7 +6,6 @@
   <link rel="icon" type="image/png" href="pecos.png"/>
   <title>Pecos Advertisers | Digital & Offline Marketing</title>
   <style>
-    /* --- Base theme (keeps Pecos style) --- */
     * { box-sizing: border-box; }
     body {
       background: linear-gradient(135deg, #f9f5d7, #fffce8);
@@ -80,31 +79,23 @@
 
     .card {
       background:#fffdf0; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.08); overflow:hidden; transition:transform .25s, box-shadow .25s;
+      display: flex; flex-direction: column;
     }
     .card:hover { transform: translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.12); }
-    .card img { width:100%; height:150px; object-fit:cover; display:block; }
-    .card {
-  display: flex;
-  flex-direction: column;
-}
-.card img {
-  width: 100%;
-  height: 180px;           /* you can adjust this height */
-  object-fit: cover;       /* ensures full coverage without distortion */
-  flex-shrink: 0;
-}
-.card-body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 
-    .card-body { padding:14px; }
+    /* new icon style replacing images */
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: 25px auto 10px;
+      display: block;
+    }
+
+    .card-body { padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
     .card-body h3 { color:#c33; margin:0 0 6px; font-size:16px; }
     .card-body p { margin:0; font-size:14px; line-height:1.4; }
 
-    /* service small icon cards used in toggled view */
     .services { display:grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap:16px; margin-top:12px; }
     .service-card {
       background:#fffdf2; border:1px solid rgba(0,0,0,0.06); border-radius:10px; padding:12px; text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.04);
@@ -140,7 +131,6 @@
       .content { flex-direction:column; }
       .sidebar { width:100%; margin-bottom:10px; border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); }
       .main { margin-left:0; }
-      .card img { height:120px; }
     }
   </style>
 </head>
@@ -166,9 +156,7 @@
         </ul>
       </div>
 
-      <div class="main" id="mainContent">
-        <!-- filled dynamically -->
-      </div>
+      <div class="main" id="mainContent"></div>
     </div>
 
     <footer>
@@ -176,14 +164,10 @@
     </footer>
   </div>
 
-  <!-- Firebase (modular SDK) + App code -->
   <script type="module">
-    // Import modular Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
-    // Your provided config (kept exactly as you gave)
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
@@ -194,16 +178,13 @@
       measurementId: "G-VE4VZE5SJX"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // DOM refs
     const mainContent = document.getElementById("mainContent");
     const digitalBtn = document.getElementById("digitalBtn");
     const offlineBtn = document.getElementById("offlineBtn");
 
-    // Full lists of services (restored + complete)
     const digitalCardsHTML = `
       <div class="title"><span>Pecos</span> Advertisers - Digital</div>
       <p>We provide end-to-end digital marketing services to scale your brand online.</p>
@@ -211,63 +192,47 @@
       <h3 class="section-title">Core Digital Services</h3>
       <div class="grid">
         <div class="card">
-          <img src="images/socialmedia.png" alt="Social Media Marketing">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/3187/3187880.png" alt="Social Media Marketing">
           <div class="card-body">
             <h3>Social Media Marketing</h3>
             <p>Social content, influencer campaigns, paid ads, community growth on Instagram, Facebook, LinkedIn & more.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/seo.png" alt="SEO & Google Ads">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1042/1042339.png" alt="SEO & Google Ads">
           <div class="card-body">
             <h3>SEO & Google Ads</h3>
             <p>On-page, technical & off-page SEO plus targeted PPC (search + display) to acquire high-intent customers.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/webapp.png" alt="Website Development">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png" alt="Website Development">
           <div class="card-body">
             <h3>Website Development</h3>
             <p>Responsive, fast, secure websites built to convert — with SEO best practices and analytics integrated.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/videoads.png" alt="Video Ads & Promotions">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png" alt="Video Ads">
           <div class="card-body">
             <h3>Video Ads & Promotions</h3>
             <p>High-impact creative videos for YouTube, social platforms and OTT to build awareness and conversions.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/email.png" alt="Email & Marketing Automation">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/1042/1042355.png" alt="Email Marketing">
           <div class="card-body">
             <h3>Email & Marketing Automation</h3>
             <p>Automated nurture flows, transactional emails, and personalization to improve retention and revenue.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/analytics.png" alt="Analytics & Reporting">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2904/2904976.png" alt="Analytics & Reporting">
           <div class="card-body">
             <h3>Analytics & Reporting</h3>
             <p>Detailed dashboards, conversion tracking and optimization to improve ROI across channels.</p>
           </div>
         </div>
-      </div>
-
-      <!-- compact services view -->
-      <h3 class="section-title">Other Digital Services</h3>
-      <div class="services">
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/3187/3187880.png"><h4>Social Media</h4><p>Organic + Paid</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1042/1042339.png"><h4>SEO</h4><p>Technical & Content</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2904/2904976.png"><h4>PPC</h4><p>Search & Display</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721296.png"><h4>Content</h4><p>Blogs, Video, Infographics</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1042/1042355.png"><h4>Email</h4><p>Automation & Drips</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1179/1179069.png"><h4>Web & App</h4><p>Dev & UX</p></div>
       </div>
     `;
 
@@ -278,87 +243,62 @@
       <h3 class="section-title">Core Offline Services</h3>
       <div class="grid">
         <div class="card">
-          <img src="images/print.png" alt="Print Advertising">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Print Advertising">
           <div class="card-body">
             <h3>Print Advertising</h3>
             <p>Newspapers, magazines, flyers, brochures and catalogs to reach local & regional audiences.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/outdoor.png" alt="Outdoor & Transit">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721312.png" alt="Outdoor Advertising">
           <div class="card-body">
             <h3>Outdoor & Transit Advertising</h3>
             <p>Billboards, hoardings, metro, railway & bus station branding for high visibility.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/event.png" alt="Event Marketing">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721258.png" alt="Event Marketing">
           <div class="card-body">
             <h3>Event & Roadshow Marketing</h3>
             <p>Trade shows, exhibitions, sponsorships and on-ground activations to engage audiences directly.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/direct.png" alt="Direct Mail & Telemarketing">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747291.png" alt="Direct Mail">
           <div class="card-body">
             <h3>Direct Mail & Telemarketing</h3>
             <p>Posters, mailers, SMS & targeted calling campaigns for direct customer outreach.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/vehicle.png" alt="Vehicle Branding">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/2721/2721301.png" alt="Vehicle Branding">
           <div class="card-body">
             <h3>Vehicle Branding</h3>
             <p>Eye-catching vehicle wraps and decals for mobile advertising on cabs, vans and trucks.</p>
           </div>
         </div>
-
         <div class="card">
-          <img src="images/instore.png" alt="In-store Branding">
+          <img class="card-icon" src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="In-store Branding">
           <div class="card-body">
             <h3>In-store & Retail Branding</h3>
             <p>Standees, shelf-talkers and display designs to convert walk-ins into buyers.</p>
           </div>
         </div>
-        <div class="card">
-          <img src="https://cdn.pixabay.com/photo/2016/10/29/12/54/marketing-1776319_1280.jpg" alt="Guerrilla Marketing">
-          <div class="card-body">
-            <h3>Guerrilla & Street Marketing</h3>
-            <p>Creative offline stunts, street art and installations that create buzz.</p>
-          </div>
-        </div>
-      </div>
-      <h3 class="section-title">Other Offline Services</h3>
-      <div class="services">
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/747/747310.png"><h4>Print</h4><p>Newspapers & Flyers</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721312.png"><h4>Hoardings</h4><p>High-impact locations</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/1048/1048953.png"><h4>Transit</h4><p>Bus & Metro Ads</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721258.png"><h4>Events</h4><p>Roadshows & Expos</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/747/747291.png"><h4>Retail</h4><p>In-store displays</p></div>
-        <div class="service-card"><img src="https://cdn-icons-png.flaticon.com/512/2721/2721301.png"><h4>Vehicles</h4><p>Mobile branding</p></div>
       </div>
     `;
 
-    // Contact form HTML appended after each view (keeps same IDs)
     const contactHTML = `
       <div class="contact-section" id="contactSection">
         <h2>Get a Quote</h2>
         <p>Share your requirements and we’ll get back with a custom proposal.</p>
-
         <input type="text" id="enq_name" placeholder="Your Name" required><br>
         <input type="email" id="enq_email" placeholder="Email" required><br>
         <textarea id="enq_description" rows="4" placeholder="Describe your project..." required></textarea><br>
-
         <button id="enq_submit">Submit</button>
         <div id="enq_msg" style="margin-top:10px;font-size:14px;"></div>
       </div>
     `;
 
-    // Render functions
     function showDigital() {
       mainContent.innerHTML = digitalCardsHTML + contactHTML;
       digitalBtn.classList.add("active");
@@ -373,7 +313,6 @@
       attachEnquiryHandler();
     }
 
-    // Attach form submit handler (uses Firestore)
     function attachEnquiryHandler() {
       const submitBtn = document.getElementById("enq_submit");
       const nameInput = document.getElementById("enq_name");
@@ -383,7 +322,6 @@
 
       if (!submitBtn) return;
 
-      // Remove previous listeners by cloning node (simple way)
       const newBtn = submitBtn.cloneNode(true);
       submitBtn.parentNode.replaceChild(newBtn, submitBtn);
 
@@ -406,23 +344,19 @@
 
         try {
           await addDoc(collection(db, "enquiry"), {
-            name: name,
-            email: email,
-            description: description,
+            name,
+            email,
+            description,
             timestamp: serverTimestamp()
           });
 
           msgDiv.style.color = "green";
           msgDiv.textContent = "✅ Thank you — your enquiry has been submitted.";
-
-          // Clear inputs
-          nameInput.value = "";
-          emailInput.value = "";
-          descInput.value = "";
+          nameInput.value = emailInput.value = descInput.value = "";
         } catch (err) {
-          console.error("Enquiry save error:", err);
           msgDiv.style.color = "#c33";
-          msgDiv.textContent = "Error submitting. Please try again.";
+          msgDiv.textContent = "❌ Submission failed. Try again later.";
+          console.error(err);
         } finally {
           newBtn.disabled = false;
           newBtn.textContent = "Submit";
@@ -430,11 +364,8 @@
       });
     }
 
-    // Wire sidebar buttons
     digitalBtn.addEventListener("click", showDigital);
     offlineBtn.addEventListener("click", showOffline);
-
-    // Default view
     showDigital();
   </script>
 </body>
