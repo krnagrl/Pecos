@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mutual Funds · Pecos</title>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    /* Simple clean styling—match to your site colors if needed */
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; margin: 0; background:#f6f8fb; color:#111; }
+    .container { max-width:1100px; margin:28px auto; padding:16px; }
+    header { display:flex; align-items:center; gap:12px; margin-bottom:18px; }
+    h1 { margin:0; font-size:22px; }
+    .controls { display:flex; gap:12px; margin:12px 0 18px; flex-wrap:wrap; }
+    .search, .select { padding:8px 10px; border-radius:8px; border:1px solid #ddd; background:white; }
+    .fund-list { display:grid; grid-template-columns: 1fr; gap:10px; }
+    .card { background:white; padding:12px; border-radius:10px; box-shadow: 0 6px 20px rgba(16,24,40,0.04); display:flex; align-items:center; gap:12px; justify-content:space-between; }
+    .left { display:flex; gap:12px; align-items:center; min-width:0; }
+    .logo { width:56px; height:56px; border-radius:8px; background:linear-gradient(180deg,#e6eefc,#f6fbff); display:flex; align-items:center; justify-content:center; font-weight:700; color:#1e3a8a; font-size:14px; }
+    .meta { min-width:0; }
+    .meta h3 { margin:0; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .meta small { display:block; color:#666; margin-top:4px; font-size:13px;}
+    .stats { display:flex; gap:12px; align-items:center; }
+    .stat { text-align:right; min-width:96px; }
+    .btn { padding:8px 12px; border-radius:8px; cursor:pointer; border:0; background:#0b63ff; color:white; font-weight:600; }
+    .btn.ghost { background:transparent; color:#0b63ff; border:1px solid #cfe0ff; }
+    .muted { color:#777; font-size:13px; }
+    .load-more { display:block; margin:18px auto; padding:10px 16px; border-radius:8px; cursor:pointer; border:0; background:#0b63ff; color:white; }
+    .small { font-size:13px; color:#444; }
+
+    /* Modal */
+    .modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:60; }
+    .modal { width:90%; max-width:900px; background:white; border-radius:12px; padding:18px; box-shadow:0 12px 40px rgba(2,6,23,0.3); max-height:90vh; overflow:auto; }
+    .modal h2 { margin:0 0 8px 0; font-size:18px; }
+    .modal .close { float:right; cursor:pointer; border:0; background:none; font-size:18px; }
+    .nav-table { margin-top:12px; width:100%; border-collapse:collapse; font-size:13px; }
+    .nav-table th, .nav-table td { padding:8px 6px; border-bottom:1px solid #f1f3f6; text-align:left; }
+    .return-positive { color: #0b8f2e; font-weight:600; }
+    .return-negative { color: #d32f2f; font-weight:600; }
+    @media(min-width:720px){
+      .fund-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Mutual Funds</h1>
+        <div class="small muted">Live NAV, performance & charts (data from public APIs)</div>
+      </div>
+    </header>
+
+    <div class="controls">
+      <input id="searchInput" class="search" placeholder="Search funds by name or code..." style="min-width:300px" />
+      <select id="categorySelect" class="select">
+        <option value="">All categories</option>
+        <option value="equity">Equity</option>
+        <option value="debt">Debt</option>
+        <option value="hybrid">Hybrid</option>
+        <option value="etf">ETF</option>
+      </select>
+      <button id="refreshBtn" class="btn ghost">Refresh Data</button>
+    </div>
+
+    <div id="fundList" class="fund-list"></div>
+
+    <button id="loadMoreBtn" class="load-more">Load more</button>
+    <div style="height:32px"></div>
+  </div>
+
+  <!-- Modal for chart -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document">
+      <button id="modalClose" class="close">✕</button>
+      <h2 id="modalTitle">Fund — NAV History</h2>
+      <div style="margin-top:8px; font-size:13px; color:#666;" id="modalSubtitle"></div>
+
+      <div style="margin-top:12px">
+        <canvas id="navChart" height="150"></canvas>
+      </div>
+
+      <div style="margin-top:12px">
+        <table class="nav-table" id="navTable">
+          <thead><tr><th>Date</th><th>NAV</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+<script>
+/*
+  Client-side mutual funds dashboard
+  - Uses public API: https://api.mfapi.in/mf  and  /mf/{schemeCode}
+  - Caches the fund list in localStorage for 12 hours
+  - Paginated display (default 50 per page)
+  - On "View Chart" fetches history and displays 5-year chart + latest NAV + computed 1Y/3Y/5Y returns
+*/
+
+const API_LIST = 'https://api.mfapi.in/mf';
+const CACHE_KEY = 'mf_list_cache_v1';
+const CACHE_TTL_MS = 1000 * 60 * 60 * 12; // 12 hours
+let allFunds = []; // loaded list from API
+let shownCount = 50; // default shown
+const PAGE_SIZE = 50;
+
+const qs = (s) => document.querySelector(s);
+const qsa = (s) => Array.from(document.querySelectorAll(s));
+
+async function fetchFundList(force=false) {
+  // try local cache
+  try {
+    if (!force) {
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+      if (cached && cached.ts && (Date.now() - cached.ts < CACHE_TTL_MS) && cached.data) {
+        console.info('Using cached fund list');
+        return cached.data;
+      }
+    }
+  } catch(e){ console.warn('cache parse error', e); }
+
+  const res = await fetch(API_LIST);
+  if (!res.ok) throw new Error('Failed to fetch fund list: ' + res.status);
+  const data = await res.json();
+
+  // store cache
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+  } catch(e) { console.warn('cache write failed', e); }
+
+  return data;
+}
+
+// Helpers for returns calculation
+function parseDateStr(s) {
+  // date format from API: "dd-mm-yyyy"
+  const [d,m,y] = s.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+
+function findNavOnOrBefore(history, targetDate) {
+  // history: [{date: "dd-mm-yyyy", nav: "xx.xx"}] sorted descending (newest first)
+  // We want the NAV whose date <= targetDate and closest to it (i.e., most recent before or on target).
+  for (let i=0;i<history.length;i++){
+    const hDate = parseDateStr(history[i].date);
+    if (hDate.getTime() <= targetDate.getTime()) {
+      return parseFloat(history[i].nav);
+    }
+  }
+  return null;
+}
+
+function computeReturnPercent(latestNav, earlierNav) {
+  if (latestNav == null || earlierNav == null) return null;
+  const ret = ((latestNav / earlierNav) - 1) * 100;
+  return ret;
+}
+
+function formatPct(v) {
+  if (v == null) return '—';
+  const fixed = (v).toFixed(2);
+  return (v >= 0 ? '+' : '') + fixed + '%';
+}
+
+function formatNav(v) {
+  if (v == null || isNaN(v)) return '—';
+  return Number(v).toFixed(3);
+}
+
+// render fund card
+function renderFundCard(fund) {
+  // fund fields from mfapi: schemeName, schemeCode
+  const latestNav = fund['nav'] || null;
+  const latestDate = fund['date'] || null;
+  const html = document.createElement('div');
+  html.className = 'card';
+  html.innerHTML = `
+    <div class="left">
+      <div class="logo">${(fund.schemeName||'').split(' ').slice(0,2).map(w => w[0]||'').join('').toUpperCase()}</div>
+      <div class="meta">
+        <h3 title="${fund.schemeName}">${fund.schemeName}</h3>
+        <small class="muted">Code: ${fund.schemeCode} • ${fund.schemeCategory || '—'}</small>
+      </div>
+    </div>
+    <div class="stats" style="min-width:340px;">
+      <div class="stat">
+        <div class="small muted">NAV</div>
+        <div style="font-weight:700">${formatNav(latestNav)}</div>
+        <div class="small muted">${latestDate || ''}</div>
+      </div>
+      <div class="stat" style="min-width:120px;">
+        <div class="small muted">1Y</div>
+        <div id="r1-${fund.schemeCode}" style="font-weight:700">${fund.__oneYearReturnDisplay || '—'}</div>
+      </div>
+      <div class="stat" style="min-width:120px;">
+        <div class="small muted">3Y</div>
+        <div id="r3-${fund.schemeCode}" style="font-weight:700">${fund.__threeYearReturnDisplay || '—'}</div>
+      </div>
+      <div class="stat" style="min-width:120px;">
+        <div class="small muted">5Y</div>
+        <div id="r5-${fund.schemeCode}" style="font-weight:700">${fund.__fiveYearReturnDisplay || '—'}</div>
+      </div>
+      <div style="display:flex; gap:8px;">
+        <button class="btn view-chart" data-code="${fund.schemeCode}">View Chart</button>
+      </div>
+    </div>
+  `;
+  return html;
+}
+
+async function enrichAndComputeTopReturns(list) {
+  // The simple mfapi /mf returns basic fields but not category or nav in the list response.
+  // The mfapi provides the latest NAV per entry in the list response; ensure numeric.
+  // We compute 1Y/3Y/5Y on demand when user clicks — to reduce upfront calls. But to show approximate 1y/3y/5y in list,
+  // we will fetch detailed history for first N funds (small batch) to compute returns for visible cards.
+  // For performance we compute only for visibleCount funds.
+  // This function will compute latest nav from fund.summary if available.
+  return list;
+}
+
+function showFunds(list) {
+  const container = qs('#fundList');
+  container.innerHTML = '';
+  const toShow = list.slice(0, shownCount);
+  toShow.forEach(f => {
+    const card = renderFundCard(f);
+    container.appendChild(card);
+  });
+  setupViewButtons();
+}
+
+function setupViewButtons() {
+  qsa('.view-chart').forEach(btn => {
+    btn.onclick = async (ev) => {
+      const code = btn.dataset.code;
+      await openModalForFund(code);
+    };
+  });
+}
+
+async function openModalForFund(schemeCode) {
+  // fetch history
+  const modal = qs('#modalBackdrop');
+  const title = qs('#modalTitle');
+  const subtitle = qs('#modalSubtitle');
+  const navTableBody = qs('#navTable tbody');
+  title.textContent = 'Loading...';
+  subtitle.textContent = '';
+  navTableBody.innerHTML = '';
+  modal.style.display = 'flex';
+  try {
+    const res = await fetch(`${API_LIST}/${schemeCode}`);
+    if (!res.ok) throw new Error('Failed to fetch history');
+    const js = await res.json();
+    const schemeName = js.meta.scheme_name || js.meta['schemeName'] || '';
+    const history = js.data || [];
+    title.textContent = `${schemeName} — NAV history`;
+    subtitle.textContent = `Latest NAV: ${history[0] ? history[0].nav : '—'} on ${history[0] ? history[0].date : '—'}`;
+
+    // prepare series for chart (limit to latest 5 years)
+    // convert each entry to {date: Date, nav: float} with descending order (newest first)
+    const series = history.map(h => ({ date: parseDateStr(h.date), nav: parseFloat(h.nav)}))
+                          .filter(s => !isNaN(s.nav) && s.date)
+                          .sort((a,b) => a.date - b.date); // ascending for chart
+
+    // filter last 5 years
+    const fiveYearsAgo = new Date();
+    fiveYearsAgo.setFullYear(fiveYearsAgo.getFullYear() - 5);
+    const series5y = series.filter(s => s.date >= fiveYearsAgo);
+
+    const labels = series5y.map(s => {
+      const d = s.date;
+      return d.toLocaleDateString('en-GB'); // dd/mm/yyyy
+    });
+    const dataPoints = series5y.map(s => s.nav);
+
+    // draw chart
+    drawChart(labels, dataPoints, schemeName);
+
+    // fill table (limited rows to 200 to avoid huge DOM)
+    navTableBody.innerHTML = '';
+    const tableRows = series.slice().reverse().slice(0,200); // show newest first, up to 200 rows
+    tableRows.forEach(s => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${s.date.toLocaleDateString('en-GB')}</td><td>${Number(s.nav).toFixed(3)}</td>`;
+      navTableBody.appendChild(tr);
+    });
+
+    // compute returns for 1Y/3Y/5Y and update list card cells if present
+    const latestNav = series.length ? series[series.length-1].nav : null; // series ascending, last is latest
+    const now = series.length ? series[series.length-1].date : new Date();
+    const findNavBefore = (years) => {
+      const target = new Date(now.getTime());
+      target.setFullYear(target.getFullYear() - years);
+      // search backwards from newest to oldest: series sorted ascending, so iterate from end to start
+      for (let i = series.length - 1; i >= 0; i--) {
+        if (series[i].date.getTime() <= target.getTime()) {
+          return series[i].nav;
+        }
+      }
+      // if not found, maybe earliest nav is still after target -> return null
+      return null;
+    };
+
+    const r1 = computeReturnPercent(latestNav, findNavBefore(1));
+    const r3 = computeReturnPercent(latestNav, findNavBefore(3));
+    const r5 = computeReturnPercent(latestNav, findNavBefore(5));
+    // place into elements if present
+    const e1 = qs(`#r1-${schemeCode}`); if (e1) e1.textContent = formatPct(r1);
+    const e3 = qs(`#r3-${schemeCode}`); if (e3) e3.textContent = formatPct(r3);
+    const e5 = qs(`#r5-${schemeCode}`); if (e5) e5.textContent = formatPct(r5);
+
+  } catch(err) {
+    console.error(err);
+    qs('#modalTitle').textContent = 'Failed to load fund';
+    qs('#modalSubtitle').textContent = err.message || '';
+  }
+}
+
+let chartInstance = null;
+function drawChart(labels, dataPoints, label) {
+  const ctx = qs('#navChart').getContext('2d');
+  if (chartInstance) {
+    chartInstance.destroy();
+    chartInstance = null;
+  }
+  chartInstance = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        label: 'NAV',
+        data: dataPoints,
+        tension: 0.15,
+        pointRadius: 0,
+        fill: false
+      }]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        x: { display: true, ticks: { maxTicksLimit: 10 } },
+        y: { display: true }
+      },
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: ctx => `NAV: ${Number(ctx.raw).toFixed(3)}`
+          }
+        }
+      }
+    }
+  });
+}
+
+// UI wiring
+qs('#modalClose').onclick = () => { qs('#modalBackdrop').style.display = 'none'; if (chartInstance) chartInstance.destroy(); chartInstance = null; };
+qs('#modalBackdrop').onclick = (ev) => { if (ev.target === qs('#modalBackdrop')) { qs('#modalBackdrop').style.display='none'; if (chartInstance) chartInstance.destroy(); chartInstance = null;} };
+qs('#refreshBtn').onclick = async () => { await doLoad(true); };
+
+qs('#searchInput').addEventListener('input', debounce(()=> {
+  applyFilters();
+}, 300));
+
+qs('#categorySelect').addEventListener('change', () => {
+  applyFilters();
+});
+
+qs('#loadMoreBtn').onclick = () => {
+  shownCount += PAGE_SIZE;
+  renderFiltered();
+};
+
+function debounce(fn, wait=250) {
+  let t;
+  return (...args) => {
+    clearTimeout(t);
+    t = setTimeout(() => fn(...args), wait);
+  };
+}
+
+let filteredFunds = [];
+
+function applyFilters() {
+  const q = qs('#searchInput').value.trim().toLowerCase();
+  const cat = qs('#categorySelect').value;
+  filteredFunds = allFunds.filter(f => {
+    if (!f.schemeName) return false;
+    if (q) {
+      const hay = (f.schemeName + ' ' + (f.schemeCode||'')).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    // category is approximate: the API list might not include a clean category; use available fields or default
+    if (cat) {
+      const map = (f.schemeCategory || '').toLowerCase();
+      if (!map.includes(cat)) return false;
+    }
+    return true;
+  });
+  shownCount = PAGE_SIZE;
+  renderFiltered();
+}
+
+function renderFiltered() {
+  const listToRender = filteredFunds.length ? filteredFunds : allFunds;
+  showFunds(listToRender);
+  qs('#loadMoreBtn').style.display = listToRender.length > shownCount ? 'block' : 'none';
+}
+
+// initial load
+async function doLoad(force=false) {
+  try {
+    qs('#fundList').innerHTML = '<div class="small muted">Loading funds…</div>';
+    const list = await fetchFundList(force);
+    // API response is an array of objects: {schemeName, schemeCode, schemeCategory? , nav?, date?}
+    // We'll normalize each item
+    allFunds = list.map(i => ({
+      schemeName: i.schemeName || i.scheme_name || i.fund || '',
+      schemeCode: i.schemeCode || i.scheme_code || i.scheme_code || i.schemeCode,
+      nav: i.nav ? parseFloat(i.nav) : (i.netAssetValue ? parseFloat(i.netAssetValue) : null),
+      date: i.date || i.lastUpdated || null,
+      schemeCategory: i.schemeCategory || i.category || ''
+    })).filter(f => f.schemeName && f.schemeCode);
+    filteredFunds = [];
+    shownCount = PAGE_SIZE;
+    renderFiltered();
+
+    // Preload return calculations for first N visible funds to show immediate 1Y/3Y/5Y.
+    // We'll fetch detailed history for first 12 visible funds in parallel to avoid overhead.
+    const preloadCount = Math.min(12, allFunds.length);
+    for (let i=0;i<preloadCount;i++) {
+      computeReturnsForCard(allFunds[i].schemeCode).catch(e => console.warn('preload failed', e));
+    }
+
+  } catch(err) {
+    console.error(err);
+    qs('#fundList').innerHTML = `<div class="small muted">Failed to load funds: ${err.message || err}</div>`;
+  }
+}
+
+// compute returns for a fund's list card (caches per fund in sessionStorage)
+async function computeReturnsForCard(schemeCode) {
+  const cacheKey = `mf_hist_${schemeCode}`;
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(cacheKey) || 'null');
+    if (cached && (Date.now() - cached.ts < 1000*60*60*6) && cached.history) {
+      applyReturnToCard(schemeCode, cached.history);
+      return;
+    }
+  } catch(e){}
+
+  const res = await fetch(`${API_LIST}/${schemeCode}`);
+  if (!res.ok) throw new Error('history fetch failed');
+  const js = await res.json();
+  const history = (js.data || []).map(h => ({ date: parseDateStr(h.date), nav: parseFloat(h.nav) }))
+                                 .filter(h => !isNaN(h.nav))
+                                 .sort((a,b) => a.date - b.date);
+  // store in session cache short lived
+  try {
+    sessionStorage.setItem(cacheKey, JSON.stringify({ ts: Date.now(), history: history.map(h => ({date: h.date.toISOString(), nav: h.nav})) }));
+  } catch(e){}
+
+  applyReturnToCard(schemeCode, history);
+}
+
+function applyReturnToCard(schemeCode, historyRaw) {
+  // historyRaw might be objects with date string or Date. Normalize.
+  const history = historyRaw.map(h => ({ date: (typeof h.date === 'string' ? new Date(h.date) : h.date), nav: Number(h.nav) }))
+                            .filter(h => h.date && !isNaN(h.nav))
+                            .sort((a,b) => a.date - b.date);
+  if (!history.length) return;
+  const latest = history[history.length - 1].nav;
+  const latestDate = history[history.length - 1].date;
+
+  const findNavBeforeYears = (years) => {
+    const target = new Date(latestDate.getTime());
+    target.setFullYear(target.getFullYear() - years);
+    // find nearest entry on or before target
+    for (let i = history.length - 1; i >= 0; i--) {
+      if (history[i].date.getTime() <= target.getTime()) return history[i].nav;
+    }
+    return null;
+  };
+
+  const r1 = computeReturnPercent(latest, findNavBeforeYears(1));
+  const r3 = computeReturnPercent(latest, findNavBeforeYears(3));
+  const r5 = computeReturnPercent(latest, findNavBeforeYears(5));
+
+  const e1 = qs(`#r1-${schemeCode}`); if (e1) e1.textContent = formatPct(r1);
+  const e3 = qs(`#r3-${schemeCode}`); if (e3) e3.textContent = formatPct(r3);
+  const e5 = qs(`#r5-${schemeCode}`); if (e5) e5.textContent = formatPct(r5);
+}
+
+// initialize
+doLoad(false);
+</script>
+
+</body>
+</html>
