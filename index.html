@@ -299,36 +299,9 @@
     </footer>
   </div>
 
-  <!-- Popup -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <span class="close-btn" id="closePopup">&times;</span>
-      <h3>Access Restricted</h3>
-      <p>To access these services, you need to register.</p>
-      <a href="signup.html"><button>Register Now</button></a>
-    </div>
-  </div>
 
-  <script>
-    const popupTriggers = document.querySelectorAll('.popup-trigger');
-    const popupOverlay = document.getElementById('popupOverlay');
-    const closePopup = document.getElementById('closePopup');
-
-    popupTriggers.forEach(trigger => {
-      trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        popupOverlay.style.display = 'flex';
-      });
-    });
-
-    closePopup.addEventListener('click', () => {
-      popupOverlay.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-      if (e.target === popupOverlay) popupOverlay.style.display = 'none';
-    });
-  </script>
+ 
 </body>
 </html>
+
 
