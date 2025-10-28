@@ -287,15 +287,6 @@
   background: #444;
 }
 
-/* --- Mobile Responsive --- */
-@media (max-width: 600px) {
-  .fund-form {
-    padding: 18px;
-  }
-  .scheme-heading {
-    font-size: 18px;
-  }
-}
 
   </style>
 </head>
@@ -375,39 +366,35 @@
         </div>
 
         <!-- MUTUAL FUNDS SECTION -->
-<!-- MUTUAL FUNDS SECTION (Updated UI) -->
+<!-- MUTUAL FUNDS SECTION -->
 <div id="mutualfunds" class="section">
-  <h2 style="margin-bottom:15px;">Mutual Fund Investments</h2>
-  <p style="color:#555;margin-bottom:25px;">Explore top-performing mutual fund schemes and start your investment journey with Pecos.</p>
+  <h2>Mutual Fund Investments</h2>
+  <p>Select a scheme and choose SIP or Lumpsum to begin your investment request.</p>
 
-  <div id="mutualFundList" class="fund-grid"></div>
+  <div id="mutualFundList"></div>
 
-  <form id="mutualFundForm" style="display:none;margin-top:30px;" class="fund-form">
-    <h3 id="selectedSchemeName" class="scheme-heading"></h3>
+  <form id="mutualFundForm" style="display:none; margin-top:20px;">
+    <input type="hidden" id="selectedScheme" />
+    <h4 id="selectedSchemeName" style="margin-bottom:10px;"></h4>
 
-    <div class="form-row">
-      <label>Investment Type</label>
-      <select id="investmentType" required>
-        <option value="">Select Type</option>
-        <option value="SIP">SIP</option>
-        <option value="Lumpsum">Lumpsum</option>
-      </select>
-    </div>
+    <label>Investment Type</label>
+    <select id="investmentType" required>
+      <option value="">Select Type</option>
+      <option value="SIP">SIP</option>
+      <option value="Lumpsum">Lumpsum</option>
+    </select>
 
-    <div class="form-row">
-      <label>Amount (₹)</label>
-      <input type="number" id="investmentAmount" placeholder="Enter investment amount" required />
-    </div>
+    <input type="number" id="investmentAmount" placeholder="Enter Amount (₹)" required />
 
-    <div class="form-row" id="sipDateContainer" style="display:none;">
-      <label>SIP Deduction Date</label>
+    <div id="sipDateContainer" style="display:none;">
+      <label>Select SIP Deduction Date</label>
       <input type="date" id="sipDate" />
     </div>
 
-    <button type="submit">Submit Investment Request</button>
+    <button type="submit">Submit Request</button>
   </form>
 
-  <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:15px;"></p>
+  <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
 </div>
 
 
