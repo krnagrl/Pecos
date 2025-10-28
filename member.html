@@ -186,6 +186,117 @@
         font-size: 15px;
       }
     }
+    /* --- MUTUAL FUND STYLING --- */
+.fund-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.fund-grid .card {
+  border: 1px solid #f3e88a;
+  border-radius: 12px;
+  background: #fffef4;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fund-grid .card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.fund-grid .card h4 {
+  color: #222;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.fund-grid .card p {
+  margin: 6px 0;
+  color: #444;
+  font-size: 14px;
+}
+
+.fund-grid .card button {
+  width: 100%;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s;
+}
+
+.fund-grid .card button:hover {
+  background: #444;
+}
+
+.fund-form {
+  background: #fffdf2;
+  border: 1px solid #f1e3a5;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  max-width: 500px;
+}
+
+.scheme-heading {
+  font-size: 20px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.form-row input,
+.form-row select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+.fund-form button {
+  background: #333;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  width: 100%;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.fund-form button:hover {
+  background: #444;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 600px) {
+  .fund-form {
+    padding: 18px;
+  }
+  .scheme-heading {
+    font-size: 18px;
+  }
+}
+
   </style>
 </head>
 
@@ -264,35 +375,41 @@
         </div>
 
         <!-- MUTUAL FUNDS SECTION -->
+<!-- MUTUAL FUNDS SECTION (Updated UI) -->
 <div id="mutualfunds" class="section">
-  <h2>Mutual Fund Investments</h2>
-  <p>Select a scheme and choose SIP or Lumpsum to begin your investment request.</p>
+  <h2 style="margin-bottom:15px;">Mutual Fund Investments</h2>
+  <p style="color:#555;margin-bottom:25px;">Explore top-performing mutual fund schemes and start your investment journey with Pecos.</p>
 
-  <div id="mutualFundList"></div>
+  <div id="mutualFundList" class="fund-grid"></div>
 
-  <form id="mutualFundForm" style="display:none; margin-top:20px;">
-    <input type="hidden" id="selectedScheme" />
-    <h4 id="selectedSchemeName" style="margin-bottom:10px;"></h4>
+  <form id="mutualFundForm" style="display:none;margin-top:30px;" class="fund-form">
+    <h3 id="selectedSchemeName" class="scheme-heading"></h3>
 
-    <label>Investment Type</label>
-    <select id="investmentType" required>
-      <option value="">Select Type</option>
-      <option value="SIP">SIP</option>
-      <option value="Lumpsum">Lumpsum</option>
-    </select>
+    <div class="form-row">
+      <label>Investment Type</label>
+      <select id="investmentType" required>
+        <option value="">Select Type</option>
+        <option value="SIP">SIP</option>
+        <option value="Lumpsum">Lumpsum</option>
+      </select>
+    </div>
 
-    <input type="number" id="investmentAmount" placeholder="Enter Amount (₹)" required />
+    <div class="form-row">
+      <label>Amount (₹)</label>
+      <input type="number" id="investmentAmount" placeholder="Enter investment amount" required />
+    </div>
 
-    <div id="sipDateContainer" style="display:none;">
-      <label>Select SIP Deduction Date</label>
+    <div class="form-row" id="sipDateContainer" style="display:none;">
+      <label>SIP Deduction Date</label>
       <input type="date" id="sipDate" />
     </div>
 
-    <button type="submit">Submit Request</button>
+    <button type="submit">Submit Investment Request</button>
   </form>
 
-  <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
+  <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:15px;"></p>
 </div>
+
 
       </main>
     </div>
