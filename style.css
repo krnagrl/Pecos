@@ -202,6 +202,10 @@
       color: #fffaa0;
       text-decoration: none;
     }
+.open-account p {
+  margin-bottom: 15px; /* Adds space between paragraph and button */
+}
+
 
     footer a:hover { text-decoration: underline; }
 
