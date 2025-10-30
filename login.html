@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* --- Global Reset and Base --- */
     * { box-sizing: border-box; }
 
     body {
@@ -34,6 +35,15 @@
       backdrop-filter: blur(8px);
       border-radius: 10px;
       overflow: hidden;
+    }
+
+    .contact-section img {
+      img {
+  width: 28px;
+  height: 28px;
+  margin: 0 10px;
+  transition: transform 0.3s ease;
+    }
     }
 
     /* --- Header --- */
@@ -89,98 +99,96 @@
 
     .nav-links a:hover::after { width: 100%; }
 
-    /* --- Main Section --- */
+    /* --- Layout --- */
+    .content {
+      display: flex;
+      padding: 20px;
+      flex-wrap: wrap;
+    }
+
+    .sidebar {
+      width: 220px;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      background: rgba(247, 243, 198, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      flex-shrink: 0;
+    }
+
+    .sidebar h3 {
+      background-color: #c33;
+      color: white;
+      padding: 8px;
+      font-size: 17px;
+      text-align: center;
+      border-radius: 5px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar ul { list-style-type: none; padding: 0; margin: 0; }
+
+    .sidebar li { margin: 10px 0; font-size: 15px; }
+
+    .sidebar li a {
+      text-decoration: none;
+      color: #333;
+      padding: 6px 8px;
+      display: block;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .sidebar li a:hover {
+      background-color: rgba(204,51,51,0.1);
+      color: #c33;
+    }
+
     .main {
       flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 50px 20px;
+      padding: 25px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      margin-left: 10px;
+      box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
     }
 
-    .login-box {
-      background: #F5EFE9;
-      padding: 40px 35px;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 420px;
-      text-align: center;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(74, 74, 125, 0.3);
-    }
-
-    .login-box h2 {
-      color: #c33;
+    .ask-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4a4a7d;
       margin-bottom: 8px;
-      font-size: 24px;
     }
 
-    .login-box p {
-      color: #444;
-      margin-bottom: 25px;
-      font-size: 15px;
-      line-height: 1.4;
+    .ask-title span { color: #c33; }
+
+    .open-account, .contact-section { margin-top: 40px; line-height: 1.6; }
+
+    .open-account h2, .contact-section h2 {
+      font-size: 18px;
+      color: #c33;
+      margin-bottom: 10px;
     }
 
-    input {
-      width: 100%;
-      padding: 12px 14px;
-      margin: 8px 0;
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      border-radius: 6px;
-      font-size: 15px;
-      background: rgba(255, 255, 255, 0.9);
-      transition: all 0.3s ease;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #4a4a7d;
-      box-shadow: 0 0 5px rgba(74,74,125,0.3);
-      background: rgba(255,255,255,1);
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
+    .open-account button, .contact-section button {
       background-color: #c33;
       color: white;
       border: none;
-      border-radius: 6px;
+      padding: 10px 20px;
       font-size: 16px;
-      font-weight: 600;
+      border-radius: 5px;
       cursor: pointer;
-      margin-top: 10px;
       transition: all 0.3s ease;
     }
 
-    button:hover {
+    .open-account button:hover, .contact-section button:hover {
       background-color: #a22;
       transform: translateY(-2px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
-    #msg {
-      margin-top: 15px;
-      font-size: 14px;
-      font-weight: 500;
-    }
+    .contact-section p { font-size: 15px; margin: 6px 0; }
 
-    .link {
-      display: inline-block;
-      margin-top: 14px;
-      color: #4a4a7d;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .link:hover {
-      color: #c33;
-    }
+    .contact-section a { color: #4a4a7d; text-decoration: none; }
+    .contact-section a:hover { text-decoration: underline; }
 
     footer {
       background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
@@ -194,51 +202,19 @@
     footer a { color: #fffaa0; text-decoration: none; }
     footer a:hover { text-decoration: underline; }
 
+
+
     /* --- Responsive --- */
-@media (max-width: 768px) {
-  .content {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
-    margin-bottom: 10px;
-  }
-
-  /* Keep logo + links inline */
-  header {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 15px;
-  }
-
-  .logo span {
-    font-size: 18px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 15px;
-    flex-wrap: nowrap;
-  }
-
-  .nav-links a {
-    font-size: 14px;
-  }
-
-  .open-account button {
-    width: 100%;
-  }
-
-  .main {
-    margin-left: 0;
-  }
-}
-
+    @media (max-width: 768px) {
+      .content { flex-direction: column; }
+      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 10px; }
+      header { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 10px 15px; }
+      .logo span { font-size: 18px; }
+      .nav-links { display: flex; gap: 15px; flex-wrap: nowrap; }
+      .nav-links a { font-size: 14px; }
+      .open-account button { width: 100%; }
+      .main { margin-left: 0; }
+    }
   </style>
 </head>
 
