@@ -205,6 +205,23 @@
 
 
     footer a:hover { text-decoration: underline; }
+.footer-links {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #007bff; /* or any color matching your theme */
+}
+
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
