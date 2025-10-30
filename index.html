@@ -3,33 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <!-- 🔹 SEO Meta Tags for Pecos (Akola) -->
+  <meta name="description" content="Pecos is Akola's trusted name for Finance, Mutual Funds, Shares, and Digital Advertising. Explore Pecos services in finance, technology, and marketing to grow your business in Akola, Maharashtra.">
+  <meta name="keywords" content="Pecos, Pecos Akola, Pecos Advertisers, Pecos Finance, Pecos Mutual Funds, Pecos Shares, Pecos Investments, Pecos Technology, Akola Finance, Akola Mutual Funds, Akola Companies, Akola Jobs, Akola Technology, Akola Advertising Agency, Akola Marketing, Akola Investments, Digital Marketing Akola, Stock Broker Akola, Akola Business, Finance in Akola, Mutual Funds in Akola, Pecos Digital Marketing, Pecos Akola Company, Pecos Services Akola">
+  <meta name="author" content="Pecos Advertisers">
+  <meta name="robots" content="index, follow">
 
-<meta name="description" content="Pecos is Akola's trusted name for Finance, Mutual Funds, Shares, and Digital Advertising. Explore Pecos services in finance, technology, and marketing to grow your business in Akola, Maharashtra.">
+  <!-- 🔹 Social Media Preview -->
+  <meta property="og:title" content="Pecos - Finance | Mutual Funds | Stocks & Shares">
+  <meta property="og:description" content="Discover Pecos — Akola’s hub for finance, mutual funds, advertising, and technology services.">
+  <meta property="og:image" content="https://pecos.in/pecos.png">
+  <meta property="og:url" content="https://pecos.in">
+  <meta name="twitter:card" content="summary_large_image">
 
-<meta name="keywords" content="Pecos, Pecos Akola, Pecos Advertisers, Pecos Finance, Pecos Mutual Funds, Pecos Shares, Pecos Investments, Pecos Technology, Akola Finance, Akola Mutual Funds, Akola Companies, Akola Jobs, Akola Technology, Akola Advertising Agency, Akola Marketing, Akola Investments, Digital Marketing Akola, Stock Broker Akola, Akola Business, Finance in Akola, Mutual Funds in Akola, Pecos Digital Marketing, Pecos Akola Company, Pecos Services Akola">
-
-<meta name="author" content="Pecos Advertisers">
-<meta name="robots" content="index, follow">
-
-<!-- For better sharing on social media -->
-<meta property="og:title" content="Pecos - Finance | Mutual Funds | Stocks & Shares">
-<meta property="og:description" content="Discover Pecos — Akola’s hub for finance, mutual funds, advertising, and technology services.">
-<meta property="og:image" content="https://pecos.in/pecos.png">
-<meta property="og:url" content="https://pecos.in">
-<meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" type="image/png" href="pecos.png"/>
+  <link rel="icon" type="image/png" href="pecos.png">
   <title>Pecos - Finance | Mutual Funds | Stocks & Shares</title>
+
   <style>
-    /* --- Global Reset and Base --- */
-    * { box-sizing: border-box; }
+    /* --- Base Styles --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: linear-gradient(135deg, #f9f5d7, #fffce8);
       font-family: "Verdana", sans-serif;
-      margin: 0;
-      padding: 0;
       color: #333;
     }
 
@@ -39,18 +36,8 @@
       border: 1px solid rgba(74,74,125,0.3);
       background: rgba(255, 252, 232, 0.85);
       box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-      backdrop-filter: blur(8px);
       border-radius: 10px;
       overflow: hidden;
-    }
-
-    .contact-section img {
-      img {
-  width: 28px;
-  height: 28px;
-  margin: 0 10px;
-  transition: transform 0.3s ease;
-    }
     }
 
     /* --- Header --- */
@@ -70,7 +57,10 @@
       gap: 10px;
     }
 
-    .logo img { height: 42px; width: 42px; }
+    .logo img {
+      height: 42px;
+      width: 42px;
+    }
 
     .logo span {
       font-size: 22px;
@@ -82,7 +72,6 @@
     .nav-links {
       display: flex;
       gap: 25px;
-      flex-wrap: wrap;
     }
 
     .nav-links a {
@@ -90,8 +79,8 @@
       text-decoration: none;
       font-size: 15px;
       font-weight: 500;
-      transition: all 0.3s ease;
       position: relative;
+      transition: all 0.3s ease;
     }
 
     .nav-links a::after {
@@ -109,17 +98,17 @@
     /* --- Layout --- */
     .content {
       display: flex;
-      padding: 20px;
       flex-wrap: wrap;
+      padding: 20px;
     }
 
     .sidebar {
       width: 220px;
-      border-right: 1px solid rgba(0,0,0,0.1);
       background: rgba(247, 243, 198, 0.6);
       padding: 15px;
       border-radius: 8px;
       flex-shrink: 0;
+      border-right: 1px solid rgba(0,0,0,0.1);
     }
 
     .sidebar h3 {
@@ -132,9 +121,9 @@
       margin-bottom: 12px;
     }
 
-    .sidebar ul { list-style-type: none; padding: 0; margin: 0; }
+    .sidebar ul { list-style: none; }
 
-    .sidebar li { margin: 10px 0; font-size: 15px; }
+    .sidebar li { margin: 10px 0; }
 
     .sidebar li a {
       text-decoration: none;
@@ -159,6 +148,7 @@
       box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
     }
 
+    /* --- Sections --- */
     .ask-title {
       font-size: 32px;
       font-weight: bold;
@@ -168,7 +158,10 @@
 
     .ask-title span { color: #c33; }
 
-    .open-account, .contact-section { margin-top: 40px; line-height: 1.6; }
+    .open-account, .contact-section {
+      margin-top: 40px;
+      line-height: 1.6;
+    }
 
     .open-account h2, .contact-section h2 {
       font-size: 18px;
@@ -187,16 +180,38 @@
       transition: all 0.3s ease;
     }
 
-    .open-account button:hover, .contact-section button:hover {
+    .open-account button:hover,
+    .contact-section button:hover {
       background-color: #a22;
       transform: translateY(-2px);
     }
 
-    .contact-section p { font-size: 15px; margin: 6px 0; }
+    .contact-section p {
+      font-size: 15px;
+      margin: 6px 0;
+    }
 
-    .contact-section a { color: #4a4a7d; text-decoration: none; }
-    .contact-section a:hover { text-decoration: underline; }
+    .contact-section a {
+      color: #4a4a7d;
+      text-decoration: none;
+    }
 
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-section img {
+      width: 28px;
+      height: 28px;
+      margin-top: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-section img:hover {
+      transform: scale(1.1);
+    }
+
+    /* --- Footer --- */
     footer {
       background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
@@ -206,78 +221,32 @@
       letter-spacing: 0.5px;
     }
 
-    footer a { color: #fffaa0; text-decoration: none; }
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
+
     footer a:hover { text-decoration: underline; }
-
-    /* --- Popup --- */
-    .popup-overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(3px);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .popup {
-      background: #fffce8;
-      padding: 25px 30px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      text-align: center;
-      max-width: 300px;
-      animation: popupFade 0.3s ease;
-      position: relative;
-    }
-
-    @keyframes popupFade {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
-    }
-
-    .popup h3 {
-      color: #4a4a7d;
-      margin-bottom: 10px;
-      font-size: 18px;
-    }
-
-    .popup button {
-      margin-top: 15px;
-      background-color: #c33;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .popup button:hover { background-color: #a22; }
-
-    .close-btn {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      font-size: 18px;
-      color: #c33;
-      cursor: pointer;
-    }
 
     /* --- Responsive --- */
     @media (max-width: 768px) {
       .content { flex-direction: column; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 10px; }
-      header { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 10px 15px; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+      }
+      header { padding: 10px 15px; }
       .logo span { font-size: 18px; }
-      .nav-links { display: flex; gap: 15px; flex-wrap: nowrap; }
+      .nav-links { gap: 15px; }
       .nav-links a { font-size: 14px; }
       .open-account button { width: 100%; }
       .main { margin-left: 0; }
     }
   </style>
 </head>
+
 <body>
   <div class="container">
     <header>
@@ -292,7 +261,7 @@
     </header>
 
     <div class="content">
-      <div class="sidebar">
+      <aside class="sidebar">
         <h3>Services</h3>
         <ul>
           <li><a href="#">Finance</a></li>
@@ -300,40 +269,29 @@
           <li><a href="#">Stocks & Shares</a></li>
           <li><a href="Advertise.html">Advertising</a></li>
         </ul>
-      </div>
+      </aside>
 
-      <div class="main">
+      <main class="main">
         <div class="ask-title"><span>Pecos</span>!</div>
         <hr>
-        <div class="open-account">
+
+        <section class="open-account">
           <h2>Open an Account with Us</h2>
           <p>Start your financial journey with confidence. Our process is secure, transparent, and customer-focused.</p>
           <a href="signup.html"><button>Register</button></a>
-        </div>
+        </section>
 
-        <div class="contact-section">
+        <section class="contact-section">
           <h2>Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
           <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
-          <a href="https://www.instagram.com/pecos.in"><img src="images/insta.jpg" height="28px" width="28px"></a>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
 
     <footer>
       <p>© 2025 Pecos | All Rights Reserved</p>
     </footer>
   </div>
-
-
- 
 </body>
 </html>
-
-
-
-
-
-
-
-
