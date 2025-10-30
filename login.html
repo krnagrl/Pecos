@@ -16,34 +16,24 @@
 
   <style>
     /* --- Global Reset and Base --- */
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    body {
-      background: linear-gradient(135deg, #f9f5d7, #fffce8);
-      font-family: "Verdana", sans-serif;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      font-family: "Verdana", sans-serif;
       color: #333;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      border: 1px solid rgba(74,74,125,0.3);
-      background: rgba(255, 252, 232, 0.85);
-      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
-      backdrop-filter: blur(8px);
-      border-radius: 10px;
+      border-radius: 20px;
       overflow: hidden;
-    }
-
-    .contact-section img {
-      img {
-  width: 28px;
-  height: 28px;
-  margin: 0 10px;
-  transition: transform 0.3s ease;
-    }
     }
 
     /* --- Header --- */
@@ -55,6 +45,8 @@
       align-items: center;
       padding: 15px 25px;
       flex-wrap: wrap;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
 
     .logo {
@@ -63,7 +55,10 @@
       gap: 10px;
     }
 
-    .logo img { height: 42px; width: 42px; }
+    .logo img {
+      height: 42px;
+      width: 42px;
+    }
 
     .logo span {
       font-size: 22px;
@@ -97,130 +92,175 @@
       margin-top: 4px;
     }
 
-    .nav-links a:hover::after { width: 100%; }
-
-    /* --- Layout --- */
-    .content {
-      display: flex;
-      padding: 20px;
-      flex-wrap: wrap;
+    .nav-links a:hover::after {
+      width: 100%;
     }
 
-    .sidebar {
-      width: 220px;
-      border-right: 1px solid rgba(0,0,0,0.1);
-      background: rgba(247, 243, 198, 0.6);
-      padding: 15px;
-      border-radius: 8px;
-      flex-shrink: 0;
-    }
-
-    .sidebar h3 {
-      background-color: #c33;
-      color: white;
-      padding: 8px;
-      font-size: 17px;
-      text-align: center;
-      border-radius: 5px;
-      margin-bottom: 12px;
-    }
-
-    .sidebar ul { list-style-type: none; padding: 0; margin: 0; }
-
-    .sidebar li { margin: 10px 0; font-size: 15px; }
-
-    .sidebar li a {
-      text-decoration: none;
-      color: #333;
-      padding: 6px 8px;
-      display: block;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-
-    .sidebar li a:hover {
-      background-color: rgba(204,51,51,0.1);
-      color: #c33;
-    }
-
+    /* --- Main Section --- */
     .main {
       flex: 1;
-      padding: 25px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-radius: 8px;
-      margin-left: 10px;
-      box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 50px 20px;
     }
 
-    .ask-title {
-      font-size: 32px;
-      font-weight: bold;
-      color: #4a4a7d;
-      margin-bottom: 8px;
+    .login-box {
+      background: #F5EFE9;
+      padding: 40px 35px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(74, 74, 125, 0.3);
     }
 
-    .ask-title span { color: #c33; }
-
-    .open-account, .contact-section { margin-top: 40px; line-height: 1.6; }
-
-    .open-account h2, .contact-section h2 {
-      font-size: 18px;
+    .login-box h2 {
       color: #c33;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      font-size: 24px;
     }
 
-    .open-account button, .contact-section button {
-      background-color: #c33;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 5px;
-      cursor: pointer;
+    .login-box p {
+      color: #444;
+      margin-bottom: 25px;
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin: 8px 0;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 6px;
+      font-size: 15px;
+      background: rgba(255, 255, 255, 0.9);
       transition: all 0.3s ease;
     }
 
-    .open-account button:hover, .contact-section button:hover {
-      background-color: #a22;
-      transform: translateY(-2px);
+    input:focus {
+      outline: none;
+      border-color: #4a4a7d;
+      box-shadow: 0 0 5px rgba(74,74,125,0.3);
+      background: rgba(255,255,255,1);
     }
 
-    .contact-section p { font-size: 15px; margin: 6px 0; }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #c33;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
 
-    .contact-section a { color: #4a4a7d; text-decoration: none; }
-    .contact-section a:hover { text-decoration: underline; }
+    button:hover {
+      background-color: #a22;
+      transform: translateY(-2px);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
 
+    #msg {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .link {
+      display: inline-block;
+      margin-top: 14px;
+      color: #4a4a7d;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .link:hover {
+      color: #c33;
+    }
+
+    /* --- Footer --- */
     footer {
       background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
       color: white;
       text-align: center;
       font-size: 13px;
-      padding: 12px;
-      letter-spacing: 0.5px;
+      padding: 15px;
+      letter-spacing: 0.4px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      margin-top: auto;
     }
 
-    footer a { color: #fffaa0; text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
 
-
+    footer a:hover {
+      text-decoration: underline;
+    }
 
     /* --- Responsive --- */
-    @media (max-width: 768px) {
-      .content { flex-direction: column; }
-      .sidebar { width: 100%; border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); margin-bottom: 10px; }
-      header { flex-direction: row; flex-wrap: nowrap; justify-content: space-between; align-items: center; padding: 10px 15px; }
-      .logo span { font-size: 18px; }
-      .nav-links { display: flex; gap: 15px; flex-wrap: nowrap; }
-      .nav-links a { font-size: 14px; }
-      .open-account button { width: 100%; }
-      .main { margin-left: 0; }
-    }
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 10px;
+  }
+
+  /* Keep logo + links inline */
+  header {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+  }
+
+  .logo span {
+    font-size: 18px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .open-account button {
+    width: 100%;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
+
   </style>
 </head>
 
 <body>
   <header>
-    <div class="container">
     <div class="logo">
       <img src="pecos.png" alt="Pecos Logo">
       <span>Pecos</span>
@@ -231,6 +271,7 @@
     </nav>
   </header>
 
+  <div class="main">
     <div class="login-box">
       <h2>Member Login</h2>
       <p>Welcome back! Please log in to access your member dashboard.</p>
@@ -242,11 +283,12 @@
       <p id="msg"></p>
       <a class="link" onclick="resetPassword()">Forgot Password?</a>
     </div>
+  </div>
 
   <footer>
     © 2025 Pecos | All Rights Reserved<br>
   </footer>
-</div>
+
   <script>
     // Firebase config
     const firebaseConfig = {
