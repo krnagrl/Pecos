@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- 🔹 SEO Meta Tags for Pecos Farms -->
+  <meta name="description" content="Pecos Farms promotes organic farming, sustainable agriculture, and high-quality natural produce from Akola, Maharashtra. Experience farm-fresh goodness grown with care.">
+  <meta name="keywords" content="Pecos Farms, Organic Farming, Sustainable Agriculture, Natural Produce, Fresh Pulses, Organic Vegetables, Akola Farms, Pecos Agro, Pecos Agriculture, Pecos Organic, Pecos Natural Products, Pecos AgriTech, Pecos Farm Products">
+  <meta name="author" content="Pecos Farms">
+  <meta name="robots" content="index, follow">
+
+  <!-- 🔹 Social Media Preview -->
+  <meta property="og:title" content="Pecos Farms - Organic & Sustainable Agriculture">
+  <meta property="og:description" content="Nurturing nature through sustainable farming and organic produce from Akola. Pecos Farms — where purity meets productivity.">
+  <meta property="og:image" content="https://pecos.in/pecos-farms.png">
+  <meta property="og:url" content="https://pecosfarms.in">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" type="image/png" href="pecos-farms.png">
+<style>    /* --- Base Styles --- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #f9f5d7, #fffce8);
+      font-family: "Verdana", sans-serif;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      border: 1px solid rgba(74,74,125,0.3);
+      background: rgba(255, 252, 232, 0.85);
+      box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* --- Header --- */
+    header {
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 42px;
+      width: 42px;
+    }
+
+    .logo span {
+      font-size: 22px;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: #fffaa0;
+      width: 0;
+      transition: width 0.3s;
+      margin-top: 4px;
+    }
+
+    .nav-links a:hover::after { width: 100%; }
+
+    /* --- Layout --- */
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: rgba(247, 243, 198, 0.6);
+      padding: 15px;
+      border-radius: 8px;
+      flex-shrink: 0;
+      border-right: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .sidebar h3 {
+      background-color: #c33;
+      color: white;
+      padding: 8px;
+      font-size: 17px;
+      text-align: center;
+      border-radius: 5px;
+      margin-bottom: 12px;
+    }
+
+    .sidebar ul { list-style: none; }
+
+    .sidebar li { margin: 10px 0; }
+
+    .sidebar li a {
+      text-decoration: none;
+      color: #333;
+      padding: 6px 8px;
+      display: block;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+
+
+    .main {
+      flex: 1;
+      padding: 25px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 8px;
+      margin-left: 10px;
+      box-shadow: inset 0px 0px 5px rgba(0,0,0,0.05);
+    }
+
+    /* --- Sections --- */
+    .ask-title {
+      font-size: 32px;
+      font-weight: bold;
+      color: #4a4a7d;
+      margin-bottom: 8px;
+    }
+
+    .ask-title span { color: #c33; }
+
+    .open-account, .contact-section {
+      margin-top: 40px;
+      line-height: 1.6;
+    }
+
+    .open-account h2, .contact-section h2 {
+      font-size: 18px;
+      color: #c33;
+      margin-bottom: 10px;
+    }
+
+    .open-account button, .contact-section button {
+      background-color: #c33;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .open-account button:hover,
+    .contact-section button:hover {
+      background-color: #a22;
+      transform: translateY(-2px);
+    }
+
+    .contact-section p {
+      font-size: 15px;
+      margin: 6px 0;
+    }
+
+    .contact-section a {
+      color: #4a4a7d;
+      text-decoration: none;
+    }
+
+    .contact-section a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-section img {
+      width: 28px;
+      height: 28px;
+      margin-top: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-section img:hover {
+      transform: scale(1.1);
+    }
+
+    /* --- Footer --- */
+    footer {
+      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
+      color: white;
+      text-align: center;
+      font-size: 13px;
+      padding: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    footer a {
+      color: #fffaa0;
+      text-decoration: none;
+    }
+.open-account p {
+  margin-bottom: 15px; /* Adds space between paragraph and button */
+}
+
+
+    footer a:hover { text-decoration: underline; }
+.footer-links {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-links a {
+  color: #333;
+  text-decoration: none;
+  margin: 0 6px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #007bff; /* or any color matching your theme */
+}
+
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .content { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+      }
+      header { padding: 10px 15px; }
+      .logo span { font-size: 18px; }
+      .nav-links { gap: 15px; }
+      .nav-links a { font-size: 14px; }
+      .open-account button { width: 100%; }
+      .main { margin-left: 0; }
+    }</style>  <title>Pecos Farms - Organic & Sustainable Agriculture</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="pecos-farms.png" alt="Pecos Farms Logo">
+        <span>Pecos Farms</span>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <aside class="sidebar">
+        <h3>Our Products</h3>
+        <ul>
+          <li><a href="#">Organic Toor Dal</a></li>
+          <li><a href="#">Natural Fertilizers</a></li>
+          <li><a href="#">Farm-Fresh Vegetables</a></li>
+          <li><a href="#">Cold-Pressed Oils</a></li>
+        </ul>
+      </aside>
+
+      <main class="main">
+        <div class="ask-title"><span>Pecos Farms</span> — Nurturing Nature!</div>
+        <hr>
+
+        <section class="open-account">
+          <h2>Our Mission</h2>
+          <p>At Pecos Farms, we believe in cultivating health through purity. Our mission is to promote sustainable agriculture, protect soil health, and deliver naturally grown produce that supports both farmers and consumers.</p>
+          <p>We use traditional farming practices combined with modern techniques to maintain balance with nature — ensuring every product that reaches you is fresh, safe, and full of life.</p>
+        </section>
+
+        <section class="open-account">
+          <h2>What We Offer</h2>
+          <p>From premium-quality Toor Dal and fresh vegetables to eco-friendly fertilizers and agri-consulting, Pecos Farms is committed to supporting a cleaner food system.</p>
+          <p>Whether you’re a consumer looking for authentic produce or a farmer seeking sustainable solutions — we grow with you.</p>
+          <a href="join.html"><button>Partner with Us</button></a>
+        </section>
+
+        <section class="contact-section">
+          <h2>Connect With Us</h2>
+          <p><strong>Email:</strong> <a href="mailto:pecosfarms@gmail.com">pecosfarms@gmail.com</a></p>
+          <p><strong>Location:</strong> MIDC Phase 3, Akola, Maharashtra 444001</p>
+          <p><strong>Follow Us:</strong> Coming soon on Instagram & Facebook!</p>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      <p>© 2025 Pecos Farms | All Rights Reserved</p>
+      <div class="footer-links">
+         <a href="#">Career</a> -
+         <a href="#">Advertise</a> -
+         <a href="#">Affiliate</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
