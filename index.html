@@ -62,6 +62,33 @@ main.main h2 {
       margin-left: 20px;
       font-weight: 500;
     }
+    /* Improved button styling for Register & Login */
+button,
+a button {
+  background-color: #004aad;   /* deep blue, matching sidebar tone */
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover,
+a button:hover {
+  background-color: #00367f;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
 
     .container {
       display: flex;
@@ -386,4 +413,5 @@ main.main h2 {
   </script>
 </body>
 </html>
+
 
