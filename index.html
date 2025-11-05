@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
   <link rel="icon" type="image/png" href="pecos.png">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -30,6 +29,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 25px;
+      flex-wrap: wrap;
     }
 
     .logo img {
@@ -62,8 +62,10 @@
       gap: 20px;
       padding: 20px;
       flex: 1;
+      align-items: start; /* Prevents main section stretching */
     }
 
+    /* Sidebar (Left) */
     aside.sidebar {
       background: #003366;
       color: white;
@@ -81,6 +83,7 @@
     aside.sidebar ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
     aside.sidebar li {
@@ -92,13 +95,36 @@
       text-decoration: none;
     }
 
+    /* Main Section */
     main.main {
       background: white;
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      height: fit-content; /* Fixes space issue */
     }
 
+    .ask-title span {
+      font-weight: bold;
+      font-size: 24px;
+      color: #003366;
+    }
+
+    .open-account button {
+      background: #003366;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .open-account button:hover {
+      background: #004080;
+    }
+
+    /* Login Sidebar (Right) */
     .login-sidebar {
       background: #003366;
       color: white;
@@ -170,6 +196,49 @@
       text-align: center;
       margin-bottom: 5px;
     }
+
+    /* 🔹 Responsive for Mobile */
+    @media (max-width: 992px) {
+      .content {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+
+      aside.sidebar,
+      main.main,
+      .login-sidebar {
+        width: 100%;
+      }
+
+      .login-sidebar {
+        margin-top: 20px;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .open-account h2,
+      .contact-section h2 {
+        font-size: 18px;
+      }
+      .ask-title span {
+        font-size: 20px;
+      }
+      .login-sidebar {
+        padding: 20px;
+      }
+      .login-sidebar button {
+        padding: 8px;
+      }
+    }
   </style>
 </head>
 
@@ -187,7 +256,7 @@
     </header>
 
     <div class="content">
-      <!-- Left Sidebar -->
+      <!-- Sidebar -->
       <aside class="sidebar">
         <h3>Services</h3>
         <ul>
@@ -206,6 +275,7 @@
           <p>Start your financial journey with confidence. Our process is secure, transparent, and customer-focused.</p>
           <a href="signup.html"><button>Register</button></a>
         </section>
+
         <section class="contact-section">
           <h2>Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
@@ -213,23 +283,19 @@
         </section>
       </main>
 
-      <!-- Right Sidebar (Login Section) -->
+      <!-- Login Sidebar -->
       <aside class="login-sidebar">
         <h2>Member Login</h2>
         <p>Welcome back! Please log in to access your dashboard.</p>
-
-        <input id="email" type="email" placeholder="Email" required>
-        <input id="password" type="password" placeholder="Password" required>
+        <input id="email" type="email" placeholder="Email" required />
+        <input id="password" type="password" placeholder="Password" required />
         <button onclick="login()">Login</button>
-
         <p id="msg"></p>
         <a class="link" onclick="resetPassword()">Forgot Password?</a>
       </aside>
     </div>
 
-    <footer>
-      © 2025 Pecos | All Rights Reserved
-    </footer>
+    <footer>© 2025 Pecos | All Rights Reserved</footer>
   </div>
 
   <script>
