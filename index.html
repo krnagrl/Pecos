@@ -1,133 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
+  <link rel="icon" type="image/png" href="pecos.png">
 
-  <!-- 🔹 SEO Meta Tags -->
-  <meta name="description" content="Pecos is Akola's trusted name for Finance, Mutual Funds, Shares, and Digital Advertising. Explore Pecos services in finance, technology, and marketing to grow your business in Akola, Maharashtra.">
-  <meta name="keywords" content="Pecos, Pecos Akola, Pecos Advertisers, Pecos Finance, Pecos Mutual Funds, Pecos Shares, Pecos Investments, Pecos Technology, Akola Finance, Akola Mutual Funds, Akola Companies, Akola Jobs, Akola Technology, Akola Advertising Agency, Akola Marketing, Akola Investments, Digital Marketing Akola, Stock Broker Akola, Akola Business, Finance in Akola, Mutual Funds in Akola, Pecos Digital Marketing, Pecos Akola Company, Pecos Services Akola">
-  <meta name="author" content="Pecos Advertisers">
-
-  <link rel="icon" type="image/png" href="pecos.png" />
-  <link rel="stylesheet" href="style.css" />
-  <style>/* Right Sidebar Login Section */
-.right-sidebar {
-  width: 25%;
-  background: #f8f9fb;
-  border-left: 1px solid #e0e0e0;
-  padding: 25px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.login-panel {
-  width: 100%;
-  background: #fff;
-  padding: 20px 25px;
-  border-radius: 14px;
-  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  font-family: 'Montserrat', sans-serif;
-}
-
-.login-panel h3 {
-  color: #333;
-  margin-bottom: 6px;
-}
-
-.login-panel p {
-  color: #555;
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-.login-panel input {
-  width: 100%;
-  padding: 10px;
-  margin: 6px 0;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-  transition: 0.3s;
-}
-
-.login-panel input:focus {
-  border-color: #0078ff;
-  box-shadow: 0 0 6px rgba(0, 120, 255, 0.2);
-}
-
-.login-panel button {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background-color: #0078ff;
-  color: #fff;
-  font-weight: 600;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.login-panel button:hover {
-  background-color: #005ecc;
-}
-
-.login-panel #msg {
-  font-size: 14px;
-  margin-top: 8px;
-  min-height: 20px;
-}
-
-.login-panel .link {
-  display: inline-block;
-  margin-top: 10px;
-  color: #0078ff;
-  text-decoration: none;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-.login-panel .link:hover {
-  text-decoration: underline;
-}
-
-/* Responsive tweak */
-@media (max-width: 900px) {
-  .right-sidebar {
-    width: 100%;
-    border-left: none;
-    border-top: 1px solid #e0e0e0;
-    margin-top: 20px;
-  }
-}
-</style>
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
   <!-- Firebase -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-  <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
+  <style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+    }
+
+    header {
+      background: #003366;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+    }
+
+    .logo img {
+      height: 35px;
+      vertical-align: middle;
+    }
+
+    .logo span {
+      font-size: 20px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1.5fr;
+      gap: 20px;
+      padding: 20px;
+      flex: 1;
+    }
+
+    aside.sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      height: fit-content;
+    }
+
+    aside.sidebar h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
+
+    aside.sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    aside.sidebar li {
+      margin-bottom: 10px;
+    }
+
+    aside.sidebar a {
+      color: white;
+      text-decoration: none;
+    }
+
+    main.main {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .login-sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .login-sidebar p {
+      font-size: 14px;
+      color: #e0e0e0;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .login-sidebar input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .login-sidebar button {
+      width: 100%;
+      padding: 10px;
+      background: #ffcc00;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-sidebar button:hover {
+      background: #ffdb4d;
+    }
+
+    .login-sidebar .link {
+      color: #ffcc00;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+      margin-top: 10px;
+    }
+
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    #msg {
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <header>
       <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo" />
+        <img src="pecos.png" alt="Pecos Logo">
         <span>Pecos</span>
       </div>
       <nav class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#login-right">Login</a>
+        <a href="index.html">Home</a>
+        <a href="#">Login</a>
       </nav>
     </header>
 
-    <div class="content" id="home">
+    <div class="content">
       <!-- Left Sidebar -->
       <aside class="sidebar">
         <h3>Services</h3>
@@ -138,17 +197,15 @@
         </ul>
       </aside>
 
-      <!-- Main Content -->
+      <!-- Main Section -->
       <main class="main">
         <div class="ask-title"><span>Pecos</span>!</div>
         <hr>
-
         <section class="open-account">
           <h2>Open an Account with Us</h2>
           <p>Start your financial journey with confidence. Our process is secure, transparent, and customer-focused.</p>
           <a href="signup.html"><button>Register</button></a>
         </section>
-
         <section class="contact-section">
           <h2>Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
@@ -157,32 +214,24 @@
       </main>
 
       <!-- Right Sidebar (Login Section) -->
-      <aside class="right-sidebar" id="login-right">
-        <div class="login-panel">
-          <h3>Member Login</h3>
-          <p>Welcome back! Please log in to access your dashboard.</p>
+      <aside class="login-sidebar">
+        <h2>Member Login</h2>
+        <p>Welcome back! Please log in to access your dashboard.</p>
 
-          <input id="email" type="email" placeholder="Email" required />
-          <input id="password" type="password" placeholder="Password" required />
-          <button onclick="login()">Login</button>
+        <input id="email" type="email" placeholder="Email" required>
+        <input id="password" type="password" placeholder="Password" required>
+        <button onclick="login()">Login</button>
 
-          <p id="msg"></p>
-          <a class="link" onclick="resetPassword()">Forgot Password?</a>
-        </div>
+        <p id="msg"></p>
+        <a class="link" onclick="resetPassword()">Forgot Password?</a>
       </aside>
     </div>
 
     <footer>
-      <p>© 2025 Pecos | All Rights Reserved</p>
-      <div class="footer-links">
-        <a href="#">Career</a> -
-        <a href="#">Advertise</a> -
-        <a href="#">Affiliate</a>
-      </div>
+      © 2025 Pecos | All Rights Reserved
     </footer>
   </div>
 
-  <!-- Firebase Auth Logic -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -199,7 +248,7 @@
       const msg = document.getElementById('msg');
 
       if (!email || !password) {
-        msg.style.color = "red";
+        msg.style.color = "yellow";
         msg.innerText = "⚠️ Please fill out all fields.";
         return;
       }
@@ -210,12 +259,12 @@
 
         if (!user.emailVerified) {
           await auth.signOut();
-          msg.style.color = "red";
-          msg.innerText = "Please verify your email before logging in.";
+          msg.style.color = "yellow";
+          msg.innerText = "Please verify your email first.";
           return;
         }
 
-        msg.style.color = "green";
+        msg.style.color = "lightgreen";
         msg.innerText = "✅ Login successful! Redirecting...";
 
         const doc = await db.collection('members').doc(user.uid).get();
@@ -228,8 +277,9 @@
             window.location.href = "member.html";
           }
         }, 1500);
+
       } catch (err) {
-        msg.style.color = "red";
+        msg.style.color = "pink";
         msg.innerText = "❌ " + err.message;
       }
     }
@@ -240,11 +290,11 @@
       try {
         await auth.sendPasswordResetEmail(email);
         const msg = document.getElementById('msg');
-        msg.style.color = "green";
-        msg.innerText = "Password reset link sent! Check your inbox.";
+        msg.style.color = "lightgreen";
+        msg.innerText = "Password reset link sent!";
       } catch (e) {
         const msg = document.getElementById('msg');
-        msg.style.color = "red";
+        msg.style.color = "pink";
         msg.innerText = e.message;
       }
     }
