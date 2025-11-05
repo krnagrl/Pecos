@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Register | Pecos </title>
+  <title>Register | Pecos</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="pecos.png"/>
 
@@ -11,29 +11,35 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      background: linear-gradient(135deg, #f9f5d7, #fffce8);
-      font-family: "Verdana", sans-serif;
-      margin: 0;
-      color: #333;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      border-radius: 20px;
-      overflow-x: hidden;
+    * {
+      box-sizing: border-box;
     }
 
-    /* --- Header --- */
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     header {
-      background: linear-gradient(90deg, #4a4a7d, #5c5c9e);
+      background: #003366;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 15px 25px;
       flex-wrap: wrap;
-      border-radius: 20px 20px 0 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     .logo {
@@ -43,113 +49,102 @@
     }
 
     .logo img {
-      height: 42px;
-      width: 42px;
+      height: 45px;
+      width: 45px;
     }
 
     .logo span {
-      font-size: 22px;
-      font-weight: bold;
-      color: white;
+      font-size: 24px;
+      font-weight: 700;
       letter-spacing: 0.5px;
     }
 
     .nav-links {
       display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
+      gap: 30px;
     }
 
     .nav-links a {
       color: white;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 500;
-      transition: all 0.3s ease;
       position: relative;
+      transition: all 0.3s ease;
     }
 
     .nav-links a::after {
-      content: "";
-      display: block;
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
       height: 2px;
-      background: #fffaa0;
-      width: 0;
-      transition: width 0.3s;
-      margin-top: 4px;
+      background: #ffcc00;
+      transition: width 0.3s ease;
     }
 
     .nav-links a:hover::after {
       width: 100%;
     }
 
-    /* Main content container */
+    /* Main Signup Container */
     .container {
-      display: flex;
-      max-width: 450px;
+      max-width: 480px;
+      background: white;
       margin: 80px auto;
-      background-color: #fffdf0;
       border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.25);
-      overflow: hidden;
+      padding: 40px 50px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      text-align: center;
       flex: 1;
     }
 
-    /* Signup form section */
-    .form-section {
-      flex: 1;
-      padding: 35px 45px;
-      background: #F5EFE9;
-      border-radius: 20px;
+    h2 {
+      color: #003366;
+      font-size: 28px;
+      margin-bottom: 10px;
     }
 
-    .form-section h2 {
-      color: #c52e2e;
-      font-size: 24px;
-      margin-top: 0;
-    }
-
-    .form-section p {
-      color: #333;
+    p {
       font-size: 15px;
-      line-height: 1.5;
+      color: #555;
+      margin-bottom: 25px;
     }
 
     input {
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       margin: 10px 0;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 15px;
-      box-sizing: border-box;
-      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-      background-color: #fff;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+      transition: border 0.2s ease;
     }
 
     input:focus {
       outline: none;
-      border-color: #c52e2e;
-      box-shadow: 0 0 5px rgba(197,46,46,0.3);
+      border-color: #003366;
+      box-shadow: 0 0 5px rgba(0,51,102,0.2);
     }
 
     button {
-      background-color: #c52e2e;
+      background: #003366;
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px;
+      font-size: 17px;
       border-radius: 8px;
-      cursor: pointer;
-      font-size: 16px;
       width: 100%;
-      margin-top: 8px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-      transition: background-color 0.2s ease, transform 0.1s ease;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s ease, transform 0.1s ease;
     }
 
     button:hover {
-      background-color: #a62323;
-      transform: translateY(-1px);
+      background: #004080;
+      transform: translateY(-2px);
     }
 
     button[disabled] {
@@ -160,44 +155,44 @@
     #msg {
       margin-top: 15px;
       font-size: 14px;
-      font-weight: bold;
+      font-weight: 600;
       text-align: center;
     }
 
     .small {
       font-size: 13px;
-      margin-top: 8px;
-      color: #555;
-      text-align: center;
+      margin-top: 10px;
+      color: #444;
     }
 
     .resend-row {
       display: flex;
-      gap: 8px;
       justify-content: center;
       margin-top: 10px;
     }
 
     footer {
-      background-color: #4b4b89;
+      background: #003366;
       color: white;
       text-align: center;
       padding: 18px 10px;
-      font-size: 13px;
-      border-radius: 0 0 20px 20px;
-      box-shadow: 0 -3px 6px rgba(0,0,0,0.2);
+      font-size: 14px;
       margin-top: auto;
+      box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 600px) {
       .container {
-        flex-direction: column;
         width: 90%;
-        margin: 80px auto;
+        padding: 30px 20px;
       }
 
-      .form-section {
-        padding: 25px;
+      h2 {
+        font-size: 24px;
+      }
+
+      .nav-links {
+        gap: 20px;
       }
     }
   </style>
@@ -216,24 +211,23 @@
   </header>
 
   <div class="container">
-    <div class="form-section">
-      <h2>Join Pecos</h2>
-      <p>Welcome to Pecos! Your journey begins here.</p>
-      <input id="displayName" type="text" placeholder="Full Name">
-      <input id="email" type="email" placeholder="Email">
-      <input id="phone" type="tel" placeholder="Phone Number">
-      <input id="city" type="text" placeholder="City">
-      <input id="password" type="password" placeholder="Password">
+    <h2>Open an Account with Us</h2>
+    <p>Start your journey with confidence. Our process is secure, transparent, and customer-focused.</p>
 
-      <button id="signupBtn" onclick="signup()">Sign Up</button>
+    <input id="displayName" type="text" placeholder="Full Name">
+    <input id="email" type="email" placeholder="Email">
+    <input id="phone" type="tel" placeholder="Phone Number">
+    <input id="city" type="text" placeholder="City">
+    <input id="password" type="password" placeholder="Password">
 
-      <div id="msg"></div>
+    <button id="signupBtn" onclick="signup()">Sign Up</button>
 
-      <div id="afterSignup" style="display:none; text-align:center;">
-        <p class="small">Didn't receive the email? You can resend the verification link.</p>
-        <div class="resend-row">
-          <button id="resendBtn" onclick="resendVerification()" disabled>Resend Verification</button>
-        </div>
+    <div id="msg"></div>
+
+    <div id="afterSignup" style="display:none;">
+      <p class="small">Didn't receive the email? You can resend the verification link.</p>
+      <div class="resend-row">
+        <button id="resendBtn" onclick="resendVerification()" disabled>Resend Verification</button>
       </div>
     </div>
   </div>
