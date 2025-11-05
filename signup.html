@@ -15,8 +15,146 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
+    header {
+      background: #003366;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    header .logo img {
+      width: 45px;
+      height: 45px;
+    }
+
+    header .logo span {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ffcc00;
+    }
+
+    .container {
+      max-width: 350px;
+      margin: 80px auto;
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 25px 30px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+    }
+
+    .container h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .container p {
+      font-size: 14px;
+      color: #e0e0e0;
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 6px;
+      outline: none;
+      font-size: 14px;
+    }
+
+    input::placeholder {
+      color: #999;
+    }
+
+    button {
+      width: 100%;
+      background: #ffc107;
+      border: none;
+      padding: 11px 0;
+      color: #003366;
+      font-size: 16px;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #ffb300;
+    }
+
+    #msg {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .small {
+      font-size: 13px;
+      color: #f0f0f0;
+    }
+
+    .resend-row {
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #001f3f;
+      color: white;
+      font-size: 13px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    @media (max-height: 700px) {
+      footer {
+        position: static;
+      }
+    }
   </style>
 </head>
 
@@ -42,7 +180,7 @@
     <input id="city" type="text" placeholder="City">
     <input id="password" type="password" placeholder="Password">
 
-    <button id="signupBtn" onclick="signup()">Sign Up</button>
+    <button id="signupBtn" onclick="signup()">Create Account</button>
 
     <div id="msg"></div>
 
@@ -140,7 +278,7 @@
         showMsg('❌ ' + err.message, 'red');
       } finally {
         signupBtn.disabled = false;
-        signupBtn.innerText = 'Sign Up';
+        signupBtn.innerText = 'Create Account';
       }
     }
 
