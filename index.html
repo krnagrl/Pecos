@@ -4,101 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- 🔹 SEO Meta Tags for Pecos (Akola) -->
+  <!-- 🔹 SEO Meta Tags -->
   <meta name="description" content="Pecos is Akola's trusted name for Finance, Mutual Funds, Shares, and Digital Advertising. Explore Pecos services in finance, technology, and marketing to grow your business in Akola, Maharashtra.">
   <meta name="keywords" content="Pecos, Pecos Akola, Pecos Advertisers, Pecos Finance, Pecos Mutual Funds, Pecos Shares, Pecos Investments, Pecos Technology, Akola Finance, Akola Mutual Funds, Akola Companies, Akola Jobs, Akola Technology, Akola Advertising Agency, Akola Marketing, Akola Investments, Digital Marketing Akola, Stock Broker Akola, Akola Business, Finance in Akola, Mutual Funds in Akola, Pecos Digital Marketing, Pecos Akola Company, Pecos Services Akola">
   <meta name="author" content="Pecos Advertisers">
-  <meta name="robots" content="index, follow">
-
-  <!-- 🔹 Social Media Preview -->
-  <meta property="og:title" content="Pecos - Finance | Mutual Funds | Stocks & Shares">
-  <meta property="og:description" content="Discover Pecos — Akola’s hub for finance, mutual funds, advertising, and technology services.">
-  <meta property="og:image" content="https://pecos.in/pecos.png">
-  <meta property="og:url" content="https://pecos.in">
-  <meta name="twitter:card" content="summary_large_image">
 
   <link rel="icon" type="image/png" href="pecos.png" />
   <link rel="stylesheet" href="style.css" />
-  <style>/* 🔹 Login Section Styles */
-.login-section {
-  margin-top: 60px;
+  <style>/* Right Sidebar Login Section */
+.right-sidebar {
+  width: 25%;
+  background: #f8f9fb;
+  border-left: 1px solid #e0e0e0;
+  padding: 25px 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
 }
 
-.login-card {
-  background: #ffffff;
-  padding: 30px 40px;
-  border-radius: 16px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+.login-panel {
   width: 100%;
-  max-width: 380px;
+  background: #fff;
+  padding: 20px 25px;
+  border-radius: 14px;
+  box-shadow: 0 3px 14px rgba(0, 0, 0, 0.08);
   text-align: center;
   font-family: 'Montserrat', sans-serif;
 }
 
-.login-card h2 {
-  font-weight: 600;
+.login-panel h3 {
   color: #333;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
-.login-card p {
+.login-panel p {
   color: #555;
-  margin-bottom: 20px;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
 
-.login-card input {
+.login-panel input {
   width: 100%;
-  padding: 12px;
-  margin: 8px 0;
+  padding: 10px;
+  margin: 6px 0;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 15px;
   outline: none;
   transition: 0.3s;
 }
 
-.login-card input:focus {
+.login-panel input:focus {
   border-color: #0078ff;
   box-shadow: 0 0 6px rgba(0, 120, 255, 0.2);
 }
 
-.login-card button {
+.login-panel button {
   width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
   background-color: #0078ff;
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
-  font-size: 16px;
-  cursor: pointer;
   font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.login-card button:hover {
+.login-panel button:hover {
   background-color: #005ecc;
 }
 
-.login-card #msg {
-  margin-top: 10px;
-  font-weight: 500;
-  min-height: 24px;
+.login-panel #msg {
+  font-size: 14px;
+  margin-top: 8px;
+  min-height: 20px;
 }
 
-.login-card .link {
+.login-panel .link {
   display: inline-block;
-  margin-top: 12px;
+  margin-top: 10px;
   color: #0078ff;
-  cursor: pointer;
   text-decoration: none;
+  font-size: 13px;
+  cursor: pointer;
 }
 
-.login-card .link:hover {
+.login-panel .link:hover {
   text-decoration: underline;
+}
+
+/* Responsive tweak */
+@media (max-width: 900px) {
+  .right-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 20px;
+  }
 }
 </style>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -120,11 +123,12 @@
       </div>
       <nav class="nav-links">
         <a href="#home">Home</a>
-        <a href="#login-section">Login</a>
+        <a href="#login-right">Login</a>
       </nav>
     </header>
 
     <div class="content" id="home">
+      <!-- Left Sidebar -->
       <aside class="sidebar">
         <h3>Services</h3>
         <ul>
@@ -134,6 +138,7 @@
         </ul>
       </aside>
 
+      <!-- Main Content -->
       <main class="main">
         <div class="ask-title"><span>Pecos</span>!</div>
         <hr>
@@ -144,40 +149,40 @@
           <a href="signup.html"><button>Register</button></a>
         </section>
 
-        <!-- 🔹 Login Section -->
-        <section id="login-section" class="login-section">
-          <div class="login-card">
-            <h2>Member Login</h2>
-            <p>Welcome back! Please log in to access your dashboard.</p>
-
-            <input id="email" type="email" placeholder="Email" required />
-            <input id="password" type="password" placeholder="Password" required />
-            <button onclick="login()">Login</button>
-
-            <p id="msg"></p>
-            <a class="link" onclick="resetPassword()">Forgot Password?</a>
-          </div>
-        </section>
-
         <section class="contact-section">
           <h2>Contact</h2>
           <p><strong>Email:</strong> <a href="mailto:pecos.origin@gmail.com">pecos.origin@gmail.com</a></p>
           <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
         </section>
       </main>
+
+      <!-- Right Sidebar (Login Section) -->
+      <aside class="right-sidebar" id="login-right">
+        <div class="login-panel">
+          <h3>Member Login</h3>
+          <p>Welcome back! Please log in to access your dashboard.</p>
+
+          <input id="email" type="email" placeholder="Email" required />
+          <input id="password" type="password" placeholder="Password" required />
+          <button onclick="login()">Login</button>
+
+          <p id="msg"></p>
+          <a class="link" onclick="resetPassword()">Forgot Password?</a>
+        </div>
+      </aside>
     </div>
 
     <footer>
       <p>© 2025 Pecos | All Rights Reserved</p>
       <div class="footer-links">
-         <a href="#">Career</a> -
-         <a href="#">Advertise</a> -
-         <a href="#">Affiliate</a>
+        <a href="#">Career</a> -
+        <a href="#">Advertise</a> -
+        <a href="#">Affiliate</a>
       </div>
     </footer>
   </div>
 
-  <!-- 🔹 Firebase Login Logic -->
+  <!-- Firebase Auth Logic -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
