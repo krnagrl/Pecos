@@ -15,57 +15,51 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f4f6f9;
-      color: #333;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-
-    header {
-      background: #003366;
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 25px;
-      flex-wrap: wrap;
-    }
-    /* Add spacing between lines in the main section */
-main.main p, 
-main.main h2 {
-  line-height: 1.6;
-  margin-bottom: 12px;
+* {
+  box-sizing: border-box;
 }
 
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 
-    .logo img {
-      height: 35px;
-      vertical-align: middle;
-    }
+header {
+  background: #003366;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+  flex-wrap: wrap;
+}
 
-    .logo span {
-      font-size: 20px;
-      font-weight: 600;
-      margin-left: 8px;
-    }
+.logo img {
+  height: 35px;
+  vertical-align: middle;
+}
 
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 500;
-    }
-    /* Improved button styling for Register & Login */
+.logo span {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+/* Improved button styling for Register & Login */
 button,
 a button {
-  background-color: #004aad;   /* deep blue, matching sidebar tone */
+  background-color: #004aad; /* deep blue, matching sidebar tone */
   color: #fff;
   border: none;
   padding: 10px 22px;
@@ -81,7 +75,7 @@ button:hover,
 a button:hover {
   background-color: #00367f;
   transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 button:active {
@@ -89,200 +83,210 @@ button:active {
   box-shadow: none;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      width: 100%;
-      overflow-x: hidden;
-    }
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.2fr;
+  gap: 20px;
+  padding: 20px;
+  flex: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
 
-    .content {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1.2fr;
-      gap: 20px;
-      padding: 20px;
-      flex: 1;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      align-items: start;
-    }
+/* Sidebar (Left) */
+aside.sidebar {
+  background: #003366;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+}
 
-    /* Sidebar (Left) */
-    aside.sidebar {
-      background: #003366;
-      color: white;
-      border-radius: 10px;
-      padding: 20px;
-    }
+aside.sidebar h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+}
 
-    aside.sidebar h3 {
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 8px;
-      margin-bottom: 15px;
-    }
+aside.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-    aside.sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+aside.sidebar li {
+  margin-bottom: 10px;
+}
 
-    aside.sidebar li {
-      margin-bottom: 10px;
-    }
+aside.sidebar a {
+  color: white;
+  text-decoration: none;
+}
 
-    aside.sidebar a {
-      color: white;
-      text-decoration: none;
-    }
+/* Main Section */
+main.main {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
 
-    /* Main Section */
-    main.main {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
+/* Line spacing for better readability */
+main.main p,
+main.main h2 {
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
 
-    .ask-title span {
-      font-weight: bold;
-      font-size: 24px;
-      color: #003366;
-    }
+.ask-title span {
+  font-weight: bold;
+  font-size: 24px;
+  color: #003366;
+}
 
-    .open-account button {
-      background: #003366;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      margin-top: 10px;
-    }
+.open-account button {
+  background: #003366;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 10px;
+}
 
-    .open-account button:hover {
-      background: #004080;
-    }
+.open-account button:hover {
+  background: #004080;
+}
 
-    /* Login Sidebar (Right) */
-    .login-sidebar {
-      background: #003366;
-      color: white;
-      border-radius: 10px;
-      padding: 25px 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
+/* Login Sidebar (Right) */
+.login-sidebar {
+  background: #003366;
+  color: white;
+  border-radius: 10px;
+  padding: 25px 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
 
-    .login-sidebar h2 {
-      font-size: 20px;
-      margin-bottom: 10px;
-      text-align: center;
-    }
+.login-sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+}
 
-    .login-sidebar p {
-      font-size: 14px;
-      color: #e0e0e0;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+.login-sidebar p {
+  font-size: 14px;
+  color: #e0e0e0;
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-    .login-sidebar input {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 12px;
-      border: none;
-      border-radius: 6px;
-      outline: none;
-      font-size: 14px;
-    }
+.login-sidebar input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  font-size: 14px;
+}
 
-    .login-sidebar button {
-      width: 100%;
-      padding: 10px;
-      background: #ffcc00;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+.login-sidebar button {
+  width: 100%;
+  padding: 10px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-    .login-sidebar button:hover {
-      background: #ffdb4d;
-    }
+.login-sidebar button:hover {
+  background: #ffdb4d;
+}
 
-    .login-sidebar .link {
-      color: #ffcc00;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 13px;
-      margin-top: 10px;
-    }
+.login-sidebar .link {
+  color: #ffcc00;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 13px;
+  margin-top: 10px;
+}
 
-    #msg {
-      font-size: 13px;
-      text-align: center;
-      margin-bottom: 5px;
-    }
+#msg {
+  font-size: 13px;
+  text-align: center;
+  margin-bottom: 5px;
+}
 
-    footer {
-      background: #003366;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-    }
+footer {
+  background: #003366;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .content {
-        grid-template-columns: 1fr;
-        padding: 15px;
-      }
+/* Responsive */
+@media (max-width: 992px) {
+  .content {
+    grid-template-columns: 1fr;
+    padding: 15px;
+  }
 
-      aside.sidebar,
-      main.main,
-      .login-sidebar {
-        width: 100%;
-      }
+  aside.sidebar,
+  main.main,
+  .login-sidebar {
+    width: 100%;
+  }
 
-      .login-sidebar {
-        margin-top: 20px;
-      }
+  .login-sidebar {
+    margin-top: 20px;
+  }
 
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-      .nav-links {
-        margin-top: 10px;
-      }
-    }
+  .nav-links {
+    margin-top: 10px;
+  }
+}
 
-    @media (max-width: 600px) {
-      .open-account h2,
-      .contact-section h2 {
-        font-size: 18px;
-      }
-      .ask-title span {
-        font-size: 20px;
-      }
-      .login-sidebar {
-        padding: 20px;
-      }
-      .login-sidebar button {
-        padding: 8px;
-      }
-    }
+@media (max-width: 600px) {
+  .open-account h2,
+  .contact-section h2 {
+    font-size: 18px;
+  }
+
+  .ask-title span {
+    font-size: 20px;
+  }
+
+  .login-sidebar {
+    padding: 20px;
+  }
+
+  .login-sidebar button {
+    padding: 8px;
+  }
+}
+
   </style>
 </head>
 
@@ -304,9 +308,9 @@ button:active {
       <aside class="sidebar">
         <h3>Services</h3>
         <ul>
-          <li><a href="#">Finance</a></li>
-          <li><a href="#">Real Estate</a></li>
-          <li><a href="#">Stocks & Shares</a></li>
+          <li><a>Finance</a></li>
+          <li><a>Real Estate</a></li>
+          <li><a>Stocks & Shares</a></li>
         </ul>
       </aside>
 
@@ -413,5 +417,6 @@ button:active {
   </script>
 </body>
 </html>
+
 
 
