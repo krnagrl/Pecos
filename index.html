@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
-  <link rel="icon" type="image/png" href="pecos.png">
+  <link rel="icon" type="image/png" href="pecos.png" />
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
@@ -15,11 +15,17 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Montserrat', sans-serif;
       background: #f4f6f9;
       color: #333;
       margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
 
     header {
@@ -54,15 +60,20 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .content {
       display: grid;
-      grid-template-columns: 1fr 2fr 1.5fr;
+      grid-template-columns: 1fr 2fr 1.2fr;
       gap: 20px;
       padding: 20px;
       flex: 1;
-      align-items: start; /* Prevents main section stretching */
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
     }
 
     /* Sidebar (Left) */
@@ -71,7 +82,6 @@
       color: white;
       border-radius: 10px;
       padding: 20px;
-      height: fit-content;
     }
 
     aside.sidebar h3 {
@@ -101,7 +111,6 @@
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      height: fit-content; /* Fixes space issue */
     }
 
     .ask-title span {
@@ -118,6 +127,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-weight: 600;
+      margin-top: 10px;
     }
 
     .open-account button:hover {
@@ -129,16 +139,16 @@
       background: #003366;
       color: white;
       border-radius: 10px;
-      padding: 25px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      height: fit-content;
+      padding: 25px 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-start;
     }
 
     .login-sidebar h2 {
-      font-size: 22px;
+      font-size: 20px;
       margin-bottom: 10px;
       text-align: center;
     }
@@ -183,6 +193,12 @@
       margin-top: 10px;
     }
 
+    #msg {
+      font-size: 13px;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
     footer {
       background: #003366;
       color: white;
@@ -191,17 +207,11 @@
       font-size: 14px;
     }
 
-    #msg {
-      font-size: 13px;
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    /* 🔹 Responsive for Mobile */
+    /* Responsive */
     @media (max-width: 992px) {
       .content {
         grid-template-columns: 1fr;
-        padding: 10px;
+        padding: 15px;
       }
 
       aside.sidebar,
@@ -246,7 +256,7 @@
   <div class="container">
     <header>
       <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo">
+        <img src="pecos.png" alt="Pecos Logo" />
         <span>Pecos</span>
       </div>
       <nav class="nav-links">
@@ -269,10 +279,13 @@
       <!-- Main Section -->
       <main class="main">
         <div class="ask-title"><span>Pecos</span>!</div>
-        <hr>
+        <hr />
         <section class="open-account">
           <h2>Open an Account with Us</h2>
-          <p>Start your financial journey with confidence. Our process is secure, transparent, and customer-focused.</p>
+          <p>
+            Start your financial journey with confidence. Our process is secure,
+            transparent, and customer-focused.
+          </p>
           <a href="signup.html"><button>Register</button></a>
         </section>
 
@@ -309,9 +322,9 @@
     const db = firebase.firestore();
 
     async function login() {
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const msg = document.getElementById('msg');
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("msg");
 
       if (!email || !password) {
         msg.style.color = "yellow";
@@ -333,7 +346,7 @@
         msg.style.color = "lightgreen";
         msg.innerText = "✅ Login successful! Redirecting...";
 
-        const doc = await db.collection('members').doc(user.uid).get();
+        const doc = await db.collection("members").doc(user.uid).get();
         const data = doc.data();
 
         setTimeout(() => {
@@ -343,7 +356,6 @@
             window.location.href = "member.html";
           }
         }, 1500);
-
       } catch (err) {
         msg.style.color = "pink";
         msg.innerText = "❌ " + err.message;
@@ -355,11 +367,11 @@
       if (!email) return;
       try {
         await auth.sendPasswordResetEmail(email);
-        const msg = document.getElementById('msg');
+        const msg = document.getElementById("msg");
         msg.style.color = "lightgreen";
         msg.innerText = "Password reset link sent!";
       } catch (e) {
-        const msg = document.getElementById('msg');
+        const msg = document.getElementById("msg");
         msg.style.color = "pink";
         msg.innerText = e.message;
       }
