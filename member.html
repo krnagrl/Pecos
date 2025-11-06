@@ -125,7 +125,6 @@
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('finance')">Finance</a></li>
-          <li><a onclick="showSection('mutualfunds')">Mutual Funds</a></li>
         </ul>
       </aside>
 
@@ -181,36 +180,6 @@
           <p id="financeMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
         </section>
 
-        <!-- MUTUAL FUNDS -->
-        <section id="mutualfunds" class="section" style="display:none">
-          <h2 style="color:#003366;margin-top:0">Mutual Fund Investments</h2>
-          <p>Select a scheme and choose SIP or Lumpsum to begin your investment request.</p>
-
-          <div id="mutualFundList" class="fund-grid" style="margin-top:12px"></div>
-
-          <form id="mutualFundForm" style="display:none; margin-top:20px; max-width:520px" class="card">
-            <input type="hidden" id="selectedScheme" />
-            <h4 id="selectedSchemeName" style="margin-bottom:10px"></h4>
-
-            <label>Investment Type</label>
-            <select id="investmentType" required>
-              <option value="">Select Type</option>
-              <option value="SIP">SIP</option>
-              <option value="Lumpsum">Lumpsum</option>
-            </select>
-
-            <input type="number" id="investmentAmount" placeholder="Enter Amount (₹)" required />
-
-            <div id="sipDateContainer" style="display:none;">
-              <label>Select SIP Deduction Date</label>
-              <input type="date" id="sipDate" />
-            </div>
-
-            <button class="btn btn-full" type="submit">Submit Request</button>
-          </form>
-
-          <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
-        </section>
 
       </main>
 
@@ -291,75 +260,7 @@
       }
     });
 
-    // ---------- MUTUAL FUNDS SECTION ----------
-    async function loadMutualFunds() {
-      const container = document.getElementById('mutualFundList');
-      container.innerHTML = '<p>Loading schemes...</p>';
-      try {
-        const snap = await db.collection('mutualfunds').get();
-        if (snap.empty) {
-          container.innerHTML = '<p>No mutual fund schemes found.</p>';
-          return;
-        }
 
-        let html = '';
-        snap.forEach(doc => {
-          const d = doc.data();
-          html += `\n            <div class="card">\n              <h4>${d.schemeName}</h4>\n              <p><strong>1-Year Return:</strong> ${d.oneYearReturn || '-'}%</p>\n              <p><strong>3-Year Return:</strong> ${d.threeYearReturn || '-'}%</p>\n              <p><strong>5-Year Return:</strong> ${d.fiveYearReturn || '-'}%</p>\n              <button class="btn" onclick="selectScheme('${doc.id}', '${(d.schemeName||'').replace(/'/g,"\\'")}')">Invest</button>\n            </div>\n          `;
-        });
-        container.innerHTML = html;
-      } catch (err) {
-        console.error(err);
-        container.innerHTML = '<p>Error loading mutual funds.</p>';
-      }
-    }
-
-    function selectScheme(id, name) {
-      document.getElementById('selectedScheme').value = id;
-      document.getElementById('selectedSchemeName').innerText = `Selected Scheme: ${name}`;
-      document.getElementById('mutualFundForm').style.display = 'block';
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    }
-
-    document.getElementById('investmentType').addEventListener('change', e => {
-      document.getElementById('sipDateContainer').style.display =
-        e.target.value === 'SIP' ? 'block' : 'none';
-    });
-
-    document.getElementById('mutualFundForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const user = auth.currentUser;
-      if (!user) return alert('Please log in first.');
-
-      const data = {
-        userId: user.uid,
-        email: user.email,
-        schemeId: document.getElementById('selectedScheme').value,
-        schemeName: document.getElementById('selectedSchemeName').innerText.replace('Selected Scheme: ', ''),
-        investmentType: document.getElementById('investmentType').value,
-        amount: document.getElementById('investmentAmount').value,
-        sipDate: document.getElementById('sipDate').value || null,
-        createdAt: new Date()
-      };
-
-      try {
-        await db.collection('mutualFundRequests').add(data);
-        document.getElementById('mutualFundMsg').innerText =
-          'Your request is created! We will call you back within 24 hours for approval and payment process.';
-        document.getElementById('mutualFundForm').reset();
-        document.getElementById('mutualFundForm').style.display = 'none';
-      } catch (error) {
-        console.error(error);
-        document.getElementById('mutualFundMsg').innerText = 'Error submitting request.';
-      }
-    });
-
-    // Load mutual funds when Mutual Funds section is opened
-    const originalShowSection = showSection;
-    showSection = function (id) {
-      originalShowSection(id);
-      if (id === 'mutualfunds') loadMutualFunds();
-    };
 
   </script>
 </body>
