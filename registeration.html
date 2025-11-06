@@ -31,7 +31,6 @@ body {
   min-height: 100vh;
 }
 
-/* ---------- HEADER ---------- */
 header {
   background: #003366;
   color: white;
@@ -60,7 +59,6 @@ header {
   font-weight: 500;
 }
 
-/* ---------- MAIN CONTAINER ---------- */
 .container {
   max-width: 350px;
   margin: 80px auto;
@@ -85,7 +83,6 @@ header {
   margin-bottom: 18px;
 }
 
-/* ---------- FORM INPUTS ---------- */
 input {
   width: 100%;
   padding: 10px;
@@ -100,7 +97,6 @@ input::placeholder {
   color: #999;
 }
 
-/* ---------- BUTTON ---------- */
 button {
   width: 100%;
   background: #ffc107;
@@ -118,7 +114,6 @@ button:hover {
   background: #ffb300;
 }
 
-/* ---------- TEXT & LINKS ---------- */
 #msg {
   margin-top: 10px;
   font-size: 14px;
@@ -141,74 +136,13 @@ a {
   margin-top: 10px;
 }
 
-/* ---------- FOOTER ---------- */
 footer {
   background: #003366;
   color: white;
   text-align: center;
   padding: 12px;
   font-size: 14px;
-  margin-top: auto; /* keeps footer at bottom */
-}
-
-/* ---------- RESPONSIVE FIXES ---------- */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 15px;
-  }
-
-  .nav-links {
-    margin-top: 10px;
-  }
-
-  .nav-links a {
-    margin: 0 10px 5px 0;
-  }
-
-  .container {
-    margin: 40px 15px;
-    padding: 20px;
-  }
-
-  .container h2 {
-    font-size: 20px;
-  }
-
-  .container p {
-    font-size: 13px;
-  }
-
-  input {
-    font-size: 13px;
-    padding: 9px;
-  }
-
-  button {
-    font-size: 15px;
-    padding: 10px 0;
-  }
-
-  footer {
-    font-size: 13px;
-    padding: 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    margin: 30px 10px;
-    padding: 18px;
-  }
-
-  .container h2 {
-    font-size: 18px;
-  }
-
-  button {
-    font-size: 14px;
-  }
+  margin-top: auto; /* 👈 Pushes it to bottom */
 }
 
   </style>
