@@ -6,100 +6,179 @@
   <link rel="icon" type="image/png" href="pecos.png"/>
   <title>Member Dashboard | Pecos</title>
 
-  <!-- Google Font (matches index) -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Firebase SDKs (UNCHANGED) -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    /* Base */
-    *{box-sizing: border-box}
-    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#222}
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f9;
+      color: #222;
+      display: none; /* Hide until Firebase confirms login */
+    }
 
-    /* Header (same blue as index) */
-    header{background:#003366;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:36px}
-    .brand .title{font-weight:700;font-size:18px}
-    nav.header-actions{display:flex;align-items:center;gap:12px}
-    #welcome-message{font-weight:600}
-    #nav-logout{cursor:pointer;font-weight:700;color:#fff;text-decoration:none}
+    #loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-size: 18px;
+      font-weight: 600;
+      color: #003366;
+    }
 
-    /* Page layout */
-    .page{max-width:1200px;margin:20px auto;padding:0 16px}
-    .layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
+    header {
+      background: #003366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand img {
+      height: 36px;
+    }
+    .brand .title {
+      font-weight: 700;
+      font-size: 18px;
+    }
+    nav.header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    #welcome-message {
+      font-weight: 600;
+    }
+    #nav-logout {
+      cursor: pointer;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
 
-    /* Sidebar (left) - blue like index */
-    .sidebar{background:#003366;color:#fff;padding:20px;border-radius:10px}
-    .sidebar h3{margin:0 0 12px 0;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px}
-    .sidebar ul{list-style:none;margin:12px 0 0 0;padding:0}
-    .sidebar li{margin-bottom:10px}
-    .sidebar a{display:block;color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
-    .sidebar a:hover{background:rgba(255,255,255,0.04)}
+    .page { max-width: 1200px; margin: 20px auto; padding: 0 16px; }
+    .layout { display: grid; grid-template-columns: 260px 1fr; gap: 20px; }
 
-    /* Main content */
-    .main{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-    .hero{background:#fffdfc;padding:16px;border-radius:8px;margin-bottom:16px;border:1px solid #eef2f6}
-    .hero h2{margin:0 0 8px 0;color:#003366}
+    .sidebar {
+      background: #003366;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .sidebar h3 {
+      margin: 0 0 12px 0;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: 8px;
+    }
+    .sidebar ul {
+      list-style: none;
+      margin: 12px 0 0 0;
+      padding: 0;
+    }
+    .sidebar li { margin-bottom: 10px; }
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-weight: 600;
+    }
+    .sidebar a:hover { background: rgba(255,255,255,0.04); }
 
-    .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .card{background:#fff;padding:16px;border-radius:10px;border:1px solid #eef2f6;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
-    .card h4{margin:0 0 8px 0;color:#003366}
+    .main {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
 
-    /* Forms */
-    input[type="text"],input[type="email"],input[type="number"],input[type="date"],select{width:100%;padding:12px;border:1px solid #d8e1ea;border-radius:8px;font-size:14px;margin-bottom:12px;outline:none}
-    input:focus,select:focus{box-shadow:0 0 0 3px rgba(0,51,102,0.08);border-color:#003366}
+    .hero {
+      background: #fffdfc;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #eef2f6;
+    }
+    .hero h2 { margin: 0 0 8px 0; color: #003366; }
 
-    /* Buttons (match index) */
-    .btn{background:#003366;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;display:inline-block}
-    .btn:hover{background:#002a53;transform:translateY(-2px)}
-    .btn-muted{background:#f4f6f9;color:#003366;border:1px solid #d8e1ea}
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #eef2f6;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .card h4 { margin: 0 0 8px 0; color: #003366; }
 
-    /* Full width form buttons */
-    form .btn-full{width:100%;padding:12px}
+    input[type="text"], input[type="email"], input[type="number"], input[type="date"], select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8e1ea;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+    input:focus, select:focus {
+      box-shadow: 0 0 0 3px rgba(0,51,102,0.08);
+      border-color: #003366;
+    }
 
-    /* Mutual fund grid reuse */
-    .fund-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .fund-grid .card{background:#fffdf7;border:1px solid #f1e3a5}
-    .fund-grid .card button{width:100%}
+    .btn {
+      background: #003366;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: #002a53;
+      transform: translateY(-2px);
+    }
+    form .btn-full { width: 100%; padding: 12px; }
 
-    /* Footer */
-    footer{margin-top:18px;text-align:center;color:#666;font-size:13px}
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #666;
+      font-size: 13px;
+    }
 
-    /* Responsive */
-    @media (max-width:800px){.layout{grid-template-columns:1fr}.sidebar{order:2}.main{order:1}}
-
-    /* Responsive layout fix */
-@media (max-width: 800px) {
-  .layout {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sidebar {
-    order: 2;
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .main {
-    order: 3;
-  }
-
-  footer {
-    order: 4;
-    margin-top: auto;
-  }
-}
-
-
-
+    @media (max-width: 800px) {
+      .layout { display: flex; flex-direction: column; }
+      .sidebar { order: 2; width: 100%; margin-bottom: 20px; }
+      .main { order: 3; }
+      footer { order: 4; margin-top: auto; }
+    }
   </style>
 </head>
 <body>
+  <div id="loading">Checking login...</div>
+
   <header>
     <div class="brand">
       <img src="pecos.png" alt="Pecos" />
@@ -117,8 +196,6 @@
 
   <div class="page">
     <div class="layout">
-
-      <!-- Sidebar (left) -->
       <aside class="sidebar">
         <h3>Dashboard Menu</h3>
         <ul>
@@ -128,10 +205,7 @@
         </ul>
       </aside>
 
-      <!-- Main content -->
       <main class="main">
-
-        <!-- OVERVIEW -->
         <section id="overview" class="section">
           <div class="hero">
             <h2>Welcome to Club Pecos!</h2>
@@ -151,7 +225,6 @@
           </div>
         </section>
 
-        <!-- PROFILE -->
         <section id="profile" class="section" style="display:none">
           <h2 style="color:#003366;margin-top:0">Your Profile</h2>
           <div class="card">
@@ -162,7 +235,6 @@
           </div>
         </section>
 
-        <!-- FINANCE REQUEST -->
         <section id="finance" class="section" style="display:none">
           <h2 style="color:#003366;margin-top:0">Finance Request</h2>
           <form id="financeForm" class="card" style="max-width:600px">
@@ -179,16 +251,13 @@
           </form>
           <p id="financeMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
         </section>
-
-
       </main>
-
     </div>
     <footer>© 2025 Pecos | All Rights Reserved.</footer>
-</div>
+  </div>
 
-  <!-- Firebase & App logic (FUNCTIONALITY UNCHANGED) -->
   <script>
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
@@ -206,9 +275,26 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Auto-logout timer
+    let logoutTimer;
+    function resetLogoutTimer() {
+      clearTimeout(logoutTimer);
+      logoutTimer = setTimeout(() => {
+        alert('Session expired. You have been logged out.');
+        auth.signOut().then(() => window.location.href = 'index.html');
+      }, 60000); // 60 seconds
+    }
+    document.addEventListener('mousemove', resetLogoutTimer);
+    document.addEventListener('keypress', resetLogoutTimer);
+    document.addEventListener('click', resetLogoutTimer);
+
     auth.onAuthStateChanged(async user => {
-      if (!user) window.location.href = 'index.html';
-      else {
+      document.getElementById('loading').style.display = 'none';
+      if (!user) {
+        window.location.href = 'index.html';
+      } else {
+        document.body.style.display = 'block';
+        resetLogoutTimer();
         document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
         await loadMemberData(user);
         showSection('overview');
@@ -230,7 +316,6 @@
       document.getElementById('profile-email').innerText = data.email || '-';
       document.getElementById('profile-id').innerText = data.memberID || '-';
       document.getElementById('profile-since').innerText = data.memberSince || '-';
-      // activity-tokens is optional in this layout
     }
 
     document.getElementById('financeForm').addEventListener('submit', async e => {
@@ -258,9 +343,6 @@
         document.getElementById('financeMsg').innerText = 'Error submitting request.';
       }
     });
-
-
-
   </script>
 </body>
 </html>
