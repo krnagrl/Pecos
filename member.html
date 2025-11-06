@@ -4,353 +4,144 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="pecos.png"/>
-
   <title>Member Dashboard | Pecos</title>
 
-  <!-- Firebase SDKs -->
+  <!-- Google Font (matches index) -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Firebase SDKs (UNCHANGED) -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    body {
-      margin: 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-      background-color: #fff8cc;
-      color: #333;
-    }
+    /* Base */
+    *{box-sizing: border-box}
+    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#222}
 
-    header {
-      background: #222;
-      color: #fff;
-      padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+    /* Header (same blue as index) */
+    header{background:#003366;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:36px}
+    .brand .title{font-weight:700;font-size:18px}
+    nav.header-actions{display:flex;align-items:center;gap:12px}
+    #welcome-message{font-weight:600}
+    #nav-logout{cursor:pointer;font-weight:700;color:#fff;text-decoration:none}
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+    /* Page layout */
+    .page{max-width:1200px;margin:20px auto;padding:0 16px}
+    .layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
 
-    .brand img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
+    /* Sidebar (left) - blue like index */
+    .sidebar{background:#003366;color:#fff;padding:20px;border-radius:10px}
+    .sidebar h3{margin:0 0 12px 0;font-size:16px;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px}
+    .sidebar ul{list-style:none;margin:12px 0 0 0;padding:0}
+    .sidebar li{margin-bottom:10px}
+    .sidebar a{display:block;color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600}
+    .sidebar a:hover{background:rgba(255,255,255,0.04)}
 
-    .sidebar {
-      width: 250px;
-      background: #fffbe2;
-      padding: 25px 20px;
-      box-sizing: border-box;
-      border-right: 2px solid #f1e3a5;
-      transition: all 0.3s ease;
-    }
+    /* Main content */
+    .main{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+    .hero{background:#fffdfc;padding:16px;border-radius:8px;margin-bottom:16px;border:1px solid #eef2f6}
+    .hero h2{margin:0 0 8px 0;color:#003366}
 
-    .sidebar h3 {
-      margin-top: 0;
-      font-size: 18px;
-      color: #333;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+    .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+    .card{background:#fff;padding:16px;border-radius:10px;border:1px solid #eef2f6;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
+    .card h4{margin:0 0 8px 0;color:#003366}
 
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+    /* Forms */
+    input[type="text"],input[type="email"],input[type="number"],input[type="date"],select{width:100%;padding:12px;border:1px solid #d8e1ea;border-radius:8px;font-size:14px;margin-bottom:12px;outline:none}
+    input:focus,select:focus{box-shadow:0 0 0 3px rgba(0,51,102,0.08);border-color:#003366}
 
-    .sidebar ul li {
-      margin: 14px 0;
-    }
+    /* Buttons (match index) */
+    .btn{background:#003366;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer;display:inline-block}
+    .btn:hover{background:#002a53;transform:translateY(-2px)}
+    .btn-muted{background:#f4f6f9;color:#003366;border:1px solid #d8e1ea}
 
-    .sidebar ul li a {
-      text-decoration: none;
-      display: block;
-      background: #fff;
-      border-radius: 8px;
-      padding: 10px 14px;
-      color: #333;
-      font-weight: 600;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      transition: background 0.3s;
-    }
+    /* Full width form buttons */
+    form .btn-full{width:100%;padding:12px}
 
-    .sidebar ul li a:hover {
-      background: #fff27a;
-    }
+    /* Mutual fund grid reuse */
+    .fund-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .fund-grid .card{background:#fffdf7;border:1px solid #f1e3a5}
+    .fund-grid .card button{width:100%}
 
-    .content {
-      display: flex;
-      min-height: calc(100vh - 80px);
-    }
+    /* Footer */
+    footer{margin-top:18px;text-align:center;color:#666;font-size:13px}
 
-    .main {
-      flex: 1;
-      padding: 25px;
-      background: #fffdf3;
-    }
-
-    .section {
-      display: none;
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    .card {
-      background: #fff;
-      border: 1px solid #ddd;
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .card h4 {
-      margin-top: 0;
-      color: #333;
-    }
-
-    form input, form select {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 15px;
-      box-sizing: border-box;
-    }
-
-    form button {
-      background: #333;
-      color: #fff;
-      padding: 12px 22px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 600;
-      width: 100%;
-      font-size: 16px;
-    }
-
-    form button:hover {
-      background: #444;
-    }
-
-    footer {
-      background: #222;
-      color: #fff;
-      text-align: center;
-      padding: 12px;
-      font-size: 14px;
-    }
-
-    /* 🔸 Responsive */
-    @media (max-width: 768px) {
-      .content {
-        flex-direction: column;
-      }
-      .sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 2px solid #f1e3a5;
-      }
-      .sidebar ul {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-      }
-      .sidebar ul li {
-        flex: 1 1 45%;
-        margin: 0;
-      }
-      .sidebar ul li a {
-        font-size: 14px;
-        padding: 10px;
-      }
-      .main {
-        padding: 15px;
-      }
-      form button {
-        font-size: 15px;
-      }
-    }
-    /* --- MUTUAL FUND STYLING --- */
-.fund-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.fund-grid .card {
-  border: 1px solid #f3e88a;
-  border-radius: 12px;
-  background: #fffef4;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.fund-grid .card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.fund-grid .card h4 {
-  color: #222;
-  font-size: 18px;
-  margin-bottom: 6px;
-}
-
-.fund-grid .card p {
-  margin: 6px 0;
-  color: #444;
-  font-size: 14px;
-}
-
-.fund-grid .card button {
-  width: 100%;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 15px;
-  cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-
-.fund-grid .card button:hover {
-  background: #444;
-}
-
-.fund-form {
-  background: #fffdf2;
-  border: 1px solid #f1e3a5;
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  max-width: 500px;
-}
-
-.scheme-heading {
-  font-size: 20px;
-  font-weight: 700;
-  color: #222;
-  margin-bottom: 15px;
-}
-
-.form-row {
-  margin-bottom: 16px;
-}
-
-.form-row label {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 6px;
-  color: #333;
-}
-
-.form-row input,
-.form-row select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-  box-sizing: border-box;
-}
-
-.fund-form button {
-  background: #333;
-  color: #fff;
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-weight: 600;
-  width: 100%;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-.fund-form button:hover {
-  background: #444;
-}
-
+    /* Responsive */
+    @media (max-width:800px){.layout{grid-template-columns:1fr}.sidebar{order:2}.main{order:1}}
 
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <header>
-      <div class="brand">
-        <img src="pecos.png" alt="Pecos Logo" />
-        <div>
-          <div style="font-weight:700;font-size:18px">Pecos</div>
-          <div style="font-size:12px;color:#fffaa0">Member Dashboard</div>
-        </div>
+  <header>
+    <div class="brand">
+      <img src="pecos.png" alt="Pecos" />
+      <div>
+        <div class="title">Pecos</div>
+        <div style="font-size:12px;color:#fff9a8">Member Dashboard</div>
       </div>
-      <nav>
-        <div id="welcome-message" style="margin-right:10px;">Checking login...</div>
-        <a id="nav-logout" style="color:#fff;cursor:pointer;font-weight:600;">Logout</a>
-      </nav>
-    </header>
+    </div>
 
-    <div class="content">
+    <nav class="header-actions">
+      <div id="welcome-message">Checking login...</div>
+      <a id="nav-logout">Logout</a>
+    </nav>
+  </header>
+
+  <div class="page">
+    <div class="layout">
+
+      <!-- Sidebar (left) -->
       <aside class="sidebar">
         <h3>Dashboard Menu</h3>
         <ul>
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('finance')">Finance</a></li>
-      <li><a onclick="showSection('mutualfunds')">Mutual Funds</a></li>
-
+          <li><a onclick="showSection('mutualfunds')">Mutual Funds</a></li>
         </ul>
       </aside>
 
+      <!-- Main content -->
       <main class="main">
+
         <!-- OVERVIEW -->
-        <div id="overview" class="section">
-          <h2>Welcome to Club Pecos!</h2>
-          <div style="background:#fff8cc;padding:18px;border-radius:8px;margin-bottom:16px;line-height:1.8">
-            <p>Hello <strong id="overview-name">Member</strong>! We're excited to have you on board.</p>
-            <p>Discover all the benefits, events, and activities Pecos offers.</p>
+        <section id="overview" class="section">
+          <div class="hero">
+            <h2>Welcome to Club Pecos!</h2>
+            <p>Hello <strong id="overview-name">Member</strong> — glad you're here. Use the menu to navigate your dashboard.</p>
           </div>
-          <div class="cards">
+
+          <div class="grid-cards">
             <div class="card" style="cursor:pointer" onclick="alert('Redirect to How Pecos Works page!')">
               <h4>How Pecos Works?</h4>
               <p>Learn the mission, structure, and perks of being a member.</p>
             </div>
+
+            <div class="card">
+              <h4>Quick Actions</h4>
+              <p>Access profile, submit finance requests, or invest in mutual funds from this dashboard.</p>
+            </div>
           </div>
-        </div>
+        </section>
 
         <!-- PROFILE -->
-        <div id="profile" class="section">
-          <h2>Your Profile</h2>
+        <section id="profile" class="section" style="display:none">
+          <h2 style="color:#003366;margin-top:0">Your Profile</h2>
           <div class="card">
             <p><strong>Name:</strong> <span id="profile-name">-</span></p>
             <p><strong>Email:</strong> <span id="profile-email">-</span></p>
             <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
             <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
           </div>
-        </div>
-
+        </section>
 
         <!-- FINANCE REQUEST -->
-        <div id="finance" class="section">
-          <h2>Finance Request</h2>
-          <form id="financeForm">
+        <section id="finance" class="section" style="display:none">
+          <h2 style="color:#003366;margin-top:0">Finance Request</h2>
+          <form id="financeForm" class="card" style="max-width:600px">
             <input type="number" id="amount" placeholder="Amount Required" required />
             <input type="text" id="bankName" placeholder="Bank Name" required />
             <input type="text" id="accountNumber" placeholder="Account Number" required />
@@ -360,51 +151,50 @@
               <option value="Personal">Personal</option>
               <option value="Commercial">Commercial</option>
             </select>
-            <button type="submit">Submit Request</button>
+            <button class="btn btn-full" type="submit">Submit Request</button>
           </form>
           <p id="financeMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
-        </div>
+        </section>
 
-        <!-- MUTUAL FUNDS SECTION -->
-<!-- MUTUAL FUNDS SECTION -->
-<div id="mutualfunds" class="section">
-  <h2>Mutual Fund Investments</h2>
-  <p>Select a scheme and choose SIP or Lumpsum to begin your investment request.</p>
+        <!-- MUTUAL FUNDS -->
+        <section id="mutualfunds" class="section" style="display:none">
+          <h2 style="color:#003366;margin-top:0">Mutual Fund Investments</h2>
+          <p>Select a scheme and choose SIP or Lumpsum to begin your investment request.</p>
 
-  <div id="mutualFundList"></div>
+          <div id="mutualFundList" class="fund-grid" style="margin-top:12px"></div>
 
-  <form id="mutualFundForm" style="display:none; margin-top:20px;">
-    <input type="hidden" id="selectedScheme" />
-    <h4 id="selectedSchemeName" style="margin-bottom:10px;"></h4>
+          <form id="mutualFundForm" style="display:none; margin-top:20px; max-width:520px" class="card">
+            <input type="hidden" id="selectedScheme" />
+            <h4 id="selectedSchemeName" style="margin-bottom:10px"></h4>
 
-    <label>Investment Type</label>
-    <select id="investmentType" required>
-      <option value="">Select Type</option>
-      <option value="SIP">SIP</option>
-      <option value="Lumpsum">Lumpsum</option>
-    </select>
+            <label>Investment Type</label>
+            <select id="investmentType" required>
+              <option value="">Select Type</option>
+              <option value="SIP">SIP</option>
+              <option value="Lumpsum">Lumpsum</option>
+            </select>
 
-    <input type="number" id="investmentAmount" placeholder="Enter Amount (₹)" required />
+            <input type="number" id="investmentAmount" placeholder="Enter Amount (₹)" required />
 
-    <div id="sipDateContainer" style="display:none;">
-      <label>Select SIP Deduction Date</label>
-      <input type="date" id="sipDate" />
-    </div>
+            <div id="sipDateContainer" style="display:none;">
+              <label>Select SIP Deduction Date</label>
+              <input type="date" id="sipDate" />
+            </div>
 
-    <button type="submit">Submit Request</button>
-  </form>
+            <button class="btn btn-full" type="submit">Submit Request</button>
+          </form>
 
-  <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
-</div>
-
+          <p id="mutualFundMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
+        </section>
 
       </main>
-    </div>
 
+    </div>
 
     <footer>© 2025 Pecos | All Rights Reserved.</footer>
   </div>
 
+  <!-- Firebase & App logic (FUNCTIONALITY UNCHANGED) -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -447,7 +237,7 @@
       document.getElementById('profile-email').innerText = data.email || '-';
       document.getElementById('profile-id').innerText = data.memberID || '-';
       document.getElementById('profile-since').innerText = data.memberSince || '-';
-      document.getElementById('activity-tokens').innerText = data.tokens ?? 0;
+      // activity-tokens is optional in this layout
     }
 
     document.getElementById('financeForm').addEventListener('submit', async e => {
@@ -477,84 +267,74 @@
     });
 
     // ---------- MUTUAL FUNDS SECTION ----------
-async function loadMutualFunds() {
-  const container = document.getElementById('mutualFundList');
-  container.innerHTML = '<p>Loading schemes...</p>';
-  try {
-    const snap = await db.collection('mutualfunds').get();
-    if (snap.empty) {
-      container.innerHTML = '<p>No mutual fund schemes found.</p>';
-      return;
+    async function loadMutualFunds() {
+      const container = document.getElementById('mutualFundList');
+      container.innerHTML = '<p>Loading schemes...</p>';
+      try {
+        const snap = await db.collection('mutualfunds').get();
+        if (snap.empty) {
+          container.innerHTML = '<p>No mutual fund schemes found.</p>';
+          return;
+        }
+
+        let html = '';
+        snap.forEach(doc => {
+          const d = doc.data();
+          html += `\n            <div class="card">\n              <h4>${d.schemeName}</h4>\n              <p><strong>1-Year Return:</strong> ${d.oneYearReturn || '-'}%</p>\n              <p><strong>3-Year Return:</strong> ${d.threeYearReturn || '-'}%</p>\n              <p><strong>5-Year Return:</strong> ${d.fiveYearReturn || '-'}%</p>\n              <button class="btn" onclick="selectScheme('${doc.id}', '${(d.schemeName||'').replace(/'/g,"\\'")}')">Invest</button>\n            </div>\n          `;
+        });
+        container.innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = '<p>Error loading mutual funds.</p>';
+      }
     }
 
-    let html = '';
-    snap.forEach(doc => {
-      const d = doc.data();
-      html += `
-        <div class="card">
-          <h4>${d.schemeName}</h4>
-          <p><strong>1-Year Return:</strong> ${d.oneYearReturn || '-'}%</p>
-          <p><strong>3-Year Return:</strong> ${d.threeYearReturn || '-'}%</p>
-          <p><strong>5-Year Return:</strong> ${d.fiveYearReturn || '-'}%</p>
-          <button onclick="selectScheme('${doc.id}', '${d.schemeName}')">Invest</button>
-        </div>
-      `;
+    function selectScheme(id, name) {
+      document.getElementById('selectedScheme').value = id;
+      document.getElementById('selectedSchemeName').innerText = `Selected Scheme: ${name}`;
+      document.getElementById('mutualFundForm').style.display = 'block';
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    document.getElementById('investmentType').addEventListener('change', e => {
+      document.getElementById('sipDateContainer').style.display =
+        e.target.value === 'SIP' ? 'block' : 'none';
     });
-    container.innerHTML = html;
-  } catch (err) {
-    console.error(err);
-    container.innerHTML = '<p>Error loading mutual funds.</p>';
-  }
-}
 
-function selectScheme(id, name) {
-  document.getElementById('selectedScheme').value = id;
-  document.getElementById('selectedSchemeName').innerText = `Selected Scheme: ${name}`;
-  document.getElementById('mutualFundForm').style.display = 'block';
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
+    document.getElementById('mutualFundForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const user = auth.currentUser;
+      if (!user) return alert('Please log in first.');
 
-document.getElementById('investmentType').addEventListener('change', e => {
-  document.getElementById('sipDateContainer').style.display =
-    e.target.value === 'SIP' ? 'block' : 'none';
-});
+      const data = {
+        userId: user.uid,
+        email: user.email,
+        schemeId: document.getElementById('selectedScheme').value,
+        schemeName: document.getElementById('selectedSchemeName').innerText.replace('Selected Scheme: ', ''),
+        investmentType: document.getElementById('investmentType').value,
+        amount: document.getElementById('investmentAmount').value,
+        sipDate: document.getElementById('sipDate').value || null,
+        createdAt: new Date()
+      };
 
-document.getElementById('mutualFundForm').addEventListener('submit', async e => {
-  e.preventDefault();
-  const user = auth.currentUser;
-  if (!user) return alert('Please log in first.');
+      try {
+        await db.collection('mutualFundRequests').add(data);
+        document.getElementById('mutualFundMsg').innerText =
+          'Your request is created! We will call you back within 24 hours for approval and payment process.';
+        document.getElementById('mutualFundForm').reset();
+        document.getElementById('mutualFundForm').style.display = 'none';
+      } catch (error) {
+        console.error(error);
+        document.getElementById('mutualFundMsg').innerText = 'Error submitting request.';
+      }
+    });
 
-  const data = {
-    userId: user.uid,
-    email: user.email,
-    schemeId: document.getElementById('selectedScheme').value,
-    schemeName: document.getElementById('selectedSchemeName').innerText.replace('Selected Scheme: ', ''),
-    investmentType: document.getElementById('investmentType').value,
-    amount: document.getElementById('investmentAmount').value,
-    sipDate: document.getElementById('sipDate').value || null,
-    createdAt: new Date()
-  };
-
-  try {
-    await db.collection('mutualFundRequests').add(data);
-    document.getElementById('mutualFundMsg').innerText =
-      'Your request is created! We will call you back within 24 hours for approval and payment process.';
-    document.getElementById('mutualFundForm').reset();
-    document.getElementById('mutualFundForm').style.display = 'none';
-  } catch (error) {
-    console.error(error);
-    document.getElementById('mutualFundMsg').innerText = 'Error submitting request.';
-  }
-});
-
-// Load mutual funds when Mutual Funds section is opened
-const originalShowSection = showSection;
-showSection = function (id) {
-  originalShowSection(id);
-  if (id === 'mutualfunds') loadMutualFunds();
-};
-
-
+    // Load mutual funds when Mutual Funds section is opened
+    const originalShowSection = showSection;
+    showSection = function (id) {
+      originalShowSection(id);
+      if (id === 'mutualfunds') loadMutualFunds();
+    };
 
   </script>
 </body>
