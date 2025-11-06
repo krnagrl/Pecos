@@ -169,7 +169,6 @@ header {
     <input id="displayName" type="text" placeholder="Full Name">
     <input id="email" type="email" placeholder="Email">
     <input id="phone" type="tel" placeholder="Phone Number">
-    <input id="city" type="text" placeholder="City">
     <input id="password" type="password" placeholder="Password">
 
     <button id="signupBtn" onclick="signup()">Create Account</button>
@@ -217,12 +216,11 @@ header {
       const displayName = document.getElementById('displayName').value.trim();
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
-      const city = document.getElementById('city').value.trim();
       const password = document.getElementById('password').value.trim();
       const signupBtn = document.getElementById('signupBtn');
       const resendBtn = document.getElementById('resendBtn');
 
-      if (!displayName || !email || !phone || !city || !password) {
+      if (!displayName || !email || !phone || !password) {
         showMsg('⚠️ Please fill in all fields.', 'red');
         return;
       }
@@ -242,7 +240,6 @@ header {
           displayName,
           email,
           phone,
-          city,
           memberID,
           memberSince,
           tokens: 0,
