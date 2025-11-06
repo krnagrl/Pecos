@@ -144,7 +144,21 @@ footer {
   font-size: 14px;
   margin-top: auto; /* 👈 Pushes it to bottom */
 }
-
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+    @media (max-width: 600px) {
+  .container {
+    margin: 40px 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 350px;
+  }
+}
   </style>
 </head>
 
@@ -159,7 +173,7 @@ footer {
       <a href="#">Advertise</a>
     </nav>
   </header>
-
+<main>
   <div class="container">
     <h2>Pecos</h2>
     <p> Where Business Happens. </p>
@@ -179,7 +193,7 @@ footer {
       </div>
     </div>
   </div>
-
+</main>
   <footer>
     © 2025 Pecos | All Rights Reserved
   </footer>
