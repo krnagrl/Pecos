@@ -31,6 +31,7 @@ body {
   min-height: 100vh;
 }
 
+/* ---------- HEADER ---------- */
 header {
   background: #003366;
   color: white;
@@ -59,6 +60,7 @@ header {
   font-weight: 500;
 }
 
+/* ---------- MAIN CONTAINER ---------- */
 .container {
   max-width: 350px;
   margin: 80px auto;
@@ -83,6 +85,7 @@ header {
   margin-bottom: 18px;
 }
 
+/* ---------- FORM INPUTS ---------- */
 input {
   width: 100%;
   padding: 10px;
@@ -97,6 +100,7 @@ input::placeholder {
   color: #999;
 }
 
+/* ---------- BUTTON ---------- */
 button {
   width: 100%;
   background: #ffc107;
@@ -114,6 +118,7 @@ button:hover {
   background: #ffb300;
 }
 
+/* ---------- TEXT & LINKS ---------- */
 #msg {
   margin-top: 10px;
   font-size: 14px;
@@ -136,16 +141,17 @@ a {
   margin-top: 10px;
 }
 
+/* ---------- FOOTER ---------- */
 footer {
   background: #003366;
   color: white;
   text-align: center;
   padding: 12px;
   font-size: 14px;
-  margin-top: auto;
+  margin-top: auto; /* keeps footer at bottom */
 }
 
-/* ✅ Responsive Design */
+/* ---------- RESPONSIVE FIXES ---------- */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
@@ -154,12 +160,11 @@ footer {
   }
 
   .nav-links {
-    margin-top: 8px;
+    margin-top: 10px;
   }
 
   .nav-links a {
-    margin-left: 0;
-    margin-right: 15px;
+    margin: 0 10px 5px 0;
   }
 
   .container {
@@ -205,7 +210,6 @@ footer {
     font-size: 14px;
   }
 }
-
 
   </style>
 </head>
