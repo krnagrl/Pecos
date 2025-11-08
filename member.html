@@ -256,6 +256,7 @@ auth.onAuthStateChanged(async user => {
         accountNumber: document.getElementById('accountNumber').value,
         ifscCode: document.getElementById('ifscCode').value,
         loanType: document.getElementById('loanType').value,
+        status: 'Pending', // ✅ default status added
         createdAt: new Date()
       };
 
