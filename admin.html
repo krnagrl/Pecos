@@ -130,89 +130,83 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // ✅ Handle section switching
+    // ✅ Section switching
     function showSection(id) {
       document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      const el = document.getElementById(id);
-      if (el) el.style.display = 'block';
+      document.getElementById(id).style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // ✅ Auth & Admin check
+    // ✅ Load all members
+    async function loadUsers() {
+      const table = document.querySelector("#usersTable tbody");
+      table.innerHTML = "";
+      const snapshot = await db.collection("members").get();
+      snapshot.forEach(doc => {
+        const data = doc.data();
+        const row = `<tr>
+          <td>${data.displayName || '-'}</td>
+          <td>${data.email || '-'}</td>
+          <td>${data.memberID || '-'}</td>
+          <td>${data.memberSince || '-'}</td>
+        </tr>`;
+        table.innerHTML += row;
+      });
+    }
+
+    // ✅ Load finance requests
+    async function loadFinanceRequests() {
+      const table = document.querySelector("#financeTable tbody");
+      table.innerHTML = "";
+      const snapshot = await db.collection("financeRequests").get();
+      snapshot.forEach(doc => {
+        const d = doc.data();
+        const row = `<tr>
+          <td>${d.email}</td>
+          <td>${d.amount}</td>
+          <td>${d.bankName}</td>
+          <td>${d.accountNumber}</td>
+          <td>${d.ifscCode}</td>
+          <td>${d.loanType}</td>
+          <td>${new Date(d.createdAt?.seconds * 1000).toLocaleDateString()}</td>
+        </tr>`;
+        table.innerHTML += row;
+      });
+    }
+
+    // ✅ Admin check
     auth.onAuthStateChanged(async user => {
       if (!user) {
-        window.location.href = 'index.html';
+        window.location.href = "index.html";
         return;
       }
 
       try {
-        const userDoc = await db.collection('members').doc(user.uid).get();
-        if (!userDoc.exists || userDoc.data().isAdmin !== true) {
-          alert("Access denied. Admins only.");
-          window.location.href = 'member.html';
+        const docSnap = await db.collection("members").doc(user.uid).get();
+        const data = docSnap.data();
+        if (!docSnap.exists || data.isAdmin !== true) {
+          alert("Access denied! Admins only.");
+          window.location.href = "member.html";
           return;
         }
 
-        // ✅ Show admin page only to admins
-        document.body.style.display = 'block';
-        document.getElementById('welcome-message').innerText = `Welcome, ${user.email}`;
-        showSection('overview');
+        document.body.style.display = "block";
+        document.getElementById("welcome-message").innerText = `Welcome, ${user.email}`;
+        showSection("overview");
         await loadUsers();
         await loadFinanceRequests();
-      } catch (err) {
-        console.error(err);
-        window.location.href = 'index.html';
+      } catch (error) {
+        console.error(error);
+        alert("Something went wrong!");
+        window.location.href = "index.html";
       }
     });
 
-    // 🔓 Logout
-    document.getElementById('nav-logout').addEventListener('click', e => {
+    // ✅ Logout
+    document.getElementById("nav-logout").addEventListener("click", e => {
       e.preventDefault();
-      auth.signOut().then(() => window.location.href = 'index.html');
+      auth.signOut().then(() => window.location.href = "index.html");
     });
-
-    // 👥 Load users
-    async function loadUsers() {
-      const tbody = document.querySelector('#usersTable tbody');
-      tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
-      const snap = await db.collection('members').get();
-      tbody.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${d.displayName || '-'}</td>
-          <td>${d.email || '-'}</td>
-          <td>${d.memberID || '-'}</td>
-          <td>${d.memberSince || '-'}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-      if (snap.empty) tbody.innerHTML = '<tr><td colspan="4">No users found</td></tr>';
-    }
-
-    // 💰 Load finance requests
-    async function loadFinanceRequests() {
-      const tbody = document.querySelector('#financeTable tbody');
-      tbody.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
-      const snap = await db.collection('financeRequests').orderBy('createdAt', 'desc').get();
-      tbody.innerHTML = '';
-      snap.forEach(doc => {
-        const d = doc.data();
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td>${d.email || '-'}</td>
-          <td>${d.amount || '-'}</td>
-          <td>${d.bankName || '-'}</td>
-          <td>${d.accountNumber || '-'}</td>
-          <td>${d.ifscCode || '-'}</td>
-          <td>${d.loanType || '-'}</td>
-          <td>${d.createdAt?.toDate ? d.createdAt.toDate().toLocaleString('en-IN') : '-'}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-      if (snap.empty) tbody.innerHTML = '<tr><td colspan="7">No finance requests found</td></tr>';
-    }
   </script>
 </body>
 </html>
