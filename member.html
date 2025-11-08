@@ -110,6 +110,7 @@
           <div class="card">
             <p><strong>Name:</strong> <span id="profile-name">-</span></p>
             <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+            <p><strong>Phone:</strong> <span id="profile-phone">-</span></p> <!-- ✅ Added -->
             <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
             <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
           </div>
@@ -181,6 +182,7 @@ auth.onAuthStateChanged(async user => {
       document.getElementById('overview-name').innerText = data.displayName || user.email;
       document.getElementById('profile-name').innerText = data.displayName || '-';
       document.getElementById('profile-email').innerText = data.email || '-';
+      document.getElementById('profile-phone').innerText = data.phone || '-'; // ✅ Added line
       document.getElementById('profile-id').innerText = data.memberID || '-';
       document.getElementById('profile-since').innerText = data.memberSince || '-';
     }
