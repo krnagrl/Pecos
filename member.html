@@ -108,6 +108,13 @@
               <p>Access profile, submit finance requests, or invest in mutual funds from this dashboard.</p>
             </div>
           </div>
+          <div class="card" style="margin-top:20px;">
+  <h4>Your Finance Requests</h4>
+  <div id="financeRequestsList">
+    <p>Loading your requests...</p>
+  </div>
+</div>
+
         </section>
 
         <section id="profile" class="section" style="display:none">
@@ -153,16 +160,17 @@
     const db = firebase.firestore();
 
     // ✅ Hide content until verified login
-    auth.onAuthStateChanged(async user => {
-      if (!user) {
-        window.location.href = 'index.html';
-      } else {
-        document.body.style.display = 'block'; // ✅ Show after verification
-        document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
-        await loadMemberData(user);
-        showSection('overview');
-      }
-    });
+auth.onAuthStateChanged(async user => {
+  if (!user) {
+    window.location.href = 'index.html';
+  } else {
+    document.body.style.display = 'block';
+    document.getElementById('welcome-message').innerText = `Welcome, ${user.displayName || user.email}`;
+    await loadMemberData(user);
+    await loadFinanceRequests(user); // ✅ load finance requests here
+    showSection('overview');
+  }
+});
 
     function showSection(id) {
       document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
@@ -187,6 +195,53 @@
       document.getElementById('profile-id').innerText = data.memberID || '-';
       document.getElementById('profile-since').innerText = data.memberSince || '-';
     }
+
+    async function loadFinanceRequests(user) {
+  const listEl = document.getElementById('financeRequestsList');
+  listEl.innerHTML = '<p>Loading your requests...</p>';
+
+  try {
+    const snapshot = await db.collection('financeRequests')
+      .where('userId', '==', user.uid)
+      .orderBy('createdAt', 'desc')
+      .get();
+
+    if (snapshot.empty) {
+      listEl.innerHTML = '<p>No finance requests found.</p>';
+      return;
+    }
+
+    let html = '<table style="width:100%;border-collapse:collapse;font-size:14px;">';
+    html += '<tr style="background:#003366;color:#fff;text-align:left;">';
+    html += '<th style="padding:8px;">Date</th>';
+    html += '<th style="padding:8px;">Amount</th>';
+    html += '<th style="padding:8px;">Type</th>';
+    html += '<th style="padding:8px;">Status</th>';
+    html += '</tr>';
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      const status = data.status || 'Pending';
+      const date = data.createdAt?.toDate().toLocaleDateString('en-IN') || '-';
+      const statusColor = status === 'Completed' ? 'green' :
+                          status === 'Rejected' ? 'red' : '#666';
+
+      html += `
+        <tr style="border-bottom:1px solid #eee;">
+          <td style="padding:8px;">${date}</td>
+          <td style="padding:8px;">₹${data.amount}</td>
+          <td style="padding:8px;">${data.loanType}</td>
+          <td style="padding:8px;color:${statusColor};font-weight:bold;">${status}</td>
+        </tr>`;
+    });
+
+    html += '</table>';
+    listEl.innerHTML = html;
+  } catch (err) {
+    console.error('Error loading finance requests:', err);
+    listEl.innerHTML = '<p style="color:red;">Error loading finance requests.</p>';
+  }
+}
 
     document.getElementById('financeForm').addEventListener('submit', async e => {
       e.preventDefault();
