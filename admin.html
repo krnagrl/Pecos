@@ -119,94 +119,72 @@
     <footer>© 2025 Pecos | Admin Portal</footer>
   </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-      authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5",
-      storageBucket: "pecos-432b5.appspot.com"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+    authDomain: "pecos-432b5.firebaseapp.com",
+    projectId: "pecos-432b5",
+    storageBucket: "pecos-432b5.appspot.com"
+  };
 
-    // ✅ Section switching
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-      document.getElementById(id).style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  // ✅ Section Switcher
+  function showSection(id) {
+    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+    const el = document.getElementById(id);
+    if (el) el.style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // ✅ Admin Check
+  auth.onAuthStateChanged(async (user) => {
+    if (!user) {
+      console.log("No user logged in — redirecting");
+      window.location.href = "index.html";
+      return;
     }
 
-    // ✅ Load all members
-    async function loadUsers() {
-      const table = document.querySelector("#usersTable tbody");
-      table.innerHTML = "";
-      const snapshot = await db.collection("members").get();
-      snapshot.forEach(doc => {
-        const data = doc.data();
-        const row = `<tr>
-          <td>${data.displayName || '-'}</td>
-          <td>${data.email || '-'}</td>
-          <td>${data.memberID || '-'}</td>
-          <td>${data.memberSince || '-'}</td>
-        </tr>`;
-        table.innerHTML += row;
-      });
-    }
+    try {
+      const userDocRef = db.collection("members").doc(user.uid);
+      const userDocSnap = await userDocRef.get();
 
-    // ✅ Load finance requests
-    async function loadFinanceRequests() {
-      const table = document.querySelector("#financeTable tbody");
-      table.innerHTML = "";
-      const snapshot = await db.collection("financeRequests").get();
-      snapshot.forEach(doc => {
-        const d = doc.data();
-        const row = `<tr>
-          <td>${d.email}</td>
-          <td>${d.amount}</td>
-          <td>${d.bankName}</td>
-          <td>${d.accountNumber}</td>
-          <td>${d.ifscCode}</td>
-          <td>${d.loanType}</td>
-          <td>${new Date(d.createdAt?.seconds * 1000).toLocaleDateString()}</td>
-        </tr>`;
-        table.innerHTML += row;
-      });
-    }
-
-    // ✅ Admin check
-    auth.onAuthStateChanged(async user => {
-      if (!user) {
+      if (!userDocSnap.exists) {
+        console.log("User document not found — redirecting");
         window.location.href = "index.html";
         return;
       }
 
-      try {
-        const docSnap = await db.collection("members").doc(user.uid).get();
-        const data = docSnap.data();
-        if (!docSnap.exists || data.isAdmin !== true) {
-          alert("Access denied! Admins only.");
-          window.location.href = "member.html";
-          return;
-        }
+      const userData = userDocSnap.data();
+      console.log("User data:", userData);
 
+      // ✅ Ensure isAdmin is true (boolean)
+      if (userData.isAdmin === true) {
+        console.log("✅ Admin verified");
         document.body.style.display = "block";
         document.getElementById("welcome-message").innerText = `Welcome, ${user.email}`;
         showSection("overview");
-        await loadUsers();
-        await loadFinanceRequests();
-      } catch (error) {
-        console.error(error);
-        alert("Something went wrong!");
-        window.location.href = "index.html";
+      } else {
+        console.log("⛔ Not an admin — redirecting to member page");
+        alert("Access denied. Admins only.");
+        window.location.href = "member.html";
       }
-    });
+    } catch (error) {
+      console.error("Error checking admin status:", error);
+      window.location.href = "index.html";
+    }
+  });
 
-    // ✅ Logout
-    document.getElementById("nav-logout").addEventListener("click", e => {
-      e.preventDefault();
-      auth.signOut().then(() => window.location.href = "index.html");
+  // 🔓 Logout
+  document.getElementById("nav-logout").addEventListener("click", (e) => {
+    e.preventDefault();
+    auth.signOut().then(() => {
+      window.location.href = "index.html";
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
