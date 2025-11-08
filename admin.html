@@ -16,8 +16,7 @@
 
   <style>
     *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#222}
-
+    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#222;display:none;}
     header{background:#003366;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
     .brand{display:flex;align-items:center;gap:12px}
     .brand img{height:36px}
@@ -25,32 +24,24 @@
     nav.header-actions{display:flex;align-items:center;gap:12px}
     #welcome-message{font-weight:600}
     #nav-logout{cursor:pointer;font-weight:700;color:#fff;text-decoration:none}
-
     .page{max-width:1200px;margin:20px auto;padding:0 16px}
     .layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
-
     .sidebar{background:#003366;color:#fff;padding:20px;border-radius:10px}
     .sidebar h3{margin:0 0 12px 0;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px}
     .sidebar ul{list-style:none;margin:12px 0 0 0;padding:0}
     .sidebar li{margin-bottom:10px}
     .sidebar a{display:block;color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;}
     .sidebar a:hover{background:rgba(255,255,255,0.06)}
-
     .main{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
     .hero{background:#fffdfc;padding:16px;border-radius:8px;margin-bottom:16px;border:1px solid #eef2f6}
     .hero h2{margin:0 0 8px 0;color:#003366}
-
     table{width:100%;border-collapse:collapse;margin-top:10px}
     th,td{border:1px solid #eef2f6;padding:10px;text-align:left;font-size:14px}
     th{background:#003366;color:#fff}
     tr:nth-child(even){background:#f9fbfd}
-
     .btn{background:#003366;color:#fff;border:none;padding:8px 14px;border-radius:8px;font-weight:700;cursor:pointer}
     .btn:hover{background:#002a53;transform:translateY(-2px)}
-    .btn-small{padding:6px 10px;font-size:13px}
-
     footer{margin-top:18px;text-align:center;color:#666;font-size:13px}
-
     @media(max-width:800px){
       .layout{display:flex;flex-direction:column}
       .sidebar{width:100%;margin-bottom:20px}
@@ -74,8 +65,6 @@
 
   <div class="page">
     <div class="layout">
-
-      <!-- Sidebar -->
       <aside class="sidebar">
         <h3>Admin Menu</h3>
         <ul>
@@ -85,9 +74,7 @@
         </ul>
       </aside>
 
-      <!-- Main -->
       <main class="main">
-        <!-- Overview -->
         <section id="overview" class="section">
           <div class="hero">
             <h2>Welcome Admin!</h2>
@@ -95,7 +82,6 @@
           </div>
         </section>
 
-        <!-- Users -->
         <section id="users" class="section" style="display:none">
           <h2 style="color:#003366;margin-top:0">All Users</h2>
           <table id="usersTable">
@@ -111,7 +97,6 @@
           </table>
         </section>
 
-        <!-- Finance Requests -->
         <section id="financeRequests" class="section" style="display:none">
           <h2 style="color:#003366;margin-top:0">Finance Requests</h2>
           <table id="financeTable">
@@ -135,109 +120,99 @@
   </div>
 
   <script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-    authDomain: "pecos-432b5.firebaseapp.com",
-    projectId: "pecos-432b5",
-    storageBucket: "pecos-432b5.appspot.com"
-  };
-  firebase.initializeApp(firebaseConfig);
-  const auth = firebase.auth();
-  const db = firebase.firestore();
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.appspot.com"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-  function showSection(id) {
-    document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
-    const el = document.getElementById(id);
-    if (el) el.style.display = 'block';
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ✅ Auth and Admin Check (from 'members' collection)
-  auth.onAuthStateChanged(async user => {
-    if (!user) {
-      window.location.href = 'index.html';
-      return;
+    // ✅ Handle section switching
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    try {
-      // 🔍 Check if user is admin (in 'members' collection)
-      const userDoc = await db.collection('members').doc(user.uid).get();
-      const userData = userDoc.data();
-
-      if (!userDoc.exists || !userData.isAdmin) {
-        // ❌ Not an admin → redirect
-        alert("Access denied. Admins only.");
+    // ✅ Auth & Admin check
+    auth.onAuthStateChanged(async user => {
+      if (!user) {
         window.location.href = 'index.html';
         return;
       }
 
-      // ✅ If admin, show dashboard
-      document.getElementById('welcome-message').innerText = `Welcome, ${user.email}`;
-      showSection('overview');
-      await loadUsers();
-      await loadFinanceRequests();
+      try {
+        const userDoc = await db.collection('members').doc(user.uid).get();
+        if (!userDoc.exists || userDoc.data().isAdmin !== true) {
+          alert("Access denied. Admins only.");
+          window.location.href = 'member.html';
+          return;
+        }
 
-    } catch (error) {
-      console.error("Error checking admin:", error);
-      window.location.href = 'index.html';
+        // ✅ Show admin page only to admins
+        document.body.style.display = 'block';
+        document.getElementById('welcome-message').innerText = `Welcome, ${user.email}`;
+        showSection('overview');
+        await loadUsers();
+        await loadFinanceRequests();
+      } catch (err) {
+        console.error(err);
+        window.location.href = 'index.html';
+      }
+    });
+
+    // 🔓 Logout
+    document.getElementById('nav-logout').addEventListener('click', e => {
+      e.preventDefault();
+      auth.signOut().then(() => window.location.href = 'index.html');
+    });
+
+    // 👥 Load users
+    async function loadUsers() {
+      const tbody = document.querySelector('#usersTable tbody');
+      tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
+      const snap = await db.collection('members').get();
+      tbody.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${d.displayName || '-'}</td>
+          <td>${d.email || '-'}</td>
+          <td>${d.memberID || '-'}</td>
+          <td>${d.memberSince || '-'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      if (snap.empty) tbody.innerHTML = '<tr><td colspan="4">No users found</td></tr>';
     }
-  });
 
-  // 🔓 Logout
-  document.getElementById('nav-logout').addEventListener('click', e => {
-    e.preventDefault();
-    auth.signOut().then(() => window.location.href = 'index.html');
-  });
-
-  // 👥 Load all users
-  async function loadUsers() {
-    const tbody = document.querySelector('#usersTable tbody');
-    tbody.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
-    const snap = await db.collection('members').get();
-    tbody.innerHTML = '';
-    snap.forEach(doc => {
-      const d = doc.data();
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${d.displayName || '-'}</td>
-        <td>${d.email || '-'}</td>
-        <td>${d.memberID || '-'}</td>
-        <td>${d.memberSince || '-'}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-    if (!snap.size) tbody.innerHTML = '<tr><td colspan="4">No users found</td></tr>';
-  }
-
-  // 💰 Load all finance requests
-  async function loadFinanceRequests() {
-    const tbody = document.querySelector('#financeTable tbody');
-    tbody.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
-    const snap = await db.collection('financeRequests').orderBy('createdAt', 'desc').get();
-    tbody.innerHTML = '';
-    snap.forEach(doc => {
-      const d = doc.data();
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${d.email || '-'}</td>
-        <td>${d.amount || '-'}</td>
-        <td>${d.bankName || '-'}</td>
-        <td>${d.accountNumber || '-'}</td>
-        <td>${d.ifscCode || '-'}</td>
-        <td>${d.loanType || '-'}</td>
-        <td>${d.createdAt?.toDate ? d.createdAt.toDate().toLocaleString() : '-'}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-    if (!snap.size) tbody.innerHTML = '<tr><td colspan="7">No finance requests found</td></tr>';
-  }
-</script>
-
-  </script>
-</body>
-</html>
-
+    // 💰 Load finance requests
+    async function loadFinanceRequests() {
+      const tbody = document.querySelector('#financeTable tbody');
+      tbody.innerHTML = '<tr><td colspan="7">Loading...</td></tr>';
+      const snap = await db.collection('financeRequests').orderBy('createdAt', 'desc').get();
+      tbody.innerHTML = '';
+      snap.forEach(doc => {
+        const d = doc.data();
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${d.email || '-'}</td>
+          <td>${d.amount || '-'}</td>
+          <td>${d.bankName || '-'}</td>
+          <td>${d.accountNumber || '-'}</td>
+          <td>${d.ifscCode || '-'}</td>
+          <td>${d.loanType || '-'}</td>
+          <td>${d.createdAt?.toDate ? d.createdAt.toDate().toLocaleString('en-IN') : '-'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      if (snap.empty) tbody.innerHTML = '<tr><td colspan="7">No finance requests found</td></tr>';
+    }
   </script>
 </body>
 </html>
