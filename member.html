@@ -118,6 +118,7 @@
         <section id="finance" class="section" style="display:none">
           <h2 style="color:#003366;margin-top:0">Finance</h2>
           <form id="financeForm" class="card" style="max-width:600px">
+              <input type="text" id="name" placeholder="Your Name" required />
             <input type="number" id="amount" placeholder="Amount" required />
             <input type="text" id="bankName" placeholder="Bank Name" required />
             <input type="text" id="accountNumber" placeholder="Account Number" required />
@@ -253,17 +254,18 @@ async function loadFinanceRequests(user) {
       const user = auth.currentUser;
       if (!user) return alert('Please log in first.');
 
-      const financeData = {
-        userId: user.uid,
-        email: user.email,
-        amount: document.getElementById('amount').value,
-        bankName: document.getElementById('bankName').value,
-        accountNumber: document.getElementById('accountNumber').value,
-        ifscCode: document.getElementById('ifscCode').value,
-        loanType: document.getElementById('loanType').value,
-        status: 'Pending', // ✅ default status added
-        createdAt: new Date()
-      };
+const financeData = {
+  userId: user.uid,
+  name: document.getElementById('name').value,
+  email: user.email,
+  amount: document.getElementById('amount').value,
+  bankName: document.getElementById('bankName').value,
+  accountNumber: document.getElementById('accountNumber').value,
+  ifscCode: document.getElementById('ifscCode').value,
+  loanType: document.getElementById('loanType').value,
+  status: 'Pending',
+  createdAt: new Date()
+};
 
       try {
         await db.collection('financeRequests').add(financeData);
