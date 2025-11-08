@@ -265,6 +265,7 @@ auth.onAuthStateChanged(async user => {
         document.getElementById('financeMsg').innerText =
           'Your request has been submitted successfully! We’ll contact you soon for confirmation.';
         document.getElementById('financeForm').reset();
+        await loadFinanceRequests(user); // ✅ refresh overview list
       } catch (error) {
         console.error(error);
         document.getElementById('financeMsg').innerText = 'Error submitting request.';
