@@ -15,9 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -41,16 +39,8 @@ header {
   flex-wrap: wrap;
 }
 
-.logo img {
-  height: 35px;
-  vertical-align: middle;
-}
-
-.logo span {
-  font-size: 20px;
-  font-weight: 600;
-  margin-left: 8px;
-}
+.logo img { height: 35px; vertical-align: middle; }
+.logo span { font-size: 20px; font-weight: 600; margin-left: 8px; }
 
 .nav-links a {
   color: white;
@@ -72,17 +62,8 @@ header {
   flex: 1;
 }
 
-.container h2 {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 10px;
-}
-
-.container p {
-  font-size: 14px;
-  color: #e0e0e0;
-  margin-bottom: 18px;
-}
+.container h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
+.container p { font-size: 14px; color: #e0e0e0; margin-bottom: 18px; }
 
 input {
   width: 100%;
@@ -93,10 +74,7 @@ input {
   outline: none;
   font-size: 14px;
 }
-
-input::placeholder {
-  color: #999;
-}
+input::placeholder { color: #999; }
 
 button {
   width: 100%;
@@ -110,26 +88,12 @@ button {
   cursor: pointer;
   transition: background 0.3s ease;
 }
+button:hover { background: #ffb300; }
 
-button:hover {
-  background: #ffb300;
-}
+#msg { margin-top: 10px; font-size: 14px; font-weight: 600; }
+a { text-decoration: none; color: white; }
 
-#msg {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-.small {
-  font-size: 13px;
-  color: #f0f0f0;
-}
+.small { font-size: 13px; color: #f0f0f0; }
 
 .resend-row {
   display: flex;
@@ -145,7 +109,6 @@ footer {
   font-size: 14px;
   margin-top: auto; /* 👈 Pushes it to bottom */
 }
-
   </style>
 </head>
 
@@ -160,14 +123,17 @@ footer {
       <a href="#">Advertise</a>
     </nav>
   </header>
+
 <main>
   <div class="container">
     <h2>Pecos</h2>
     <p> Where Business Happens. </p>
+
     <input id="displayName" type="text" placeholder="Full Name">
     <input id="email" type="email" placeholder="Email">
     <input id="phone" type="tel" placeholder="Phone Number">
     <input id="password" type="password" placeholder="Password">
+    <input id="memberCode" type="text" placeholder="Member Code">
 
     <button id="signupBtn" onclick="signup()">Create Account</button>
 
@@ -181,125 +147,137 @@ footer {
     </div>
   </div>
 </main>
-  <footer>
-    © 2025 Pecos | All Rights Reserved
-  </footer>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-      authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5",
-      storageBucket: "pecos-432b5.appspot.com",
-      messagingSenderId: "918415143301",
-      appId: "1:918415143301:web:e277538863f8606d5094ec",
-      measurementId: "G-VE4VZE5SJX"
-    };
+<footer>
+  © 2025 Pecos | All Rights Reserved
+</footer>
 
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+    authDomain: "pecos-432b5.firebaseapp.com",
+    projectId: "pecos-432b5",
+    storageBucket: "pecos-432b5.appspot.com",
+    messagingSenderId: "918415143301",
+    appId: "1:918415143301:web:e277538863f8606d5094ec",
+    measurementId: "G-VE4VZE5SJX"
+  };
 
-    function generateMemberID() {
-      return 'PEC' + Math.floor(100000 + Math.random() * 900000);
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  function generateMemberID() {
+    return 'PEC' + Math.floor(100000 + Math.random() * 900000);
+  }
+
+  function showMsg(text, color = 'green') {
+    const el = document.getElementById('msg');
+    el.style.color = color;
+    el.innerText = text;
+  }
+
+  async function signup() {
+    const displayName = document.getElementById('displayName').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const memberCode = document.getElementById('memberCode').value.trim().toLowerCase();
+    const signupBtn = document.getElementById('signupBtn');
+    const resendBtn = document.getElementById('resendBtn');
+
+    const validCodes = ["family"]; // Allowed codes
+
+    if (!displayName || !email || !phone || !password || !memberCode) {
+      showMsg('⚠️ Please fill in all fields.', 'red');
+      return;
     }
 
-    function showMsg(text, color = 'green') {
-      const el = document.getElementById('msg');
-      el.style.color = color;
-      el.innerText = text;
+    if (!validCodes.includes(memberCode)) {
+      showMsg('❌ Invalid Member Code. Please contact admin.', 'red');
+      return;
     }
 
-    async function signup() {
-      const displayName = document.getElementById('displayName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const password = document.getElementById('password').value.trim();
-      const signupBtn = document.getElementById('signupBtn');
-      const resendBtn = document.getElementById('resendBtn');
+    signupBtn.disabled = true;
+    signupBtn.innerText = 'Creating account...';
+    showMsg('', 'green');
 
-      if (!displayName || !email || !phone || !password) {
-        showMsg('⚠️ Please fill in all fields.', 'red');
-        return;
-      }
+    try {
+      const userCred = await auth.createUserWithEmailAndPassword(email, password);
+      const user = userCred.user;
+      await user.updateProfile({ displayName });
 
-      signupBtn.disabled = true;
-      signupBtn.innerText = 'Creating account...';
-      showMsg('', 'green');
+      const memberID = generateMemberID();
+      const memberSince = new Date().toLocaleDateString();
 
-      try {
-        const userCred = await auth.createUserWithEmailAndPassword(email, password);
-        const user = userCred.user;
-        await user.updateProfile({ displayName });
+      await db.collection("members").doc(user.uid).set({
+        displayName,
+        email,
+        phone,
+        memberID,
+        memberSince,
+        tokens: 0,
+        verified: false,
+        memberCode: memberCode
+      });
 
-        const memberID = generateMemberID();
-        const memberSince = new Date().toLocaleDateString();
-        await db.collection("members").doc(user.uid).set({
-          displayName,
-          email,
-          phone,
-          memberID,
-          memberSince,
-          tokens: 0,
-          verified: false
-        });
+      await user.sendEmailVerification();
+      showMsg(`✅ Verification email sent to ${email}. Please check your inbox.`, 'green');
 
-        await user.sendEmailVerification();
-        showMsg(`✅ Verification email sent to ${email}. Please check your inbox.`, 'green');
-
-        document.getElementById('afterSignup').style.display = 'block';
-        resendBtn.disabled = true;
-        let cooldown = 20;
+      document.getElementById('afterSignup').style.display = 'block';
+      resendBtn.disabled = true;
+      let cooldown = 20;
+      resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+      const countdown = setInterval(() => {
+        cooldown--;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
-        const countdown = setInterval(() => {
-          cooldown--;
-          resendBtn.innerText = `Resend Verification (${cooldown}s)`;
-          if (cooldown <= 0) {
-            clearInterval(countdown);
-            resendBtn.innerText = 'Resend Verification';
-            resendBtn.disabled = false;
-          }
-        }, 1000);
-      } catch (err) {
-        console.error(err);
-        showMsg('❌ ' + err.message, 'red');
-      } finally {
-        signupBtn.disabled = false;
-        signupBtn.innerText = 'Create Account';
-      }
+        if (cooldown <= 0) {
+          clearInterval(countdown);
+          resendBtn.innerText = 'Resend Verification';
+          resendBtn.disabled = false;
+        }
+      }, 1000);
+
+    } catch (err) {
+      console.error(err);
+      showMsg('❌ ' + err.message, 'red');
+    } finally {
+      signupBtn.disabled = false;
+      signupBtn.innerText = 'Create Account';
     }
+  }
 
-    async function resendVerification() {
-      const resendBtn = document.getElementById('resendBtn');
-      const user = auth.currentUser;
-      if (!user) {
-        showMsg('⚠️ Please sign in to resend verification.', 'red');
-        return;
-      }
-      try {
-        resendBtn.disabled = true;
-        resendBtn.innerText = 'Sending...';
-        await user.sendEmailVerification();
-        showMsg(`✅ Verification email resent to ${user.email}.`, 'green');
+  async function resendVerification() {
+    const resendBtn = document.getElementById('resendBtn');
+    const user = auth.currentUser;
+    if (!user) {
+      showMsg('⚠️ Please sign in to resend verification.', 'red');
+      return;
+    }
+    try {
+      resendBtn.disabled = true;
+      resendBtn.innerText = 'Sending...';
+      await user.sendEmailVerification();
+      showMsg(`✅ Verification email resent to ${user.email}.`, 'green');
 
-        let cooldown = 20;
+      let cooldown = 20;
+      resendBtn.innerText = `Resend Verification (${cooldown}s)`;
+      const countdown = setInterval(() => {
+        cooldown--;
         resendBtn.innerText = `Resend Verification (${cooldown}s)`;
-        const countdown = setInterval(() => {
-          cooldown--;
-          resendBtn.innerText = `Resend Verification (${cooldown}s)`;
-          if (cooldown <= 0) {
-            clearInterval(countdown);
-            resendBtn.innerText = 'Resend Verification';
-            resendBtn.disabled = false;
-          }
-        }, 1000);
-      } catch (err) {
-        console.error(err);
-        showMsg('❌ ' + err.message, 'red');
-        resendBtn.disabled = false;
-        resendBtn.innerText = 'Resend Verification';
-      }
+        if (cooldown <= 0) {
+          clearInterval(countdown);
+          resendBtn.innerText = 'Resend Verification';
+          resendBtn.disabled = false;
+        }
+      }, 1000);
+    } catch (err) {
+      console.error(err);
+      showMsg('❌ ' + err.message, 'red');
+      resendBtn.disabled = false;
+      resendBtn.innerText = 'Resend Verification';
     }
-  </script>
+  }
+</script>
 </body>
 </html>
