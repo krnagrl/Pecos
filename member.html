@@ -196,20 +196,31 @@ auth.onAuthStateChanged(async user => {
       document.getElementById('profile-since').innerText = data.memberSince || '-';
     }
 
-    async function loadFinanceRequests(user) {
+async function loadFinanceRequests(user) {
   const listEl = document.getElementById('financeRequestsList');
   listEl.innerHTML = '<p>Loading your requests...</p>';
 
   try {
+    // ✅ Load all requests for this user (NO orderBy → NO index required)
     const snapshot = await db.collection('financeRequests')
       .where('userId', '==', user.uid)
-      .orderBy('createdAt', 'desc')
       .get();
 
     if (snapshot.empty) {
       listEl.innerHTML = '<p>No finance requests found.</p>';
       return;
     }
+
+    // ✅ Sort manually (descending by date)
+    let requests = [];
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      requests.push(data);
+    });
+
+    requests.sort((a, b) => {
+      return (b.createdAt?.toDate() || 0) - (a.createdAt?.toDate() || 0);
+    });
 
     let html = '<table style="width:100%;border-collapse:collapse;font-size:14px;">';
     html += '<tr style="background:#003366;color:#fff;text-align:left;">';
@@ -219,12 +230,15 @@ auth.onAuthStateChanged(async user => {
     html += '<th style="padding:8px;">Status</th>';
     html += '</tr>';
 
-    snapshot.forEach(doc => {
-      const data = doc.data();
+    requests.forEach(data => {
       const status = data.status || 'Pending';
-      const date = data.createdAt?.toDate().toLocaleDateString('en-IN') || '-';
-      const statusColor = status === 'Completed' ? 'green' :
-                          status === 'Rejected' ? 'red' : '#666';
+      const date = data.createdAt?.toDate?.() 
+        ? data.createdAt.toDate().toLocaleDateString('en-IN')
+        : '-';
+
+      const statusColor =
+        status === 'Completed' ? 'green' :
+        status === 'Rejected' ? 'red' : '#666';
 
       html += `
         <tr style="border-bottom:1px solid #eee;">
@@ -232,16 +246,19 @@ auth.onAuthStateChanged(async user => {
           <td style="padding:8px;">₹${data.amount}</td>
           <td style="padding:8px;">${data.loanType}</td>
           <td style="padding:8px;color:${statusColor};font-weight:bold;">${status}</td>
-        </tr>`;
+        </tr>
+      `;
     });
 
     html += '</table>';
     listEl.innerHTML = html;
+
   } catch (err) {
-    console.error('Error loading finance requests:', err);
+    console.error(err);
     listEl.innerHTML = '<p style="color:red;">Error loading finance requests.</p>';
   }
 }
+
 
     document.getElementById('financeForm').addEventListener('submit', async e => {
       e.preventDefault();
