@@ -134,7 +134,7 @@
         <!-- OVERVIEW -->
         <section id="overview" class="section">
           <div class="hero">
-            <h2>Welcome to Club Pecos!</h2>
+            <h2>Welcome to Pecos!</h2>
             <p>Hello <strong id="overview-name">Member</strong> — glad you're here. Use the menu to navigate your dashboard.</p>
           </div>
 
@@ -164,18 +164,18 @@
 
         <!-- FINANCE REQUEST -->
         <section id="finance" class="section" style="display:none">
-          <h2 style="color:#003366;margin-top:0">Finance Request</h2>
+          <h2 style="color:#003366;margin-top:0">Finance</h2>
           <form id="financeForm" class="card" style="max-width:600px">
             <input type="number" id="amount" placeholder="Amount Required" required />
             <input type="text" id="bankName" placeholder="Bank Name" required />
             <input type="text" id="accountNumber" placeholder="Account Number" required />
             <input type="text" id="ifscCode" placeholder="IFSC Code" required />
             <select id="loanType" required>
-              <option value="">Select Loan Type</option>
+              <option value="">Select Type</option>
               <option value="Personal">Personal</option>
               <option value="Commercial">Commercial</option>
             </select>
-            <button class="btn btn-full" type="submit">Submit Request</button>
+            <button class="btn btn-full" type="submit">Submit</button>
           </form>
           <p id="financeMsg" style="color:green;font-weight:bold;margin-top:10px;"></p>
         </section>
@@ -251,7 +251,7 @@
 
       try {
         await db.collection('financeRequests').add(financeData);
-        document.getElementById('financeMsg').innerText = 'Finance request submitted successfully!';
+        document.getElementById('financeMsg').innerText = 'Your request has been submitted successfully! We’ll contact you soon for confirmation.';
         document.getElementById('financeForm').reset();
       } catch (error) {
         console.error(error);
