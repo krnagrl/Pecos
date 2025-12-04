@@ -4,24 +4,49 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecos Real Estate – Single Page</title>
+
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #222; }
     header { position: sticky; top: 0; background: #ffffffd9; backdrop-filter: blur(8px); padding: 15px 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; z-index: 999; }
     .dark body, .dark { background: #111; color: #eee; }
     .container { padding: 20px; max-width: 1100px; margin: auto; }
+
     .filters { display: flex; gap: 10px; margin-bottom: 20px; }
     .filters select, .filters input { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+
     .property-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
     .card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); cursor: pointer; }
     .card img { width: 100%; height: 180px; object-fit: cover; }
     .card-body { padding: 15px; }
-    .gallery { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; z-index: 2000; }
-    .gallery img { max-width: 80%; max-height: 80%; border-radius: 10px; }
+
+    /* Fullscreen Gallery */
+    .gallery { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); align-items: center; justify-content: center; z-index: 2000; flex-direction: column; }
+    .gallery img { max-width: 85%; max-height: 85%; border-radius: 10px; }
+
     .close-gallery { position:absolute; top:20px; right:20px; font-size: 30px; color:#fff; cursor:pointer; }
+
+    /* NEXT / PREVIOUS BUTTONS */
+    .prev-btn, .next-btn {
+      position: absolute;
+      top: 50%;
+      font-size: 50px;
+      color: white;
+      background: none;
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      transform: translateY(-50%);
+    }
+    .prev-btn { left: 40px; }
+    .next-btn { right: 40px; }
+
     footer { padding: 40px 20px; text-align: center; margin-top: 40px; background: #222; color: white; }
+
     .mobile-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; padding: 10px; display: flex; justify-content: space-around; box-shadow: 0 -2px 6px rgba(0,0,0,0.1); }
     .mobile-nav button { background: none; border: none; font-size: 16px; }
     .dark .mobile-nav { background: #333; color: #fff; }
+
     .contact-form { margin-top: 40px; background:#fff; padding:20px; border-radius:10px; }
     .contact-form input, .contact-form textarea { width:100%; margin-bottom:10px; padding:10px; border-radius:5px; border:1px solid #ccc; }
   </style>
@@ -35,6 +60,7 @@
 
 <div class="container">
   <h2>Search Properties</h2>
+
   <div class="filters">
     <select id="typeFilter">
       <option value="all">All Types</option>
@@ -48,14 +74,19 @@
     <button onclick="applyFilters()">Search</button>
   </div>
 
+  <!-- PROPERTY GRID -->
   <div id="propertyGrid" class="property-grid"></div>
 
+  <!-- FULLSCREEN GALLERY -->
   <div class="gallery" id="gallery">
     <span class="close-gallery" onclick="closeGallery()">✖</span>
+    <button class="prev-btn" onclick="prevImage()">‹</button>
     <img id="galleryImage" />
+    <button class="next-btn" onclick="nextImage()">›</button>
   </div>
 
   <h2>Contact Us</h2>
+
   <div class="contact-form">
     <input type="text" id="name" placeholder="Your Name" />
     <input type="email" id="email" placeholder="Email" />
@@ -74,20 +105,64 @@
 </div>
 
 <script>
+/* -------------------------
+     PROPERTY DATA WITH MULTIPLE IMAGES
+------------------------- */
 const properties = [
-  { id: 1, type: "residential", price: 25000, location: "Bangalore", image: "https://via.placeholder.com/400" },
-  { id: 2, type: "commercial", price: 55000, location: "Mumbai", image: "https://via.placeholder.com/400" },
-  { id: 3, type: "residential", price: 30000, location: "Delhi", image: "https://via.placeholder.com/400" },
-  { id: 4, type: "commercial", price: 75000, location: "Hyderabad", image: "https://via.placeholder.com/400" }
+  {
+    id: 1,
+    type: "residential",
+    price: 25000,
+    location: "Bangalore",
+    images: [
+      "https://via.placeholder.com/400",
+      "https://via.placeholder.com/400/111",
+      "https://via.placeholder.com/400/222"
+    ]
+  },
+  {
+    id: 2,
+    type: "commercial",
+    price: 55000,
+    location: "Mumbai",
+    images: [
+      "https://via.placeholder.com/400",
+      "https://via.placeholder.com/400/444"
+    ]
+  },
+  {
+    id: 3,
+    type: "residential",
+    price: 30000,
+    location: "Delhi",
+    images: [
+      "https://via.placeholder.com/400",
+      "https://via.placeholder.com/400/555"
+    ]
+  },
+  {
+    id: 4,
+    type: "commercial",
+    price: 75000,
+    location: "Hyderabad",
+    images: [
+      "https://via.placeholder.com/400",
+      "https://via.placeholder.com/400/666"
+    ]
+  }
 ];
 
+/* -------------------------
+      DISPLAY PROPERTIES
+------------------------- */
 function loadProperties(list) {
   const grid = document.getElementById("propertyGrid");
   grid.innerHTML = "";
+
   list.forEach(p => {
     grid.innerHTML += `
-      <div class="card" onclick="openGallery('${p.image}')">
-        <img src="${p.image}" />
+      <div class="card" onclick='openGallery(${JSON.stringify(p.images)})'>
+        <img src="${p.images[0]}" />
         <div class="card-body">
           <h3>${p.type.charAt(0).toUpperCase() + p.type.slice(1)}</h3>
           <p>₹${p.price}</p>
@@ -97,6 +172,9 @@ function loadProperties(list) {
   });
 }
 
+/* -------------------------
+       FILTERING
+------------------------- */
 function applyFilters() {
   const type = document.getElementById("typeFilter").value;
   const price = parseInt(document.getElementById("priceFilter").value) || Infinity;
@@ -111,22 +189,61 @@ function applyFilters() {
   loadProperties(filtered);
 }
 
-function openGallery(img) {
-  document.getElementById("galleryImage").src = img;
+/* -------------------------
+      MULTI-IMAGE GALLERY
+------------------------- */
+let currentImages = [];
+let currentIndex = 0;
+
+function openGallery(images) {
+  currentImages = images;
+  currentIndex = 0;
+
+  document.getElementById("galleryImage").src = currentImages[currentIndex];
   document.getElementById("gallery").style.display = "flex";
 }
-function closeGallery() { document.getElementById("gallery").style.display = "none"; }
-function toggleDarkMode() { document.documentElement.classList.toggle("dark"); }
-function scrollToTop() { window.scrollTo({ top: 0, behavior: "smooth" }); }
-function openContact() { window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); }
+
+function nextImage() {
+  currentIndex = (currentIndex + 1) % currentImages.length;
+  document.getElementById("galleryImage").src = currentImages[currentIndex];
+}
+
+function prevImage() {
+  currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+  document.getElementById("galleryImage").src = currentImages[currentIndex];
+}
+
+function closeGallery() {
+  document.getElementById("gallery").style.display = "none";
+}
+
+/* -------------------------
+        PAGE UTILS
+------------------------- */
+function toggleDarkMode() {
+  document.documentElement.classList.toggle("dark");
+}
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function openContact() {
+  window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+}
+
+/* -------------------------
+        WHATSAPP FORM
+------------------------- */
 function sendMessage() {
   const name = document.getElementById("name").value;
   const msg = document.getElementById("message").value;
+
   const link = `https://wa.me/910000000000?text=Hi, I'm ${name}. ${msg}`;
   document.getElementById("whatsappBtn").href = link;
+
   alert("Message ready to send on WhatsApp!");
 }
 
+/* LOAD ALL PROPERTIES INITIALLY */
 loadProperties(properties);
 </script>
 
