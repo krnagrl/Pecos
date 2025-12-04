@@ -2,227 +2,273 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- 🔹 SEO Meta Tags for Pecos (Akola) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
+  <link rel="icon" type="image/png" href="pecos.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-<meta name="description" content="Pecos is Akola's trusted name for Finance, Mutual Funds, Shares, and Digital Advertising. Explore Pecos services in finance, technology, and marketing to grow your business in Akola, Maharashtra.">
-
-<meta name="keywords" content="Pecos, Pecos Akola, Pecos Advertisers, Pecos Finance, Pecos Mutual Funds, Pecos Shares, Pecos Investments, Pecos Technology, Akola Finance, Akola Mutual Funds, Akola Companies, Akola Jobs, Akola Technology, Akola Advertising Agency, Akola Marketing, Akola Investments, Digital Marketing Akola, Stock Broker Akola, Akola Business, Finance in Akola, Mutual Funds in Akola, Pecos Digital Marketing, Pecos Akola Company, Pecos Services Akola">
-
-<meta name="author" content="Pecos Advertisers">
-<meta name="robots" content="index, follow">
-
-<!-- For better sharing on social media -->
-<meta property="og:title" content="Pecos Advertisers | Finance, Mutual Funds, Stocks & Marketing in Akola">
-<meta property="og:description" content="Discover Pecos — Akola’s hub for finance, mutual funds, advertising, and technology services.">
-<meta property="og:image" content="https://pecos.in/pecos.png">
-<meta property="og:url" content="https://pecos.in">
-<meta name="twitter:card" content="summary_large_image">
-
-  <link rel="icon" type="image/png" href="pecos.png"/>
-  <title>Pecos Advertisers | Digital & Offline Marketing</title>
   <style>
     * { box-sizing: border-box; }
-    body { background: linear-gradient(135deg, #f9f5d7, #fffce8); font-family: "Verdana", sans-serif; margin: 0; padding: 0; color: #333; }
-    .container { max-width: 1000px; margin: 30px auto; border: 1px solid rgba(74,74,125,0.3); background: rgba(255, 252, 232, 0.85); box-shadow: 0px 4px 20px rgba(0,0,0,0.1); backdrop-filter: blur(8px); border-radius: 10px; overflow: hidden; }
-    header { background: linear-gradient(90deg, #4a4a7d, #5c5c9e); color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; flex-wrap: wrap; }
-    .logo { display:flex; align-items:center; gap:10px; }
-    .logo img { height:42px; width:42px; }
-    .logo span { font-size:22px; font-weight:bold; color:white; }
-    .nav-links { display:flex; gap:25px; flex-wrap:wrap; }
-    .nav-links a { color:white; text-decoration:none; font-size:15px; font-weight:500; transition:all .3s; }
-    .content { display:flex; padding:20px; flex-wrap:wrap; }
-    .sidebar { width:220px; border-right:1px solid rgba(0,0,0,0.1); background: rgba(247,243,198,0.6); padding:15px; border-radius:8px; flex-shrink:0; }
-    .sidebar h3 { background-color:#c33; color:white; padding:8px; font-size:17px; text-align:center; border-radius:5px; margin-bottom:12px; }
-    .sidebar ul { list-style:none; padding:0; margin:0; }
-    .sidebar li { margin:10px 0; font-size:15px; }
-    .sidebar li a { text-decoration:none; color:#333; padding:6px 8px; display:block; border-radius:4px; transition:background .3s; cursor:pointer; }
-    .sidebar li a:hover, .sidebar li a.active { background-color: rgba(204,51,51,0.1); color:#c33; }
-    .main { flex:1; padding:25px; background-color: rgba(255,255,255,0.8); border-radius:8px; margin-left:10px; box-shadow: inset 0 0 5px rgba(0,0,0,0.05); }
-    .title { font-size:28px; font-weight:bold; color:#4a4a7d; margin-bottom:10px; }
-    .title span { color:#c33; }
-    .section-title { font-size:22px; color:#4a4a7d; margin:10px 0 12px; border-bottom:2px solid rgba(197,46,46,0.12); padding-bottom:6px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:18px; margin-top:10px; }
-    .card { background:#fffdf0; border-radius:12px; box-shadow:0 3px 10px rgba(0,0,0,0.08); overflow:hidden; transition:transform .25s, box-shadow .25s; display: flex; flex-direction: column; }
-    .card:hover { transform: translateY(-6px); box-shadow:0 8px 20px rgba(0,0,0,0.12); }
-    .card-icon { width: 80px; height: 80px; object-fit: contain; margin: 25px auto 10px; display: block; }
-    .card-body { padding:14px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
-    .card-body h3 { color:#c33; margin:0 0 6px; font-size:16px; }
-    .card-body p { margin:0; font-size:14px; line-height:1.4; }
-    .contact-section { margin-top:28px; text-align:center; background: rgba(247,243,198,0.6); padding:20px; border-radius:10px; }
-    .contact-section h2 { color:#4a4a7d; margin-bottom:8px; }
-    .contact-section p { margin:6px 0 12px; }
-    .contact-section input, .contact-section textarea, .contact-section select {
-      width:92%; max-width:560px; padding:10px; margin:8px 0; border:1px solid #ccc; border-radius:6px; font-family:inherit;
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f4f6f9 0%, #eef2f7 100%);
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
-    .contact-section button { background-color:#c33; color:white; border:none; padding:10px 24px; border-radius:6px; cursor:pointer; font-size:15px; transition: all .2s; }
-    .contact-section button:disabled { opacity:0.6; cursor:not-allowed; }
-    .contact-section button:hover:not(:disabled) { background-color:#a22; transform: translateY(-2px); }
-    footer { background: linear-gradient(90deg, #4a4a7d, #5c5c9e); color: white; text-align:center; font-size:13px; padding:12px; }
-    @media (max-width:768px) { .content { flex-direction:column; } .sidebar { width:100%; margin-bottom:10px; border-right:none; border-bottom:1px solid rgba(0,0,0,0.06); } .main { margin-left:0; } }
+    header {
+      background: #003366;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+      flex-wrap: wrap;
+    }
+    .logo img { height: 35px; vertical-align: middle; }
+    .logo span { font-size: 20px; font-weight: 600; margin-left: 8px; }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+    button,
+    a button {
+      background-color: #004aad;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover { background-color: #00367f; transform: translateY(-2px); }
+
+    .container { min-height: 100vh; width: 100%; }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1.2fr;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    aside.sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+      position: sticky;
+      top: 20px;
+    }
+    aside.sidebar h4 { border-bottom: 1px solid #ccc; padding-bottom: 8px; }
+    aside.sidebar ul { list-style: none; padding: 0; }
+    aside.sidebar li { margin-bottom: 10px; }
+    aside.sidebar a { color: white; text-decoration: none; }
+
+    main.main {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    main.main h3 { margin-bottom: 10px; }
+
+    .trust-section, .testimonial-section, .faq-section {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .map-container {
+      margin-top: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .login-sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+    .login-sidebar input {
+      width: 100%; padding: 10px; border-radius: 6px; border: none; margin-bottom: 10px;
+    }
+
+    footer {
+      background: #003366;
+      color: white;
+      padding: 12px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    @media(max-width:992px){ .content{grid-template-columns:1fr;} }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo">
-        <span>Pecos Advertisers</span>
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-      </nav>
-    </header>
+  <header>
+    <div class="logo"><img src="pecos.png"><span>Pecos</span></div>
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="admin-login.html">Admin</a>
+      <a href="/images/Pecos Town (1).png">Town</a>
+    </nav>
+  </header>
 
-    <div class="content">
-      <div class="sidebar">
-        <h3>Ad Services</h3>
+  <div class="content">
+
+    <aside class="sidebar">
+      <h4>Services</h4>
+      <ul>
+        <li><a>Finance</a></li>
+        <li><a>Real Estate</a></li>
+        <li><a>Stocks & Shares</a></li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <h2 id="about">Welcome to Pecos</h2>
+      <p>Your trusted partner in Finance, Real Estate & Stock Market Insights.</p>
+      <hr />
+
+      <section class="open-account">
+        <h3>Open an Account</h3>
+        <p>Start your financial journey with confidence.</p>
+        <a href="registeration.html"><button>Register</button></a>
+      </section>
+
+      <section class="contact-section" id="contact">
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> <a href="mailto:karan@pecos.in">karan@pecos.in</a></p>
+        <p><strong>Location:</strong> Office no 210, 2nd floor, Yamuna Business Park, Akola, Maharashtra 444001</p>
+
+        <div class="map-container">
+          <iframe
+            width="100%" height="300" style="border:0" loading="lazy" allowfullscreen
+            src="https://www.google.com/maps?q=Office%20no%20210,%202nd%20floor,%20Yamuna%20Business%20Park,%20Akola&output=embed">
+          </iframe>
+        </div>
+      </section>
+
+      <section class="trust-section">
+        <h3>Why Trust Pecos?</h3>
         <ul>
-          <li><a id="digitalBtn" class="active">Digital Marketing</a></li>
-          <li><a id="offlineBtn">Offline Marketing</a></li>
+          <li>✔ Secure & Verified Firebase Authentication</li>
+          <li>✔ Registered Business in India</li>
+          <li>✔ Data Encryption Enabled</li>
+          <li>✔ Professional Finance & Real Estate Experts</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="main" id="mainContent"></div>
-    </div>
+      <section class="testimonial-section">
+        <h3>Testimonials</h3>
+        <p>“Pecos guided me with accurate real estate investments. Highly recommended!” – Amit S.</p>
+      </section>
 
-    <footer>
-      <p>© 2025 Pecos Advertisers | Powered by Pecos.in | All Rights Reserved</p>
-    </footer>
+      <section class="faq-section">
+        <h3>FAQ</h3>
+        <p><strong>Q:</strong> How do I open an account?<br><strong>A:</strong> Click the register button above.</p>
+      </section>
+
+    </main>
+
+    <aside class="login-sidebar">
+      <h3>Member Login</h3>
+      <input id="email" type="email" placeholder="Email" required />
+      <input id="password" type="password" placeholder="Password" required />
+      <button onclick="login()">Login</button>
+      <p id="msg"></p>
+      <a class="link" onclick="resetPassword()">Forgot Password?</a>
+    </aside>
   </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  <footer>© 2025 Pecos | All Rights Reserved</footer>
 
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
       projectId: "pecos-432b5",
-      storageBucket: "pecos-432b5.appspot.com",
-      messagingSenderId: "918415143301",
-      appId: "1:918415143301:web:e277538863f8606d5094ec",
-      measurementId: "G-VE4VZE5SJX"
     };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    async function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("msg");
 
-    const mainContent = document.getElementById("mainContent");
-    const digitalBtn = document.getElementById("digitalBtn");
-    const offlineBtn = document.getElementById("offlineBtn");
+      if (!email || !password) {
+        msg.style.color = "yellow";
+        msg.innerText = "⚠️ Please fill out all fields.";
+        return;
+      }
 
-    const digitalCardsHTML = `<div class="title"><span>Pecos</span> Advertisers - Digital</div>
-    <p>We provide end-to-end digital marketing services to scale your brand online.</p>
-    <h3 class="section-title">Core Digital Services</h3>
-    <div class="grid">
-      <div class="card"><img class="card-icon" src="images/smm.png" alt="Social Media Marketing"><div class="card-body"><h3>Social Media Marketing</h3><p>Social content, influencer campaigns, paid ads, community growth.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/seoo.png" alt="SEO"><div class="card-body"><h3>SEO & Google Ads</h3><p>On-page SEO & PPC to acquire high-intent customers.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/internet.png" alt="Web Dev"><div class="card-body"><h3>Website Development</h3><p>Responsive, fast websites built to convert.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/video.png" alt="Video Ads"><div class="card-body"><h3>Video Ads & Promotions</h3><p>Creative video ads for social and OTT platforms.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/communication.png" alt="Email"><div class="card-body"><h3>Email & Automation</h3><p>Personalized automated email campaigns.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/dashboard.png" alt="Analytics"><div class="card-body"><h3>Analytics & Reporting</h3><p>Dashboards and ROI optimization tracking.</p></div></div>
-    </div>`;
+      try {
+        const userCred = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCred.user;
 
-    const offlineCardsHTML = `<div class="title"><span>Pecos</span> Advertisers - Offline</div>
-    <p>Offline & out-of-home marketing that builds presence on-ground and drives conversions.</p>
-    <h3 class="section-title">Core Offline Services</h3>
-    <div class="grid">
-      <div class="card"><img class="card-icon" src="images/mass-media.png" alt="Print"><div class="card-body"><h3>Print Advertising</h3><p>Newspapers, magazines, flyers & brochures.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/road-banner.png" alt="Outdoor"><div class="card-body"><h3>Outdoor & Transit Ads</h3><p>Billboards, hoardings, metro & bus branding.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/billboard.png" alt="Event"><div class="card-body"><h3>Event & Roadshow</h3><p>Trade shows, exhibitions & activations.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/email-blast.png" alt="Direct"><div class="card-body"><h3>Direct Mail & Telemarketing</h3><p>Mailers, SMS & targeted calling campaigns.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/roadshow.png" alt="Vehicle"><div class="card-body"><h3>Vehicle Branding</h3><p>Eye-catching wraps & decals for vehicles.</p></div></div>
-      <div class="card"><img class="card-icon" src="images/ads.png" alt="Retail"><div class="card-body"><h3>In-store & Retail Branding</h3><p>Displays and standees to convert walk-ins.</p></div></div>
-    </div>`;
-
-    const contactHTML = `<div class="contact-section" id="contactSection">
-      <h2>Get a Quote</h2>
-      <p>Share your requirements and we’ll get back with a custom proposal.</p>
-      <input type="text" id="enq_name" placeholder="Your Name" required><br>
-      <input type="email" id="enq_email" placeholder="Email" required><br>
-      <select id="enq_category" required>
-        <option value="">Select Business Category</option>
-        <option value="Food/Drink">Food & Drink</option>
-        <option value="Hotel">Hotel</option>
-        <option value="Real Estate">Real Estate</option>
-        <option value="Retail">Retail</option>
-        <option value="Hospitals/Clinics">Hospitals & Clinics</option>
-        <option value="Education">Education</option>
-        <option value="Others">Others</option>
-      </select><br>
-      <textarea id="enq_description" rows="4" placeholder="Describe your project..." required></textarea><br>
-      <button id="enq_submit">Submit</button>
-      <div id="enq_msg" style="margin-top:10px;font-size:14px;"></div>
-    </div>`;
-
-    function showDigital() {
-      mainContent.innerHTML = digitalCardsHTML + contactHTML;
-      digitalBtn.classList.add("active");
-      offlineBtn.classList.remove("active");
-      attachEnquiryHandler();
-    }
-
-    function showOffline() {
-      mainContent.innerHTML = offlineCardsHTML + contactHTML;
-      offlineBtn.classList.add("active");
-      digitalBtn.classList.remove("active");
-      attachEnquiryHandler();
-    }
-
-    function attachEnquiryHandler() {
-      const submitBtn = document.getElementById("enq_submit");
-      const nameInput = document.getElementById("enq_name");
-      const emailInput = document.getElementById("enq_email");
-      const categoryInput = document.getElementById("enq_category");
-      const descInput = document.getElementById("enq_description");
-      const msgDiv = document.getElementById("enq_msg");
-
-      if (!submitBtn) return;
-      const newBtn = submitBtn.cloneNode(true);
-      submitBtn.parentNode.replaceChild(newBtn, submitBtn);
-
-      newBtn.addEventListener("click", async () => {
-        const name = nameInput.value.trim();
-        const email = emailInput.value.trim();
-        const category = categoryInput.value.trim();
-        const description = descInput.value.trim();
-
-        msgDiv.style.color = "#333";
-        msgDiv.textContent = "";
-
-        if (!name || !email || !category || !description) {
-          msgDiv.style.color = "#c33";
-          msgDiv.textContent = "Please fill all fields.";
+        if (!user.emailVerified) {
+          await auth.signOut();
+          msg.style.color = "yellow";
+          msg.innerText = "Please verify your email first.";
           return;
         }
 
-        newBtn.disabled = true;
-        newBtn.textContent = "Submitting...";
+        msg.style.color = "lightgreen";
+        msg.innerText = "Login successful! Redirecting...";
 
-        try {
-          await addDoc(collection(db, "enquiry"), {
-            name, email, category, description, timestamp: serverTimestamp()
-          });
-          msgDiv.style.color = "green";
-          msgDiv.textContent = "✅ Thank you — your enquiry has been submitted.";
-          nameInput.value = emailInput.value = descInput.value = "";
-          categoryInput.value = "";
-        } catch (err) {
-          msgDiv.style.color = "#c33";
-          msgDiv.textContent = "❌ Submission failed. Try again later.";
-          console.error(err);
-        } finally {
-          newBtn.disabled = false;
-          newBtn.textContent = "Submit";
-        }
-      });
+        const doc = await db.collection("members").doc(user.uid).get();
+        const data = doc.data();
+
+        setTimeout(() => {
+          if (data && data.isAdmin) window.location.href = "admin.html";
+          else window.location.href = "member.html";
+        }, 1500);
+
+      } catch (err) {
+        msg.style.color = "pink";
+        msg.innerText = "❌ " + err.message;
+      }
     }
 
-    digitalBtn.addEventListener("click", showDigital);
-    offlineBtn.addEventListener("click", showOffline);
-    showDigital();
+    async function resetPassword() {
+      const email = prompt("Enter your registered email:");
+      if (!email) return;
+      try {
+        await auth.sendPasswordResetEmail(email);
+        const msg = document.getElementById("msg");
+        msg.style.color = "lightgreen";
+        msg.innerText = "Password reset link sent!";
+      } catch (e) {
+        const msg = document.getElementById("msg");
+        msg.style.color = "pink";
+        msg.innerText = e.message;
+      }
+    }
   </script>
 </body>
 </html>
