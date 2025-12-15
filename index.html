@@ -325,18 +325,23 @@ footer {
 
 <body>
   <div class="container">
-  <header>
-    <div class="logo">
-      <img src="pecos.png" alt="Pecos Logo">
-      <span>Pecos Associates</span>
-    </div>
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="/images/Pecos Town (1).png">Town</a>
-    </nav>
-  </header>
+
+    <!-- HEADER -->
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo">
+        <span>Pecos Associates</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#">Home</a>
+        <a href="/images/Pecos Town (1).png">Town</a>
+      </nav>
+    </header>
+
+    <!-- MAIN GRID -->
     <div class="content">
-      <!-- Sidebar -->
+
+      <!-- LEFT SIDEBAR -->
       <aside class="sidebar">
         <h4>Services</h4>
         <ul>
@@ -344,50 +349,53 @@ footer {
           <li><a>Real Estate</a></li>
           <li><a>Stocks & Shares</a></li>
         </ul>
+
+        <!-- MARKET WATCH (LEFT CORNER, BELOW SERVICES) -->
+        <section class="stocks-section">
+          <h4 style="margin-top:20px;">📈 Market Watch</h4>
+          <p style="font-size: 12px; color: #dcdcdc;">
+            Updated manually • <strong>16 Dec 2025</strong>
+          </p>
+
+          <table class="stocks-table">
+            <thead>
+              <tr>
+                <th>Stock</th>
+                <th>₹</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Reliance</td>
+                <td>2,456</td>
+                <td class="up">+1.25</td>
+              </tr>
+              <tr>
+                <td>TCS</td>
+                <td>3,890</td>
+                <td class="down">−0.42</td>
+              </tr>
+              <tr>
+                <td>HDFC</td>
+                <td>1,621</td>
+                <td class="up">+0.68</td>
+              </tr>
+              <tr>
+                <td>Infosys</td>
+                <td>1,547</td>
+                <td class="down">−0.30</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </aside>
-<section class="stocks-section">
-  <h3>📈 Market Watch</h3>
-  <p style="font-size: 13px; color: #666;">
-    Prices updated manually • Last updated: <strong>16 Dec 2025</strong>
-  </p>
 
-  <table class="stocks-table">
-    <thead>
-      <tr>
-        <th>Stock Name</th>
-        <th>Price (₹)</th>
-        <th>Change</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Reliance Industries</td>
-        <td>2,456.30</td>
-        <td class="up">+1.25%</td>
-      </tr>
-      <tr>
-        <td>TCS</td>
-        <td>3,890.10</td>
-        <td class="down">−0.42%</td>
-      </tr>
-      <tr>
-        <td>HDFC Bank</td>
-        <td>1,621.75</td>
-        <td class="up">+0.68%</td>
-      </tr>
-      <tr>
-        <td>Infosys</td>
-        <td>1,547.20</td>
-        <td class="down">−0.30%</td>
-      </tr>
-    </tbody>
-  </table>
-</section>
-
-      <!-- Main Section -->
+      <!-- CENTER MAIN CONTENT -->
       <main class="main">
         <div class="ask-title"><span>Pecos</span></div>
         <hr />
+
         <section class="open-account">
           <p>
             Start your journey with confidence. Our process is secure,
@@ -403,7 +411,7 @@ footer {
         </section>
       </main>
 
-      <!-- Login Sidebar -->
+      <!-- RIGHT LOGIN SIDEBAR -->
       <aside class="login-sidebar">
         <h3>Member Login</h3>
         <p>Welcome back! Please log in to access your dashboard.</p>
@@ -413,6 +421,7 @@ footer {
         <p id="msg"></p>
         <a class="link" onclick="resetPassword()">Forgot Password?</a>
       </aside>
+
     </div>
 
     <footer>© 2025 Pecos | All Rights Reserved</footer>
@@ -486,6 +495,7 @@ footer {
   </script>
 </body>
 </html>
+
 
 
 
