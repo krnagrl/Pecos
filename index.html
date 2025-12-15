@@ -281,6 +281,48 @@ footer {
   color: #c62828;
   font-weight: 600;
 }
+/* Sidebar Cards */
+.sidebar-card {
+  background: #003366;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.sidebar-card h4 {
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+/* Market Watch table inside sidebar */
+.sidebar .stocks-table {
+  font-size: 13px;
+}
+
+.sidebar .stocks-table th,
+.sidebar .stocks-table td {
+  padding: 6px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.sidebar .stocks-table th {
+  background: rgba(255,255,255,0.15);
+}
+
+.sidebar .stocks-table tr:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.sidebar .up {
+  color: #7CFC90;
+}
+
+.sidebar .down {
+  color: #FF8A80;
+}
 
 /* Responsive */
 @media (max-width: 992px) {
@@ -341,55 +383,60 @@ footer {
     <!-- MAIN GRID -->
     <div class="content">
 
-      <!-- LEFT SIDEBAR -->
-      <aside class="sidebar">
-        <h4>Services</h4>
-        <ul>
-          <li><a>Finance</a></li>
-          <li><a>Real Estate</a></li>
-          <li><a>Stocks & Shares</a></li>
-        </ul>
+<aside class="sidebar">
 
-        <!-- MARKET WATCH (LEFT CORNER, BELOW SERVICES) -->
-        <section class="stocks-section">
-          <h4 style="margin-top:20px;">📈 Market Watch</h4>
-          <p style="font-size: 12px; color: #dcdcdc;">
-            Updated manually • <strong>16 Dec 2025</strong>
-          </p>
+  <!-- SERVICES CARD -->
+  <div class="sidebar-card">
+    <h4>Services</h4>
+    <ul>
+      <li><a>Finance</a></li>
+      <li><a>Real Estate</a></li>
+      <li><a>Stocks & Shares</a></li>
+    </ul>
+  </div>
 
-          <table class="stocks-table">
-            <thead>
-              <tr>
-                <th>Stock</th>
-                <th>₹</th>
-                <th>%</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Reliance</td>
-                <td>2,456</td>
-                <td class="up">+1.25</td>
-              </tr>
-              <tr>
-                <td>TCS</td>
-                <td>3,890</td>
-                <td class="down">−0.42</td>
-              </tr>
-              <tr>
-                <td>HDFC</td>
-                <td>1,621</td>
-                <td class="up">+0.68</td>
-              </tr>
-              <tr>
-                <td>Infosys</td>
-                <td>1,547</td>
-                <td class="down">−0.30</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-      </aside>
+  <!-- MARKET WATCH CARD -->
+  <div class="sidebar-card">
+    <h4>📈 Market Watch</h4>
+    <p style="font-size: 12px; color: #dcdcdc; margin-bottom: 10px;">
+      Updated manually • <strong>16 Dec 2025</strong>
+    </p>
+
+    <table class="stocks-table">
+      <thead>
+        <tr>
+          <th>Stock</th>
+          <th>₹</th>
+          <th>%</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Reliance</td>
+          <td>2456</td>
+          <td class="up">+1.25</td>
+        </tr>
+        <tr>
+          <td>TCS</td>
+          <td>3890</td>
+          <td class="down">−0.42</td>
+        </tr>
+        <tr>
+          <td>HDFC</td>
+          <td>1621</td>
+          <td class="up">+0.68</td>
+        </tr>
+        <tr>
+          <td>Infosys</td>
+          <td>1547</td>
+          <td class="down">−0.30</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</aside>
+
 
       <!-- CENTER MAIN CONTENT -->
       <main class="main">
@@ -495,6 +542,7 @@ footer {
   </script>
 </body>
 </html>
+
 
 
 
