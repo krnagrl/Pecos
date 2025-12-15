@@ -245,6 +245,42 @@ footer {
   padding: 12px;
   font-size: 14px;
 }
+.stocks-section {
+  margin-top: 30px;
+}
+
+.stocks-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.stocks-table th,
+.stocks-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.stocks-table th {
+  background-color: #003366;
+  color: #fff;
+  font-weight: 600;
+}
+
+.stocks-table tr:hover {
+  background-color: #f2f6ff;
+}
+
+.up {
+  color: #1a7f37;
+  font-weight: 600;
+}
+
+.down {
+  color: #c62828;
+  font-weight: 600;
+}
 
 /* Responsive */
 @media (max-width: 992px) {
@@ -309,6 +345,44 @@ footer {
           <li><a>Stocks & Shares</a></li>
         </ul>
       </aside>
+<section class="stocks-section">
+  <h3>📈 Market Watch</h3>
+  <p style="font-size: 13px; color: #666;">
+    Prices updated manually • Last updated: <strong>16 Dec 2025</strong>
+  </p>
+
+  <table class="stocks-table">
+    <thead>
+      <tr>
+        <th>Stock Name</th>
+        <th>Price (₹)</th>
+        <th>Change</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Reliance Industries</td>
+        <td>2,456.30</td>
+        <td class="up">+1.25%</td>
+      </tr>
+      <tr>
+        <td>TCS</td>
+        <td>3,890.10</td>
+        <td class="down">−0.42%</td>
+      </tr>
+      <tr>
+        <td>HDFC Bank</td>
+        <td>1,621.75</td>
+        <td class="up">+0.68%</td>
+      </tr>
+      <tr>
+        <td>Infosys</td>
+        <td>1,547.20</td>
+        <td class="down">−0.30%</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
 
       <!-- Main Section -->
       <main class="main">
@@ -412,6 +486,7 @@ footer {
   </script>
 </body>
 </html>
+
 
 
 
