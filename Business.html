@@ -5,16 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pecos | Business Dashboard</title>
 
-  <!-- Reuse existing theme CSS -->
+  <!-- Theme CSS -->
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" type="image/png" href="pecos.png" />
 
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+
+  <!-- Page-specific styling -->
   <style>
-    /* Page specific styling (uses your theme colors) */
     body {
       background: var(--primary-color);
       color: var(--text-color);
       font-family: 'Segoe UI', sans-serif;
+      display: none; /* 🔒 Hide until auth verified */
     }
 
     .container {
@@ -66,6 +72,68 @@
       opacity: 0.7;
     }
   </style>
+
+  <!-- Firebase Init + Admin Protection -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5",
+      storageBucket: "pecos-432b5.appspot.com"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      try {
+        const doc = await db.collection("members").doc(user.uid).get();
+
+        if (!doc.exists || doc.data().role !== "admin") {
+          alert("Access Denied: Admins only");
+          window.location.href = "member.html";
+          return;
+        }
+
+        // ✅ Admin verified → show page
+        document.body.style.display = "block";
+
+        // OPTIONAL: load business data
+        loadBusinessData();
+
+      } catch (err) {
+        console.error("Auth check failed:", err);
+        window.location.href = "member.html";
+      }
+    });
+
+    async function loadBusinessData() {
+      try {
+        // 🔁 Example Firestore collection: businessIncome
+        const snap = await db.collection("businessIncome").doc("summary").get();
+
+        if (!snap.exists) return;
+
+        const data = snap.data();
+
+        document.getElementById("interestIncome").innerText = "₹ " + (data.interest || 0);
+        document.getElementById("dividendIncome").innerText = "₹ " + (data.dividend || 0);
+        document.getElementById("rentalIncome").innerText = "₹ " + (data.rental || 0);
+        document.getElementById("tradingIncome").innerText = "₹ " + (data.trading || 0);
+        document.getElementById("otherIncome").innerText = "₹ " + (data.other || 0);
+
+      } catch (e) {
+        console.error("Error loading business data:", e);
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -101,33 +169,9 @@
     </div>
 
     <div class="note">
-      * Data shown is fetched from the database and visible only to authorized users.
+      * Data visible only to authorized admin users.
     </div>
   </div>
-
-  <script>
-    /* 🔐 AUTH CHECK */
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-
-    if (!isLoggedIn) {
-      alert("Access Denied. Please login first.");
-      window.location.href = "login.html";
-    }
-
-    /* 📊 FETCH BUSINESS DATA */
-    fetch("api/getBusinessIncome.php")  // change to your API
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById("interestIncome").innerText = "₹ " + data.interest;
-        document.getElementById("dividendIncome").innerText = "₹ " + data.dividend;
-        document.getElementById("rentalIncome").innerText = "₹ " + data.rental;
-        document.getElementById("tradingIncome").innerText = "₹ " + data.trading;
-        document.getElementById("otherIncome").innerText = "₹ " + data.other;
-      })
-      .catch(error => {
-        console.error("Error fetching business data:", error);
-      });
-  </script>
 
 </body>
 </html>
