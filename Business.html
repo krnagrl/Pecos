@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pecos | Business Dashboard</title>
+
+  <!-- Reuse existing theme CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="pecos.png" />
+
+  <style>
+    /* Page specific styling (uses your theme colors) */
+    body {
+      background: var(--primary-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .page-title {
+      font-size: 28px;
+      margin-bottom: 20px;
+      border-left: 5px solid var(--accent-color);
+      padding-left: 12px;
+    }
+
+    .income-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .income-card {
+      background: var(--secondary-color);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .income-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .income-title {
+      font-size: 16px;
+      opacity: 0.8;
+    }
+
+    .income-value {
+      font-size: 26px;
+      margin-top: 10px;
+      color: var(--accent-color);
+      font-weight: bold;
+    }
+
+    .note {
+      margin-top: 30px;
+      font-size: 14px;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="page-title">Business Revenue Streams</div>
+
+    <div class="income-grid">
+      <div class="income-card">
+        <div class="income-title">Interest Income</div>
+        <div class="income-value" id="interestIncome">₹ 0</div>
+      </div>
+
+      <div class="income-card">
+        <div class="income-title">Dividend Income</div>
+        <div class="income-value" id="dividendIncome">₹ 0</div>
+      </div>
+
+      <div class="income-card">
+        <div class="income-title">Rental Income</div>
+        <div class="income-value" id="rentalIncome">₹ 0</div>
+      </div>
+
+      <div class="income-card">
+        <div class="income-title">Trading Income</div>
+        <div class="income-value" id="tradingIncome">₹ 0</div>
+      </div>
+
+      <div class="income-card">
+        <div class="income-title">Other Income</div>
+        <div class="income-value" id="otherIncome">₹ 0</div>
+      </div>
+    </div>
+
+    <div class="note">
+      * Data shown is fetched from the database and visible only to authorized users.
+    </div>
+  </div>
+
+  <script>
+    /* 🔐 AUTH CHECK */
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    if (!isLoggedIn) {
+      alert("Access Denied. Please login first.");
+      window.location.href = "login.html";
+    }
+
+    /* 📊 FETCH BUSINESS DATA */
+    fetch("api/getBusinessIncome.php")  // change to your API
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("interestIncome").innerText = "₹ " + data.interest;
+        document.getElementById("dividendIncome").innerText = "₹ " + data.dividend;
+        document.getElementById("rentalIncome").innerText = "₹ " + data.rental;
+        document.getElementById("tradingIncome").innerText = "₹ " + data.trading;
+        document.getElementById("otherIncome").innerText = "₹ " + data.other;
+      })
+      .catch(error => {
+        console.error("Error fetching business data:", error);
+      });
+  </script>
+
+</body>
+</html>
