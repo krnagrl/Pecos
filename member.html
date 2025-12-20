@@ -87,7 +87,9 @@
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('finance')">Finance</a></li>
-          <li><a>Business</a></li>
+<li id="businessMenu" style="display:none;">
+  <a href="business.html">Business</a>
+</li>
         </ul>
       </aside>
 
@@ -186,6 +188,11 @@ auth.onAuthStateChanged(async user => {
       document.getElementById('profile-phone').innerText = data.phone || '-'; // ✅ Added line
       document.getElementById('profile-id').innerText = data.memberID || '-';
       document.getElementById('profile-since').innerText = data.memberSince || '-';
+
+        /* ✅ ADMIN CHECK */
+  if (data.role === 'admin') {
+    document.getElementById('businessMenu').style.display = 'block';
+  }
     }
 
 async function loadFinanceRequests(user) {
