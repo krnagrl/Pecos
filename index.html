@@ -266,6 +266,53 @@ footer {
   }
 
 }
+    .market-ticker {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  font-size: 14px;
+}
+
+.market-ticker .index {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.market-ticker .name {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.market-ticker .price {
+  font-weight: 600;
+}
+
+.market-ticker .change {
+  font-size: 13px;
+}
+
+/* Positive */
+.market-ticker .up .change {
+  color: #00ff99;
+}
+
+/* Negative */
+.market-ticker .down .change {
+  color: #ff8080;
+}
+
+/* Mobile hide (optional) */
+@media (max-width: 768px) {
+  .market-ticker {
+    display: none;
+  }
+}
+
 
 @media (max-width: 600px) {
   .open-account h2,
@@ -298,6 +345,20 @@ footer {
         <img src="pecos.png" alt="Pecos Logo">
         <span>Pecos Associates</span>
       </div>
+      <div class="market-ticker">
+  <div class="index up">
+    <span class="name">NIFTY 50</span>
+    <span class="price">21,850.25</span>
+    <span class="change">+125.40</span>
+  </div>
+
+  <div class="index down">
+    <span class="name">SENSEX</span>
+    <span class="price">72,480.18</span>
+    <span class="change">-210.65</span>
+  </div>
+</div>
+
       <!-- <nav class="nav-links">
         <a href="#">Home</a>
         <a href="/images/Pecos Town (1).png">Town</a>
@@ -426,6 +487,7 @@ footer {
   </script>
 </body>
 </html>
+
 
 
 
