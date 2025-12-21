@@ -307,6 +307,36 @@ footer {
 }
 
 
+.simple-footer {
+  background: #003366;
+  color: #ffffff;
+  padding: 16px 12px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.footer-info {
+  margin-bottom: 6px;
+  line-height: 1.6;
+}
+
+.footer-info span {
+  margin: 0 4px;
+  white-space: nowrap;
+}
+
+.footer-copy {
+  font-size: 12px;
+  color: #dddddd;
+}
+
+/* Mobile friendly */
+@media (max-width: 600px) {
+  .footer-info span {
+    display: block;
+    margin: 2px 0;
+  }
+}
 
 
 @media (max-width: 600px) {
@@ -411,7 +441,21 @@ footer {
 
     </div>
 
-    <footer>© 2025 Pecos | All Rights Reserved</footer>
+<footer class="simple-footer">
+  <div class="footer-info">
+    <span><strong>MSME Reg. No.:</strong> 0000</span>
+    <span>|</span>
+    <span><strong>SEBI Reg. No.:</strong> 0000</span>
+    <span>|</span>
+    <span><strong>AMFI Reg. No.:</strong> 0000</span>
+    <span>|</span>
+    <span><strong>Subsidiaries:</strong> Pecos Engineering, Club Pecos</span>
+  </div>
+
+  <div class="footer-copy">
+    © 2025 Pecos Associates | All Rights Reserved
+  </div>
+</footer>
   </div>
 
   <script>
@@ -482,6 +526,7 @@ footer {
   </script>
 </body>
 </html>
+
 
 
 
