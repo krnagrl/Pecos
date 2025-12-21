@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pecos | Gallery</title>
+  <link rel="icon" type="image/png" href="pecos.png" />
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: #f4f6f9;
+  color: #333;
+  margin: 0;
+}
+
+/* HEADER */
+header {
+  background: #003366;
+  color: white;
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 35px;
+  margin-right: 8px;
+}
+
+.logo span {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* LAYOUT */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 25px;
+}
+
+/* PAGE TITLE */
+.page-title {
+  font-size: 26px;
+  font-weight: 600;
+  color: #003366;
+  margin-bottom: 10px;
+}
+
+.page-subtitle {
+  color: #666;
+  margin-bottom: 25px;
+}
+
+/* GALLERY GRID */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+/* GALLERY CARD */
+.gallery-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.gallery-card img {
+  width: 100%;
+  height: 190px;
+  object-fit: cover;
+}
+
+.gallery-content {
+  padding: 15px;
+}
+
+.gallery-content h4 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: #003366;
+}
+
+.gallery-content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+.simple-footer {
+  background: linear-gradient(180deg, #003366 0%, #00284d 100%);
+  padding: 12px 18px;
+  font-size: 12.5px;
+  color: #e0e0e0;
+  margin-top: 40px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-label {
+  font-weight: 600;
+  color: #ffcc00;
+  font-size: 11.5px;
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="pecos.png" alt="Pecos">
+    <span>Pecos Associates</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="page-title">Gallery</div>
+  <div class="page-subtitle">
+    Public updates, events, site visits & important moments from Pecos.
+  </div>
+
+  <div class="gallery-grid">
+
+    <!-- CARD 1 -->
+    <div class="gallery-card">
+      <img src="images/gallery1.jpg" alt="Post Image">
+      <div class="gallery-content">
+        <h4>Real Estate Site Visit</h4>
+        <p>
+          On-ground inspection of residential project with investors.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 2 -->
+    <div class="gallery-card">
+      <img src="images/gallery2.jpg" alt="Post Image">
+      <div class="gallery-content">
+        <h4>Market Update</h4>
+        <p>
+          NIFTY & SENSEX movement discussion with members.
+        </p>
+      </div>
+    </div>
+
+    <!-- CARD 3 -->
+    <div class="gallery-card">
+      <img src="images/gallery3.jpg" alt="Post Image">
+      <div class="gallery-content">
+        <h4>Pecos Office</h4>
+        <p>
+          Day-to-day operations at Pecos Associates.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<footer class="simple-footer">
+  <div class="footer-inner">
+    <div>
+      <span class="footer-label">Wing:</span> Pecos Engineering · Club Pecos
+    </div>
+    <div>
+      © 2025 <strong>Pecos Associates</strong>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
