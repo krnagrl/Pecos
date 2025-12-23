@@ -1,198 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pecos | Business Dashboard</title>
-<link rel="icon" href="pecos.png" />
-
-<!-- Fonts -->
+<meta charset="UTF-8">
+<title>Business Dashboard | Pecos</title>
+<link rel="icon" href="pecos.png">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-<!-- Chart.js -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-body{margin:0;font-family:Montserrat;background:#f4f6f9;display:none}
+body{font-family:Montserrat;background:#f4f6f9;margin:0;display:none}
 header{background:#003366;color:#fff;padding:16px;font-weight:700}
-.container{max-width:1200px;margin:auto;padding:20px}
-.card{background:#fff;border-radius:10px;padding:20px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
-input,button{
-  width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:14px
-}
-button{
-  background:#003366;color:#fff;font-weight:700;border:none;cursor:pointer
-}
-button:hover{background:#00244a}
-h2,h3{color:#003366;margin-top:0}
-.summary{font-size:28px;font-weight:700;margin-top:10px}
-canvas{margin-top:20px}
-footer{text-align:center;font-size:13px;color:#777;margin:20px 0}
+.page{max-width:1200px;margin:20px auto;padding:0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+.card h3{margin-top:0;color:#003366}
+input,button{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid #ccc}
+button{background:#003366;color:#fff;font-weight:700;border:none;cursor:pointer}
+canvas{background:#fff;padding:16px;border-radius:10px}
 </style>
 </head>
 
 <body>
+<header>Pecos — Business Growth Dashboard</header>
 
-<header>Pecos | Business Dashboard (Admin Only)</header>
+<div class="page">
 
-<div class="container">
-
-<!-- MONTHLY ENTRY -->
-<div class="card">
-  <h2>Add Monthly Income</h2>
-
-  <div class="grid">
-    <input type="month" id="month" />
-    <input type="number" placeholder="Interest Income" id="interestIncome">
-    <input type="number" placeholder="Dividend Income" id="dividendIncome">
-    <input type="number" placeholder="Rental Income" id="rentalIncome">
-    <input type="number" placeholder="Trading Income" id="tradingIncome">
-    <input type="number" placeholder="Brokerage Income" id="brokerageIncome">
-    <input type="number" placeholder="Other Income" id="otherIncome">
+<div class="grid">
+  <div class="card">
+    <h3>Add Monthly Income</h3>
+    <input type="month" id="month">
+    <input placeholder="Interest" type="number" id="interest">
+    <input placeholder="Dividend" type="number" id="dividend">
+    <input placeholder="Rental" type="number" id="rental">
+    <input placeholder="Trading" type="number" id="trading">
+    <input placeholder="Brokerage" type="number" id="brokerage">
+    <input placeholder="Other" type="number" id="other">
+    <button onclick="saveMonth()">Add Month</button>
   </div>
 
-  <div class="summary" id="total">₹ 0</div>
-  <button onclick="saveMonthlyData()">Save Monthly Data</button>
+  <div class="card">
+    <h3>Total Income</h3>
+    <h1 id="total">₹ 0</h1>
+    <p id="months">0 months tracked</p>
+  </div>
 </div>
 
-<!-- CHARTS -->
-<div class="card">
-  <h3>Monthly Income Growth</h3>
-  <canvas id="growthChart"></canvas>
-</div>
+<br>
 
-<div class="card">
-  <h3>Income Distribution (Latest Month)</h3>
-  <canvas id="breakupChart"></canvas>
-</div>
-
-<footer>© 2025 Pecos | Financial Dashboard</footer>
+<canvas id="growthChart"></canvas>
+<br>
+<canvas id="breakupChart"></canvas>
 
 </div>
 
 <script>
-/* ================= FIREBASE ================= */
-firebase.initializeApp({
+const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
   authDomain: "pecos-432b5.firebaseapp.com",
   projectId: "pecos-432b5"
-});
+};
+firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-/* ================= AUTH ================= */
 auth.onAuthStateChanged(async user=>{
   if(!user) return location.href="index.html";
-
   const snap = await db.collection("members").doc(user.uid).get();
-  if(!snap.exists || snap.data().role!=="admin"){
-    alert("Admins only");
-    return location.href="member.html";
-  }
-
+  if(!snap.exists || snap.data().role!=="admin") return location.href="member.html";
   document.body.style.display="block";
   loadCharts();
 });
 
-/* ================= TOTAL ================= */
-document.querySelectorAll("input").forEach(i=>{
-  i.addEventListener("input",calcTotal);
-});
-
-function calcTotal(){
-  const total =
-    (+interestIncome.value||0)+
-    (+dividendIncome.value||0)+
-    (+rentalIncome.value||0)+
-    (+tradingIncome.value||0)+
-    (+brokerageIncome.value||0)+
-    (+otherIncome.value||0);
-
-  document.getElementById("total").innerText = "₹ " + total;
-  return total;
-}
-
-/* ================= SAVE MONTHLY ================= */
-async function saveMonthlyData(){
-  if(!month.value) return alert("Select month");
-
-  await db.collection("businessIncomeHistory").add({
-    month: month.value,
-    interestIncome:+interestIncome.value||0,
-    dividendIncome:+dividendIncome.value||0,
-    rentalIncome:+rentalIncome.value||0,
-    tradingIncome:+tradingIncome.value||0,
-    brokerageIncome:+brokerageIncome.value||0,
-    otherIncome:+otherIncome.value||0,
-    totalIncome: calcTotal(),
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
-  });
-
-  alert("Monthly data saved");
+async function saveMonth(){
+  const data = {
+    monthKey: month.value,
+    interestIncome:+interest.value||0,
+    dividendIncome:+dividend.value||0,
+    rentalIncome:+rental.value||0,
+    tradingIncome:+trading.value||0,
+    brokerageIncome:+brokerage.value||0,
+    otherIncome:+other.value||0,
+    createdAt:new Date()
+  };
+  data.totalIncome = Object.values(data).slice(1,7).reduce((a,b)=>a+b,0);
+  await db.collection("businessIncomeHistory").add(data);
+  alert("Month added successfully");
   loadCharts();
 }
 
-/* ================= CHARTS ================= */
-let growthChart, breakupChart;
-
 async function loadCharts(){
   const snap = await db.collection("businessIncomeHistory")
-    .orderBy("month")
-    .get();
+    .orderBy("monthKey").get();
 
-  const months=[], totals=[];
-  let latest=null;
+  let labels=[], totals=[], grand=0;
 
   snap.forEach(d=>{
-    const data=d.data();
-    months.push(data.month);
-    totals.push(data.totalIncome);
-    latest=data;
+    labels.push(d.data().monthKey);
+    totals.push(d.data().totalIncome);
+    grand += d.data().totalIncome;
   });
 
-  if(growthChart) growthChart.destroy();
-  growthChart=new Chart(growthChartCanvas,{
+  total.innerText="₹ "+grand;
+  months.innerText=snap.size+" months tracked";
+
+  new Chart(growthChart,{
     type:"line",
-    data:{labels:months,datasets:[{
-      label:"Total Income",
-      data:totals,
-      borderColor:"#003366",
-      tension:.3
-    }]}
+    data:{labels,datasets:[{label:"Monthly Income",data:totals,borderColor:"#003366"}]}
   });
 
-  if(latest){
-    if(breakupChart) breakupChart.destroy();
-    breakupChart=new Chart(breakupChartCanvas,{
-      type:"bar",
-      data:{
-        labels:["Interest","Dividend","Rental","Trading","Brokerage","Other"],
-        datasets:[{
-          data:[
-            latest.interestIncome,
-            latest.dividendIncome,
-            latest.rentalIncome,
-            latest.tradingIncome,
-            latest.brokerageIncome,
-            latest.otherIncome
-          ],
-          backgroundColor:"#003366"
-        }]
-      }
-    });
-  }
+  const last = snap.docs[snap.size-1]?.data();
+  if(!last) return;
+
+  new Chart(breakupChart,{
+    type:"bar",
+    data:{
+      labels:["Interest","Dividend","Rental","Trading","Brokerage","Other"],
+      datasets:[{data:[
+        last.interestIncome,last.dividendIncome,last.rentalIncome,
+        last.tradingIncome,last.brokerageIncome,last.otherIncome
+      ],backgroundColor:"#003366"}]
+    }
+  });
 }
-
-const growthChartCanvas=document.getElementById("growthChart");
-const breakupChartCanvas=document.getElementById("breakupChart");
 </script>
-
 </body>
 </html>
