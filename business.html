@@ -1,185 +1,275 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos | Business Dashboard</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pecos | Business Dashboard</title>
 
-  <!-- Theme CSS -->
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/png" href="pecos.png" />
+<link rel="stylesheet" href="style.css" />
+<link rel="icon" type="image/png" href="pecos.png" />
 
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-  <!-- Page-specific styling -->
-  <style>
-    body {
-      background: var(--primary-color);
-      color: var(--text-color);
-      font-family: 'Segoe UI', sans-serif;
-      display: none; /* 🔒 Hide until auth verified */
-    }
+<!-- Charts -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    .container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 20px;
-    }
-
-    .page-title {
-      font-size: 28px;
-      margin-bottom: 20px;
-      border-left: 5px solid var(--accent-color);
-      padding-left: 12px;
-    }
-
-    .income-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .income-card {
-      background: var(--secondary-color);
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-
-    .income-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .income-title {
-      font-size: 16px;
-      opacity: 0.8;
-    }
-
-    .income-value {
-      font-size: 26px;
-      margin-top: 10px;
-      color: var(--accent-color);
-      font-weight: bold;
-    }
-
-    .note {
-      margin-top: 30px;
-      font-size: 14px;
-      opacity: 0.7;
-    }
-  </style>
-
-  <!-- Firebase Init + Admin Protection -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-      authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5",
-      storageBucket: "pecos-432b5.appspot.com"
-    };
-
-    firebase.initializeApp(firebaseConfig);
-
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    auth.onAuthStateChanged(async (user) => {
-      if (!user) {
-        window.location.href = "index.html";
-        return;
-      }
-
-      try {
-        const doc = await db.collection("members").doc(user.uid).get();
-
-        if (!doc.exists || doc.data().role !== "admin") {
-          alert("Access Denied: Admins only");
-          window.location.href = "member.html";
-          return;
-        }
-
-        // ✅ Admin verified → show page
-        document.body.style.display = "block";
-
-        // OPTIONAL: load business data
-        loadBusinessData();
-
-      } catch (err) {
-        console.error("Auth check failed:", err);
-        window.location.href = "member.html";
-      }
-    });
-
-async function loadBusinessData() {
-  try {
-    const snap = await db.collection("businessIncome").doc("summary").get();
-    if (!snap.exists) return;
-
-    const data = snap.data();
-
-    document.getElementById("interestIncome").innerText =
-      "₹ " + (data.interestIncome || 0);
-
-    document.getElementById("dividendIncome").innerText =
-      "₹ " + (data.dividenedIncome || 0); // spelling preserved
-
-    document.getElementById("rentalIncome").innerText =
-      "₹ " + (data.rentalIncome || 0);
-
-    document.getElementById("tradingIncome").innerText =
-      "₹ " + (data.tradingIncome || 0);
-
-    document.getElementById("otherIncome").innerText =
-      "₹ " + (data.otherIncome || 0);
-
-  } catch (e) {
-    console.error("Error loading business data:", e);
-  }
+<style>
+body {
+  background: var(--primary-color);
+  color: var(--text-color);
+  font-family: 'Segoe UI', sans-serif;
+  display: none;
 }
 
-  </script>
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.page-title {
+  font-size: 28px;
+  margin: 30px 0 20px;
+  border-left: 5px solid var(--accent-color);
+  padding-left: 12px;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+.summary-card {
+  background: linear-gradient(135deg, var(--accent-color), #0096c7);
+  padding: 24px;
+  border-radius: 14px;
+  color: #fff;
+}
+
+.summary-card h3 {
+  margin: 0;
+  opacity: 0.9;
+}
+
+.summary-card .total {
+  font-size: 36px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.breakdown-card {
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 14px;
+}
+
+.breakdown-row {
+  margin-bottom: 14px;
+}
+
+.breakdown-row span {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.progress {
+  height: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.progress div {
+  height: 100%;
+  background: var(--accent-color);
+}
+
+.income-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.income-card {
+  background: var(--secondary-color);
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.income-card input {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.save-btn {
+  margin-top: 30px;
+  padding: 12px 30px;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 40px;
+}
+</style>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5",
+  storageBucket: "pecos-432b5.appspot.com"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let pieChart, lineChart;
+
+auth.onAuthStateChanged(async user => {
+  if (!user) return location.href = "index.html";
+
+  const doc = await db.collection("members").doc(user.uid).get();
+  if (!doc.exists || doc.data().role !== "admin") {
+    alert("Admins only");
+    return location.href = "member.html";
+  }
+
+  document.body.style.display = "block";
+  loadData();
+});
+
+async function loadData() {
+  const snap = await db.collection("businessIncome").doc("summary").get();
+  if (!snap.exists) return;
+
+  const d = snap.data();
+
+  const i = d.interestIncome || 0;
+  const dv = d.dividenedIncome || 0;
+  const r = d.rentalIncome || 0;
+  const t = d.tradingIncome || 0;
+  const o = d.otherIncome || 0;
+
+  const total = i + dv + r + t + o;
+  document.getElementById("totalIncome").innerText = "₹ " + total;
+
+  set("interest", i);
+  set("dividend", dv);
+  set("rental", r);
+  set("trading", t);
+  set("other", o);
+
+  pct("Interest", i, total);
+  pct("Dividend", dv, total);
+  pct("Rental", r, total);
+  pct("Trading", t, total);
+  pct("Other", o, total);
+
+  drawCharts([i,dv,r,t,o]);
+}
+
+function set(id,val){
+  document.getElementById(id+"Val").value = val;
+}
+
+function pct(n,v,t){
+  const p = t ? ((v/t)*100).toFixed(1) : 0;
+  document.getElementById("p"+n).innerText = p+"%";
+  document.getElementById("bar"+n).style.width = p+"%";
+}
+
+function saveData(){
+  db.collection("businessIncome").doc("summary").set({
+    interestIncome: +interestVal.value,
+    dividenedIncome: +dividendVal.value,
+    rentalIncome: +rentalVal.value,
+    tradingIncome: +tradingVal.value,
+    otherIncome: +otherVal.value,
+    updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+  }).then(()=>{
+    alert("Data Saved");
+    loadData();
+  });
+}
+
+function drawCharts(data){
+  if(pieChart) pieChart.destroy();
+  pieChart = new Chart(pie, {
+    type:'pie',
+    data:{labels:["Interest","Dividend","Rental","Trading","Other"],
+    datasets:[{data}]}
+  });
+
+  if(lineChart) lineChart.destroy();
+  lineChart = new Chart(line,{
+    type:'line',
+    data:{
+      labels:["Jan","Feb","Mar","Apr","May","Jun"],
+      datasets:[{label:"Business Growth",data:[20,30,40,45,60,70]}]
+    }
+  });
+}
+</script>
 </head>
 
 <body>
+<div class="container">
 
-  <div class="container">
-    <div class="page-title">Business Revenue Streams</div>
+<div class="page-title">Business Overview</div>
 
-    <div class="income-grid">
-      <div class="income-card">
-        <div class="income-title">Interest Income</div>
-        <div class="income-value" id="interestIncome">₹ 0</div>
-      </div>
-
-      <div class="income-card">
-        <div class="income-title">Dividend Income</div>
-        <div class="income-value" id="dividendIncome">₹ 0</div>
-      </div>
-
-      <div class="income-card">
-        <div class="income-title">Rental Income</div>
-        <div class="income-value" id="rentalIncome">₹ 0</div>
-      </div>
-
-      <div class="income-card">
-        <div class="income-title">Trading Income</div>
-        <div class="income-value" id="tradingIncome">₹ 0</div>
-      </div>
-
-      <div class="income-card">
-        <div class="income-title">Other Income</div>
-        <div class="income-value" id="otherIncome">₹ 0</div>
-      </div>
-    </div>
-
-    <div class="note">
-      * Data visible only to authorized admin users.
-    </div>
+<div class="summary-grid">
+  <div class="summary-card">
+    <h3>Total Business Income</h3>
+    <div class="total" id="totalIncome">₹ 0</div>
   </div>
 
+  <div class="breakdown-card">
+    <div class="breakdown-row"><span>Interest <b id="pInterest"></b></span><div class="progress"><div id="barInterest"></div></div></div>
+    <div class="breakdown-row"><span>Dividend <b id="pDividend"></b></span><div class="progress"><div id="barDividend"></div></div></div>
+    <div class="breakdown-row"><span>Rental <b id="pRental"></b></span><div class="progress"><div id="barRental"></div></div></div>
+    <div class="breakdown-row"><span>Trading <b id="pTrading"></b></span><div class="progress"><div id="barTrading"></div></div></div>
+    <div class="breakdown-row"><span>Other <b id="pOther"></b></span><div class="progress"><div id="barOther"></div></div></div>
+  </div>
+</div>
+
+<div class="page-title">Edit Revenue Streams</div>
+
+<div class="income-grid">
+  <div class="income-card">Interest <input id="interestVal"></div>
+  <div class="income-card">Dividend <input id="dividendVal"></div>
+  <div class="income-card">Rental <input id="rentalVal"></div>
+  <div class="income-card">Trading <input id="tradingVal"></div>
+  <div class="income-card">Other <input id="otherVal"></div>
+</div>
+
+<button class="save-btn" onclick="saveData()">Save Changes</button>
+
+<div class="page-title">Analytics</div>
+<div class="chart-grid">
+  <canvas id="pie"></canvas>
+  <canvas id="line"></canvas>
+</div>
+
+</div>
 </body>
 </html>
