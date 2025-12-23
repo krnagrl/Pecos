@@ -114,25 +114,33 @@
       }
     });
 
-    async function loadBusinessData() {
-      try {
-        // 🔁 Example Firestore collection: businessIncome
-        const snap = await db.collection("businessIncome").doc("summary").get();
+async function loadBusinessData() {
+  try {
+    const snap = await db.collection("businessIncome").doc("summary").get();
+    if (!snap.exists) return;
 
-        if (!snap.exists) return;
+    const data = snap.data();
 
-        const data = snap.data();
+    document.getElementById("interestIncome").innerText =
+      "₹ " + (data.interestIncome || 0);
 
-        document.getElementById("interestIncome").innerText = "₹ " + (data.interest || 0);
-        document.getElementById("dividendIncome").innerText = "₹ " + (data.dividend || 0);
-        document.getElementById("rentalIncome").innerText = "₹ " + (data.rental || 0);
-        document.getElementById("tradingIncome").innerText = "₹ " + (data.trading || 0);
-        document.getElementById("otherIncome").innerText = "₹ " + (data.other || 0);
+    document.getElementById("dividendIncome").innerText =
+      "₹ " + (data.dividenedIncome || 0); // spelling preserved
 
-      } catch (e) {
-        console.error("Error loading business data:", e);
-      }
-    }
+    document.getElementById("rentalIncome").innerText =
+      "₹ " + (data.rentalIncome || 0);
+
+    document.getElementById("tradingIncome").innerText =
+      "₹ " + (data.tradingIncome || 0);
+
+    document.getElementById("otherIncome").innerText =
+      "₹ " + (data.otherIncome || 0);
+
+  } catch (e) {
+    console.error("Error loading business data:", e);
+  }
+}
+
   </script>
 </head>
 
