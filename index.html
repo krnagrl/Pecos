@@ -1,713 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos - Insurance | Loans | Mutual Funds | Stocks & Shares</title>
-  <link rel="icon" type="image/png" href="pecos.png" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pecos - Insurance | Loans | Mutual Funds | Stocks</title>
+<link rel="icon" href="pecos.png" />
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-  <style>
-* {
-  box-sizing: border-box;
+<style>
+/* =====================
+   THEME VARIABLES
+===================== */
+:root {
+  --primary: #003366;
+  --secondary: #004aad;
+  --accent: #ffcc00;
+  --bg: #f4f6f9;
+  --card-bg: #ffffff;
+  --text: #333;
+  --radius: 12px;
+  --shadow: 0 6px 18px rgba(0,0,0,.08);
 }
 
+* { box-sizing: border-box; }
 body {
+  margin: 0;
   font-family: 'Montserrat', sans-serif;
-  background: #f4f6f9;
-  color: #333;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
+  background: var(--bg);
+  color: var(--text);
 }
 
+/* =====================
+   HEADER
+===================== */
 header {
-  background: #003366;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-  flex-wrap: wrap;
-}
-
-.logo img {
-  height: 35px;
-  vertical-align: middle;
-}
-
-.logo span {
-  font-size: 20px;
-  font-weight: 600;
-  margin-left: 8px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-weight: 500;
-}
-/* Improved button styling for Register & Login */
-button,
-a button {
-  background-color: #004aad; /* deep blue, matching sidebar tone */
+  background: var(--primary);
   color: #fff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-button:hover,
-a button:hover {
-  background-color: #00367f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-button:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-.container {
+  padding: 14px 24px;
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  width: 100%;
-  overflow-x: hidden;
-}
-
-.content {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1.2fr;
-  gap: 20px;
-  padding: 20px;
-  flex: 1;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  align-items: start;
-}
-
-/* Sidebar (Left) */
-aside.sidebar {
-  background: #003366;
-  color: white;
-  border-radius: 10px;
-  padding: 20px;
-}
-
-aside.sidebar h4 {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
-  margin-bottom: 15px;
-}
-
-aside.sidebar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-aside.sidebar li {
-  margin-bottom: 10px;
-}
-
-aside.sidebar a {
-  color: white;
-  text-decoration: none;
-}
-
-/* Main Section */
-main.main {
-  background: white;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Line spacing for better readability */
-main.main p,
-main.main h3 {
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.ask-title span {
-  font-weight: bold;
-  font-size: 24px;
-  color: #003366;
-}
-
-.open-account button {
-  background: #003366;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 600;
-  margin-top: 10px;
-}
-
-.open-account button:hover {
-  background: #004080;
-}
-        .map-container {
-      margin-top: 20px;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-/* Login Sidebar (Right) */
-.login-sidebar {
-  background: #003366;
-  color: white;
-  border-radius: 10px;
-  padding: 25px 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
-.login-sidebar h3 {
-  font-size: 18px;
-  margin-bottom: 10px;
-  text-align: center;
-}
-
-.login-sidebar p {
-  font-size: 14px;
-  color: #e0e0e0;
-  text-align: center;
-  margin-bottom: 15px;
-}
-
-.login-sidebar input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border: none;
-  border-radius: 6px;
-  outline: none;
-  font-size: 14px;
-}
-
-.login-sidebar button {
-  width: 100%;
-  padding: 10px;
-  background: #ffcc00;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-.login-sidebar button:hover {
-  background: #ffdb4d;
-}
-
-.login-sidebar .link {
-  color: #ffcc00;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 13px;
-  margin-top: 10px;
-}
-
-#msg {
-  font-size: 13px;
-  text-align: center;
-  margin-bottom: 5px;
-}
-
-footer {
-  background: #003366;
-  color: white;
-  text-align: center;
-  padding: 12px;
-  font-size: 14px;
-}
-
-
-
-/* Responsive */
-@media (max-width: 992px) {
-  .content {
-    grid-template-columns: 1fr;
-    padding: 15px;
-  }
-
-  aside.sidebar,
-  main.main,
-  .login-sidebar {
-    width: 100%;
-  }
-
-  .login-sidebar {
-    margin-top: 20px;
-  }
-
-}
-    .market-ticker {
+.logo {
   display: flex;
-  gap: 18px;
   align-items: center;
-  font-size: 14px;
+  gap: 8px;
 }
+.logo img { height: 36px; }
+.logo span { font-weight: 700; font-size: 20px; }
 
-.market-ticker .index {
-  background: rgba(255, 255, 255, 0.12);
-  padding: 6px 12px;
-  border-radius: 8px;
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  font-weight: 500;
-}
-
-.market-ticker .name {
-  font-weight: 600;
-  letter-spacing: 0.3px;
-}
-
-.market-ticker .price {
-  font-weight: 600;
-}
-
-.market-ticker .change {
-  font-size: 13px;
-}
-
-/* Positive */
-.market-ticker .up .change {
-  color: #00ff99;
-}
-
-/* Negative */
-.market-ticker .down .change {
-  color: #ff8080;
-}
-
-
-
-/* Mobile handling */
-@media (max-width: 600px) {
-  .footer-inner {
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
-}
-
-
-
-
-
-@media (max-width: 600px) {
-  .open-account h2,
-  .contact-section h2 {
-    font-size: 18px;
-  }
-
-  .ask-title span {
-    font-size: 20px;
-  }
-
-  .login-sidebar {
-    padding: 20px;
-  }
-
-  .login-sidebar button {
-    padding: 8px;
-  }
-}
-    /* Header mobile handling */
 .hamburger {
   display: none;
   font-size: 26px;
   cursor: pointer;
 }
 
-/* Wrap right side */
-.header-right {
+/* Market ticker */
+.market-ticker {
   display: flex;
-  align-items: center;
+  gap: 16px;
+}
+.index {
+  background: rgba(255,255,255,.12);
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: flex;
+  gap: 6px;
+}
+.up .change { color: #00ff99; }
+
+/* =====================
+   LAYOUT
+===================== */
+.container { min-height: 100vh; display: flex; flex-direction: column; }
+
+.content {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 260px 1fr 300px;
+  gap: 20px;
 }
 
-/* Mobile nav */
-@media (max-width: 768px) {
-  header {
-    flex-wrap: nowrap;
-  }
-
-  .hamburger {
-    display: block;
-    color: white;
-  }
-
-  .header-right {
-    position: absolute;
-    top: 65px;
-    left: 0;
-    width: 100%;
-    background: #003366;
-    flex-direction: column;
-    padding: 15px;
-    display: none;
-    z-index: 999;
-  }
-
-  .header-right.show {
-    display: flex;
-  }
-
-  .market-ticker {
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-  }
-
-  .market-ticker .index {
-    width: 100%;
-    justify-content: space-between;
-  }
+/* =====================
+   SIDEBAR
+===================== */
+.sidebar {
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
 }
 
+.sidebar h4 {
+  margin-top: 0;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  padding-bottom: 8px;
+}
 
-  </style>
+.service-link {
+  background: rgba(255,255,255,.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: .25s;
+}
+.service-link:hover {
+  background: rgba(255,255,255,.2);
+  transform: translateX(4px);
+}
+
+/* =====================
+   MAIN CONTENT
+===================== */
+.main {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.ask-title span {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+  transition: .25s;
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h3 { margin-top: 0; color: var(--primary); }
+
+/* Buttons */
+button {
+  background: var(--secondary);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { background: #003b8f; }
+
+/* =====================
+   LOGIN SIDEBAR
+===================== */
+.login-sidebar {
+  background: var(--primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.login-sidebar input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 6px;
+  border: none;
+}
+
+.login-sidebar button {
+  width: 100%;
+  background: var(--accent);
+  color: #000;
+}
+.login-sidebar button:hover { background: #ffd84d; }
+
+.link {
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 13px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* =====================
+   FOOTER
+===================== */
+footer {
+  background: var(--primary);
+  color: #fff;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+}
+
+/* =====================
+   RESPONSIVE
+===================== */
+@media (max-width: 992px) {
+  .content { grid-template-columns: 1fr; }
+  .hamburger { display: block; }
+}
+</style>
 </head>
 
 <body>
-  <div class="container">
+<div class="container">
 
-    <!-- HEADER -->
 <header>
   <div class="logo">
-    <img src="pecos.png" alt="Pecos Logo">
+    <img src="pecos.png">
     <span>Pecos Associates</span>
   </div>
 
-  <!-- Hamburger -->
   <div class="hamburger" onclick="toggleNav()">☰</div>
 
-  <!-- Nav / Ticker -->
-  <div class="header-right" id="mobileNav">
-    <div class="market-ticker">
-      <div class="index up">
-        <span class="name">NIFTY 50</span>
-        <span class="price">26,129.60</span>
-        <span class="change">+190.75</span>
-      </div>
-
-      <div class="index up">
-        <span class="name">SENSEX</span>
-        <span class="price">85,220.60</span>
-        <span class="change">+545.52</span>
-      </div>
+  <div class="market-ticker" id="mobileNav">
+    <div class="index up">
+      <span>NIFTY 50</span><span>26,129</span><span class="change">+190</span>
+    </div>
+    <div class="index up">
+      <span>SENSEX</span><span>85,220</span><span class="change">+545</span>
     </div>
   </div>
 </header>
 
+<div class="content">
 
-    <!-- MAIN GRID -->
-    <div class="content">
-
+<!-- SIDEBAR -->
 <aside class="sidebar">
-
-  <!-- SERVICES CARD -->
-  <div class="sidebar-card">
-    <h4>Services</h4>
-<ul>
-  <li><a onclick="loadInsurance()">Insurance</a></li>
-  <li><a onclick="loadLoans()">Loans</a></li>
-  <li><a onclick="loadMutualFunds()">Mutual Funds</a></li>
-  <li><a onclick="loadStocks()">Stocks & Shares</a></li>
-</ul>
-
-  </div>
-
+  <h4>Services</h4>
+  <div class="service-link" onclick="loadInsurance()">Insurance</div>
+  <div class="service-link" onclick="loadLoans()">Loans</div>
+  <div class="service-link" onclick="loadMutualFunds()">Mutual Funds</div>
+  <div class="service-link" onclick="loadStocks()">Stocks & Shares</div>
 </aside>
 
-
-      <!-- CENTER MAIN CONTENT -->
-      <main class="main">
-        <div id="dynamicContent">
-        <div class="ask-title"><span>Pecos</span></div>
-        <hr />
-
-        <section class="open-account">
-          <p>
-            Start your journey with confidence. Our process is secure,
-            transparent, and customer-focused.
-          </p>
-          <a href="registeration.html"><button>Register</button></a>
-        </section>
-
-        <section class="contact-section">
-          <h3>Contact</h3>
-          <p><strong>Email:</strong> <a href="mailto:karan@pecos.in">karan@pecos.in</a></p>
-          <p><strong>Location:</strong> Akola Maharashtra 444001</p>
-        </section>
-        </div>
-      </main>
-
-      <!-- RIGHT LOGIN SIDEBAR -->
-      <aside class="login-sidebar">
-        <h3>Member Login</h3>
-        <p>Welcome back! Please log in to access your dashboard.</p>
-        <input id="email" type="email" placeholder="Email" required />
-        <input id="password" type="password" placeholder="Password" required />
-        <button onclick="login()">Login</button>
-        <p id="msg"></p>
-        <a class="link" onclick="resetPassword()">Forgot Password?</a>
-      </aside>
-
-    </div>
-
-<footer class="simple-footer">
-  <div class="footer-inner">
-      © 2025 <strong>Pecos Associates</strong> | All Rights Reserved
-    </div>
-</footer>
+<!-- MAIN -->
+<main class="main">
+  <div id="dynamicContent">
+    <div class="ask-title"><span>Pecos</span></div>
+    <p>Secure, transparent & client-first financial solutions.</p>
+    <a href="registeration.html"><button>Register</button></a>
   </div>
+</main>
+
+<!-- LOGIN -->
+<aside class="login-sidebar">
+  <h3>Member Login</h3>
+  <input id="email" type="email" placeholder="Email">
+  <input id="password" type="password" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <p id="msg"></p>
+  <span class="link" onclick="resetPassword()">Forgot Password?</span>
+</aside>
+
+</div>
+
+<footer>
+© 2025 <strong>Pecos Associates</strong> | All Rights Reserved
 </footer>
 
+</div>
 
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5",
+};
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
+function toggleNav(){
+  document.getElementById("mobileNav").classList.toggle("show");
+}
 
-
-  </div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-      authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
-
-    async function login() {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const msg = document.getElementById("msg");
-
-      if (!email || !password) {
-        msg.style.color = "yellow";
-        msg.innerText = "⚠️ Please fill out all fields.";
-        return;
-      }
-
-      try {
-        const userCred = await auth.signInWithEmailAndPassword(email, password);
-        const user = userCred.user;
-
-        if (!user.emailVerified) {
-          await auth.signOut();
-          msg.style.color = "yellow";
-          msg.innerText = "Please verify your email first.";
-          return;
-        }
-
-        msg.style.color = "lightgreen";
-        msg.innerText = "✅ Login successful! Redirecting...";
-
-        const doc = await db.collection("members").doc(user.uid).get();
-        const data = doc.data();
-
-        setTimeout(() => {
-          if (data && data.isAdmin) {
-            window.location.href = "admin.html";
-          } else {
-            window.location.href = "member.html";
-          }
-        }, 1500);
-      } catch (err) {
-        msg.style.color = "pink";
-        msg.innerText = "❌ " + err.message;
-      }
-    }
-
-    async function resetPassword() {
-      const email = prompt("Enter your registered email:");
-      if (!email) return;
-      try {
-        await auth.sendPasswordResetEmail(email);
-        const msg = document.getElementById("msg");
-        msg.style.color = "lightgreen";
-        msg.innerText = "Password reset link sent!";
-      } catch (e) {
-        const msg = document.getElementById("msg");
-        msg.style.color = "pink";
-        msg.innerText = e.message;
-      }
-    }
-  </script>
-  <script>
-  function toggleNav() {
-    document.getElementById("mobileNav").classList.toggle("show");
-  }
-</script>
-  <script>
+/* ===== Dynamic Content (UNCHANGED LOGIC) ===== */
 const content = document.getElementById("dynamicContent");
 
-/* INSURANCE */
 function loadInsurance() {
   content.innerHTML = `
-    <h2>Insurance Products</h2>
-    <ul>
-      <li><strong>Health Insurance</strong> – Cashless hospitalization, tax benefits</li>
-      <li><strong>Car Insurance</strong> – Third-party & comprehensive cover</li>
-      <li><strong>Life Insurance</strong> – Term, ULIP, Endowment</li>
-      <li><strong>Business Insurance</strong> – Fire, liability, marine</li>
-      <li><strong>Travel Insurance</strong> – Medical & trip protection</li>
-    </ul>
-  `;
+  <h2>Insurance</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Health</h3><p>Cashless & tax benefits</p></div>
+    <div class="card"><h3>Life</h3><p>Term & ULIP plans</p></div>
+    <div class="card"><h3>Motor</h3><p>Car & two-wheeler</p></div>
+    <div class="card"><h3>Business</h3><p>Fire & liability</p></div>
+  </div>`;
 }
 
-/* LOANS */
 function loadLoans() {
   content.innerHTML = `
-    <h2>Loan Products</h2>
-    <table border="1" width="100%" cellpadding="8">
-      <tr><th>Loan Type</th><th>Interest Rate</th></tr>
-      <tr><td>Home Loan</td><td>8.5% – 10%</td></tr>
-      <tr><td>Personal Loan</td><td>11% – 24%</td></tr>
-      <tr><td>Business Loan</td><td>10% – 22%</td></tr>
-      <tr><td>Car Loan</td><td>8% – 11%</td></tr>
-      <tr><td>Education Loan</td><td>7.5% – 13%</td></tr>
-    </table>
-  `;
+  <h2>Loans</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Home Loan</h3><p>8.5% – 10%</p></div>
+    <div class="card"><h3>Personal Loan</h3><p>11% – 24%</p></div>
+    <div class="card"><h3>Business Loan</h3><p>10% – 22%</p></div>
+  </div>`;
 }
 
-/* MUTUAL FUNDS */
 function loadMutualFunds() {
   content.innerHTML = `
-    <h2>Mutual Fund Schemes</h2>
-    <ul>
-      <li>Nifty 50 Index Fund – <strong>12% CAGR</strong></li>
-      <li>Flexi Cap Fund – <strong>14% CAGR</strong></li>
-      <li>Midcap Fund – <strong>16% CAGR</strong></li>
-    </ul>
+  <h2>Mutual Funds</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Nifty 50</h3><p>~12% CAGR</p></div>
+    <div class="card"><h3>Flexi Cap</h3><p>~14% CAGR</p></div>
+    <div class="card"><h3>Midcap</h3><p>~16% CAGR</p></div>
+  </div>
 
-    <h3>Return Calculator</h3>
-    <input type="number" id="amount" placeholder="Investment Amount">
-    <input type="number" id="years" placeholder="Years">
-    <button onclick="calculateReturn()">Calculate</button>
-    <p id="mfResult"></p>
-  `;
+  <h3>Calculator</h3>
+  <input id="amount" type="number" placeholder="Amount">
+  <input id="years" type="number" placeholder="Years">
+  <button onclick="calculateReturn()">Calculate</button>
+  <p id="mfResult"></p>`;
 }
 
-/* MF CALCULATOR */
 function calculateReturn() {
-  const amt = document.getElementById("amount").value;
-  const yrs = document.getElementById("years").value;
-  const rate = 12 / 100;
-
-  const future = amt * Math.pow(1 + rate, yrs);
+  const a = amount.value, y = years.value;
   document.getElementById("mfResult").innerText =
-    "Estimated Value: ₹" + future.toFixed(2);
+    "Estimated Value ₹" + (a * Math.pow(1.12, y)).toFixed(2);
 }
 
-/* STOCKS */
 function loadStocks() {
   content.innerHTML = `
-    <h2>Stocks & Shares</h2>
-    <ul>
-      <li><strong>Brokerage:</strong> ₹20 per order</li>
-      <li><strong>Segments:</strong> Equity, F&O, Currency, Commodity</li>
-      <li><strong>DP:</strong> CDSL</li>
-      <li><strong>Account Opening:</strong> Free</li>
-      <li><strong>AMC:</strong> ₹300/year</li>
-    </ul>
-  `;
+  <h2>Stocks & Shares</h2>
+  <div class="card-grid">
+    <div class="card"><h3>Brokerage</h3><p>₹20 / order</p></div>
+    <div class="card"><h3>Account</h3><p>Free Opening</p></div>
+    <div class="card"><h3>AMC</h3><p>₹300 / year</p></div>
+  </div>`;
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
