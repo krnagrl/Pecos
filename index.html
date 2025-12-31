@@ -1,299 +1,316 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pecos - Insurance | Loans | Mutual Funds | Stocks & Shares</title>
-<link rel="icon" href="pecos.png" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<!-- Font -->
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <title>Pecos - Insurance | Loans | Mutual Funds | Stocks & Shares</title>
+  <link rel="icon" type="image/png" href="pecos.png" />
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
 
-<style>
-/* ================= GLOBAL ================= */
-* { box-sizing: border-box; }
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-body {
-  margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  background: #f4f6f9;
-  color: #333;
-  overflow-x: hidden;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-button {
-  background: #004aad;
-  color: #fff;
-  border: none;
-  padding: 10px 22px;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: .3s;
-}
-button:hover {
-  background: #00367f;
-  transform: translateY(-2px);
-}
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: #f4f6f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
-/* ================= HEADER ================= */
-header {
-  background: #003366;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 25px;
-}
+    /* Header */
+    header {
+      background: #003366;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 25px;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.logo img { height: 35px; }
-.logo span { font-size: 20px; font-weight: 600; }
+    .logo img {
+      height: 35px;
+      vertical-align: middle;
+    }
 
-.hamburger {
-  display: none;
-  font-size: 26px;
-  cursor: pointer;
-}
+    .logo span {
+      font-size: 20px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
 
-/* Market ticker */
-.market-ticker {
-  display: flex;
-  gap: 18px;
-}
-.index {
-  background: rgba(255,255,255,.12);
-  padding: 6px 12px;
-  border-radius: 8px;
-  display: flex;
-  gap: 6px;
-}
-.up .change { color: #00ff99; }
+    /* Buttons */
+    button,
+    a button {
+      background-color: #004aad;
+      color: #fff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-/* ================= LAYOUT ================= */
-.container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+    button:hover {
+      background-color: #00367f;
+      transform: translateY(-2px);
+    }
 
-.content {
-  display: grid;
-  grid-template-columns: 1fr 2fr 1.2fr;
-  gap: 20px;
-  padding: 20px;
-  max-width: 1200px;
-  margin: auto;
-  flex: 1;
-}
+    /* Layout */
+    .container {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-/* ================= SIDEBAR ================= */
-.sidebar {
-  background: #003366;
-  color: #fff;
-  border-radius: 10px;
-  padding: 20px;
-}
+    .content {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1.2fr;
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+      width: 100%;
+    }
 
-.sidebar h4 {
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
-}
+    /* Sidebar */
+    .sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 20px;
+    }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-.sidebar li { margin-bottom: 10px; }
-.sidebar a {
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-}
+    .sidebar h4 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 8px;
+      margin-bottom: 15px;
+    }
 
-/* ================= MAIN ================= */
-.main {
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.1);
-}
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
 
-.ask-title span {
-  font-size: 24px;
-  font-weight: bold;
-  color: #003366;
-}
+    .sidebar li {
+      margin-bottom: 10px;
+    }
 
-.open-account button {
-  background: #003366;
-}
-.open-account button:hover {
-  background: #004080;
-}
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
 
-/* ================= LOGIN ================= */
-.login-sidebar {
-  background: #003366;
-  color: #fff;
-  border-radius: 10px;
-  padding: 25px 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.15);
-}
+    /* Main */
+    .main {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
 
-.login-sidebar input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 6px;
-  border: none;
-}
+    .ask-title span {
+      font-size: 24px;
+      font-weight: bold;
+      color: #003366;
+    }
 
-.login-sidebar button {
-  width: 100%;
-  background: #ffcc00;
-  color: #000;
-}
-.login-sidebar button:hover {
-  background: #ffdb4d;
-}
+    /* Login Sidebar */
+    .login-sidebar {
+      background: #003366;
+      color: white;
+      border-radius: 10px;
+      padding: 25px 20px;
+      text-align: center;
+    }
 
-.link {
-  color: #ffcc00;
-  font-size: 13px;
-  cursor: pointer;
-}
+    .login-sidebar input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      border: none;
+    }
 
-/* ================= FOOTER ================= */
-footer {
-  background: #003366;
-  color: #fff;
-  text-align: center;
-  padding: 12px;
-  font-size: 14px;
-}
+    .login-sidebar button {
+      width: 100%;
+      background: #ffcc00;
+      color: #000;
+    }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 992px) {
-  .content { grid-template-columns: 1fr; }
-  .hamburger { display: block; }
-}
+    .login-sidebar button:hover {
+      background: #ffdb4d;
+    }
 
-</style>
+    .link {
+      color: #ffcc00;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Mobile Menu */
+    .hamburger {
+      display: none;
+      font-size: 26px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<div class="container">
+  <div class="container">
 
-<header>
-  <div class="logo">
-    <img src="pecos.png">
-    <span>Pecos Associates</span>
+    <!-- Header -->
+    <header>
+      <div class="logo">
+        <img src="pecos.png" alt="Pecos Logo" />
+        <span>Pecos Associates</span>
+      </div>
+      <div class="hamburger" onclick="toggleNav()">☰</div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="content">
+
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <h4>Services</h4>
+        <ul>
+          <li><a>Insurance</a></li>
+          <li><a>Loans</a></li>
+          <li><a>Mutual Funds</a></li>
+          <li><a>Stocks & Shares</a></li>
+        </ul>
+      </aside>
+
+      <!-- Center -->
+      <main class="main">
+        <div class="ask-title"><span>Pecos</span></div>
+        <hr />
+
+        <p>
+          Start your journey with confidence. Our process is secure,
+          transparent, and customer-focused.
+        </p>
+
+        <a href="registeration.html">
+          <button>Register</button>
+        </a>
+
+        <h3>Contact</h3>
+        <p><strong>Email:</strong> karan@pecos.in</p>
+        <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
+      </main>
+
+      <!-- Login -->
+      <aside class="login-sidebar">
+        <h3>Member Login</h3>
+        <input id="email" type="email" placeholder="Email" />
+        <input id="password" type="password" placeholder="Password" />
+        <button onclick="login()">Login</button>
+        <p id="msg"></p>
+        <span class="link" onclick="resetPassword()">Forgot Password?</span>
+      </aside>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      © 2025 <strong>Pecos Associates</strong> | All Rights Reserved
+    </footer>
+
   </div>
-  <div class="hamburger" onclick="toggleNav()">☰</div>
-  <div class="market-ticker" id="mobileNav">
-    <div class="index up"><span>NIFTY 50</span><span>26,129</span><span class="change">+190</span></div>
-    <div class="index up"><span>SENSEX</span><span>85,220</span><span class="change">+545</span></div>
-  </div>
-</header>
 
-<div class="content">
+  <!-- Scripts -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+      authDomain: "pecos-432b5.firebaseapp.com",
+      projectId: "pecos-432b5"
+    };
 
-<aside class="sidebar">
-  <h4>Services</h4>
-  <ul>
-    <li><a onclick="loadInsurance()">Insurance</a></li>
-    <li><a onclick="loadLoans()">Loans</a></li>
-    <li><a onclick="loadMutualFunds()">Mutual Funds</a></li>
-    <li><a onclick="loadStocks()">Stocks & Shares</a></li>
-  </ul>
-</aside>
+    firebase.initializeApp(firebaseConfig);
 
-<main class="main">
-  <div id="dynamicContent">
-    <div class="ask-title"><span>Pecos</span></div>
-    <p>Secure & transparent financial services.</p>
-    <a href="registeration.html"><button>Register</button></a>
-  </div>
-</main>
+    const auth = firebase.auth();
+    const db = firebase.firestore();
 
-<aside class="login-sidebar">
-  <h3>Member Login</h3>
-  <input id="email" type="email" placeholder="Email">
-  <input id="password" type="password" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <p id="msg"></p>
-  <span class="link" onclick="resetPassword()">Forgot Password?</span>
-</aside>
+    async function login() {
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const msg = document.getElementById("msg");
 
-</div>
+      if (!email || !password) {
+        msg.innerText = "Please fill all fields";
+        return;
+      }
 
-<footer>
-© 2025 <strong>Pecos Associates</strong> | All Rights Reserved
-</footer>
+      try {
+        const userCred = await auth.signInWithEmailAndPassword(email, password);
+        const user = userCred.user;
 
-</div>
+        if (!user.emailVerified) {
+          msg.innerText = "Please verify your email";
+          return;
+        }
 
-<script>
-function toggleNav() {
-  document.getElementById("mobileNav").classList.toggle("show");
-}
-</script>
+        const doc = await db.collection("members").doc(user.uid).get();
+        const data = doc.data();
 
-<!-- ===== Firebase & Dynamic JS (UNCHANGED) ===== -->
-<script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain: "pecos-432b5.firebaseapp.com",
-  projectId: "pecos-432b5",
-};
-firebase.initializeApp(firebaseConfig);
-const auth = firebase.auth();
-const db = firebase.firestore();
+        window.location.href = data?.isAdmin ? "admin.html" : "member.html";
+      } catch (err) {
+        msg.innerText = err.message;
+      }
+    }
 
-async function login() {
-  const email = email.value;
-  const password = password.value;
-  const msg = document.getElementById("msg");
+    function resetPassword() {
+      const email = prompt("Enter registered email");
+      if (!email) return;
+      auth.sendPasswordResetEmail(email);
+      alert("Password reset link sent");
+    }
 
-  if (!email || !password) {
-    msg.innerText = "Please fill all fields";
-    return;
-  }
-
-  try {
-    const userCred = await auth.signInWithEmailAndPassword(email, password);
-    const doc = await db.collection("members").doc(userCred.user.uid).get();
-    setTimeout(() => {
-      window.location.href = doc.data()?.isAdmin ? "admin.html" : "member.html";
-    }, 1000);
-  } catch (e) {
-    msg.innerText = e.message;
-  }
-}
-
-function resetPassword() {
-  const mail = prompt("Enter email:");
-  if (mail) auth.sendPasswordResetEmail(mail);
-}
-
-/* Dynamic loaders (unchanged) */
-const content = document.getElementById("dynamicContent");
-function loadInsurance(){ content.innerHTML="<h2>Insurance</h2>"; }
-function loadLoans(){ content.innerHTML="<h2>Loans</h2>"; }
-function loadMutualFunds(){ content.innerHTML="<h2>Mutual Funds</h2>"; }
-function loadStocks(){ content.innerHTML="<h2>Stocks</h2>"; }
-</script>
-
+    function toggleNav() {
+      document.body.classList.toggle("show-nav");
+    }
+  </script>
 </body>
 </html>
