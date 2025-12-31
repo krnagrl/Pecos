@@ -7,7 +7,7 @@
   <title>Pecos - Insurance | Loans | Mutual Funds | Stocks & Shares</title>
   <link rel="icon" type="image/png" href="pecos.png" />
 
-  <!-- Google Font -->
+  <!-- Fonts -->
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
     rel="stylesheet"
@@ -32,7 +32,6 @@
       overflow-x: hidden;
     }
 
-    /* Header */
     header {
       background: #003366;
       color: white;
@@ -40,6 +39,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 15px 25px;
+      flex-wrap: wrap;
     }
 
     .logo img {
@@ -53,7 +53,6 @@
       margin-left: 8px;
     }
 
-    /* Buttons */
     button,
     a button {
       background-color: #004aad;
@@ -63,20 +62,29 @@
       border-radius: 8px;
       font-size: 16px;
       font-weight: 600;
+      letter-spacing: 0.5px;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
-    button:hover {
+    button:hover,
+    a button:hover {
       background-color: #00367f;
       transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
     }
 
-    /* Layout */
+    button:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+
     .container {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      width: 100%;
+      overflow-x: hidden;
     }
 
     .content {
@@ -84,61 +92,68 @@
       grid-template-columns: 1fr 2fr 1.2fr;
       gap: 20px;
       padding: 20px;
+      flex: 1;
       max-width: 1200px;
-      margin: auto;
-      width: 100%;
+      margin: 0 auto;
+      align-items: start;
     }
 
-    /* Sidebar */
-    .sidebar {
+    aside.sidebar {
       background: #003366;
       color: white;
       border-radius: 10px;
       padding: 20px;
     }
 
-    .sidebar h4 {
+    aside.sidebar h4 {
       border-bottom: 1px solid #ccc;
       padding-bottom: 8px;
       margin-bottom: 15px;
     }
 
-    .sidebar ul {
+    aside.sidebar ul {
       list-style: none;
       padding: 0;
+      margin: 0;
     }
 
-    .sidebar li {
+    aside.sidebar li {
       margin-bottom: 10px;
     }
 
-    .sidebar a {
+    aside.sidebar a {
       color: white;
       text-decoration: none;
-      cursor: pointer;
     }
 
-    /* Main */
-    .main {
+    main.main {
       background: white;
       border-radius: 10px;
       padding: 20px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
+    main.main p,
+    main.main h3 {
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+
     .ask-title span {
-      font-size: 24px;
       font-weight: bold;
+      font-size: 24px;
       color: #003366;
     }
 
-    /* Login Sidebar */
     .login-sidebar {
       background: #003366;
       color: white;
       border-radius: 10px;
       padding: 25px 20px;
-      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .login-sidebar input {
@@ -152,18 +167,7 @@
     .login-sidebar button {
       width: 100%;
       background: #ffcc00;
-      color: #000;
-    }
-
-    .login-sidebar button:hover {
-      background: #ffdb4d;
-    }
-
-    .link {
-      color: #ffcc00;
-      text-decoration: underline;
-      cursor: pointer;
-      font-size: 13px;
+      font-weight: bold;
     }
 
     footer {
@@ -174,23 +178,38 @@
       font-size: 14px;
     }
 
-    /* Responsive */
-    @media (max-width: 992px) {
-      .content {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Mobile Menu */
     .hamburger {
       display: none;
       font-size: 26px;
       cursor: pointer;
     }
 
+    .header-right {
+      display: flex;
+      align-items: center;
+    }
+
     @media (max-width: 768px) {
       .hamburger {
         display: block;
+      }
+
+      .header-right {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: #003366;
+        position: absolute;
+        top: 65px;
+        left: 0;
+      }
+
+      .header-right.show {
+        display: flex;
+      }
+
+      .content {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -199,19 +218,34 @@
 <body>
   <div class="container">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <header>
       <div class="logo">
         <img src="pecos.png" alt="Pecos Logo" />
         <span>Pecos Associates</span>
       </div>
+
       <div class="hamburger" onclick="toggleNav()">☰</div>
+
+      <div class="header-right" id="mobileNav">
+        <div class="market-ticker">
+          <div class="index up">
+            <span class="name">NIFTY 50</span>
+            <span class="price">26,129.60</span>
+            <span class="change">+190.75</span>
+          </div>
+          <div class="index up">
+            <span class="name">SENSEX</span>
+            <span class="price">85,220.60</span>
+            <span class="change">+545.52</span>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- MAIN GRID -->
     <div class="content">
 
-      <!-- Sidebar -->
       <aside class="sidebar">
         <h4>Services</h4>
         <ul>
@@ -222,7 +256,6 @@
         </ul>
       </aside>
 
-      <!-- Center -->
       <main class="main">
         <div class="ask-title"><span>Pecos</span></div>
         <hr />
@@ -238,34 +271,31 @@
 
         <h3>Contact</h3>
         <p><strong>Email:</strong> karan@pecos.in</p>
-        <p><strong>Location:</strong> Akola, Maharashtra 444001</p>
+        <p><strong>Location:</strong> Akola Maharashtra 444001</p>
       </main>
 
-      <!-- Login -->
       <aside class="login-sidebar">
         <h3>Member Login</h3>
         <input id="email" type="email" placeholder="Email" />
         <input id="password" type="password" placeholder="Password" />
         <button onclick="login()">Login</button>
         <p id="msg"></p>
-        <span class="link" onclick="resetPassword()">Forgot Password?</span>
+        <a class="link" onclick="resetPassword()">Forgot Password?</a>
       </aside>
 
     </div>
 
-    <!-- Footer -->
     <footer>
       © 2025 <strong>Pecos Associates</strong> | All Rights Reserved
     </footer>
 
   </div>
 
-  <!-- Scripts -->
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
       authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5"
+      projectId: "pecos-432b5",
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -309,7 +339,7 @@
     }
 
     function toggleNav() {
-      document.body.classList.toggle("show-nav");
+      document.getElementById("mobileNav").classList.toggle("show");
     }
   </script>
 </body>
