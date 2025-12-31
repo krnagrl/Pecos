@@ -435,12 +435,13 @@ footer {
   <!-- SERVICES CARD -->
   <div class="sidebar-card">
     <h4>Services</h4>
-    <ul>
-      <li><a>Insurance</a></li>
-      <li><a>Loans</a></li>
-      <li><a>Mutual Funds</a></li>
-      <li><a>Stocks & Shares</a></li>
-    </ul>
+<ul>
+  <li><a onclick="loadInsurance()">Insurance</a></li>
+  <li><a onclick="loadLoans()">Loans</a></li>
+  <li><a onclick="loadMutualFunds()">Mutual Funds</a></li>
+  <li><a onclick="loadStocks()">Stocks & Shares</a></li>
+</ul>
+
   </div>
 
 </aside>
@@ -448,6 +449,7 @@ footer {
 
       <!-- CENTER MAIN CONTENT -->
       <main class="main">
+        <div id="dynamicContent">
         <div class="ask-title"><span>Pecos</span></div>
         <hr />
 
@@ -464,6 +466,7 @@ footer {
           <p><strong>Email:</strong> <a href="mailto:karan@pecos.in">karan@pecos.in</a></p>
           <p><strong>Location:</strong> Akola Maharashtra 444001</p>
         </section>
+        </div>
       </main>
 
       <!-- RIGHT LOGIN SIDEBAR -->
@@ -564,8 +567,85 @@ footer {
     document.getElementById("mobileNav").classList.toggle("show");
   }
 </script>
+  <script>
+const content = document.getElementById("dynamicContent");
+
+/* INSURANCE */
+function loadInsurance() {
+  content.innerHTML = `
+    <h2>Insurance Products</h2>
+    <ul>
+      <li><strong>Health Insurance</strong> – Cashless hospitalization, tax benefits</li>
+      <li><strong>Car Insurance</strong> – Third-party & comprehensive cover</li>
+      <li><strong>Life Insurance</strong> – Term, ULIP, Endowment</li>
+      <li><strong>Business Insurance</strong> – Fire, liability, marine</li>
+      <li><strong>Travel Insurance</strong> – Medical & trip protection</li>
+    </ul>
+  `;
+}
+
+/* LOANS */
+function loadLoans() {
+  content.innerHTML = `
+    <h2>Loan Products</h2>
+    <table border="1" width="100%" cellpadding="8">
+      <tr><th>Loan Type</th><th>Interest Rate</th></tr>
+      <tr><td>Home Loan</td><td>8.5% – 10%</td></tr>
+      <tr><td>Personal Loan</td><td>11% – 24%</td></tr>
+      <tr><td>Business Loan</td><td>10% – 22%</td></tr>
+      <tr><td>Car Loan</td><td>8% – 11%</td></tr>
+      <tr><td>Education Loan</td><td>7.5% – 13%</td></tr>
+    </table>
+  `;
+}
+
+/* MUTUAL FUNDS */
+function loadMutualFunds() {
+  content.innerHTML = `
+    <h2>Mutual Fund Schemes</h2>
+    <ul>
+      <li>Nifty 50 Index Fund – <strong>12% CAGR</strong></li>
+      <li>Flexi Cap Fund – <strong>14% CAGR</strong></li>
+      <li>Midcap Fund – <strong>16% CAGR</strong></li>
+    </ul>
+
+    <h3>Return Calculator</h3>
+    <input type="number" id="amount" placeholder="Investment Amount">
+    <input type="number" id="years" placeholder="Years">
+    <button onclick="calculateReturn()">Calculate</button>
+    <p id="mfResult"></p>
+  `;
+}
+
+/* MF CALCULATOR */
+function calculateReturn() {
+  const amt = document.getElementById("amount").value;
+  const yrs = document.getElementById("years").value;
+  const rate = 12 / 100;
+
+  const future = amt * Math.pow(1 + rate, yrs);
+  document.getElementById("mfResult").innerText =
+    "Estimated Value: ₹" + future.toFixed(2);
+}
+
+/* STOCKS */
+function loadStocks() {
+  content.innerHTML = `
+    <h2>Stocks & Shares</h2>
+    <ul>
+      <li><strong>Brokerage:</strong> ₹20 per order</li>
+      <li><strong>Segments:</strong> Equity, F&O, Currency, Commodity</li>
+      <li><strong>DP:</strong> CDSL</li>
+      <li><strong>Account Opening:</strong> Free</li>
+      <li><strong>AMC:</strong> ₹300/year</li>
+    </ul>
+  `;
+}
+</script>
+
 </body>
 </html>
+
 
 
 
