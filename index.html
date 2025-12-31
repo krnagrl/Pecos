@@ -212,6 +212,62 @@
         grid-template-columns: 1fr;
       }
     }
+    /* Market Ticker Styling */
+.market-ticker {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.market-ticker .index {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1); /* subtle white overlay */
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: transform 0.2s ease;
+}
+
+.market-ticker .index:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 204, 0, 0.15); /* subtle gold highlight on hover */
+}
+
+.market-ticker .name {
+  color: #ffcc00; /* gold */
+}
+
+.market-ticker .price {
+  color: #ffffff; /* white */
+}
+
+.market-ticker .change {
+  color: #00ff99; /* green for up */
+  font-weight: 600;
+}
+
+.market-ticker .index.down .change {
+  color: #ff8080; /* red for down */
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .market-ticker {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .market-ticker .index {
+    justify-content: space-between;
+    width: 100%;
+    padding: 8px 12px;
+  }
+}
+
   </style>
 </head>
 
@@ -344,3 +400,4 @@
   </script>
 </body>
 </html>
+
