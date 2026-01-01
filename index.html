@@ -267,72 +267,53 @@
     padding: 8px 12px;
   }
 }
-    /* CONTACT SECTION */
-.contact-card {
-  background: linear-gradient(135deg, #f9fbff, #ffffff);
-  border-radius: 12px;
-  padding: 25px;
-  margin-top: 20px;
-  border-left: 6px solid #003366;
+/* Compact Contact Section */
+.contact-inline {
+  margin-top: 15px;
 }
 
-.contact-card h3 {
-  margin: 0 0 5px 0;
+.contact-inline h3 {
   color: #003366;
-  font-size: 22px;
+  margin-bottom: 10px;
 }
 
-.contact-subtext {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 18px;
-}
-
-.contact-grid {
+.contact-row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
-
-.contact-item {
-  display: flex;
   gap: 12px;
-  align-items: center;
-  background: #f4f6f9;
-  padding: 14px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
 }
 
-.contact-item:hover {
-  background: #eaf0ff;
-  transform: translateY(-2px);
-}
-
-.contact-item .icon {
-  font-size: 22px;
-  background: #003366;
-  color: #ffcc00;
-  width: 42px;
-  height: 42px;
+.contact-box {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #f4f6f9;
+  border-radius: 8px;
+  transition: background 0.2s ease;
 }
 
-.contact-item label {
-  font-size: 12px;
+.contact-box:hover {
+  background: #e9eef6;
+}
+
+.contact-box span {
+  font-size: 18px;
+}
+
+.contact-box small {
+  font-size: 11px;
   color: #777;
   font-weight: 600;
 }
 
-.contact-item p {
-  margin: 2px 0 0;
+.contact-box p {
+  margin: 0;
   font-size: 14px;
   font-weight: 600;
   color: #003366;
 }
+
 
 
   </style>
@@ -387,35 +368,36 @@
           transparent, and customer-focused.
         </p>
 
-<section class="contact-card">
-  <h3>Contact Us</h3>
+<section class="contact-inline">
+  <h3>Contact</h3>
 
-  <div class="contact-grid">
-    <div class="contact-item">
-      <span class="icon">📧</span>
+  <div class="contact-row">
+    <div class="contact-box">
+      <span>📧</span>
       <div>
-        <label>Email</label>
+        <small>Email</small>
         <p>karan@pecos.in</p>
       </div>
     </div>
 
-    <div class="contact-item">
-      <span class="icon">📍</span>
+    <div class="contact-box">
+      <span>📍</span>
       <div>
-        <label>Location</label>
-        <p>Akola, Maharashtra – 444001</p>
+        <small>Location</small>
+        <p>Akola, Maharashtra 444001</p>
       </div>
     </div>
 
-    <div class="contact-item">
-      <span class="icon">📞</span>
+    <div class="contact-box">
+      <span>📞</span>
       <div>
-        <label>Call / WhatsApp</label>
+        <small>Phone</small>
         <p>+91 XXXXXXXXXX</p>
       </div>
     </div>
   </div>
 </section>
+
 
       </main>
 
@@ -489,6 +471,7 @@
   </script>
 </body>
 </html>
+
 
 
 
