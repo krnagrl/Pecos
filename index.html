@@ -267,6 +267,73 @@
     padding: 8px 12px;
   }
 }
+    /* CONTACT SECTION */
+.contact-card {
+  background: linear-gradient(135deg, #f9fbff, #ffffff);
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+  border-left: 6px solid #003366;
+}
+
+.contact-card h3 {
+  margin: 0 0 5px 0;
+  color: #003366;
+  font-size: 22px;
+}
+
+.contact-subtext {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 18px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.contact-item {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background: #f4f6f9;
+  padding: 14px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.contact-item:hover {
+  background: #eaf0ff;
+  transform: translateY(-2px);
+}
+
+.contact-item .icon {
+  font-size: 22px;
+  background: #003366;
+  color: #ffcc00;
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.contact-item label {
+  font-size: 12px;
+  color: #777;
+  font-weight: 600;
+}
+
+.contact-item p {
+  margin: 2px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: #003366;
+}
+
 
   </style>
 </head>
@@ -320,13 +387,36 @@
           transparent, and customer-focused.
         </p>
 
-        <a href="registeration.html">
-          <button>Register</button>
-        </a>
+<section class="contact-card">
+  <h3>Contact Us</h3>
 
-        <h3>Contact</h3>
-        <p><strong>Email:</strong> <a>karan@pecos.in</a></p>
-        <p><strong>Location:</strong><a> Akola Maharashtra 444001</a></p>
+  <div class="contact-grid">
+    <div class="contact-item">
+      <span class="icon">📧</span>
+      <div>
+        <label>Email</label>
+        <p>karan@pecos.in</p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <span class="icon">📍</span>
+      <div>
+        <label>Location</label>
+        <p>Akola, Maharashtra – 444001</p>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <span class="icon">📞</span>
+      <div>
+        <label>Call / WhatsApp</label>
+        <p>+91 XXXXXXXXXX</p>
+      </div>
+    </div>
+  </div>
+</section>
+
       </main>
 
       <aside class="login-sidebar">
@@ -399,6 +489,7 @@
   </script>
 </body>
 </html>
+
 
 
 
