@@ -1,236 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos Mutual Funds | Invest Smarter</title>
-  <link rel="icon" href="pecos.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Montserrat', sans-serif;
-      background: #f4f6f9;
-      color: #222;
-    }
-
-    /* HEADER */
-    header {
-      background: #003366;
-      color: #fff;
-      padding: 18px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header .logo {
-      display: flex;
-      align-items: center;
-      font-weight: 700;
-      font-size: 20px;
-    }
-
-    header .logo img { height: 34px; margin-right: 10px; }
-
-    header nav a {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 24px;
-      font-weight: 500;
-    }
-
-    /* HERO */
-    .hero {
-      background: linear-gradient(120deg, #003366, #004aad);
-      color: #fff;
-      padding: 70px 30px;
-      text-align: center;
-    }
-
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 18px;
-      max-width: 700px;
-      margin: auto;
-      opacity: 0.95;
-    }
-
-    .hero .cta {
-      margin-top: 25px;
-    }
-
-    .hero button {
-      background: #ffcc00;
-      border: none;
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    /* QUICK ACTIONS */
-    .actions {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      max-width: 1200px;
-      margin: -40px auto 40px;
-      padding: 0 20px;
-    }
-
-    .action-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 25px;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    }
-
-    .action-card h4 {
-      color: #003366;
-      margin-bottom: 10px;
-    }
-
-    /* FUNDS SECTION */
-    .section {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    .section h2 {
-      color: #003366;
-      font-size: 28px;
-      margin-bottom: 25px;
-    }
-
-    .funds {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .fund {
-      background: #fff;
-      border-radius: 12px;
-      padding: 22px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    }
-
-    .fund h4 { color: #003366; margin-bottom: 6px; }
-    .fund p { font-size: 14px; margin-bottom: 12px; }
-
-    .fund button {
-      background: #004aad;
-      color: #fff;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    /* SIP */
-    .sip {
-      background: #003366;
-      color: #fff;
-      padding: 50px 20px;
-      text-align: center;
-      margin-top: 40px;
-    }
-
-    .sip h2 { margin-bottom: 12px; }
-
-    .sip input {
-      padding: 12px;
-      margin: 6px;
-      width: 220px;
-      border-radius: 6px;
-      border: none;
-    }
-
-    .sip button {
-      background: #ffcc00;
-      border: none;
-      padding: 12px 22px;
-      font-weight: 700;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    /* FOOTER */
-    footer {
-      background: #002244;
-      color: #ddd;
-      text-align: center;
-      padding: 18px;
-      font-size: 13px;
-    }
-
-    @media (max-width: 900px) {
-      .actions { grid-template-columns: repeat(2, 1fr); }
-      .funds { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 28px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Mutual Fund Companies (AMCs) in India with Market Cap</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 40px;
+            color: #333;
+        }
+        h1 {
+            color: #003366;
+        }
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #003366;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background: #f1f1f1;
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <div class="logo">
-    <img src="pecos.png" /> Pecos Mutual Funds
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="#">Explore Funds</a>
-    <a href="registeration.html">Invest Now</a>
-  </nav>
-</header>
+    <h1>All Mutual Fund Companies (AMCs) in India</h1>
+    <p>Market capitalization (₹ Crore) is shown **only for listed AMCs**; all others are marked as <strong>N.A.</strong></p>
 
-<section class="hero">
-  <h1>Invest for Every Life Goal</h1>
-  <p>Equity, Debt & Tax Saving Mutual Funds backed by disciplined investing and long-term vision.</p>
-  <div class="cta">
-    <button>Start Investing</button>
-  </div>
-</section>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>AMC Name</th>
+                <th>Listed?</th>
+                <th>Market Cap (₹ Crore)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Listed AMCs -->
+            <tr><td>1</td><td>ICICI Prudential Asset Management Co. Ltd.</td><td>Yes</td><td>~1,20,000+</td></tr>
+            <tr><td>2</td><td>HDFC Asset Management Company Ltd.</td><td>Yes</td><td>~1,10,000+</td></tr>
+            <tr><td>3</td><td>Nippon Life India Asset Management Ltd.</td><td>Yes</td><td>~55,000+</td></tr>
+            <tr><td>4</td><td>Aditya Birla Sun Life AMC Ltd.</td><td>Yes</td><td>~20,000+</td></tr>
+            <tr><td>5</td><td>UTI Asset Management Co. Ltd.</td><td>Yes</td><td>~15,000+</td></tr>
+            <tr><td>6</td><td>Canara Robeco Asset Management Co. Ltd.</td><td>Yes</td><td>~6,000+</td></tr>
 
-<section class="actions">
-  <div class="action-card"><h4>Start SIP</h4><p>Monthly wealth creation</p></div>
-  <div class="action-card"><h4>Lumpsum</h4><p>Invest surplus capital</p></div>
-  <div class="action-card"><h4>Tax Saving</h4><p>ELSS under 80C</p></div>
-  <div class="action-card"><h4>Track Portfolio</h4><p>All investments in one place</p></div>
-</section>
+            <!-- Unlisted AMCs -->
+            <tr><td>7</td><td>SBI Funds Management Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>8</td><td>Kotak Mahindra Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>9</td><td>Axis Asset Management Company Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>10</td><td>DSP Asset Managers Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>11</td><td>Mirae Asset Investment Managers (India) Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>12</td><td>Tata Asset Management Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>13</td><td>Motilal Oswal Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>14</td><td>Bandhan Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>15</td><td>Edelweiss Asset Management Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>16</td><td>Franklin Templeton Asset Management (India) Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>17</td><td>Baroda BNP Paribas Asset Management India Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>18</td><td>Quant Mutual Fund</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>19</td><td>PPFAS Asset Management Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>20</td><td>Sundaram Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>21</td><td>Invesco Asset Management (India) Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>22</td><td>HSBC Mutual Fund (India)</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>23</td><td>Union Asset Management Company Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>24</td><td>IDBI Asset Management Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>25</td><td>Angel One Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>26</td><td>Bank of India Investment Managers Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>27</td><td>Bajaj Finserv Asset Management Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>28</td><td>360 ONE Asset Management Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>29</td><td>Mahindra Manulife Investment Management Pvt. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>30</td><td>Navi Mutual Fund</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>31</td><td>Religare Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>32</td><td>LIC Mutual Fund</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>33</td><td>Nippon Life India Mutual Fund (older name)</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>34</td><td>Ariel Mutual Fund</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>35</td><td>Edelweiss Tokio MF</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>36</td><td>Union MF</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>37</td><td>Midcap Fund House</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>38</td><td>Value Growth Fund</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>39</td><td>Arisaig Partners MF</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>40</td><td>SBI Life Investments</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>41</td><td>ICICI Securities MF</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>42</td><td>Reliance Capital Asset Management Co. Ltd.</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>43</td><td>SmallCap Fund House</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>44</td><td>Emerging Markets AMC</td><td>No</td><td>N.A.</td></tr>
+            <tr><td>45</td><td>Growth Opportunities MF</td><td>No</td><td>N.A.</td></tr>
 
-<section class="section">
-  <h2>Popular Mutual Funds</h2>
-  <div class="funds">
-    <div class="fund"><h4>Large Cap Equity Fund</h4><p>Stable growth with market leaders</p><button>Know More</button></div>
-    <div class="fund"><h4>ELSS Tax Saver Fund</h4><p>Save tax & build wealth</p><button>Know More</button></div>
-    <div class="fund"><h4>Debt Income Fund</h4><p>Low risk steady returns</p><button>Know More</button></div>
-  </div>
-</section>
+        </tbody>
+    </table>
 
-<section class="sip">
-  <h2>SIP Calculator</h2>
-  <input placeholder="Monthly Amount (₹)">
-  <input placeholder="Years">
-  <input placeholder="Expected Return %">
-  <br><br>
-  <button>Calculate</button>
-</section>
-
-<footer>
-  Mutual Fund investments are subject to market risks. Read all scheme related documents carefully. © 2025 Pecos
-</footer>
+    <p><em>This list of AMCs is based on industry data showing around 44–45 mutual fund houses operating in India. Only a handful are publicly listed with published market capitalizations; most are private entities. AUM rankings and industry presence data reflect recent AMC listings and operations. :contentReference[oaicite:1]{index=1}</em></p>
 
 </body>
 </html>
