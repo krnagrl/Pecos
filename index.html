@@ -59,15 +59,13 @@
       .market-ticker .index { justify-content: space-between; width: 100%; padding: 8px 12px; }
     }
 
-    /* Compact Contact Section */
-    .contact-inline { margin-top: 20px; }
-    .contact-inline h3 { color: #003366; margin-bottom: 15px; font-size: 22px; }
-    .contact-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
-    .contact-box { display: flex; align-items: center; gap: 12px; padding: 15px 18px; background: #f4f6f9; border-radius: 10px; transition: background 0.2s ease, transform 0.2s ease; }
-    .contact-box:hover { background: #e9eef6; transform: translateY(-2px); }
-    .contact-box span { font-size: 22px; }
-    .contact-box small { font-size: 12px; color: #777; font-weight: 600; }
-    .contact-box p { margin: 0; font-size: 14px; font-weight: 600; color: #003366; }
+/* Simple Contact Section */
+.contact-inline { margin-top: 20px; }
+.contact-inline h3 { color: #003366; margin-bottom: 12px; font-size: 20px; font-weight: 600; }
+.contact-row { display: flex; flex-wrap: wrap; gap: 20px; }
+.contact-box { display: flex; align-items: center; gap: 8px; font-size: 14px; color: #003366; }
+.contact-box p { margin: 0; font-weight: 500; }
+
 
   </style>
 </head>
@@ -112,33 +110,22 @@
         <hr />
         <p>Start your journey with confidence. Our process is secure, transparent, and customer-focused.</p>
 
-        <!-- Contact Section -->
-        <section class="contact-inline">
-          <h3>Contact Us</h3>
-          <div class="contact-row">
-            <div class="contact-box">
-              <span>📧</span>
-              <div>
-                <small>Email</small>
-                <p>karan@pecos.in</p>
-              </div>
-            </div>
-            <div class="contact-box">
-              <span>📞</span>
-              <div>
-                <small>Phone</small>
-                <p>+91 8669334862</p>
-              </div>
-            </div>
-            <div class="contact-box">
-              <span>📍</span>
-              <div>
-                <small>Location</small>
-                <p>Yamuna Business Park, Akola MH 444001</p>
-              </div>
-            </div>
-          </div>
-        </section>
+<!-- Contact Section -->
+<section class="contact-inline">
+  <h3>Contact</h3>
+  <div class="contact-row">
+    <div class="contact-box">
+      📧 <p>karan@pecos.in</p>
+    </div>
+    <div class="contact-box">
+      📞 <p>+91 8669334862</p>
+    </div>
+    <div class="contact-box">
+      📍 <p>Yamuna Business Park, Akola MH 444001</p>
+    </div>
+  </div>
+</section>
+
       </main>
 
       <aside class="login-sidebar">
@@ -194,3 +181,4 @@
   </script>
 </body>
 </html>
+
