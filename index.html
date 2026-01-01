@@ -17,33 +17,33 @@
   <style>
     * { box-sizing: border-box; }
     body { font-family: "Montserrat", sans-serif; background: #f4f6f9; color: #333; margin: 0; padding: 0; overflow-x: hidden; }
-    
+
     header { background: #003366; color: white; display: flex; justify-content: space-between; align-items: center; padding: 15px 25px; flex-wrap: wrap; }
     .logo img { height: 35px; vertical-align: middle; }
     .logo span { font-size: 20px; font-weight: 600; margin-left: 8px; }
-    
+
     button, a button { background-color: #004aad; color: #fff; border: none; padding: 10px 22px; border-radius: 8px; font-size: 16px; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; transition: all 0.3s ease; }
     button:hover, a button:hover { background-color: #00367f; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
     button:active { transform: translateY(0); box-shadow: none; }
-    
+
     .container { display: flex; flex-direction: column; min-height: 100vh; width: 100%; overflow-x: hidden; }
     .content { display: grid; grid-template-columns: 1fr 2fr 1.2fr; gap: 20px; padding: 20px; flex: 1; max-width: 1200px; margin: 0 auto; align-items: start; }
-    
+
     aside.sidebar { background: #003366; color: white; border-radius: 10px; padding: 20px; }
     aside.sidebar h4 { border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 15px; }
     aside.sidebar ul { list-style: none; padding: 0; margin: 0; }
     aside.sidebar li { margin-bottom: 10px; }
     aside.sidebar a { color: white; text-decoration: none; }
-    
+
     main.main { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); }
     main.main p, main.main h3 { line-height: 1.6; margin-bottom: 12px; }
     .ask-title span { font-weight: bold; font-size: 24px; color: #003366; }
-    
+
     .login-sidebar { background: #003366; color: white; border-radius: 10px; padding: 25px 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); display: flex; flex-direction: column; align-items: center; }
     .login-sidebar input { width: 100%; padding: 10px; margin-bottom: 12px; border-radius: 6px; border: none; }
     .login-sidebar button { width: 100%; background: #ffcc00; font-weight: bold; }
-    
-    footer { background: #003366; color: white; text-align: center; padding: 12px; font-size: 14px; }
+
+    footer { background: #003366; color: white; text-align: center; padding: 12px; font-size: 13px; }
     .hamburger { display: none; font-size: 26px; cursor: pointer; }
     .header-right { display: flex; align-items: center; }
 
@@ -54,129 +54,146 @@
       .content { grid-template-columns: 1fr; }
     }
 
-    /* Market Ticker Styling */
     .market-ticker { display: flex; gap: 12px; align-items: center; }
-    .market-ticker .index { display: flex; gap: 8px; align-items: center; background: rgba(255, 255, 255, 0.1); padding: 6px 14px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: transform 0.2s ease; }
-    .market-ticker .index:hover { transform: translateY(-2px); background: rgba(255, 204, 0, 0.15); }
+    .market-ticker .index { display: flex; gap: 8px; align-items: center; background: rgba(255, 255, 255, 0.1); padding: 6px 14px; border-radius: 8px; font-weight: 600; font-size: 14px; }
     .market-ticker .name { color: #ffcc00; }
     .market-ticker .price { color: #ffffff; }
-    .market-ticker .change { color: #00ff99; font-weight: 600; }
+    .market-ticker .change { color: #00ff99; }
     .market-ticker .index.down .change { color: #ff8080; }
-    @media (max-width: 768px) {
-      .market-ticker { flex-direction: column; gap: 8px; width: 100%; }
-      .market-ticker .index { justify-content: space-between; width: 100%; padding: 8px 12px; }
-    }
 
-    /* Simple Contact Styling */
-    .contact-inline { margin-top: 20px; }
     .contact-inline p { margin: 4px 0; font-weight: 500; color: #003366; font-size: 14px; }
+    .soft-section { margin-top: 20px; padding-top: 10px; border-top: 1px solid #e6e6e6; }
+    .soft-section h4 { color: #003366; margin-bottom: 8px; }
+    .soft-section ul { padding-left: 18px; margin: 0; }
+    .soft-section li { margin-bottom: 6px; }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <!-- HEADER -->
-    <header>
-      <div class="logo">
-        <img src="pecos.png" alt="Pecos Logo" />
-        <span>Pecos Associates</span>
-      </div>
-      <div class="hamburger" onclick="toggleNav()">☰</div>
-      <div class="header-right" id="mobileNav">
-        <div class="market-ticker">
-          <div class="index up">
-            <span class="name">NIFTY 50</span>
-            <span class="price">26,146.55</span>
-            <span class="change">+16.95</span>
-          </div>
-          <div class="index down">
-            <span class="name">SENSEX</span>
-            <span class="price">85,188.60</span>
-            <span class="change">-32</span>
-          </div>
-        </div>
-      </div>
-    </header>
+<div class="container">
 
-    <!-- MAIN GRID -->
-    <div class="content">
-      <!-- Sidebar -->
-      <aside class="sidebar">
-        <h4>Services</h4>
-        <ul>
-          <li><a>Finance</a></li>
-          <li><a>Real Estate</a></li>
-          <li><a>Stocks & Shares</a></li>
-        </ul>
-      </aside>
-
-      <!-- Main Content -->
-      <main class="main">
-        <div class="ask-title"><span>Pecos</span></div>
-        <hr />
-        <p>Start your journey with confidence. Our process is secure, transparent, and customer-focused.</p>
-
-        <!-- Contact Info -->
-        <h4>Contact </h4>
-        <div class="contact-inline">
-          <p>📧 karan@pecos.in</p>
-          <p>📞 +91 8669334862</p>
-          <p>📍 Yamuna Business Park, Akola MH 444001</p>
-        </div>
-      </main>
-
-      <!-- Login Sidebar -->
-      <aside class="login-sidebar">
-        <h3>Member Login</h3>
-        <input id="email" type="email" placeholder="Email" />
-        <input id="password" type="password" placeholder="Password" />
-        <button onclick="login()">Login</button>
-        <p id="msg"></p>
-        <a class="link" onclick="resetPassword()">Forgot Password?</a>
-      </aside>
+<header>
+  <div class="logo">
+    <img src="pecos.png" />
+    <span>Pecos Associates</span>
+  </div>
+  <div class="hamburger" onclick="toggleNav()">☰</div>
+  <div class="header-right" id="mobileNav">
+    <div class="market-ticker">
+      <div class="index up"><span class="name">NIFTY 50</span><span class="price">26,146.55</span><span class="change">+16.95</span></div>
+      <div class="index down"><span class="name">SENSEX</span><span class="price">85,188.60</span><span class="change">-32</span></div>
     </div>
+  </div>
+</header>
 
-    <!-- Footer -->
-    <footer>
-      © 2025 <strong>Pecos Associates</strong> | All Rights Reserved
-    </footer>
+<div class="content">
+
+<aside class="sidebar">
+  <h4>Services</h4>
+  <ul>
+    <li><a>Finance</a></li>
+    <li><a>Real Estate</a></li>
+    <li><a>Stocks & Shares</a></li>
+  </ul>
+</aside>
+
+<main class="main">
+  <div class="ask-title"><span>Pecos</span></div>
+  <hr />
+  <p>Start your journey with confidence. Our process is secure, transparent, and customer-focused.</p>
+
+  <div class="soft-section">
+    <h4>Our Approach</h4>
+    <p>
+      We believe long-term relationships are built on clarity, discipline, and responsibility.
+      Every association is handled with a focus on trust, structured decision-making, and sustainable outcomes.
+    </p>
   </div>
 
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-      authDomain: "pecos-432b5.firebaseapp.com",
-      projectId: "pecos-432b5",
-    };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
-    const db = firebase.firestore();
+  <div class="soft-section">
+    <h4>Why Pecos</h4>
+    <ul>
+      <li>Transparent and structured processes</li>
+      <li>Long-term association mindset</li>
+      <li>Market-aware decision support</li>
+      <li>Client-first relationship approach</li>
+    </ul>
+  </div>
 
-    async function login() {
-      const email = document.getElementById("email").value.trim();
-      const password = document.getElementById("password").value.trim();
-      const msg = document.getElementById("msg");
-      if (!email || !password) { msg.innerText = "Please fill all fields"; return; }
-      try {
-        const userCred = await auth.signInWithEmailAndPassword(email, password);
-        const user = userCred.user;
-        if (!user.emailVerified) { msg.innerText = "Please verify your email"; return; }
-        const doc = await db.collection("members").doc(user.uid).get();
-        const data = doc.data();
-        window.location.href = data?.isAdmin ? "admin.html" : "member.html";
-      } catch (err) { msg.innerText = err.message; }
-    }
+  <div class="soft-section">
+    <h4>Who This Portal Is For</h4>
+    <p>
+      This portal is designed exclusively for registered members and associates to access information securely.
+    </p>
+  </div>
 
-    function resetPassword() {
-      const email = prompt("Enter registered email");
-      if (!email) return;
-      auth.sendPasswordResetEmail(email);
-      alert("Password reset link sent");
-    }
+  <div class="soft-section">
+    <h4>Contact</h4>
+    <div class="contact-inline">
+      <p>📧 karan@pecos.in</p>
+      <p>📞 +91 8669334862</p>
+      <p>📍 Yamuna Business Park, Akola MH 444001</p>
+    </div>
+  </div>
+</main>
 
-    function toggleNav() {
-      document.getElementById("mobileNav").classList.toggle("show");
-    }
-  </script>
+<aside class="login-sidebar">
+  <h3>Member Login</h3>
+  <input id="email" type="email" placeholder="Email" />
+  <input id="password" type="password" placeholder="Password" />
+  <button onclick="login()">Login</button>
+  <p id="msg"></p>
+  <a onclick="resetPassword()">Forgot Password?</a>
+  <p style="font-size:12px;opacity:0.8;margin-top:10px;">🔒 Secure member-only access</p>
+</aside>
+
+</div>
+
+<footer>
+  © 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br/>
+  <span style="font-size:12px;opacity:0.8;">
+    Investments are subject to market risks. This platform operates as a facilitation and distribution interface.
+  </span>
+</footer>
+
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+    authDomain: "pecos-432b5.firebaseapp.com",
+    projectId: "pecos-432b5",
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+  const db = firebase.firestore();
+
+  async function login() {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const msg = document.getElementById("msg");
+    if (!email || !password) { msg.innerText = "Please fill all fields"; return; }
+    try {
+      const userCred = await auth.signInWithEmailAndPassword(email, password);
+      const user = userCred.user;
+      if (!user.emailVerified) { msg.innerText = "Please verify your email"; return; }
+      const doc = await db.collection("members").doc(user.uid).get();
+      const data = doc.data();
+      window.location.href = data?.isAdmin ? "admin.html" : "member.html";
+    } catch (err) { msg.innerText = err.message; }
+  }
+
+  function resetPassword() {
+    const email = prompt("Enter registered email");
+    if (!email) return;
+    auth.sendPasswordResetEmail(email);
+    alert("Password reset link sent");
+  }
+
+  function toggleNav() {
+    document.getElementById("mobileNav").classList.toggle("show");
+  }
+</script>
+
 </body>
 </html>
-
