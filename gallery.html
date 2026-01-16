@@ -3,140 +3,134 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos | Gallery</title>
+  <title>Our Businesses | Pecos Associates</title>
   <link rel="icon" type="image/png" href="pecos.png" />
 
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
-* { box-sizing: border-box; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-  background: #f4f6f9;
-  color: #333;
-  margin: 0;
-}
+    body {
+      font-family: "Montserrat", sans-serif;
+      background: #f4f6f9;
+      color: #333;
+    }
 
-/* HEADER */
-header {
-  background: #003366;
-  color: white;
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    header {
+      background: #003366;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.logo img {
-  height: 35px;
-  margin-right: 8px;
-}
+    .logo img {
+      height: 35px;
+    }
 
-.logo span {
-  font-size: 20px;
-  font-weight: 600;
-}
+    .logo span {
+      font-size: 20px;
+      font-weight: 600;
+    }
 
-/* LAYOUT */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 25px;
-}
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
 
-/* PAGE TITLE */
-.page-title {
-  font-size: 26px;
-  font-weight: 600;
-  color: #003366;
-  margin-bottom: 10px;
-}
+    .page-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-.page-subtitle {
-  color: #666;
-  margin-bottom: 25px;
-}
+    .page-title h1 {
+      color: #003366;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
 
-/* GALLERY GRID */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
-}
+    .page-title p {
+      font-size: 15px;
+      color: #555;
+    }
 
-/* GALLERY CARD */
-.gallery-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+    .business-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
 
-.gallery-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
+    .business-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
 
-.gallery-card img {
-  width: 100%;
-  height: 190px;
-  object-fit: cover;
-}
+    .business-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
 
-.gallery-content {
-  padding: 15px;
-}
+    .business-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
 
-.gallery-content h4 {
-  margin: 0 0 8px;
-  font-size: 16px;
-  color: #003366;
-}
+    .business-content {
+      padding: 18px;
+    }
 
-.gallery-content p {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.5;
-}
+    .business-content h3 {
+      color: #003366;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
 
-/* FOOTER */
-.simple-footer {
-  background: linear-gradient(180deg, #003366 0%, #00284d 100%);
-  padding: 12px 18px;
-  font-size: 12.5px;
-  color: #e0e0e0;
-  margin-top: 40px;
-}
+    .business-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      color: #444;
+    }
 
-.footer-inner {
-  max-width: 1200px;
-  margin: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+    .business-content button {
+      background: #004aad;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-.footer-label {
-  font-weight: 600;
-  color: #ffcc00;
-  font-size: 11.5px;
-}
+    .business-content button:hover {
+      background: #00367f;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
 
-@media (max-width: 600px) {
-  .footer-inner {
-    flex-direction: column;
-    gap: 6px;
-    text-align: center;
-  }
-}
+    footer {
+      background: #003366;
+      color: white;
+      text-align: center;
+      padding: 14px;
+      margin-top: 40px;
+      font-size: 13px;
+    }
   </style>
 </head>
 
@@ -144,50 +138,56 @@ header {
 
 <header>
   <div class="logo">
-    <img src="pecos.png" alt="Pecos">
+    <img src="pecos.png" alt="Pecos Logo">
     <span>Pecos Associates</span>
   </div>
 </header>
 
 <div class="container">
 
-  <div class="page-title">Gallery</div>
-  <div class="page-subtitle">
-    Public updates, events, site visits & important moments from Pecos.
+  <div class="page-title">
+    <h1>Our Businesses</h1>
+    <p>Diversified ventures built on trust, structure, and long-term value creation.</p>
   </div>
 
-  <div class="gallery-grid">
+  <div class="business-grid">
 
-    <!-- CARD 1 -->
-    <div class="gallery-card">
-      <img src="images/gallery1.jpeg.png" alt="Post Image">
-      <div class="gallery-content">
-        <h4>Real Estate Site Visit</h4>
+    <!-- Pecos Pub -->
+    <div class="business-card">
+      <img src="pecos-pub.jpg" alt="Pecos Pub">
+      <div class="business-content">
+        <h3>Pecos Pub</h3>
         <p>
-          On-ground inspection of residential project with investors.
+          A premium hospitality venture offering a refined pub experience with
+          carefully curated ambience, service, and quality standards.
         </p>
+        <button>Explore</button>
       </div>
     </div>
 
-    <!-- CARD 2 -->
-    <div class="gallery-card">
-      <img src="images/gallery2.jpg" alt="Post Image">
-      <div class="gallery-content">
-        <h4>Market Update</h4>
+    <!-- Pecos Estates -->
+    <div class="business-card">
+      <img src="pecos-estates.jpg" alt="Pecos Estates">
+      <div class="business-content">
+        <h3>Pecos Estates</h3>
         <p>
-          NIFTY & SENSEX movement discussion with members.
+          Focused on real estate development and advisory, delivering structured,
+          transparent, and value-driven property solutions.
         </p>
+        <button>Explore</button>
       </div>
     </div>
 
-    <!-- CARD 3 -->
-    <div class="gallery-card">
-      <img src="images/gallery3.jpg" alt="Post Image">
-      <div class="gallery-content">
-        <h4>Pecos Office</h4>
+    <!-- Pecos Manufacturing -->
+    <div class="business-card">
+      <img src="pecos-manufacturing.jpg" alt="Pecos Manufacturing">
+      <div class="business-content">
+        <h3>Pecos Manufacturing</h3>
         <p>
-          Day-to-day operations at Pecos Associates.
+          Engaged in efficient and scalable manufacturing operations with a
+          long-term vision, operational discipline, and quality focus.
         </p>
+        <button>Explore</button>
       </div>
     </div>
 
@@ -195,15 +195,11 @@ header {
 
 </div>
 
-<footer class="simple-footer">
-  <div class="footer-inner">
-    <div>
-      <span class="footer-label">Wing:</span> Pecos Engineering · Club Pecos
-    </div>
-    <div>
-      © 2025 <strong>Pecos Associates</strong>
-    </div>
-  </div>
+<footer>
+  © 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br>
+  <span style="font-size:12px;opacity:0.8;">
+    Investments and ventures are subject to market and operational risks.
+  </span>
 </footer>
 
 </body>
