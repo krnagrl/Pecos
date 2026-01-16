@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="pecos.png"/>
+  <link rel="icon" type="image/png" href="pecos.png" />
   <title>Member Dashboard | Pecos</title>
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
@@ -15,43 +18,228 @@
   <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
   <style>
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#222}
-    body{display:none;}
+    * {
+      box-sizing: border-box;
+    }
 
-    header{background:#003366;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:36px}
-    .brand .title{font-weight:700;font-size:18px}
-    nav.header-actions{display:flex;align-items:center;gap:12px}
-    #welcome-message{font-weight:600}
-    #nav-logout{cursor:pointer;font-weight:700;color:#fff;text-decoration:none}
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f9;
+      color: #222;
+    }
 
-    .page{max-width:1200px;margin:20px auto;padding:0 16px}
-    .layout{display:grid;grid-template-columns:260px 1fr;gap:20px}
+    body {
+      display: none;
+    }
 
-    .sidebar{background:#003366;color:#fff;padding:20px;border-radius:10px}
-    .sidebar h3{margin:0 0 12px 0;border-bottom:1px solid rgba(255,255,255,0.06);padding-bottom:8px}
-    .sidebar ul{list-style:none;margin:12px 0 0 0;padding:0}
-    .sidebar li{margin-bottom:10px}
-    .sidebar a{display:block;color:#fff;text-decoration:none;padding:8px 10px;border-radius:8px;}
-    .sidebar a:hover{background:rgba(255,255,255,0.04)}
+    header {
+      background: #003366;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
 
-    .main{background:#fff;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
-    .hero{background:#fffdfc;padding:16px;border-radius:8px;margin-bottom:16px;border:1px solid #eef2f6}
-    .hero h2{margin:0 0 8px 0;color:#003366}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-    .grid-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
-    .card{background:#fff;padding:16px;border-radius:10px;border:1px solid #eef2f6;box-shadow:0 2px 6px rgba(0,0,0,0.04)}
-    .card h4{margin:0 0 8px 0;color:#003366}
+    .brand img {
+      height: 36px;
+    }
 
-    input,select{width:100%;padding:12px;border:1px solid #d8e1ea;border-radius:8px;font-size:14px;margin-bottom:12px}
-    .btn{background:#003366;color:#fff;border:none;padding:10px 16px;border-radius:8px;font-weight:700;cursor:pointer}
-    .btn:hover{background:#002a53}
+    .brand .title {
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-    footer{margin-top:18px;text-align:center;color:#666;font-size:13px}
+    nav.header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    #welcome-message {
+      font-weight: 600;
+    }
+
+    #nav-logout {
+      cursor: pointer;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 20px;
+    }
+
+    .sidebar {
+      background: #003366;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .sidebar h3 {
+      margin: 0 0 12px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 8px;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      margin: 12px 0 0 0;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+    }
+
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .main {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    }
+
+    .hero {
+      background: #fffdfc;
+      padding: 16px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #eef2f6;
+    }
+
+    .hero h2 {
+      margin: 0 0 8px 0;
+      color: #003366;
+    }
+
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid #eef2f6;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+    }
+
+    .card h4 {
+      margin: 0 0 8px 0;
+      color: #003366;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d8e1ea;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.08);
+      border-color: #003366;
+    }
+
+    .btn {
+      background: #003366;
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: #002a53;
+      transform: translateY(-2px);
+    }
+
+    .btn-muted {
+      background: #f4f6f9;
+      color: #003366;
+      border: 1px solid #d8e1ea;
+    }
+
+    form .btn-full {
+      width: 100%;
+      padding: 12px;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #666;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .layout {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sidebar {
+        order: 2;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .main {
+        order: 3;
+      }
+
+      footer {
+        order: 4;
+        margin-top: auto;
+      }
+    }
   </style>
 </head>
+
 <body>
   <header>
     <div class="brand">
@@ -61,6 +249,7 @@
         <div style="font-size:12px;color:#fff9a8">Member Dashboard</div>
       </div>
     </div>
+
     <nav class="header-actions">
       <div id="welcome-message">Checking login...</div>
       <a id="nav-logout">Logout</a>
@@ -75,41 +264,70 @@
           <li><a onclick="showSection('overview')">Overview</a></li>
           <li><a onclick="showSection('profile')">Profile</a></li>
           <li><a onclick="showSection('finance')">Finance</a></li>
-          <li id="businessMenu" style="display:none;"><a href="business.html">Business</a></li>
+
+          <li id="businessMenu" style="display:none;">
+            <a href="business.html">Business</a>
+          </li>
         </ul>
       </aside>
 
       <main class="main">
         <section id="overview" class="section">
-          <h2>Welcome to Pecos</h2>
-          <div id="financeRequestsList">Loading...</div>
+          <div class="hero">
+            <h2>Welcome to Pecos!</h2>
+            <p>
+              Hello <strong id="overview-name">Member</strong> —
+              glad you're here. Use the menu to navigate your dashboard.
+            </p>
+          </div>
+
+          <div class="card" style="margin-top:20px;">
+            <h4>Your Finance Requests</h4>
+            <div id="financeRequestsList">
+              <p>Loading your requests...</p>
+            </div>
+          </div>
         </section>
 
-        <section id="profile" class="section" style="display:none">
-          <p><strong>Name:</strong> <span id="profile-name"></span></p>
-          <p><strong>Email:</strong> <span id="profile-email"></span></p>
-          <p><strong>Phone:</strong> <span id="profile-phone"></span></p>
+        <section id="profile" class="section" style="display:none;">
+          <h2 style="color:#003366;margin-top:0">Your Profile</h2>
+          <div class="card">
+            <p><strong>Name:</strong> <span id="profile-name">-</span></p>
+            <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+            <p><strong>Phone:</strong> <span id="profile-phone">-</span></p>
+            <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
+            <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
+          </div>
         </section>
 
-        <section id="finance" class="section" style="display:none">
-          <form id="financeForm">
-            <input id="name" placeholder="Name" required>
-            <input id="amount" type="number" placeholder="Amount" required>
-            <input id="bankName" placeholder="Bank Name" required>
-            <input id="accountNumber" placeholder="Account Number" required>
-            <input id="ifscCode" placeholder="IFSC Code" required>
+        <section id="finance" class="section" style="display:none;">
+          <h2 style="color:#003366;margin-top:0">Finance</h2>
+
+          <form id="financeForm" class="card" style="max-width:600px;">
+            <input type="text" id="name" placeholder="Your Name" required />
+            <input type="number" id="amount" placeholder="Amount" required />
+            <input type="text" id="bankName" placeholder="Bank Name" required />
+            <input type="text" id="accountNumber" placeholder="Account Number" required />
+            <input type="text" id="ifscCode" placeholder="IFSC Code" required />
+
             <select id="loanType" required>
               <option value="">Select Type</option>
-              <option>Personal</option>
-              <option>Commercial</option>
+              <option value="Personal">Personal</option>
+              <option value="Commercial">Commercial</option>
             </select>
-            <button class="btn">Submit</button>
+
+            <button class="btn btn-full" type="submit">Submit</button>
           </form>
-          <p id="financeMsg"></p>
+
+          <p
+            id="financeMsg"
+            style="color:green;font-weight:bold;margin-top:10px;"
+          ></p>
         </section>
       </main>
     </div>
-    <footer>© 2025 Pecos</footer>
+
+    <footer>© 2025 Pecos | All Rights Reserved.</footer>
   </div>
 
   <script>
@@ -119,29 +337,184 @@
       projectId: "pecos-432b5",
       storageBucket: "pecos-432b5.appspot.com"
     };
+
     firebase.initializeApp(firebaseConfig);
+
     const auth = firebase.auth();
     const db = firebase.firestore();
 
     auth.onAuthStateChanged(async user => {
-      if (!user) location.href='index.html';
-      document.body.style.display='block';
-      document.getElementById('welcome-message').innerText=`Welcome, ${user.email}`;
-      loadFinanceRequests(user);
+      if (!user) {
+        window.location.href = 'index.html';
+      } else {
+        document.body.style.display = 'block';
+        document.getElementById('welcome-message').innerText =
+          `Welcome, ${user.displayName || user.email}`;
+
+        await loadMemberData(user);
+        await loadFinanceRequests(user);
+        showSection('overview');
+      }
     });
 
-    function showSection(id){
-      document.querySelectorAll('.section').forEach(s=>s.style.display='none');
-      document.getElementById(id).style.display='block';
+    function showSection(id) {
+      document
+        .querySelectorAll('.section')
+        .forEach(section => section.style.display = 'none');
+
+      const el = document.getElementById(id);
+      if (el) el.style.display = 'block';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    async function loadFinanceRequests(user){
-      const snap=await db.collection('financeRequests').where('userId','==',user.uid).get();
-      let html='<table>';
-      snap.forEach(d=>html+=`<tr><td>₹${d.data().amount}</td><td>${d.data().status}</td></tr>`);
-      html+='</table>';
-      document.getElementById('financeRequestsList').innerHTML=html;
+    document
+      .getElementById('nav-logout')
+      .addEventListener('click', e => {
+        e.preventDefault();
+        auth.signOut().then(() => {
+          window.location.href = 'index.html';
+        });
+      });
+
+    async function loadMemberData(user) {
+      const docRef = db.collection('members').doc(user.uid);
+      const snap = await docRef.get();
+
+      if (!snap.exists) {
+        alert('Member data not found');
+        return;
+      }
+
+      const data = snap.data();
+
+      document.getElementById('overview-name').innerText =
+        data.displayName || user.email;
+
+      document.getElementById('profile-name').innerText =
+        data.displayName || '-';
+
+      document.getElementById('profile-email').innerText =
+        data.email || '-';
+
+      document.getElementById('profile-phone').innerText =
+        data.phone || '-';
+
+      document.getElementById('profile-id').innerText =
+        data.memberID || '-';
+
+      document.getElementById('profile-since').innerText =
+        data.memberSince || '-';
+
+      if (data.role === 'admin') {
+        document.getElementById('businessMenu').style.display = 'block';
+      }
     }
+
+    async function loadFinanceRequests(user) {
+      const listEl = document.getElementById('financeRequestsList');
+      listEl.innerHTML = '<p>Loading your requests...</p>';
+
+      try {
+        const snapshot = await db
+          .collection('financeRequests')
+          .where('userId', '==', user.uid)
+          .get();
+
+        if (snapshot.empty) {
+          listEl.innerHTML = '<p>No finance requests found.</p>';
+          return;
+        }
+
+        let requests = [];
+        snapshot.forEach(doc => requests.push(doc.data()));
+
+        requests.sort((a, b) => {
+          return (b.createdAt?.toDate() || 0) - (a.createdAt?.toDate() || 0);
+        });
+
+        let html =
+          '<table style="width:100%;border-collapse:collapse;font-size:14px;">';
+
+        html +=
+          '<tr style="background:#003366;color:#fff;text-align:left;">' +
+          '<th style="padding:8px;">Date</th>' +
+          '<th style="padding:8px;">Amount</th>' +
+          '<th style="padding:8px;">Type</th>' +
+          '<th style="padding:8px;">Status</th>' +
+          '</tr>';
+
+        requests.forEach(data => {
+          const status = data.status || 'Pending';
+
+          const date = data.createdAt?.toDate?.()
+            ? data.createdAt.toDate().toLocaleDateString('en-IN')
+            : '-';
+
+          const statusColor =
+            status === 'Completed'
+              ? 'green'
+              : status === 'Rejected'
+              ? 'red'
+              : '#666';
+
+          html += `
+            <tr style="border-bottom:1px solid #eee;">
+              <td style="padding:8px;">${date}</td>
+              <td style="padding:8px;">₹${data.amount}</td>
+              <td style="padding:8px;">${data.loanType}</td>
+              <td style="padding:8px;color:${statusColor};font-weight:bold;">
+                ${status}
+              </td>
+            </tr>
+          `;
+        });
+
+        html += '</table>';
+        listEl.innerHTML = html;
+      } catch (err) {
+        console.error(err);
+        listEl.innerHTML =
+          '<p style="color:red;">Error loading finance requests.</p>';
+      }
+    }
+
+    document
+      .getElementById('financeForm')
+      .addEventListener('submit', async e => {
+        e.preventDefault();
+
+        const user = auth.currentUser;
+        if (!user) {
+          alert('Please log in first.');
+          return;
+        }
+
+        const financeData = {
+          userId: user.uid,
+          name: document.getElementById('name').value,
+          email: user.email,
+          amount: document.getElementById('amount').value,
+          bankName: document.getElementById('bankName').value,
+          accountNumber: document.getElementById('accountNumber').value,
+          ifscCode: document.getElementById('ifscCode').value,
+          loanType: document.getElementById('loanType').value,
+          status: 'Pending',
+          createdAt: new Date()
+        };
+
+        try {
+          await db.collection('financeRequests').add(financeData);
+          document.getElementById('financeMsg').innerText =
+            'Your request has been submitted successfully! We’ll contact you soon for confirmation.';
+          document.getElementById('financeForm').reset();
+          await loadFinanceRequests(user);
+        } catch (error) {
+          console.error(error);
+          document.getElementById('financeMsg').innerText =
+            'Error submitting request.';
+        }
+      });
   </script>
 </body>
 </html>
