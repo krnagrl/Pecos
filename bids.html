@@ -26,10 +26,8 @@ input,select{width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border
 .btn:hover{background:#002a53}
 .badge{padding:4px 8px;border-radius:6px;font-size:12px;font-weight:600}
 .green{background:#e6f4ea;color:#1b7f3a}
-.red{background:#fdecea;color:#b71c1c}
-.gray{background:#eee;color:#444}
-footer{text-align:center;margin-top:20px;color:#666;font-size:13px}
 .admin{background:#fff4e5;border:1px solid #ffd9a8}
+footer{text-align:center;margin-top:20px;color:#666;font-size:13px}
 </style>
 </head>
 
@@ -92,168 +90,124 @@ This is a private financing facilitation platform. Pecos does not guarantee retu
 </footer>
 
 <script>
-/* ================= FIREBASE CONFIG ================= */
-/* YOU WILL SHARE FINAL DETAILS NEXT */
+/* ========== FIREBASE CONFIG (PASTE REAL VALUES) ========== */
 const firebaseConfig = {
-  apiKey: "PASTE_LATER",
-  authDomain: "PASTE_LATER",
-  projectId: "PASTE_LATER"
+  apiKey: "PASTE_REAL_API_KEY",
+  authDomain: "PASTE_REAL_AUTH_DOMAIN",
+  projectId: "PASTE_REAL_PROJECT_ID",
+  storageBucket: "PASTE_REAL_STORAGE_BUCKET"
 };
 firebase.initializeApp(firebaseConfig);
 
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-/* ================= AUTH PROTECTION ================= */
+/* ========== AUTH PROTECTION ========== */
 auth.onAuthStateChanged(async user=>{
-  if(!user){ window.location.href="index.html"; return; }
-  document.body.style.display="block";
-  document.getElementById('userInfo').innerText = user.email;
+  if(!user){
+    window.location.href="index.html";
+    return;
+  }
 
-  const member = await db.collection("members").doc(user.uid).get();
-  if(member.exists && member.data().role === "admin"){
-    document.getElementById("adminPanel").style.display="block";
+  document.body.style.display="block";
+  document.getElementById("userInfo").innerText = user.email;
+
+  const memberSnap = await db.collection("members").doc(user.uid).get();
+  if(memberSnap.exists && memberSnap.data().role === "admin"){
+    document.getElementById("adminPanel").style.display = "block";
     loadAdminBids();
   }
 
   loadLendersLive();
 });
 
-/* ================= LIVE LENDER BOOK ================= */
+/* ========== LIVE LENDER BOOK ========== */
 function loadLendersLive(){
   db.collection("lenders").onSnapshot(snapshot=>{
     const tbody = document.getElementById("lenderTable");
     const select = document.getElementById("lenderId");
-    tbody.innerHTML="";
-    select.innerHTML='<option value="">Select Lender</option>';
+
+    tbody.innerHTML = "";
+    select.innerHTML = '<option value="">Select Lender</option>';
 
     snapshot.forEach(doc=>{
       const d = doc.data();
+
       tbody.innerHTML += `
         <tr>
-          <td>${d.name}</td>
+          <td>${d.lenderName}</td>
           <td>₹${d.amountAvailable}</td>
           <td><span class="badge green">${d.monthlyInterest}%</span></td>
         </tr>`;
+
       select.innerHTML += `
         <option value="${doc.id}">
-          ${d.name} – ₹${d.amountAvailable} @ ${d.monthlyInterest}%
+          ${d.lenderName} – ₹${d.amountAvailable} @ ${d.monthlyInterest}%
         </option>`;
     });
   });
 }
 
-/* ================= BROKER FEE ================= */
-amount.addEventListener("input",()=>{
-  fee.innerText = (Number(amount.value||0)*0.0025).toFixed(2);
+/* ========== BROKER FEE ========== */
+document.getElementById("amount").addEventListener("input",()=>{
+  const amt = Number(document.getElementById("amount").value || 0);
+  document.getElementById("fee").innerText = (amt * 0.0025).toFixed(2);
 });
 
-/* ================= SUBMIT BID ================= */
-bidForm.addEventListener("submit",async e=>{
+/* ========== SUBMIT BID (NO MATCHING HERE) ========== */
+document.getElementById("bidForm").addEventListener("submit", async e=>{
   e.preventDefault();
+
   const user = auth.currentUser;
-  const amt = Number(amount.value);
-  const int = Number(interest.value);
-  const lid = lenderId.value;
-  const brokerFee = amt*0.0025;
+  const amt = Number(document.getElementById("amount").value);
+  const maxInt = Number(document.getElementById("interest").value);
+  const lenderId = document.getElementById("lenderId").value;
+  const brokerFee = amt * 0.0025;
 
   await db.collection("bids").add({
-    borrowerId:user.uid,
-    lenderId:lid,
-    amount:amt,
-    maxInterest:int,
+    borrowerId: user.uid,
+    lenderId,
+    amount: amt,
+    maxInterest: maxInt,
     brokerFee,
-    status:"Pending",
-    createdAt:new Date()
+    status: "Pending",
+    createdAt: new Date()
   });
 
-  msg.style.color="green";
-  msg.innerText="Bid placed successfully.";
-  bidForm.reset();
-  fee.innerText="0";
+  document.getElementById("msg").style.color = "green";
+  document.getElementById("msg").innerText = "Bid placed successfully. Await admin approval.";
 
-  matchEngine(); // AUTO MATCH
+  e.target.reset();
+  document.getElementById("fee").innerText = "0";
 });
 
-/* ================= MATCHING ENGINE ================= */
-async function matchEngine(){
-  const bidsSnap = await db.collection("bids")
-    .where("status","==","Pending")
-    .get();
-
-  for(const bidDoc of bidsSnap.docs){
-    const bid = bidDoc.data();
-    const lenderDoc = await db.collection("lenders").doc(bid.lenderId).get();
-    if(!lenderDoc.exists) continue;
-
-    const lender = lenderDoc.data();
-    if(lender.monthlyInterest <= bid.maxInterest && lender.amountAvailable >= bid.amount){
-
-      const emi = bid.amount + (bid.amount*lender.monthlyInterest/100);
-
-      const matchRef = await db.collection("matches").add({
-        lenderId:bid.lenderId,
-        borrowerId:bid.borrowerId,
-        amount:bid.amount,
-        interest:lender.monthlyInterest,
-        emi,
-        brokerFee:bid.brokerFee,
-        status:"Active",
-        createdAt:new Date()
-      });
-
-      await lenderDoc.ref.update({
-        amountAvailable:lender.amountAvailable - bid.amount
-      });
-
-      await bidDoc.ref.update({status:"Matched"});
-
-      // repayment schedule (12 months default)
-      for(let i=1;i<=12;i++){
-        await db.collection("repayments").add({
-          matchId:matchRef.id,
-          month:i,
-          amount:emi,
-          paid:false
-        });
-      }
-
-      await db.collection("brokerLedger").add({
-        matchId:matchRef.id,
-        fee:bid.brokerFee,
-        createdAt:new Date()
-      });
-
-      return;
-    }
-  }
-}
-
-/* ================= ADMIN PANEL ================= */
-async function loadAdminBids(){
+/* ========== ADMIN PANEL (VIEW ONLY) ========== */
+function loadAdminBids(){
   db.collection("bids").where("status","==","Pending")
     .onSnapshot(snapshot=>{
-      let html="<table><tr><th>Borrower</th><th>Amount</th><th>Interest</th><th>Action</th></tr>";
+      let html = `
+        <table>
+          <tr>
+            <th>Borrower</th>
+            <th>Amount</th>
+            <th>Max Interest</th>
+            <th>Status</th>
+          </tr>`;
+
       snapshot.forEach(doc=>{
-        const d=doc.data();
-        html+=`
+        const d = doc.data();
+        html += `
           <tr>
             <td>${d.borrowerId}</td>
             <td>₹${d.amount}</td>
             <td>${d.maxInterest}%</td>
-            <td>
-              <button onclick="approveBid('${doc.id}')" class="btn">Approve</button>
-            </td>
+            <td>${d.status}</td>
           </tr>`;
       });
-      html+="</table>";
-      adminBids.innerHTML=html;
-    });
-}
 
-async function approveBid(id){
-  await db.collection("bids").doc(id).update({status:"Approved"});
-  matchEngine();
+      html += "</table>";
+      document.getElementById("adminBids").innerHTML = html;
+    });
 }
 </script>
 
