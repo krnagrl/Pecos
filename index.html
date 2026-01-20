@@ -27,8 +27,15 @@
     button:active { transform: translateY(0); box-shadow: none; }
 
     .container { display: flex; flex-direction: column; min-height: 100vh; width: 100%; overflow-x: hidden; }
-    .content { display: grid; grid-template-columns: 1fr 2fr 1.2fr; gap: 20px; padding: 20px; flex: 1; max-width: 1200px; margin: 0 auto; align-items: start; }
-
+.content {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1.2fr;
+  gap: 20px;
+  padding: 20px 20%;
+  flex: 1;
+  width: 100%;
+  align-items: start;
+}
     aside.sidebar { background: #003366; color: white; border-radius: 10px; padding: 20px; }
     aside.sidebar h4 { border-bottom: 1px solid #ccc; padding-bottom: 8px; margin-bottom: 15px; }
     aside.sidebar ul { list-style: none; padding: 0; margin: 0; }
@@ -51,7 +58,10 @@
       .hamburger { display: block; }
       .header-right { display: none; flex-direction: column; width: 100%; background: #003366; position: absolute; top: 65px; left: 0; }
       .header-right.show { display: flex; }
-      .content { grid-template-columns: 1fr; }
+        .content {
+    padding: 15px;
+    grid-template-columns: 1fr;
+  }
     }
 
     .market-ticker { display: flex; gap: 12px; align-items: center; }
@@ -180,6 +190,7 @@
 
 </body>
 </html>
+
 
 
 
