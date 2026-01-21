@@ -1,112 +1,64 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pecos - Finance | Real Estate | Stocks & Shares</title>
+<title>Pecos - Member Financial Services</title>
 <link rel="icon" type="image/png" href="pecos.png"/>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet"/>
-
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;}
-body{margin:0;font-family:Montserrat,sans-serif;background:#f4f6f9;color:#333;}
-header{background:#003366;color:#fff;padding:14px 30px;display:flex;justify-content:space-between;align-items:center;}
-.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:20px;}
-.logo img{height:32px;}
-.container{max-width:1200px;margin:25px auto;padding:0 15px;}
-.layout{display:grid;grid-template-columns:230px 1fr 280px;gap:20px;align-items:start;}
-.sidebar{background:#003366;color:#fff;border-radius:10px;padding:20px;}
-.sidebar h4{margin:0 0 15px 0;border-bottom:1px solid rgba(255,255,255,0.3);padding-bottom:6px;}
+*{box-sizing:border-box;}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#e5e5e5;color:#000;font-size:13px;}
+.topbar{background:#003366;color:#fff;padding:6px 14px;display:flex;justify-content:space-between;align-items:center;}
+.topbar a{color:#fff;text-decoration:none;font-weight:bold;margin-left:12px;font-size:12px;}
+.header{background:#fff;border-bottom:2px solid #003366;padding:10px 16px;display:flex;align-items:center;gap:10px;}
+.header img{height:30px;}
+.header span{font-size:20px;font-weight:bold;color:#003366;}
+.container{max-width:1200px;margin:10px auto;padding:0 10px;}
+.layout{display:grid;grid-template-columns:220px 1fr 260px;gap:10px;}
+.sidebar{background:#fff;border:1px solid #bfcfe0;padding:10px;}
+.sidebar h4{margin:0 0 8px 0;color:#003366;font-size:14px;border-bottom:1px solid #bfcfe0;padding-bottom:4px;}
 .sidebar ul{list-style:none;padding:0;margin:0;}
-.sidebar li{margin-bottom:10px;}
-.sidebar a{color:#fff;text-decoration:none;font-weight:500;}
-
-.main{
-  padding:25px;
-  border-radius:18px;
-}
-
-.ask-title span{
-  font-size:26px;
-  font-weight:600;
-  color:#003366;
-}
-
-button{background:#d32f2f;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;}
-button:hover{background:#b71c1c;}
-.soft-section{margin-top:20px;padding-top:12px;border-top:1px solid #e6e6e6;}
-.soft-section h4{margin-bottom:6px;color:#003366;}
-.contact-inline p{margin:4px 0;font-weight:500;color:#003366;font-size:14px;}
-.login-sidebar{background:#003366;color:#fff;border-radius:10px;padding:25px;display:flex;flex-direction:column;align-items:center;}
-.login-sidebar h3{margin-top:0;}
-.login-sidebar input{width:100%;padding:10px;margin-bottom:12px;border-radius:6px;border:none;}
-.login-sidebar button{width:100%;background:#ffcc00;color:#000;}
-.login-sidebar a{color:#ffcc00;font-size:13px;cursor:pointer;text-decoration:none;}
-footer{background:#003366;color:#fff;text-align:center;padding:14px;font-size:13px;margin-top:30px;}
-  /* Partner Logo Marquee */
-.partner-strip{
-  background:#ffffff;
-  border-top:1px solid #e6e6e6;
-  border-bottom:1px solid #e6e6e6;
-  padding:18px 0;
-  overflow:hidden;
-}
-
-.partner-title{
-  text-align:center;
-  font-size:14px;
-  font-weight:600;
-  color:#003366;
-  margin-bottom:12px;
-}
-
-.partner-track{
-  display:flex;
-  align-items:center;
-  width:max-content;
-  animation:scrollPartners 28s linear infinite;
-}
-
-.partner-logo{
-  margin:0 35px;
-  display:flex;
-  align-items:center;
-}
-
-.partner-logo img{
-  height:60px;
-  max-width:160px;
-  object-fit:contain;
-  filter:grayscale(100%);
-  opacity:0.85;
-  transition:all 0.3s ease;
-}
-
-.partner-logo img:hover{
-  filter:grayscale(0%);
-  opacity:1;
-}
-
-@keyframes scrollPartners{
-  from{transform:translateX(0);}
-  to{transform:translateX(-50%);}
-}
-
+.sidebar li{margin:6px 0;}
+.sidebar a{text-decoration:none;color:#003366;font-weight:bold;}
+.main{background:#fff;border:1px solid #bfcfe0;padding:14px;}
+.ask-title span{font-size:18px;font-weight:bold;color:#003366;}
+.main p{line-height:1.6;color:#333;}
+.soft-section{margin-top:14px;padding-top:10px;border-top:1px solid #e0e0e0;}
+.soft-section h4{margin:0 0 6px 0;color:#003366;font-size:14px;}
+.login-sidebar{background:#f5f9ff;border:1px solid #bfcfe0;padding:14px;}
+.login-sidebar h3{margin:0 0 10px 0;color:#003366;font-size:15px;}
+.login-sidebar input{width:100%;padding:6px;margin-bottom:8px;border:1px solid #bfcfe0;font-size:13px;}
+.login-sidebar button{width:100%;background:#003366;color:#fff;border:none;padding:7px;font-weight:bold;cursor:pointer;}
+.login-sidebar a{display:block;margin-top:6px;font-size:12px;color:#003366;text-decoration:none;}
+#msg{font-size:12px;color:#d32f2f;margin-top:4px;}
+.partner-strip{background:#fff;border-top:1px solid #bfcfe0;border-bottom:1px solid #bfcfe0;padding:10px 0;margin-top:12px;overflow:hidden;}
+.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 25s linear infinite;}
+.partner-logo{margin:0 25px;}
+.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+footer{background:#003366;color:#fff;text-align:center;padding:10px;font-size:12px;margin-top:15px;}
 @media(max-width:900px){.layout{grid-template-columns:1fr;}}
 </style>
 </head>
 
 <body>
 
-<header>
-<div class="logo"><img src="pecos.png"/><span>Pecos</span></div>
-</header>
+<div class="topbar">
+  <div>Pecos Financial Services</div>
+  <div>
+    <a href="#">Member Help</a>
+    <a href="#">Support</a>
+    <a href="#">Secure Login</a>
+  </div>
+</div>
+
+<div class="header">
+  <img src="pecos.png">
+  <span>Pecos</span>
+</div>
 
 <div class="container">
 <div class="layout">
@@ -114,71 +66,61 @@ footer{background:#003366;color:#fff;text-align:center;padding:14px;font-size:13
 <aside class="sidebar">
 <h4>Services</h4>
 <ul>
-<li><a>Finance</a></li>
-<li><a>Real Estate</a></li>
-<li><a>Stocks & Shares</a></li>
+<li><a>Mutual Funds</a></li>
+<li><a>Health Insurance</a></li>
+<li><a>Vehicle Insurance</a></li>
+<li><a>SME Insurance</a></li>
 </ul>
 </aside>
-<main class="main cartoon-main">
 
-  <div class="ask-title">
-    <span>Pecos</span>
-  </div>
-  <hr/>
+<main class="main">
+<div class="ask-title"><span>Member Financial Portal</span></div>
+<p>This platform is exclusively for registered members of Pecos. Access professional investment and insurance solutions through a secure and advisor-assisted environment.</p>
 
-  <p class="intro-text">
-Join > Plan > Invest > Protect > Grow
-  </p>
+<div class="soft-section">
+<h4>Investment Services</h4>
+<p>Disciplined mutual fund investing through SIPs and lump-sum options aligned with your long-term financial goals.</p>
+</div>
 
- 
+<div class="soft-section">
+<h4>Insurance Coverage</h4>
+<p>Comprehensive protection solutions including Health, Vehicle, and SME insurance to safeguard personal and business assets.</p>
+</div>
 
-  <!-- CONTACT -->
-  <div class="soft-section">
-    <h4>Support</h4>
-    <p>📧 karan@pecos.in</p>
-    <p>📞 +91 8669334862</p>
-    <p>📍 Yamuna Business Park, Akola MH 444001</p>
-  </div>
-
+<div class="soft-section">
+<h4>Confidential Access</h4>
+<p>All member data and transactions are securely handled and accessible only to verified users.</p>
+</div>
 </main>
-
 
 <aside class="login-sidebar">
 <h3>Member Login</h3>
-<input id="email" type="email" placeholder="Email"/>
-<input id="password" type="password" placeholder="Password"/>
+<input id="email" type="email" placeholder="Email">
+<input id="password" type="password" placeholder="Password">
 <button onclick="login()">Login</button>
 <p id="msg"></p>
 <a onclick="resetPassword()">Forgot Password?</a>
-<p style="font-size:12px;opacity:.8;margin-top:10px;">🔒 Secure member-only access</p>
+<p style="font-size:11px;margin-top:8px;">🔒 Secure member-only access</p>
 </aside>
 
 </div>
 </div>
+
 <div class="partner-strip">
-  <div class="partner-track">
-
-    <div class="partner-logo"><img src="images/hdfc-mf.png" alt="HDFC Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/icici-mf.png" alt="ICICI Prudential Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/sbi-mf.png" alt="SBI Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/kotak-mf.png" alt="Kotak Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/ICICI lombard.png" alt="ICICI Lombard General Insurance"></div>
-
-
-    <!-- duplicate logos for smooth infinite scroll -->
-    <div class="partner-logo"><img src="images/hdfc-mf.png" alt="HDFC Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/icici-mf.png" alt="ICICI Prudential Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/sbi-mf.png" alt="SBI Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/kotak-mf.png" alt="Kotak Mutual Fund"></div>
-    <div class="partner-logo"><img src="images/ICICI lombard.png" alt="ICICI Lombard General Insurance"></div>
-
-  </div>
+<div class="partner-track">
+<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
+<div class="partner-logo"><img src="images/icici-mf.png"></div>
+<div class="partner-logo"><img src="images/sbi-mf.png"></div>
+<div class="partner-logo"><img src="images/kotak-mf.png"></div>
+<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
+<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
+<div class="partner-logo"><img src="images/icici-mf.png"></div>
+</div>
 </div>
 
-
 <footer>
-© 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br/>
-<span style="font-size:12px;opacity:.8;">Investments are subject to market risks. This platform operates as a facilitation and distribution interface.</span>
+© 2025 <strong>Pecos Associates</strong> | Member Platform<br>
+<span style="font-size:11px;">Investments are subject to market risks</span>
 </footer>
 
 <script>
@@ -192,7 +134,3 @@ function resetPassword(){const e=prompt("Enter registered email");if(!e)return;a
 
 </body>
 </html>
-
-
-
-
