@@ -24,10 +24,122 @@ header{background:#003366;color:#fff;padding:14px 30px;display:flex;justify-cont
 .sidebar ul{list-style:none;padding:0;margin:0;}
 .sidebar li{margin-bottom:10px;}
 .sidebar a{color:#fff;text-decoration:none;font-weight:500;}
-.main{background:#fff;border-radius:10px;padding:25px;box-shadow:0 2px 6px rgba(0,0,0,0.1);}
-.ask-title span{font-size:26px;font-weight:600;color:#003366;}
-.main hr{border:none;border-top:1px solid #ddd;margin:12px 0;}
-.main p{line-height:1.6;}
+
+.main{
+  background:#fffdf7;
+  padding:25px;
+  border-radius:18px;
+}
+
+.ask-title span{
+  font-size:26px;
+  font-weight:600;
+  color:#003366;
+}
+
+hr{
+  border:none;
+  border-top:1px solid #ddd;
+  margin:12px 0;
+}
+
+.private-tag{
+  font-size:13px;
+  font-weight:600;
+  color:#d32f2f;
+}
+
+.story-card{
+  background:#fff;
+  border-radius:20px;
+  padding:24px;
+  margin:22px 0;
+  border:2px dashed rgba(0,0,0,.08);
+  box-shadow:5px 7px 0 rgba(0,0,0,.1);
+}
+
+.story-card h3{
+  margin-top:0;
+  display:flex;
+  gap:10px;
+  align-items:center;
+  color:#003366;
+}
+
+.story-card h4{
+  margin:6px 0 10px;
+  color:#d32f2f;
+}
+
+.story-card ul{
+  padding-left:0;
+}
+
+.story-card ul li{
+  list-style:none;
+  padding-left:26px;
+  position:relative;
+  margin-bottom:6px;
+}
+
+.story-card ul li::before{
+  content:"👉";
+  position:absolute;
+  left:0;
+}
+
+.note{
+  font-size:13px;
+  font-style:italic;
+  opacity:.85;
+}
+
+.mf{border-left:8px solid #4caf50}
+.ins{border-left:8px solid #2196f3}
+.nps{border-left:8px solid #ff9800}
+.loans{border-left:8px solid #9c27b0}
+
+.journey-strip{
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:12px;
+}
+
+.journey-step{
+  background:#f4f6f9;
+  padding:14px;
+  border-radius:16px;
+  text-align:center;
+  font-weight:600;
+  min-width:110px;
+  box-shadow:3px 4px 0 rgba(0,0,0,.08);
+}
+
+.journey-step span{
+  font-size:28px;
+  display:block;
+}
+
+.loan-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:12px;
+  margin-top:14px;
+}
+
+.loan-grid div{
+  background:#f4f6f9;
+  padding:14px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:600;
+  box-shadow:3px 4px 0 rgba(0,0,0,.08);
+}
+
+.soft-section{
+  margin-top:30px;
+}
 button{background:#d32f2f;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;}
 button:hover{background:#b71c1c;}
 .soft-section{margin-top:20px;padding-top:12px;border-top:1px solid #e6e6e6;}
@@ -109,73 +221,113 @@ footer{background:#003366;color:#fff;text-align:center;padding:14px;font-size:13
 <li><a>Stocks & Shares</a></li>
 </ul>
 </aside>
-<main class="main">
+<main class="main cartoon-main">
 
-  <div class="ask-title"><span>Pecos</span></div>
-  <hr />
+  <div class="ask-title">
+    <span>Why Worry When Pecos Has You Covered?</span>
+  </div>
+  <hr/>
 
-  <p>
-    This portal is intended for registered clients of Pecos. Access is provided for service requests, portfolio visibility, and policy tracking through a secure member-only interface.
+  <p class="intro-text">
+    Money should create confidence — not confusion.  
+    Pecos brings investments, protection, and planning together in one simple journey.
   </p>
 
-  <div class="soft-section">
-    <h4>Client Access</h4>
+  <p class="private-tag">
+    🔒 Confidential • Client-Only • Advisor-Assisted
+  </p>
+
+  <!-- MUTUAL FUNDS -->
+  <div class="story-card mf">
+    <h3>📈 Why worry about Investments?</h3>
+    <h4>When you have Mutual Funds</h4>
+    <p>
+      Mutual funds pool money and invest it across equity and debt markets,
+      professionally managed to grow wealth while controlling risk.
+    </p>
     <ul>
-      <li>Submit loan requests and documentation</li>
-      <li>View and track insurance policies (Health / Motor / SME)</li>
-      <li>Monitor mutual fund investments</li>
-      <li>Request portfolio reviews and updates</li>
-      <li>Communicate securely with your advisor</li>
+      <li>Start SIPs from just ₹500 per month</li>
+      <li>Diversification reduces risk</li>
+      <li>Equity funds can deliver 10–14%+ CAGR long term</li>
+      <li>Goal-based investing with full transparency</li>
     </ul>
+    <p class="note">Best for wealth creation, tax planning & long-term goals.</p>
   </div>
 
-  <div class="soft-section">
-    <h4>Available Services</h4>
+  <!-- INSURANCE -->
+  <div class="story-card ins">
+    <h3>🛡️ Why worry about risks?</h3>
+    <h4>When you have Insurance</h4>
+    <p>
+      Insurance protects your savings from sudden financial shocks
+      so emergencies don’t turn into setbacks.
+    </p>
     <ul>
-      <li>Loan facilitation and application tracking</li>
-      <li>Insurance policy issuance, renewal, and claims support</li>
-      <li>Mutual fund investment execution and monitoring</li>
-      <li>Equity and real estate advisory support</li>
+      <li><strong>Health Insurance:</strong> Covers hospital & medical costs</li>
+      <li><strong>Vehicle Insurance:</strong> Accident, theft & legal cover</li>
+      <li><strong>SME Insurance:</strong> Business asset & liability protection</li>
     </ul>
+    <p class="note">Protection today saves wealth tomorrow.</p>
   </div>
 
-  <div class="soft-section">
-    <h4>How This Portal Works</h4>
+  <!-- NPS -->
+  <div class="story-card nps">
+    <h3>👴 Why worry about Retirement?</h3>
+    <h4>When you have NPS</h4>
+    <p>
+      National Pension System helps you build a disciplined retirement corpus
+      with market-linked growth and tax benefits.
+    </p>
     <ul>
-      <li>Login using your registered email</li>
-      <li>Access services assigned to your profile</li>
-      <li>Submit requests through structured workflows</li>
-      <li>Track progress and updates securely</li>
+      <li>Regular investing during working years</li>
+      <li>Balanced exposure to equity & debt</li>
+      <li>Tax benefits under 80C & 80CCD(1B)</li>
+      <li>Pension income post-retirement</li>
     </ul>
+    <p class="note">Retire with dignity, stability, and independence.</p>
   </div>
 
-  <div class="soft-section">
-    <h4>Client Assurance</h4>
-    <ul>
-      <li>Secure, access-controlled platform</li>
-      <li>No public data visibility</li>
-      <li>Client-specific information only</li>
-      <li>All activities logged and traceable</li>
-    </ul>
+  <!-- JOURNEY -->
+  <div class="story-card journey">
+    <h3>🧭 Your Journey with Pecos</h3>
+    <div class="journey-strip">
+      <div class="journey-step"><span>👋</span>Join</div>
+      <div class="journey-step"><span>📝</span>Plan</div>
+      <div class="journey-step"><span>📊</span>Invest</div>
+      <div class="journey-step"><span>🛡️</span>Protect</div>
+      <div class="journey-step"><span>📈</span>Grow</div>
+    </div>
+    <p class="note">Simple steps. Clear decisions. Long-term confidence.</p>
   </div>
 
+  <!-- LOANS -->
+  <div class="story-card loans">
+    <h3>🏦 Looking for a Loan?</h3>
+    <p>
+      From homes to businesses, Pecos helps you get the right loan
+      with smooth processing and transparent guidance.
+    </p>
+
+    <div class="loan-grid">
+      <div>🏠<br/>Home Loan</div>
+      <div>🚗<br/>Vehicle Loan</div>
+      <div>💼<br/>Business Loan</div>
+      <div>💳<br/>Personal Loan</div>
+      <div>🥇<br/>Gold Loan</div>
+    </div>
+
+    <p class="note">End-to-end support — documentation to disbursal.</p>
+  </div>
+
+  <!-- CONTACT -->
   <div class="soft-section">
     <h4>Support</h4>
-    <div class="contact-inline">
-      <p>📧 karan@pecos.in</p>
-      <p>📞 +91 8669334862</p>
-      <p>📍 Yamuna Business Park, Akola MH 444001</p>
-    </div>
-  </div>
-
-  <div class="soft-section">
-    <p style="font-size:13px;opacity:0.8;">
-      This platform is provided exclusively for existing clients and associates. All services are offered as facilitation and advisory support and are subject to applicable regulations and institutional approvals.
-    </p>
+    <p>📧 karan@pecos.in</p>
+    <p>📞 +91 8669334862</p>
+    <p>📍 Yamuna Business Park, Akola MH 444001</p>
   </div>
 
 </main>
-
 
 
 <aside class="login-sidebar">
@@ -227,6 +379,7 @@ function resetPassword(){const e=prompt("Enter registered email");if(!e)return;a
 
 </body>
 </html>
+
 
 
 
