@@ -39,6 +39,55 @@ button:hover{background:#b71c1c;}
 .login-sidebar button{width:100%;background:#ffcc00;color:#000;}
 .login-sidebar a{color:#ffcc00;font-size:13px;cursor:pointer;text-decoration:none;}
 footer{background:#003366;color:#fff;text-align:center;padding:14px;font-size:13px;margin-top:30px;}
+  /* Partner Logo Marquee */
+.partner-strip{
+  background:#ffffff;
+  border-top:1px solid #e6e6e6;
+  border-bottom:1px solid #e6e6e6;
+  padding:18px 0;
+  overflow:hidden;
+}
+
+.partner-title{
+  text-align:center;
+  font-size:14px;
+  font-weight:600;
+  color:#003366;
+  margin-bottom:12px;
+}
+
+.partner-track{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  animation:scrollPartners 28s linear infinite;
+}
+
+.partner-logo{
+  margin:0 35px;
+  display:flex;
+  align-items:center;
+}
+
+.partner-logo img{
+  height:60px;
+  max-width:160px;
+  object-fit:contain;
+  filter:grayscale(100%);
+  opacity:0.85;
+  transition:all 0.3s ease;
+}
+
+.partner-logo img:hover{
+  filter:grayscale(0%);
+  opacity:1;
+}
+
+@keyframes scrollPartners{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
 @media(max-width:900px){.layout{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -141,6 +190,34 @@ footer{background:#003366;color:#fff;text-align:center;padding:14px;font-size:13
 
 </div>
 </div>
+<div class="partner-strip">
+  <div class="partner-title">Our Affiliated Partners</div>
+
+  <div class="partner-track">
+
+    <div class="partner-logo"><img src="partners/hdfc-mf.png" alt="HDFC Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/icici-pru-mf.png" alt="ICICI Prudential Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/sbi-mf.png" alt="SBI Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/kotak-mf.png" alt="Kotak Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/axis-mf.png" alt="Axis Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/nippon-mf.png" alt="Nippon India Mutual Fund"></div>
+    <div class="partner-logo"><img src="partners/icici-lombard.png" alt="ICICI Lombard General Insurance"></div>
+    <div class="partner-logo"><img src="partners/hdfc-ergo.png" alt="HDFC ERGO General Insurance"></div>
+    <div class="partner-logo"><img src="partners/bajaj-allianz.png" alt="Bajaj Allianz General Insurance"></div>
+
+    <!-- duplicate logos for smooth infinite scroll -->
+    <div class="partner-logo"><img src="partners/hdfc-mf.png"></div>
+    <div class="partner-logo"><img src="partners/icici-pru-mf.png"></div>
+    <div class="partner-logo"><img src="partners/sbi-mf.png"></div>
+    <div class="partner-logo"><img src="partners/kotak-mf.png"></div>
+    <div class="partner-logo"><img src="partners/axis-mf.png"></div>
+    <div class="partner-logo"><img src="partners/nippon-mf.png"></div>
+    <div class="partner-logo"><img src="partners/icici-lombard.png"></div>
+    <div class="partner-logo"><img src="partners/hdfc-ergo.png"></div>
+    <div class="partner-logo"><img src="partners/bajaj-allianz.png"></div>
+
+  </div>
+</div>
 
 <footer>
 © 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br/>
@@ -158,4 +235,5 @@ function resetPassword(){const e=prompt("Enter registered email");if(!e)return;a
 
 </body>
 </html>
+
 
