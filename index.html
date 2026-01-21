@@ -3,55 +3,56 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pecos - Member Financial Services</title>
+<title>Pecos – Secure Member Financial Portal</title>
 <link rel="icon" type="image/png" href="pecos.png"/>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#e5e5e5;color:#000;font-size:13px;}
-.topbar{background:#003366;color:#fff;padding:6px 14px;display:flex;justify-content:space-between;align-items:center;}
-.topbar a{color:#fff;text-decoration:none;font-weight:bold;margin-left:12px;font-size:12px;}
-.header{background:#fff;border-bottom:2px solid #003366;padding:10px 16px;display:flex;align-items:center;gap:10px;}
+*{box-sizing:border-box;}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#0b1f33;color:#000;font-size:13px;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{background:#081727;color:#cfd8e3;padding:6px 14px;display:flex;justify-content:space-between;align-items:center;font-size:12px;}
+.topbar a{color:#cfd8e3;text-decoration:none;font-weight:bold;margin-left:12px;}
+.header{background:#0f2a44;border-bottom:2px solid #1e4e79;padding:10px 16px;display:flex;align-items:center;gap:10px;}
 .header img{height:30px;}
-.header span{font-size:20px;font-weight:bold;color:#003366;}
-.container{max-width:1200px;margin:10px auto;padding:0 10px;}
+.header span{font-size:20px;font-weight:bold;color:#ffffff;}
+.container{max-width:1200px;margin:10px auto;padding:0 10px;flex:1;width:100%;}
 .layout{display:grid;grid-template-columns:220px 1fr 260px;gap:10px;}
-.sidebar{background:#fff;border:1px solid #bfcfe0;padding:10px;}
-.sidebar h4{margin:0 0 8px 0;color:#003366;font-size:14px;border-bottom:1px solid #bfcfe0;padding-bottom:4px;}
+.sidebar{background:#f4f7fb;border:1px solid #9fb6cf;padding:10px;}
+.sidebar h4{margin:0 0 8px 0;color:#0f2a44;font-size:14px;border-bottom:1px solid #9fb6cf;padding-bottom:4px;}
 .sidebar ul{list-style:none;padding:0;margin:0;}
 .sidebar li{margin:6px 0;}
-.sidebar a{text-decoration:none;color:#003366;font-weight:bold;}
-.main{background:#fff;border:1px solid #bfcfe0;padding:14px;}
-.ask-title span{font-size:18px;font-weight:bold;color:#003366;}
-.main p{line-height:1.6;color:#333;}
-.soft-section{margin-top:14px;padding-top:10px;border-top:1px solid #e0e0e0;}
-.soft-section h4{margin:0 0 6px 0;color:#003366;font-size:14px;}
-.login-sidebar{background:#f5f9ff;border:1px solid #bfcfe0;padding:14px;}
-.login-sidebar h3{margin:0 0 10px 0;color:#003366;font-size:15px;}
-.login-sidebar input{width:100%;padding:6px;margin-bottom:8px;border:1px solid #bfcfe0;font-size:13px;}
-.login-sidebar button{width:100%;background:#003366;color:#fff;border:none;padding:7px;font-weight:bold;cursor:pointer;}
-.login-sidebar a{display:block;margin-top:6px;font-size:12px;color:#003366;text-decoration:none;}
-#msg{font-size:12px;color:#d32f2f;margin-top:4px;}
-.partner-strip{background:#fff;border-top:1px solid #bfcfe0;border-bottom:1px solid #bfcfe0;padding:10px 0;margin-top:12px;overflow:hidden;}
-.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 25s linear infinite;}
+.sidebar a{text-decoration:none;color:#0f2a44;font-weight:bold;}
+.main{background:#ffffff;border:1px solid #9fb6cf;padding:14px;}
+.ask-title span{font-size:18px;font-weight:bold;color:#0f2a44;}
+.main p{line-height:1.6;color:#222;}
+.soft-section{margin-top:14px;padding-top:10px;border-top:1px solid #d5dbe3;}
+.soft-section h4{margin:0 0 6px 0;color:#0f2a44;font-size:14px;}
+.login-sidebar{background:#eef3f9;border:1px solid #9fb6cf;padding:14px;}
+.login-sidebar h3{margin:0 0 10px 0;color:#0f2a44;font-size:15px;}
+.login-sidebar input{width:100%;padding:6px;margin-bottom:8px;border:1px solid #9fb6cf;font-size:13px;}
+.login-sidebar button{width:100%;background:#0f2a44;color:#fff;border:none;padding:7px;font-weight:bold;cursor:pointer;}
+.login-sidebar a{display:block;margin-top:6px;font-size:12px;color:#0f2a44;text-decoration:none;}
+#msg{font-size:12px;color:#c62828;margin-top:4px;}
+.partner-strip{background:#ffffff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden;}
+.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite;}
 .partner-logo{margin:0 25px;}
 .partner-logo img{height:45px;filter:grayscale(100%);opacity:.85;}
 @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-footer{background:#003366;color:#fff;text-align:center;padding:10px;font-size:12px;margin-top:15px;}
-@media(max-width:900px){.layout{grid-template-columns:1fr;}}
+footer{background:#081727;color:#cfd8e3;text-align:center;padding:12px;font-size:11px;border-top:2px solid #1e4e79;}
+@media(max-width:1024px){.layout{grid-template-columns:200px 1fr;}.login-sidebar{grid-column:span 2;}}
+@media(max-width:768px){.layout{grid-template-columns:1fr;}.sidebar,.login-sidebar{order:2;}.main{order:1;}}
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-  <div>Pecos Financial Services</div>
+  <div>Pecos | Member Financial Services</div>
   <div>
-    <a href="#">Member Help</a>
-    <a href="#">Support</a>
-    <a href="#">Secure Login</a>
+    <a>Secure Platform</a>
+    <a>SEBI Disclosure</a>
+    <a>Helpdesk</a>
   </div>
 </div>
 
@@ -64,7 +65,7 @@ footer{background:#003366;color:#fff;text-align:center;padding:10px;font-size:12
 <div class="layout">
 
 <aside class="sidebar">
-<h4>Services</h4>
+<h4>Member Services</h4>
 <ul>
 <li><a>Mutual Funds</a></li>
 <li><a>Health Insurance</a></li>
@@ -74,33 +75,33 @@ footer{background:#003366;color:#fff;text-align:center;padding:10px;font-size:12
 </aside>
 
 <main class="main">
-<div class="ask-title"><span>Member Financial Portal</span></div>
-<p>This platform is exclusively for registered members of Pecos. Access professional investment and insurance solutions through a secure and advisor-assisted environment.</p>
+<div class="ask-title"><span>Secure Member Financial Portal</span></div>
+<p>This platform is exclusively accessible to registered members of Pecos. All services are provided through licensed distributors and advisor-assisted processes.</p>
 
 <div class="soft-section">
-<h4>Investment Services</h4>
-<p>Disciplined mutual fund investing through SIPs and lump-sum options aligned with your long-term financial goals.</p>
+<h4>Investment Solutions</h4>
+<p>Mutual fund investments facilitated through regulated AMCs with goal-based planning, SIPs, and portfolio review support.</p>
 </div>
 
 <div class="soft-section">
 <h4>Insurance Coverage</h4>
-<p>Comprehensive protection solutions including Health, Vehicle, and SME insurance to safeguard personal and business assets.</p>
+<p>Risk protection solutions including Health, Motor, and SME insurance offered through IRDAI-registered insurers.</p>
 </div>
 
 <div class="soft-section">
-<h4>Confidential Access</h4>
-<p>All member data and transactions are securely handled and accessible only to verified users.</p>
+<h4>Data Confidentiality</h4>
+<p>Member information, documents, and transactions are secured using industry-standard authentication and access controls.</p>
 </div>
 </main>
 
 <aside class="login-sidebar">
 <h3>Member Login</h3>
-<input id="email" type="email" placeholder="Email">
+<input id="email" type="email" placeholder="Registered Email">
 <input id="password" type="password" placeholder="Password">
 <button onclick="login()">Login</button>
 <p id="msg"></p>
 <a onclick="resetPassword()">Forgot Password?</a>
-<p style="font-size:11px;margin-top:8px;">🔒 Secure member-only access</p>
+<p style="font-size:11px;margin-top:8px;">🔒 Authorized access only</p>
 </aside>
 
 </div>
@@ -114,13 +115,16 @@ footer{background:#003366;color:#fff;text-align:center;padding:10px;font-size:12
 <div class="partner-logo"><img src="images/kotak-mf.png"></div>
 <div class="partner-logo"><img src="images/ICICI lombard.png"></div>
 <div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/icici-mf.png"></div>
 </div>
 </div>
 
 <footer>
-© 2025 <strong>Pecos Associates</strong> | Member Platform<br>
-<span style="font-size:11px;">Investments are subject to market risks</span>
+© 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br>
+<span>
+Mutual fund investments are subject to market risks. Please read all scheme related documents carefully.
+Pecos Associates acts as a distributor of financial products. Insurance services are facilitated through IRDAI-registered insurers.
+This platform does not provide investment advisory services unless separately contracted.
+</span>
 </footer>
 
 <script>
