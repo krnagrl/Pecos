@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Finance | Real Estate | Stocks & Shares</title>
+<title>Pecos – Secure Member Portal</title>
 <link rel="icon" type="image/png" href="pecos.png">
 
 <!-- Firebase (UNCHANGED) -->
@@ -12,150 +12,84 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-<style>
-@charset "utf-8";
-*{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{font-family:Verdana,Arial;font-size:12px;color:#666;margin:0;padding:0;overflow-x:hidden}
+*{box-sizing:border-box}
+body{margin:0;font-family:Verdana,Arial;font-size:13px;color:#333;background:#fff}
 
-/* HEADER */
-.logo-header{max-width:1200px;margin:12px auto;display:flex;align-items:center;gap:12px}
-.logo-header img{height:50px}
-.logo-header h1{font-size:18px;margin:0;font-weight:600;color:#0a3c7d}
+/* ===== LAYOUT ===== */
+.container{max-width:1250px;margin:25px auto;display:grid;grid-template-columns:260px 1fr 280px;gap:22px;padding:0 10px}
 
-/* NAVBAR */
-.navbar{background:linear-gradient(#2b5fad,#1e3f88)}
-.navbar ul{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:flex}
-.navbar li{padding:11px 16px;color:#fff;font-size:14px;font-weight:600;border-right:1px solid rgba(255,255,255,.25);cursor:pointer}
-.navbar li:last-child{border-right:none}
-.navbar li:hover{background:rgba(255,255,255,.15)}
+/* ===== CARD ===== */
+.card{border:1px solid #9e9e9e;border-radius:12px;background:#fff;padding:14px}
+.card h3{margin:0 0 12px;font-size:16px;font-weight:bold;color:#000}
 
-/* MARQUEE */
-.marquee-bar{background:#ffe28c;border-bottom:1px solid #d2b85b;padding:7px 0;font-size:13px;font-weight:600;color:#000}
+/* ===== LOGIN ===== */
+.login-card{background:#d9f4f9}
+.login-card input{width:100%;padding:9px;margin-bottom:10px;border-radius:4px;border:1px solid #bdbdbd;font-size:13px}
+.login-card button{width:100%;padding:9px;background:linear-gradient(#356fd3,#214f9c);border:none;border-radius:4px;color:#fff;font-weight:bold;cursor:pointer}
+.login-links{font-size:12px}
+.login-links a{color:#214f9c;text-decoration:none;cursor:pointer}
+#msg{font-size:12px;color:#c00000;margin-bottom:6px}
 
-/* MAIN GRID */
-.wrapper{max-width:1200px;margin:25px auto;display:grid;grid-template-columns:260px 1fr 280px;gap:22px}
-
-/* CARDS */
-.card{border:1px solid #9d9d9d;border-radius:10px;background:#fff;padding:10px 15px}
-.login-card{border:1px solid #9d9d9d;border-radius:10px;background:#cdeff6;padding:10px 15px}
-
-/* LOGIN */
-.login-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
-.login-card input{width:100%;padding:9px;margin-bottom:10px;border-radius:4px;border:1px solid #bdbdbd;font-size:14px}
-.login-card button{width:100%;padding:9px;background:linear-gradient(#2f66c1,#1f468f);color:#fff;border:none;border-radius:4px;font-weight:700;cursor:pointer}
-.login-links{margin-top:6px;font-size:12px}
-.login-links a{color:#1f468f;text-decoration:none;cursor:pointer}
-#msg{font-size:12px;color:#b30000;margin-bottom:6px}
-
-/* NOTIFICATIONS */
-.notify-title{font-size:16px;font-weight:700;margin-bottom:10px}
-.notification{padding:10px 0;border-bottom:1px solid #e0e0e0}
+/* ===== NOTIFICATIONS ===== */
+.notification{border-bottom:1px solid #e0e0e0;padding:10px 0}
 .notification:last-child{border-bottom:none}
 .notification b{display:block;margin-bottom:4px}
-.notification a{float:right;font-size:12px;color:#1f468f;text-decoration:none;cursor:pointer}
+.notification a{float:right;color:#214f9c;font-size:12px;text-decoration:none}
 
-/* RIGHT SIDE */
-.search-btn{width:100%;padding:9px;background:#1f468f;color:#fff;border:none;border-radius:4px;margin-top:8px;cursor:pointer}
-.help-card p{margin:4px 0;font-size:13px}
+/* ===== RIGHT ===== */
+.search-btn{width:100%;padding:8px;background:#214f9c;color:#fff;border:none;border-radius:4px;margin-top:8px;cursor:pointer}
+.help-card p{margin:4px 0}
 
-/* PARTNERS */
-.partner-strip{background:#fff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden}
-.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite}
-.partner-logo{margin:0 25px}
-.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85}
-@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ===== FOOTER ===== */
+footer{border-top:1px solid #ccc;padding:12px 20px;font-size:12px;color:#555;display:flex;justify-content:space-between;flex-wrap:wrap}
 
-/* FOOTER */
-footer{border-top:1px solid #dcdcdc;margin-top:35px;padding:12px 30px;font-size:12px;color:#555;display:flex;justify-content:space-between}
-
-/* MOBILE */
-@media(max-width:768px){.wrapper{grid-template-columns:1fr}footer{flex-direction:column;text-align:center;gap:6px}}
-</style>
-
+/* ===== MOBILE ===== */
+@media(max-width:900px){
+.container{grid-template-columns:1fr}
+footer{flex-direction:column;gap:6px;text-align:center}
+}
 </style>
 </head>
 
 <body>
-<!-- NAV -->
-<div class="navbar">
-  <ul>
-    <li>Home</li>
-    <li>Payment ▾</li>
-    <li>Download ▾</li>
-    <li>Modifications</li>
-    <li>Service Providers ▾</li>
-    <li>FAQ's ▾</li>
-  </ul>
-</div>
 
-<!-- MARQUEE -->
-<div class="marquee-bar">
-  <marquee>
-    Welcome to the new site of Pecos.in &nbsp;&nbsp;&nbsp; Portal best viewed on Google Chrome 73 and above
-  </marquee>
-</div>
-
-<!-- MAIN -->
-<div class="wrapper">
+<div class="container">
 
   <!-- LOGIN -->
   <div class="card login-card">
-    <div class="login-title">Quick Login</div>
+    <h3>🔐 Quick Login</h3>
     <input id="email" type="email" placeholder="User Id">
     <input id="password" type="password" placeholder="Password">
     <div id="msg"></div>
     <button onclick="login()">Login</button>
     <div class="login-links">
-      <a onclick="resetPassword()">Forgot Password?</a> |
+      <a onclick="resetPassword()">Forgot Password?</a>
     </div>
   </div>
 
   <!-- NOTIFICATIONS -->
   <div class="card">
-    <div class="notify-title">Recent Updates</div>
+    <h3>📰 Notifications</h3>
 
     <div class="notification">
-      <b>💼 Loan Processing Services</b>
-      Home Loans, Business Loans & Personal Loans with complete documentation and disbursal support.
-      <a>view</a>
+      <b>▶ Upcoming schedule of Tab Based Exam (Updated as on 22nd Jan'26)</b>
+      Download the upcoming schedule of Tab Based Exam
+      <a>download</a>
     </div>
 
     <div class="notification">
-      <b>🛡️ Insurance Services</b>
-      Health Insurance, Motor Insurance (Car & Two Wheeler) and SME Insurance solutions available.
-      <a>details</a>
-    </div>
-
-    <div class="notification">
-      <b>📈 Investment Products</b>
-      Mutual Funds, Fixed Income Products, Bonds and long-term wealth planning services.
-      <a>explore</a>
-    </div>
-
-    <div class="notification">
-      <b>📊 Portfolio Review</b>
-      Review of existing insurance and investment portfolios for registered members.
-    </div>
-
-    <div class="notification">
-      <b>⚙️ Service Update (Jan 2026)</b>
-      Digital onboarding enabled for faster processing of financial products.
-    </div>
-
-    <!-- DISCLAIMER -->
-    <div style="margin-top:12px;padding-top:10px;border-top:1px solid #dcdcdc;font-size:11px;color:#555;line-height:1.5;">
-      <b>Disclaimer:</b><br>
-      Pecos acts as a facilitator for financial products. Mutual Fund investments are subject to market risks. 
-      Insurance is subject to policy terms and conditions. Loans are subject to approval from respective lenders. 
-      Please read all scheme related documents carefully before investing or purchasing.
+      <b>▶ Revision of Examination Fee for IC-38 Insurance Agent</b>
+      Dear All,<br><br>
+      The examination fee for IC-38 (Insurance Agent) has been revised and applicable only to Insurance Agents.<br><br>
+      Insurance Agent – Rs. 465 + Applicable GST.<br><br>
+      Applicable from 1st January 2026.
     </div>
   </div>
-
 
   <!-- RIGHT -->
   <div>
     <div class="card">
-      <div class="notify-title">Find Center</div>
+      <h3>📍 Find Exam Center</h3>
       <input placeholder="Enter your PIN Code">
       <button class="search-btn">Search</button>
     </div>
@@ -163,9 +97,9 @@ footer{border-top:1px solid #dcdcdc;margin-top:35px;padding:12px 30px;font-size:
     <br>
 
     <div class="card help-card">
-      <div class="notify-title">Help Desk</div>
-      <p>☎ 8669334862</p>
-      <p>✉ karan@pecos.in</p>
+      <h3>🛎 Help Desk</h3>
+      <p>☎ 022-42706500</p>
+      <p>✉ tech.support@dexitglobal.com</p>
       <br>
       <b>Timing</b>
       <p>Monday To Saturday</p>
@@ -173,22 +107,6 @@ footer{border-top:1px solid #dcdcdc;margin-top:35px;padding:12px 30px;font-size:
     </div>
   </div>
 
-</div>
-  <div class="partner-strip">
-<div class="partner-track">
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/icici-mf.png"></div>
-<div class="partner-logo"><img src="images/sbi-mf.png"></div>
-<div class="partner-logo"><img src="images/kotak-mf.png"></div>
-<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/icici-mf.png"></div>
-<div class="partner-logo"><img src="images/sbi-mf.png"></div>
-<div class="partner-logo"><img src="images/kotak-mf.png"></div>
-<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-</div>
 </div>
 
 <footer>
@@ -244,12 +162,3 @@ function resetPassword(){
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
