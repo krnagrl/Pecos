@@ -1,58 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Pecos – Secure Member Financial Portal</title>
-<link rel="icon" type="image/png" href="pecos.png"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pecos – Secure Member Portal</title>
+<link rel="icon" type="image/png" href="pecos.png">
+
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;}body{margin:0;font-family:Tahoma,Arial,sans-serif;background:#0b1f33;color:#000;font-size:13px;display:flex;flex-direction:column;min-height:100vh;}
-.topbar{background:#081727;color:#cfd8e3;padding:6px 14px;display:flex;justify-content:space-between;align-items:center;font-size:12px;}
-.topbar a{color:#cfd8e3;text-decoration:none;font-weight:bold;margin-left:12px;}
-.header{background:#0f2a44;border-bottom:2px solid #1e4e79;padding:10px 16px;display:flex;align-items:center;gap:10px;}
-.header img{height:30px;}
-.header span{font-size:20px;font-weight:bold;color:#ffffff;}
-.container{max-width:1200px;margin:10px auto;padding:0 10px;flex:1;width:100%;}
-.layout{display:grid;grid-template-columns:220px 1fr 260px;gap:10px;}
-.sidebar{background:#f4f7fb;border:1px solid #9fb6cf;padding:10px;}
-.sidebar h4{margin:0 0 8px 0;color:#0f2a44;font-size:14px;border-bottom:1px solid #9fb6cf;padding-bottom:4px;}
-.sidebar ul{list-style:none;padding:0;margin:0;}
-.sidebar li{margin:6px 0;}
-.sidebar a{text-decoration:none;color:#0f2a44;font-weight:bold;}
-.main{background:#ffffff;border:1px solid #9fb6cf;padding:14px;}
-.ask-title span{font-size:18px;font-weight:bold;color:#0f2a44;}
-.main p{line-height:1.6;color:#222;}
-.soft-section{margin-top:14px;padding-top:10px;border-top:1px solid #d5dbe3;}
-.soft-section h4{margin:0 0 6px 0;color:#0f2a44;font-size:14px;}
-.login-sidebar{background:#eef3f9;border:1px solid #9fb6cf;padding:14px;}
-.login-sidebar h3{margin:0 0 10px 0;color:#0f2a44;font-size:15px;}
-.login-sidebar input{width:100%;padding:6px;margin-bottom:8px;border:1px solid #9fb6cf;font-size:13px;}
-.login-sidebar button{width:100%;background:#0f2a44;color:#fff;border:none;padding:7px;font-weight:bold;cursor:pointer;}
-.login-sidebar a{display:block;margin-top:6px;font-size:12px;color:#0f2a44;text-decoration:none;}
-#msg{font-size:12px;color:#c62828;margin-top:4px;}
-.partner-strip{background:#ffffff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden;}
-.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite;}
-.partner-logo{margin:0 25px;}
-.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85;}
-@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-footer{background:#081727;color:#cfd8e3;text-align:center;padding:12px;font-size:11px;border-top:2px solid #1e4e79;}
-@media(max-width:1024px){.layout{grid-template-columns:200px 1fr;}.login-sidebar{grid-column:span 2;}}
-@media(max-width:768px){.layout{grid-template-columns:1fr;}.sidebar,.login-sidebar{order:2;}.main{order:1;}}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:#e5eef8;
+  font-size:12px;
+  color:#000;
+}
+
+/* TOP BAR */
+.topbar{
+  background:linear-gradient(#1f5ea8,#174c88);
+  color:#fff;
+  padding:4px 10px;
+  display:flex;
+  justify-content:space-between;
+  font-size:11px;
+}
+.topbar a{color:#fff;text-decoration:none;margin-left:12px}
+
+/* LOGO BAR */
+.header{
+  background:#1a4f8f;
+  padding:8px 10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.header img{height:28px}
+.header span{color:#fff;font-size:20px;font-weight:bold}
+
+/* NAV */
+.navbar{
+  background:#f2f2f2;
+  border-bottom:1px solid #9fb6cf;
+  padding:4px 8px;
+}
+.navbar a{
+  margin-right:15px;
+  color:#003399;
+  font-weight:bold;
+  text-decoration:none;
+}
+
+/* LAYOUT */
+.container{max-width:1200px;margin:8px auto;padding:0 6px}
+.layout{
+  display:grid;
+  grid-template-columns:220px 1fr 260px;
+  gap:8px;
+}
+
+/* BOX */
+.box{
+  background:#fff;
+  border:1px solid #9fb6cf;
+  padding:8px;
+}
+
+/* LEFT */
+.sidebar h4{
+  margin:0 0 6px;
+  color:#003399;
+  border-bottom:1px solid #9fb6cf;
+}
+.sidebar ul{list-style:none;padding:0;margin:0}
+.sidebar li{margin:6px 0}
+.sidebar a{color:#003399;text-decoration:none;font-weight:bold}
+
+/* CENTER */
+.main h2{
+  margin:0 0 6px;
+  color:#b30000;
+  font-size:16px;
+}
+.section{
+  border-top:1px solid #d5dbe3;
+  margin-top:8px;
+  padding-top:6px;
+}
+.section h4{margin:0 0 4px;color:#003399}
+
+/* LOGIN */
+.login-box h3{
+  margin:0 0 6px;
+  color:#003399;
+}
+.login-box input{
+  width:100%;
+  padding:5px;
+  margin-bottom:6px;
+  border:1px solid #9fb6cf;
+  font-size:12px;
+}
+.login-box button{
+  width:100%;
+  background:#1a4f8f;
+  color:#fff;
+  border:none;
+  padding:6px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.login-box a{
+  font-size:11px;
+  color:#003399;
+  text-decoration:none;
+  display:block;
+  margin-top:6px;
+}
+#msg{font-size:11px;color:#c62828;margin-top:4px}
+
+/* FOOTER */
+footer{
+  background:#1a4f8f;
+  color:#fff;
+  text-align:center;
+  padding:10px;
+  font-size:11px;
+  margin-top:10px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+  .layout{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
 <div class="topbar">
-  <div>Pecos</div>
+  <div>Change colors: <b>Classic Blue</b></div>
   <div>
-    <a>Secure Platform</a>
-    <a>SEBI Disclosure</a>
-    <a>Helpdesk</a>
+    <a>Secure</a>
+    <a>SEBI</a>
+    <a>Help</a>
   </div>
 </div>
 
@@ -61,90 +157,118 @@ footer{background:#081727;color:#cfd8e3;text-align:center;padding:12px;font-size
   <span>Pecos</span>
 </div>
 
+<div class="navbar">
+  <a>Home</a>
+  <a>Mutual Funds</a>
+  <a>Insurance</a>
+  <a>NPS</a>
+  <a>Support</a>
+</div>
+
 <div class="container">
 <div class="layout">
 
-<aside class="sidebar">
+<!-- LEFT -->
+<aside class="box sidebar">
 <h4>Services</h4>
 <ul>
 <li><a>Mutual Funds</a></li>
 <li><a>Health Insurance</a></li>
 <li><a>Vehicle Insurance</a></li>
 <li><a>SME Insurance</a></li>
+<li><a>Retirement (NPS)</a></li>
 </ul>
 </aside>
 
-<main class="main">
-<div class="ask-title"><span>Secure Member Financial Portal</span></div>
-<p>This platform is exclusively accessible to registered members of Pecos. All services are provided through licensed distributors and advisor-assisted processes.</p>
+<!-- CENTER -->
+<main class="box main">
+<h2>Secure Member Financial Portal</h2>
+<p>Access restricted to registered Pecos members only.</p>
 
-<div class="soft-section">
-<h4>Investment Solutions</h4>
-<p>Mutual fund investments facilitated through regulated AMCs with goal-based planning, SIPs, and portfolio review support.</p>
+<div class="section">
+<h4>Investments</h4>
+<p>SIP, lump sum & portfolio review via regulated AMCs.</p>
 </div>
 
-<div class="soft-section">
-<h4>Insurance Coverage</h4>
-<p>Risk protection solutions including Health, Motor, and SME insurance offered through IRDAI-registered insurers.</p>
+<div class="section">
+<h4>Insurance</h4>
+<p>Health, Motor & SME insurance via IRDAI insurers.</p>
 </div>
 
-<div class="soft-section">
-<h4>Data Confidentiality</h4>
-<p>Member information, documents, and transactions are secured using industry-standard authentication and access controls.</p>
+<div class="section">
+<h4>Security</h4>
+<p>Encrypted login, verified access & role-based control.</p>
 </div>
 </main>
 
-<aside class="login-sidebar">
+<!-- RIGHT -->
+<aside class="box login-box">
 <h3>Member Login</h3>
 <input id="email" type="email" placeholder="Registered Email">
 <input id="password" type="password" placeholder="Password">
-<button onclick="login()">Login</button>
+<button onclick="login()">Sign In</button>
 <p id="msg"></p>
-<a onclick="resetPassword()">Forgot Password?</a>
-<p style="font-size:11px;margin-top:8px;">🔒 Authorized access only</p>
+<a onclick="resetPassword()">Forgot password?</a>
+<p style="font-size:10px;margin-top:6px">🔒 Authorized access only</p>
 </aside>
 
-</div>
-</div>
-
-<div class="partner-strip">
-<div class="partner-track">
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/icici-mf.png"></div>
-<div class="partner-logo"><img src="images/sbi-mf.png"></div>
-<div class="partner-logo"><img src="images/kotak-mf.png"></div>
-<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-</div>
-
-<div class="partner-track">
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
-<div class="partner-logo"><img src="images/icici-mf.png"></div>
-<div class="partner-logo"><img src="images/sbi-mf.png"></div>
-<div class="partner-logo"><img src="images/kotak-mf.png"></div>
-<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
-<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
 </div>
 </div>
 
 <footer>
-© 2025 <strong>Pecos Associates</strong> | All Rights Reserved<br>
-<span>
-Mutual fund investments are subject to market risks. Please read all scheme related documents carefully.
-Pecos Associates acts as a distributor of financial products. Insurance services are facilitated through IRDAI-registered insurers.
-This platform does not provide investment advisory services unless separately contracted.
-</span>
+© 2025 Pecos Associates · Mutual fund investments are subject to market risks
 </footer>
 
 <script>
-const firebaseConfig={apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",authDomain:"pecos-432b5.firebaseapp.com",projectId:"pecos-432b5"};
+const firebaseConfig={
+  apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain:"pecos-432b5.firebaseapp.com",
+  projectId:"pecos-432b5"
+};
 firebase.initializeApp(firebaseConfig);
+
 const auth=firebase.auth();
 const db=firebase.firestore();
-async function login(){const e=document.getElementById("email").value.trim();const p=document.getElementById("password").value.trim();const m=document.getElementById("msg");if(!e||!p){m.innerText="Please fill all fields";return;}try{const u=await auth.signInWithEmailAndPassword(e,p);if(!u.user.emailVerified){m.innerText="Please verify your email";return;}const d=await db.collection("members").doc(u.user.uid).get();window.location.href=d.data()?.isAdmin?"admin.html":"member.html";}catch(err){m.innerText=err.message;}}
-function resetPassword(){const e=prompt("Enter registered email");if(!e)return;auth.sendPasswordResetEmail(e);alert("Password reset link sent");}
+
+/* SESSION PERSISTENCE */
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+/* AUTO REDIRECT IF LOGGED IN */
+auth.onAuthStateChanged(async(user)=>{
+  if(user && user.emailVerified){
+    const doc=await db.collection("members").doc(user.uid).get();
+    window.location.href=doc.data()?.isAdmin ? "admin.html" : "member.html";
+  }
+});
+
+async function login(){
+  const email=emailInput.value.trim();
+  const password=passwordInput.value.trim();
+  msg.innerText="";
+
+  if(!email||!password){
+    msg.innerText="Please fill all fields";
+    return;
+  }
+
+  try{
+    const res=await auth.signInWithEmailAndPassword(email,password);
+    if(!res.user.emailVerified){
+      msg.innerText="Please verify your email";
+      return;
+    }
+  }catch(err){
+    msg.innerText=err.message;
+  }
+}
+
+function resetPassword(){
+  const email=prompt("Enter registered email");
+  if(!email) return;
+  auth.sendPasswordResetEmail(email);
+  alert("Password reset link sent");
+}
 </script>
 
 </body>
 </html>
-
