@@ -12,217 +12,70 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box}
+<style>
 @charset "utf-8";
-/* Rgen Smart Zone CSS Document */
-@font-face {
-    font-family: Verdana, Arial;
-    font-style: normal;
-    font-weight: 400;
-}
+*{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:Verdana,Arial;font-size:12px;color:#666;margin:0;padding:0;overflow-x:hidden}
 
-body {
-    font-family: Verdana, Arial;
-    font-size: 12px;
-    color: #666;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-/* ===== HEADER ===== */
-.logo-header{
-  max-width:1200px;
-  margin:12px auto;
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
+/* HEADER */
+.logo-header{max-width:1200px;margin:12px auto;display:flex;align-items:center;gap:12px}
 .logo-header img{height:50px}
-.logo-header h1{
-  font-size:18px;
-  margin:0;
-  font-weight:600;
-  color:#0a3c7d;
-}
+.logo-header h1{font-size:18px;margin:0;font-weight:600;color:#0a3c7d}
 
-/* ===== NAVBAR ===== */
-.navbar{
-  background:linear-gradient(#2b5fad,#1e3f88);
-}
-.navbar ul{
-  list-style:none;
-  margin:0 auto;
-  padding:0;
-  max-width:1200px;
-  display:flex;
-}
-.navbar li{
-  padding:11px 16px;
-  color:#fff;
-  font-size:14px;
-  font-weight:600;
-  border-right:1px solid rgba(255,255,255,.25);
-  cursor:pointer;
-}
+/* NAVBAR */
+.navbar{background:linear-gradient(#2b5fad,#1e3f88)}
+.navbar ul{list-style:none;margin:0 auto;padding:0;max-width:1200px;display:flex}
+.navbar li{padding:11px 16px;color:#fff;font-size:14px;font-weight:600;border-right:1px solid rgba(255,255,255,.25);cursor:pointer}
 .navbar li:last-child{border-right:none}
 .navbar li:hover{background:rgba(255,255,255,.15)}
 
-/* ===== MARQUEE ===== */
-.marquee-bar{
-  background:#ffe28c;
-  border-bottom:1px solid #d2b85b;
-  padding:7px 0;
-  font-size:13px;
-  font-weight:600;
-  color:#000;
-}
+/* MARQUEE */
+.marquee-bar{background:#ffe28c;border-bottom:1px solid #d2b85b;padding:7px 0;font-size:13px;font-weight:600;color:#000}
 
-/* ===== MAIN GRID ===== */
-.wrapper{
-  max-width:1200px;
-  margin:25px auto;
-  display:grid;
-  grid-template-columns:260px 1fr 280px;
-  gap:22px;
-}
+/* MAIN GRID */
+.wrapper{max-width:1200px;margin:25px auto;display:grid;grid-template-columns:260px 1fr 280px;gap:22px}
 
-/* ===== CARD ===== */
-.card{
-    border: 1px solid #9d9d9d;
-    border-radius: 10px;
-    background: #fff;
-    padding: 10px 15px;
-}
+/* CARDS */
+.card{border:1px solid #9d9d9d;border-radius:10px;background:#fff;padding:10px 15px}
+.login-card{border:1px solid #9d9d9d;border-radius:10px;background:#cdeff6;padding:10px 15px}
 
-/* ===== LOGIN ===== */
-.login-card{
-    border: 1px solid #9d9d9d;
-    border-radius: 10px;
-    background: #cdeff6;
-    padding: 10px 15px;}
-.login-title{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:12px;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.login-card input{
-  width:100%;
-  padding:9px;
-  margin-bottom:10px;
-  border-radius:4px;
-  border:1px solid #bdbdbd;
-  font-size:14px;
-}
-.login-card button{
-  width:100%;
-  padding:9px;
-  background:linear-gradient(#2f66c1,#1f468f);
-  color:#fff;
-  border:none;
-  border-radius:4px;
-  font-weight:700;
-  cursor:pointer;
-}
-.login-links{
-  margin-top:6px;
-  font-size:12px;
-}
-.login-links a{
-  color:#1f468f;
-  text-decoration:none;
-  cursor:pointer;
-}
-#msg{
-  font-size:12px;
-  color:#b30000;
-  margin-bottom:6px;
-}
+/* LOGIN */
+.login-title{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.login-card input{width:100%;padding:9px;margin-bottom:10px;border-radius:4px;border:1px solid #bdbdbd;font-size:14px}
+.login-card button{width:100%;padding:9px;background:linear-gradient(#2f66c1,#1f468f);color:#fff;border:none;border-radius:4px;font-weight:700;cursor:pointer}
+.login-links{margin-top:6px;font-size:12px}
+.login-links a{color:#1f468f;text-decoration:none;cursor:pointer}
+#msg{font-size:12px;color:#b30000;margin-bottom:6px}
 
-/* ===== NOTIFICATIONS ===== */
-.notify-title{
-  font-size:16px;
-  font-weight:700;
-  margin-bottom:10px;
-}
-.notification{
-  padding:10px 0;
-  border-bottom:1px solid #e0e0e0;
-}
+/* NOTIFICATIONS */
+.notify-title{font-size:16px;font-weight:700;margin-bottom:10px}
+.notification{padding:10px 0;border-bottom:1px solid #e0e0e0}
 .notification:last-child{border-bottom:none}
-.notification b{
-  display:block;
-  margin-bottom:4px;
-}
-.notification a{
-  float:right;
-  font-size:12px;
-  color:#1f468f;
-  text-decoration:none;
-  cursor:pointer;
-}
+.notification b{display:block;margin-bottom:4px}
+.notification a{float:right;font-size:12px;color:#1f468f;text-decoration:none;cursor:pointer}
 
-/* ===== RIGHT ===== */
-.search-btn{
-  width:100%;
-  padding:9px;
-  background:#1f468f;
-  color:#fff;
-  border:none;
-  border-radius:4px;
-  margin-top:8px;
-  cursor:pointer;
-}
-.help-card p{
-  margin:4px 0;
-  font-size:13px;
-}
-.partner-strip{background:#ffffff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden;}
-.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite;}
-.partner-logo{margin:0 25px;}
-.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85;}
-@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
-/* ===== FOOTER ===== */
-footer{
-  border-top:1px solid #dcdcdc;
-  margin-top:35px;
-  padding:12px 30px;
-  font-size:12px;
-  color:#555;
-  display:flex;
-  justify-content:space-between;
-}
+/* RIGHT SIDE */
+.search-btn{width:100%;padding:9px;background:#1f468f;color:#fff;border:none;border-radius:4px;margin-top:8px;cursor:pointer}
+.help-card p{margin:4px 0;font-size:13px}
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-  .wrapper{grid-template-columns:1fr}
-  footer{
-    flex-direction:column;
-    text-align:center;
-    gap:6px;
-  }
-}
+/* PARTNERS */
+.partner-strip{background:#fff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden}
+.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite}
+.partner-logo{margin:0 25px}
+.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* FOOTER */
+footer{border-top:1px solid #dcdcdc;margin-top:35px;padding:12px 30px;font-size:12px;color:#555;display:flex;justify-content:space-between}
+
+/* MOBILE */
+@media(max-width:768px){.wrapper{grid-template-columns:1fr}footer{flex-direction:column;text-align:center;gap:6px}}
+</style>
+
 </style>
 </head>
 
 <body>
-
-<!-- HEADER -->
-<div class="logo-header">
-  <img src="pecos.png">
-  <h1>Pecos</h1>
-</div>
-
 <!-- NAV -->
 <div class="navbar">
   <ul>
@@ -392,6 +245,7 @@ function resetPassword(){
 
 </body>
 </html>
+
 
 
 
