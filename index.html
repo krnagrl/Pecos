@@ -1,101 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
-  <link rel="icon" type="image/png" href="pecos.png" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pecos – Finance | Real Estate | Stocks & Shares</title>
+<link rel="icon" href="pecos.png">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box}
-body{font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#333;margin:0}
-header{background:#003366;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:15px 25px;flex-wrap:wrap}
-.logo img{height:35px;vertical-align:middle}
-.logo span{font-size:20px;font-weight:600;margin-left:8px}
-.nav-links a{color:#fff;text-decoration:none;margin-left:20px;font-weight:500}
-.container{min-height:100vh;display:flex;flex-direction:column}
-.content{display:grid;grid-template-columns:1fr 2fr 1.2fr;gap:20px;padding:20px;max-width:1200px;margin:auto;flex:1}
-aside.sidebar{background:#003366;color:#fff;border-radius:10px;padding:20px}
-aside.sidebar h4{border-bottom:1px solid #ccc;padding-bottom:8px}
-aside.sidebar ul{list-style:none;padding:0;margin:0}
-aside.sidebar li{margin-bottom:10px}
-aside.sidebar a{color:#fff;text-decoration:none}
-main.main{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-.ask-title span{font-size:24px;font-weight:700;color:#003366}
-.login-sidebar{background:#003366;color:#fff;border-radius:10px;padding:25px 20px;display:flex;flex-direction:column;align-items:center}
-.login-sidebar input{width:100%;padding:10px;margin-bottom:12px;border-radius:6px;border:none}
-.login-sidebar button{width:100%;padding:10px;background:#ffcc00;border:none;border-radius:6px;font-weight:700;cursor:pointer}
-.login-sidebar button:hover{background:#ffdb4d}
-.link{color:#ffcc00;text-decoration:underline;font-size:13px;cursor:pointer}
-footer{background:#003366;color:#fff;text-align:center;padding:12px;font-size:14px}
-@media(max-width:992px){.content{grid-template-columns:1fr}}
+*{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif}
+body{background:#dcdcdc;margin:0}
+
+.wrapper{
+  max-width:980px;
+  margin:20px auto;
+  background:#ffffcc;
+  border:6px solid #6c6aa6;
+}
+
+/* TOP BAR */
+.topbar{
+  background:#6c6aa6;
+  color:#fff;
+  padding:6px 12px;
+  font-size:13px;
+  display:flex;
+  justify-content:space-between;
+}
+
+/* MAIN GRID */
+.main{
+  display:grid;
+  grid-template-columns:180px 1fr 220px;
+  gap:10px;
+  padding:10px;
+}
+
+/* LEFT */
+.left{
+  background:#e6e6b8;
+  border:2px solid #999;
+  padding:8px;
+}
+.left h4{
+  color:#cc0000;
+  margin:0 0 8px;
+}
+.left ul{list-style:none;padding:0;margin:0}
+.left li{
+  padding:4px 0;
+  font-size:13px;
+  border-bottom:1px dotted #999;
+}
+
+/* CENTER */
+.center{
+  text-align:center;
+}
+.center h1{
+  color:#cc0000;
+  font-size:28px;
+  margin:10px 0 5px;
+}
+.center p{
+  font-size:14px;
+}
+.ask-box{
+  width:80%;
+  padding:10px;
+  border:2px solid #999;
+  margin:10px auto;
+  background:#fff;
+}
+.ask-btn{
+  background:#cc0000;
+  color:#fff;
+  border:none;
+  padding:6px 14px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.ask-btn:hover{background:#a00000}
+
+/* RIGHT */
+.right{
+  background:#e6e6b8;
+  border:2px solid #999;
+  padding:10px;
+}
+.right h3{
+  margin-top:0;
+  font-size:16px;
+}
+.right input{
+  width:100%;
+  padding:6px;
+  margin-bottom:8px;
+}
+.right button{
+  width:100%;
+  padding:6px;
+  background:#003366;
+  color:#fff;
+  border:none;
+  font-weight:bold;
+}
+.link{
+  font-size:12px;
+  color:#0000cc;
+  cursor:pointer;
+  text-decoration:underline;
+}
+
+/* FOOTER */
+.footer{
+  background:#6c6aa6;
+  color:#fff;
+  font-size:12px;
+  text-align:center;
+  padding:8px;
+}
 </style>
 </head>
 
 <body>
-<div class="container">
-<header>
-  <div class="logo">
-    <img src="pecos.png">
-    <span>Pecos</span>
+
+<div class="wrapper">
+
+  <div class="topbar">
+    <div>Home | About | Help</div>
+    <div>Ask about CORPORATE SERVICES</div>
   </div>
-  <nav class="nav-links">
-    <a href="#">Home</a>
-    <a href="#">Advertise</a>
-  </nav>
-</header>
 
-<div class="content">
+  <div class="main">
 
-  <!-- LEFT -->
-  <aside class="sidebar">
-    <h4>Services</h4>
-    <ul>
-      <li>Finance</li>
-      <li>Real Estate</li>
-      <li>Stocks & Shares</li>
-    </ul>
-  </aside>
+    <!-- LEFT -->
+    <div class="left">
+      <h4>May I Suggest:</h4>
+      <ul>
+        <li>Finance</li>
+        <li>Real Estate</li>
+        <li>Stocks & Shares</li>
+        <li>Investments</li>
+        <li>Loans</li>
+      </ul>
+    </div>
 
-  <!-- CENTER -->
-  <main class="main">
-    <div class="ask-title"><span>Pecos</span></div>
-    <hr>
-    <h3>Open an Account with Us</h3>
-    <p>Secure, transparent and customer-focused financial services.</p>
-    <a href="registeration.html"><button>Register</button></a>
+    <!-- CENTER -->
+    <div class="center">
+      <img src="pecos.png" height="50"><br>
+      <h1>Have a Question?</h1>
+      <p>We deal in Finance, Real Estate, Stocks & Shares.</p>
 
-    <h3 style="margin-top:20px">Contact</h3>
-    <p>Email: <a href="mailto:karan@pecos.in">karan@pecos.in</a></p>
-    <p>Akola, Maharashtra 444001</p>
-  </main>
+      <div class="ask-box">
+        <p><strong>Open an Account with Pecos</strong></p>
+        <p>Secure • Transparent • Professional</p>
+        <a href="registeration.html">
+          <button class="ask-btn">Register</button>
+        </a>
+      </div>
 
-  <!-- RIGHT -->
-  <aside class="login-sidebar">
-    <h3>Member Login</h3>
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="msg"></p>
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
-  </aside>
+      <p><strong>Contact:</strong><br>
+      karan@pecos.in<br>
+      Akola, Maharashtra – 444001</p>
+    </div>
 
-</div>
+    <!-- RIGHT -->
+    <div class="right">
+      <h3>Member Login</h3>
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p id="msg"></p>
+      <span class="link" onclick="resetPassword()">Forgot Password?</span>
+    </div>
 
-<footer>© 2025 Pecos | All Rights Reserved</footer>
+  </div>
+
+  <div class="footer">
+    © 2025 Pecos | Finance • Real Estate • Stocks & Shares
+  </div>
+
 </div>
 
 <script>
-const firebaseConfig={ apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs", authDomain:"pecos-432b5.firebaseapp.com", projectId:"pecos-432b5" }; firebase.initializeApp(firebaseConfig); const auth=firebase.auth(); const db=firebase.firestore(); auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL); auth.onAuthStateChanged(async(user)=>{ if(user && user.emailVerified){ const doc=await db.collection("members").doc(user.uid).get(); window.location.href=doc.data()?.isAdmin ? "admin.html" : "member.html"; } }); async function login(){ const email=document.getElementById("email").value.trim(); const password=document.getElementById("password").value.trim(); msg.innerText=""; if(!email||!password){ msg.innerText="Please fill all fields"; return; } try{ const res=await auth.signInWithEmailAndPassword(email,password); if(!res.user.emailVerified){ msg.innerText="Please verify your email"; } }catch(err){ msg.innerText=err.message; } } function resetPassword(){ const email=prompt("Enter registered email"); if(!email) return; auth.sendPasswordResetEmail(email); alert("Password reset link sent"); }
+const firebaseConfig={
+  apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain:"pecos-432b5.firebaseapp.com",
+  projectId:"pecos-432b5"
+};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+auth.onAuthStateChanged(async(user)=>{
+  if(user && user.emailVerified){
+    const doc=await db.collection("members").doc(user.uid).get();
+    window.location.href=doc.data()?.isAdmin?"admin.html":"member.html";
+  }
+});
+
+async function login(){
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value.trim();
+  msg.innerText="";
+  if(!email||!password){msg.innerText="Please fill all fields";return;}
+  try{
+    const res=await auth.signInWithEmailAndPassword(email,password);
+    if(!res.user.emailVerified){msg.innerText="Please verify your email";}
+  }catch(err){msg.innerText=err.message;}
+}
+
+function resetPassword(){
+  const email=prompt("Enter registered email");
+  if(!email)return;
+  auth.sendPasswordResetEmail(email);
+  alert("Password reset link sent");
+}
 </script>
+
 </body>
 </html>
-
