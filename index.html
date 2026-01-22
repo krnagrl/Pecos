@@ -1,164 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Secure Member Portal</title>
-<link rel="icon" type="image/png" href="pecos.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
+  <link rel="icon" type="image/png" href="pecos.png" />
 
-<!-- Firebase (UNCHANGED) -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:Verdana,Arial;font-size:13px;color:#333;background:#fff}
-
-/* ===== LAYOUT ===== */
-.container{max-width:1250px;margin:25px auto;display:grid;grid-template-columns:260px 1fr 280px;gap:22px;padding:0 10px}
-
-/* ===== CARD ===== */
-.card{border:1px solid #9e9e9e;border-radius:12px;background:#fff;padding:14px}
-.card h3{margin:0 0 12px;font-size:16px;font-weight:bold;color:#000}
-
-/* ===== LOGIN ===== */
-.login-card{background:#d9f4f9}
-.login-card input{width:100%;padding:9px;margin-bottom:10px;border-radius:4px;border:1px solid #bdbdbd;font-size:13px}
-.login-card button{width:100%;padding:9px;background:linear-gradient(#356fd3,#214f9c);border:none;border-radius:4px;color:#fff;font-weight:bold;cursor:pointer}
-.login-links{font-size:12px}
-.login-links a{color:#214f9c;text-decoration:none;cursor:pointer}
-#msg{font-size:12px;color:#c00000;margin-bottom:6px}
-
-/* ===== NOTIFICATIONS ===== */
-.notification{border-bottom:1px solid #e0e0e0;padding:10px 0}
-.notification:last-child{border-bottom:none}
-.notification b{display:block;margin-bottom:4px}
-.notification a{float:right;color:#214f9c;font-size:12px;text-decoration:none}
-
-/* ===== RIGHT ===== */
-.search-btn{width:100%;padding:8px;background:#214f9c;color:#fff;border:none;border-radius:4px;margin-top:8px;cursor:pointer}
-.help-card p{margin:4px 0}
-
-/* ===== FOOTER ===== */
-footer{border-top:1px solid #ccc;padding:12px 20px;font-size:12px;color:#555;display:flex;justify-content:space-between;flex-wrap:wrap}
-
-/* ===== MOBILE ===== */
-@media(max-width:900px){
-.container{grid-template-columns:1fr}
-footer{flex-direction:column;gap:6px;text-align:center}
-}
+body{font-family:'Montserrat',sans-serif;background:#f4f6f9;color:#333;margin:0}
+header{background:#003366;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:15px 25px;flex-wrap:wrap}
+.logo img{height:35px;vertical-align:middle}
+.logo span{font-size:20px;font-weight:600;margin-left:8px}
+.nav-links a{color:#fff;text-decoration:none;margin-left:20px;font-weight:500}
+.container{min-height:100vh;display:flex;flex-direction:column}
+.content{display:grid;grid-template-columns:1fr 2fr 1.2fr;gap:20px;padding:20px;max-width:1200px;margin:auto;flex:1}
+aside.sidebar{background:#003366;color:#fff;border-radius:10px;padding:20px}
+aside.sidebar h4{border-bottom:1px solid #ccc;padding-bottom:8px}
+aside.sidebar ul{list-style:none;padding:0;margin:0}
+aside.sidebar li{margin-bottom:10px}
+aside.sidebar a{color:#fff;text-decoration:none}
+main.main{background:#fff;border-radius:10px;padding:20px;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+.ask-title span{font-size:24px;font-weight:700;color:#003366}
+.login-sidebar{background:#003366;color:#fff;border-radius:10px;padding:25px 20px;display:flex;flex-direction:column;align-items:center}
+.login-sidebar input{width:100%;padding:10px;margin-bottom:12px;border-radius:6px;border:none}
+.login-sidebar button{width:100%;padding:10px;background:#ffcc00;border:none;border-radius:6px;font-weight:700;cursor:pointer}
+.login-sidebar button:hover{background:#ffdb4d}
+.link{color:#ffcc00;text-decoration:underline;font-size:13px;cursor:pointer}
+footer{background:#003366;color:#fff;text-align:center;padding:12px;font-size:14px}
+@media(max-width:992px){.content{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-
 <div class="container">
-
-  <!-- LOGIN -->
-  <div class="card login-card">
-    <h3>🔐 Quick Login</h3>
-    <input id="email" type="email" placeholder="User Id">
-    <input id="password" type="password" placeholder="Password">
-    <div id="msg"></div>
-    <button onclick="login()">Login</button>
-    <div class="login-links">
-      <a onclick="resetPassword()">Forgot Password?</a>
-    </div>
+<header>
+  <div class="logo">
+    <img src="pecos.png">
+    <span>Pecos</span>
   </div>
+  <nav class="nav-links">
+    <a href="#">Home</a>
+    <a href="#">Advertise</a>
+  </nav>
+</header>
 
-  <!-- NOTIFICATIONS -->
-  <div class="card">
-    <h3>📰 Notifications</h3>
+<div class="content">
 
-    <div class="notification">
-      <b>▶ Upcoming schedule of Tab Based Exam (Updated as on 22nd Jan'26)</b>
-      Download the upcoming schedule of Tab Based Exam
-      <a>download</a>
-    </div>
+  <!-- LEFT -->
+  <aside class="sidebar">
+    <h4>Services</h4>
+    <ul>
+      <li>Finance</li>
+      <li>Real Estate</li>
+      <li>Stocks & Shares</li>
+    </ul>
+  </aside>
 
-    <div class="notification">
-      <b>▶ Revision of Examination Fee for IC-38 Insurance Agent</b>
-      Dear All,<br><br>
-      The examination fee for IC-38 (Insurance Agent) has been revised and applicable only to Insurance Agents.<br><br>
-      Insurance Agent – Rs. 465 + Applicable GST.<br><br>
-      Applicable from 1st January 2026.
-    </div>
-  </div>
+  <!-- CENTER -->
+  <main class="main">
+    <div class="ask-title"><span>Pecos</span></div>
+    <hr>
+    <h3>Open an Account with Us</h3>
+    <p>Secure, transparent and customer-focused financial services.</p>
+    <a href="registeration.html"><button>Register</button></a>
+
+    <h3 style="margin-top:20px">Contact</h3>
+    <p>Email: <a href="mailto:karan@pecos.in">karan@pecos.in</a></p>
+    <p>Akola, Maharashtra 444001</p>
+  </main>
 
   <!-- RIGHT -->
-  <div>
-    <div class="card">
-      <h3>📍 Find Exam Center</h3>
-      <input placeholder="Enter your PIN Code">
-      <button class="search-btn">Search</button>
-    </div>
-
-    <br>
-
-    <div class="card help-card">
-      <h3>🛎 Help Desk</h3>
-      <p>☎ 022-42706500</p>
-      <p>✉ tech.support@dexitglobal.com</p>
-      <br>
-      <b>Timing</b>
-      <p>Monday To Saturday</p>
-      <p>9:30 am To 05:30 pm</p>
-    </div>
-  </div>
+  <aside class="login-sidebar">
+    <h3>Member Login</h3>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+  </aside>
 
 </div>
 
-<footer>
-  <div>All Right Reserved. Portal best viewed on Internet Explorer 11 / Google Chrome 73 and above</div>
-  <div>Portal Developed and Maintained by <b>PECOS</b></div>
-</footer>
+<footer>© 2025 Pecos | All Rights Reserved</footer>
+</div>
 
-<!-- 🔐 FIREBASE (UNCHANGED) -->
 <script>
-const firebaseConfig={
-  apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain:"pecos-432b5.firebaseapp.com",
-  projectId:"pecos-432b5"
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5"
 };
 firebase.initializeApp(firebaseConfig);
 
-const auth=firebase.auth();
-const db=firebase.firestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-auth.onAuthStateChanged(async(user)=>{
-  if(user && user.emailVerified){
-    const doc=await db.collection("members").doc(user.uid).get();
-    window.location.href=doc.data()?.isAdmin ? "admin.html" : "member.html";
-  }
-});
-
+/* 🔐 LOGIN */
 async function login(){
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value.trim();
-  msg.innerText="";
+  const email=email.value.trim();
+  const password=password.value.trim();
+  const msg=document.getElementById("msg");
+
   if(!email||!password){
+    msg.style.color="yellow";
     msg.innerText="Please fill all fields";
     return;
   }
+
   try{
-    const res=await auth.signInWithEmailAndPassword(email,password);
-    if(!res.user.emailVerified){
+    const cred=await auth.signInWithEmailAndPassword(email,password);
+    if(!cred.user.emailVerified){
+      await auth.signOut();
+      msg.style.color="yellow";
       msg.innerText="Please verify your email";
+      return;
     }
-  }catch(err){
-    msg.innerText=err.message;
+    msg.style.color="lightgreen";
+    msg.innerText="Login successful!";
+  }catch(e){
+    msg.style.color="pink";
+    msg.innerText=e.message;
   }
 }
 
-function resetPassword(){
+/* 🔁 AUTO REDIRECT */
+auth.onAuthStateChanged(async(user)=>{
+  if(!user) return;
+  if(!user.emailVerified){ await auth.signOut(); return; }
+
+  const snap=await db.collection("members").doc(user.uid).get();
+  const data=snap.data();
+
+  if(data?.isAdmin){
+    window.location.href="admin.html";
+  }else{
+    window.location.href="member.html";
+  }
+});
+
+/* 🔑 RESET PASSWORD */
+async function resetPassword(){
   const email=prompt("Enter registered email");
   if(!email) return;
-  auth.sendPasswordResetEmail(email);
-  alert("Password reset link sent");
+  await auth.sendPasswordResetEmail(email);
+  msg.style.color="lightgreen";
+  msg.innerText="Reset link sent";
 }
 </script>
-
 </body>
 </html>
