@@ -94,67 +94,8 @@ footer{background:#003366;color:#fff;text-align:center;padding:12px;font-size:14
 </div>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain: "pecos-432b5.firebaseapp.com",
-  projectId: "pecos-432b5"
-};
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-/* 🔐 LOGIN */
-async function login(){
-  const email=email.value.trim();
-  const password=password.value.trim();
-  const msg=document.getElementById("msg");
-
-  if(!email||!password){
-    msg.style.color="yellow";
-    msg.innerText="Please fill all fields";
-    return;
-  }
-
-  try{
-    const cred=await auth.signInWithEmailAndPassword(email,password);
-    if(!cred.user.emailVerified){
-      await auth.signOut();
-      msg.style.color="yellow";
-      msg.innerText="Please verify your email";
-      return;
-    }
-    msg.style.color="lightgreen";
-    msg.innerText="Login successful!";
-  }catch(e){
-    msg.style.color="pink";
-    msg.innerText=e.message;
-  }
-}
-
-/* 🔁 AUTO REDIRECT */
-auth.onAuthStateChanged(async(user)=>{
-  if(!user) return;
-  if(!user.emailVerified){ await auth.signOut(); return; }
-
-  const snap=await db.collection("members").doc(user.uid).get();
-  const data=snap.data();
-
-  if(data?.isAdmin){
-    window.location.href="admin.html";
-  }else{
-    window.location.href="member.html";
-  }
-});
-
-/* 🔑 RESET PASSWORD */
-async function resetPassword(){
-  const email=prompt("Enter registered email");
-  if(!email) return;
-  await auth.sendPasswordResetEmail(email);
-  msg.style.color="lightgreen";
-  msg.innerText="Reset link sent";
-}
+const firebaseConfig={ apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs", authDomain:"pecos-432b5.firebaseapp.com", projectId:"pecos-432b5" }; firebase.initializeApp(firebaseConfig); const auth=firebase.auth(); const db=firebase.firestore(); auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL); auth.onAuthStateChanged(async(user)=>{ if(user && user.emailVerified){ const doc=await db.collection("members").doc(user.uid).get(); window.location.href=doc.data()?.isAdmin ? "admin.html" : "member.html"; } }); async function login(){ const email=document.getElementById("email").value.trim(); const password=document.getElementById("password").value.trim(); msg.innerText=""; if(!email||!password){ msg.innerText="Please fill all fields"; return; } try{ const res=await auth.signInWithEmailAndPassword(email,password); if(!res.user.emailVerified){ msg.innerText="Please verify your email"; } }catch(err){ msg.innerText=err.message; } } function resetPassword(){ const email=prompt("Enter registered email"); if(!email) return; auth.sendPasswordResetEmail(email); alert("Password reset link sent"); }
 </script>
 </body>
 </html>
+
