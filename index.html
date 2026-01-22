@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Member Examination Portal</title>
+<title>Pecos – Secure Member Portal</title>
 <link rel="icon" type="image/png" href="pecos.png">
 
 <!-- Firebase (UNCHANGED) -->
@@ -15,244 +15,218 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6f8;
-  font-size:13px;
-  color:#000;
-}
-
-/* HEADER BAR */
-.top-bar{
-  background:#0b4f8a;
-  color:#fff;
-  padding:8px 15px;
-  font-size:12px;
-}
-.top-bar a{
-  color:#fff;
-  text-decoration:none;
-  margin-right:15px;
-  font-weight:bold;
-}
-
-/* HEADER */
-.header{
+  font-family:Arial, Helvetica, sans-serif;
   background:#ffffff;
-  border-bottom:3px solid #0b4f8a;
-  padding:12px 15px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-.logo-box{
-  width:70px;
-  height:70px;
-  border:1px solid #ccc;
-  background:#f0f0f0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:11px;
-}
-.header h1{
-  margin:0;
-  font-size:22px;
-  color:#0b4f8a;
+  font-size:14px;
+  color:#333;
 }
 
-/* CONTAINER */
-.container{
-  max-width:1100px;
-  margin:15px auto;
-  background:#fff;
-  border:1px solid #ccc;
-  padding:15px;
-}
-
-/* LAYOUT */
-.layout{
+/* MAIN WRAPPER */
+.wrapper{
+  max-width:1200px;
+  margin:40px auto;
   display:grid;
-  grid-template-columns:240px 1fr 280px;
-  gap:15px;
+  grid-template-columns:260px 1fr 300px;
+  gap:25px;
 }
 
-/* LEFT PANEL */
-.sidebar{
-  background:#f7f7f7;
-  border:1px solid #ccc;
-  padding:12px;
-}
-.sidebar h4{
-  margin:0 0 8px;
-  color:#0b4f8a;
-  border-bottom:1px solid #ccc;
-  padding-bottom:5px;
-}
-.sidebar ul{list-style:none;padding:0;margin:0}
-.sidebar li{margin:8px 0}
-.sidebar a{
-  color:#0b4f8a;
-  text-decoration:underline;
-  font-weight:bold;
-}
-
-/* CENTER CONTENT */
-.main{
-  background:#ffffff;
-  border:1px solid #ccc;
+/* COMMON CARD STYLE */
+.card{
+  background:#fff;
+  border:1px solid #cfcfcf;
+  border-radius:10px;
   padding:15px;
 }
-.main h2{
-  margin:0 0 10px;
-  color:#0b4f8a;
+
+/* ===== LEFT LOGIN ===== */
+.login-card{
+  background:#d9f3f8;
+}
+.login-title{
   font-size:18px;
+  font-weight:bold;
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:8px;
 }
-.notice{
-  background:#fff7e0;
-  border-left:5px solid #ff9800;
+.login-card input{
+  width:100%;
   padding:10px;
-  margin-bottom:15px;
-}
-.notice b{color:#000}
-.section{
-  margin-top:15px;
-}
-.section h4{
-  margin:0 0 5px;
-  color:#0b4f8a;
-}
-
-/* LOGIN BOX */
-.login-box{
-  background:#f7f7f7;
+  margin-bottom:10px;
+  border-radius:6px;
   border:1px solid #ccc;
-  padding:15px;
+  font-size:14px;
 }
-.login-box h3{
-  margin:0 0 10px;
-  font-size:15px;
-  color:#0b4f8a;
-}
-.login-box input{
+.login-card button{
   width:100%;
-  padding:7px;
-  margin-bottom:8px;
-  border:1px solid #999;
-}
-.login-box button{
-  width:100%;
-  background:#0b4f8a;
+  background:linear-gradient(#2f6bdc,#1f4fa8);
   color:#fff;
   border:none;
-  padding:8px;
+  padding:10px;
+  border-radius:6px;
+  font-size:15px;
   font-weight:bold;
   cursor:pointer;
 }
-.login-box a{
-  font-size:11px;
-  color:#0b4f8a;
-  text-decoration:underline;
+.login-links{
+  font-size:13px;
+  margin-top:8px;
+}
+.login-links a{
+  color:#1f4fa8;
   cursor:pointer;
+  text-decoration:none;
 }
 #msg{
-  font-size:11px;
+  font-size:12px;
   color:#c00000;
-  margin-top:5px;
+  margin-top:6px;
+}
+
+/* ===== CENTER NOTIFICATIONS ===== */
+.notify-title{
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:10px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.notification{
+  border-bottom:1px solid #e0e0e0;
+  padding:10px 0;
+}
+.notification b{
+  display:block;
+  margin-bottom:5px;
+}
+.notification a{
+  color:#1f4fa8;
+  font-size:13px;
+  text-decoration:none;
+  float:right;
+}
+.notification p{
+  margin:0;
+  line-height:1.5;
+}
+
+/* ===== RIGHT SIDE ===== */
+.search-card input{
+  width:100%;
+  padding:10px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+.search-btn{
+  background:#1f4fa8;
+  color:#fff;
+  border:none;
+  padding:10px;
+  border-radius:6px;
+  width:100%;
+  margin-top:8px;
+  cursor:pointer;
+}
+
+.help-card p{
+  margin:6px 0;
+  font-size:14px;
+}
+.help-card b{
+  display:block;
+  margin-top:8px;
 }
 
 /* FOOTER */
 footer{
-  background:#0b4f8a;
-  color:#fff;
-  text-align:center;
-  padding:10px;
-  font-size:11px;
-  margin-top:15px;
+  border-top:1px solid #ddd;
+  margin-top:40px;
+  padding:15px 40px;
+  font-size:12px;
+  display:flex;
+  justify-content:space-between;
+  color:#555;
 }
 
 /* MOBILE */
 @media(max-width:900px){
-  .layout{grid-template-columns:1fr}
+  .wrapper{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="top-bar">
-  <a>Home</a>
-  <a>About Us</a>
-  <a>Help Desk</a>
-  <a>Corporate Services</a>
-</div>
+<div class="wrapper">
 
-<div class="header">
-  <div class="logo-box">LOGO</div>
-  <h1>Pecos Member Services Portal</h1>
-</div>
+  <!-- LEFT LOGIN -->
+  <div class="card login-card">
+    <div class="login-title">👤 Quick Login</div>
+    <input id="email" type="email" placeholder="User Id">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <div id="msg"></div>
+    <div class="login-links">
+      <a onclick="resetPassword()">Forgot Password?</a> |
+      <a>Change Password?</a>
+    </div>
+  </div>
 
-<div class="container">
-<div class="layout">
+  <!-- CENTER NOTIFICATIONS -->
+  <div class="card">
+    <div class="notify-title">📰 Notifications</div>
 
-<!-- LEFT -->
-<aside class="sidebar">
-<h4>Important Links</h4>
-<ul>
-<li><a>Examination Schedule</a></li>
-<li><a>Study Material</a></li>
-<li><a>Mutual Funds</a></li>
-<li><a>Insurance Services</a></li>
-<li><a>NPS & Retirement</a></li>
-</ul>
-</aside>
+    <div class="notification">
+      <b>▶ Upcoming schedule of Tab Based Exam ( Updated as on 22nd Jan'26 )</b>
+      Download the upcoming schedule of Tab Based Exam
+      <a>download</a>
+    </div>
 
-<!-- CENTER -->
-<main class="main">
-<h2>Welcome to Pecos Portal</h2>
+    <div class="notification">
+      <b>▶ Revision of Examination Fee for IC-38 Insurance Agent</b>
+      <p>
+        Dear All,<br><br>
+        The examination fee for IC-38 (Insurance Agent) has been revised and is
+        applicable only to Insurance Agents.<br><br>
+        Insurance Agent – Rs.465 + Applicable GST.<br><br>
+        Applicable from 1st January 2026.
+      </p>
+    </div>
 
-<div class="notice">
-<b>Notification:</b><br>
-Member services are accessible only to registered users. Please login to continue.
-</div>
+  </div>
 
-<p><b>Secure Financial Member Platform</b></p>
-<p>This portal provides access to investments, insurance, and retirement services.</p>
+  <!-- RIGHT -->
+  <div>
+    <div class="card search-card">
+      <div class="notify-title">📍 Find Exam Center</div>
+      <input placeholder="Enter your PIN Code">
+      <button class="search-btn">Search</button>
+    </div>
 
-<div class="section">
-<h4>Investments</h4>
-<p>Mutual funds, SIPs and portfolio review through regulated AMCs.</p>
-</div>
+    <br>
 
-<div class="section">
-<h4>Insurance</h4>
-<p>Health, Motor & SME insurance from IRDAI approved insurers.</p>
-</div>
+    <div class="card help-card">
+      <div class="notify-title">🎧 Help Desk</div>
+      <p>☎ 022-42706500</p>
+      <p>✉ tech.support@dexitglobal.com</p>
+      <b>Timing</b>
+      <p>Monday To Saturday</p>
+      <p>9:30 am To 05:30 pm</p>
+    </div>
+  </div>
 
-<div class="section">
-<h4>Security & Compliance</h4>
-<p>Encrypted authentication with role-based access control.</p>
-</div>
-</main>
-
-<!-- RIGHT -->
-<aside class="login-box">
-<h3>Member Login</h3>
-<input id="email" type="email" placeholder="Registered Email">
-<input id="password" type="password" placeholder="Password">
-<button onclick="login()">Sign In</button>
-<p id="msg"></p>
-<a onclick="resetPassword()">Forgot password?</a>
-<p style="font-size:10px;margin-top:8px">🔒 Authorized access only</p>
-</aside>
-
-</div>
 </div>
 
 <footer>
-© 2025 Pecos Associates · Mutual fund investments are subject to market risks
+  <div>All Rights Reserved. Portal best viewed on Internet Explorer 11 / Google Chrome</div>
+  <div>Portal Developed and Maintained by <b>DEX IT GLOBAL</b></div>
 </footer>
 
-<!-- 🔐 FIREBASE FUNCTIONALITY (100% UNCHANGED) -->
+<!-- 🔐 FIREBASE FUNCTIONALITY (UNCHANGED) -->
 <script>
 const firebaseConfig={
   apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
