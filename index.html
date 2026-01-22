@@ -170,7 +170,11 @@ body{
   margin:4px 0;
   font-size:13px;
 }
-
+.partner-strip{background:#ffffff;border-top:1px solid #9fb6cf;border-bottom:1px solid #9fb6cf;padding:10px 0;margin-top:12px;overflow:hidden;}
+.partner-track{display:flex;align-items:center;width:max-content;animation:scroll 28s linear infinite;}
+.partner-logo{margin:0 25px;}
+.partner-logo img{height:45px;filter:grayscale(100%);opacity:.85;}
+@keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 /* ===== FOOTER ===== */
 footer{
   border-top:1px solid #dcdcdc;
@@ -277,6 +281,16 @@ footer{
   </div>
 
 </div>
+  <div class="partner-strip">
+<div class="partner-track">
+<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
+<div class="partner-logo"><img src="images/icici-mf.png"></div>
+<div class="partner-logo"><img src="images/sbi-mf.png"></div>
+<div class="partner-logo"><img src="images/kotak-mf.png"></div>
+<div class="partner-logo"><img src="images/ICICI lombard.png"></div>
+<div class="partner-logo"><img src="images/hdfc-mf.png"></div>
+</div>
+</div>
 
 <footer>
   <div>All Right Reserved. Portal best viewed on Internet Explorer 11 / Google Chrome 73 and above</div>
@@ -331,4 +345,5 @@ function resetPassword(){
 
 </body>
 </html>
+
 
