@@ -16,99 +16,134 @@
 body{
   margin:0;
   font-family:Tahoma,Arial,sans-serif;
-  background:#e5eef8;
+  background:#f6f3c5; /* Ask Jeeves yellow */
   font-size:12px;
   color:#000;
 }
 
-/* TOP BAR */
-.topbar{
-  background:linear-gradient(#1f5ea8,#174c88);
+/* TOP LINKS */
+.top-links{
+  background:#6b6b9f;
   color:#fff;
   padding:4px 10px;
-  display:flex;
-  justify-content:space-between;
   font-size:11px;
 }
-.topbar a{color:#fff;text-decoration:none;margin-left:12px}
+.top-links a{
+  color:#fff;
+  text-decoration:none;
+  margin-right:12px;
+  font-weight:bold;
+}
 
-/* LOGO BAR */
+/* HEADER */
 .header{
-  background:#1a4f8f;
-  padding:8px 10px;
+  background:#f6f3c5;
+  border-bottom:2px solid #999966;
+  padding:10px;
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:15px;
 }
-.header img{height:28px}
-.header span{color:#fff;font-size:20px;font-weight:bold}
-
-/* NAV */
-.navbar{
-  background:#f2f2f2;
-  border-bottom:1px solid #9fb6cf;
-  padding:4px 8px;
-}
-.navbar a{
-  margin-right:15px;
-  color:#003399;
+.logo-box{
+  width:80px;
+  height:110px;
+  border:1px solid #666;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-weight:bold;
-  text-decoration:none;
+}
+.header h1{
+  margin:0;
+  font-size:26px;
+  color:#b00000;
+}
+
+/* MAIN WRAPPER */
+.container{
+  max-width:1000px;
+  margin:10px auto;
+  background:#fffde5;
+  border:2px solid #999966;
+  padding:10px;
 }
 
 /* LAYOUT */
-.container{max-width:1200px;margin:8px auto;padding:0 6px}
 .layout{
   display:grid;
-  grid-template-columns:220px 1fr 260px;
-  gap:8px;
+  grid-template-columns:200px 1fr 260px;
+  gap:10px;
 }
 
-/* BOX */
-.box{
-  background:#fff;
-  border:1px solid #9fb6cf;
+/* LEFT MENU */
+.sidebar{
+  background:#f0f0c0;
+  border:1px solid #999966;
   padding:8px;
 }
-
-/* LEFT */
 .sidebar h4{
   margin:0 0 6px;
-  color:#003399;
-  border-bottom:1px solid #9fb6cf;
+  color:#000;
+  border-bottom:1px solid #999966;
 }
 .sidebar ul{list-style:none;padding:0;margin:0}
 .sidebar li{margin:6px 0}
-.sidebar a{color:#003399;text-decoration:none;font-weight:bold}
+.sidebar a{
+  color:#0000cc;
+  text-decoration:underline;
+  font-weight:bold;
+}
 
 /* CENTER */
+.main{
+  background:#fff;
+  border:1px solid #999966;
+  padding:10px;
+}
 .main h2{
-  margin:0 0 6px;
-  color:#b30000;
-  font-size:16px;
+  margin:0 0 8px;
+  color:#b00000;
+  font-size:18px;
+}
+.search-box{
+  border:2px solid #999966;
+  background:#fffff0;
+  padding:10px;
+  margin-bottom:10px;
+}
+.search-box input{
+  width:100%;
+  padding:6px;
+  border:1px solid #666;
 }
 .section{
-  border-top:1px solid #d5dbe3;
-  margin-top:8px;
-  padding-top:6px;
+  margin-top:10px;
 }
-.section h4{margin:0 0 4px;color:#003399}
+.section h4{
+  margin:0 0 4px;
+  color:#000;
+}
 
-/* LOGIN */
+/* RIGHT LOGIN */
+.login-box{
+  background:#f0f0c0;
+  border:1px solid #999966;
+  padding:10px;
+}
 .login-box h3{
-  margin:0 0 6px;
-  color:#003399;
+  margin:0 0 8px;
+  font-size:14px;
 }
 .login-box input{
   width:100%;
   padding:5px;
   margin-bottom:6px;
-  border:1px solid #9fb6cf;
-  font-size:12px;
+  border:1px solid #666;
 }
 .login-box button{
   width:100%;
-  background:#1a4f8f;
+  background:#b00000;
   color:#fff;
   border:none;
   padding:6px;
@@ -117,19 +152,22 @@ body{
 }
 .login-box a{
   font-size:11px;
-  color:#003399;
-  text-decoration:none;
-  display:block;
-  margin-top:6px;
+  color:#0000cc;
+  text-decoration:underline;
+  cursor:pointer;
 }
-#msg{font-size:11px;color:#c62828;margin-top:4px}
+#msg{
+  font-size:11px;
+  color:#b00000;
+  margin-top:4px;
+}
 
 /* FOOTER */
 footer{
-  background:#1a4f8f;
+  background:#6b6b9f;
   color:#fff;
   text-align:center;
-  padding:10px;
+  padding:8px;
   font-size:11px;
   margin-top:10px;
 }
@@ -143,46 +181,42 @@ footer{
 
 <body>
 
-<div class="topbar">
-  <div>Change colors: <b>Classic Blue</b></div>
-  <div>
-    <a>Secure</a>
-    <a>SEBI</a>
-    <a>Help</a>
-  </div>
+<div class="top-links">
+  <a>Home</a>
+  <a>About</a>
+  <a>Help</a>
+  <a>Corporate Services</a>
 </div>
 
 <div class="header">
-  <img src="pecos.png">
-  <span>Pecos</span>
-</div>
-
-<div class="navbar">
-  <a>Home</a>
-  <a>Mutual Funds</a>
-  <a>Insurance</a>
-  <a>NPS</a>
-  <a>Support</a>
+  <div class="logo-box">IMAGE</div>
+  <h1>Pecos Financial Portal</h1>
 </div>
 
 <div class="container">
 <div class="layout">
 
 <!-- LEFT -->
-<aside class="box sidebar">
-<h4>Services</h4>
+<aside class="sidebar">
+<h4>May I Suggest:</h4>
 <ul>
 <li><a>Mutual Funds</a></li>
-<li><a>Health Insurance</a></li>
-<li><a>Vehicle Insurance</a></li>
-<li><a>SME Insurance</a></li>
-<li><a>Retirement (NPS)</a></li>
+<li><a>Insurance</a></li>
+<li><a>NPS</a></li>
+<li><a>Health</a></li>
+<li><a>SME Protection</a></li>
 </ul>
 </aside>
 
 <!-- CENTER -->
-<main class="box main">
-<h2>Secure Member Financial Portal</h2>
+<main class="main">
+<h2>Have a Question?</h2>
+
+<div class="search-box">
+<input placeholder="Ask Pecos about investments, insurance or retirement">
+</div>
+
+<p><b>Secure Member Financial Portal</b></p>
 <p>Access restricted to registered Pecos members only.</p>
 
 <div class="section">
@@ -202,7 +236,7 @@ footer{
 </main>
 
 <!-- RIGHT -->
-<aside class="box login-box">
+<aside class="login-box">
 <h3>Member Login</h3>
 <input id="email" type="email" placeholder="Registered Email">
 <input id="password" type="password" placeholder="Password">
@@ -219,6 +253,7 @@ footer{
 © 2025 Pecos Associates · Mutual fund investments are subject to market risks
 </footer>
 
+<!-- 🔐 ORIGINAL FUNCTIONALITY (UNCHANGED) -->
 <script>
 const firebaseConfig={
   apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -230,10 +265,8 @@ firebase.initializeApp(firebaseConfig);
 const auth=firebase.auth();
 const db=firebase.firestore();
 
-/* SESSION PERSISTENCE */
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-/* AUTO REDIRECT IF LOGGED IN */
 auth.onAuthStateChanged(async(user)=>{
   if(user && user.emailVerified){
     const doc=await db.collection("members").doc(user.uid).get();
@@ -242,8 +275,8 @@ auth.onAuthStateChanged(async(user)=>{
 });
 
 async function login(){
-  const email=emailInput.value.trim();
-  const password=passwordInput.value.trim();
+  const email=document.getElementById("email").value.trim();
+  const password=document.getElementById("password").value.trim();
   msg.innerText="";
 
   if(!email||!password){
