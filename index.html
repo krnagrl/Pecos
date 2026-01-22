@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Finance | Real Estate | Stocks & Shares</title>
+<title>Pecos – Member Portal</title>
 <link rel="icon" href="pecos.png">
 
 <!-- Firebase -->
@@ -12,179 +12,189 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;font-family:Arial, Helvetica, sans-serif}
-body{background:#dcdcdc;margin:0}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{margin:0;background:#f2f2f2}
 
-.wrapper{
-  max-width:980px;
-  margin:20px auto;
-  background:#ffffcc;
-  border:6px solid #6c6aa6;
-}
-
-/* TOP BAR */
-.topbar{
-  background:#6c6aa6;
+/* HEADER */
+.header{
+  background:linear-gradient(#1f4ea8,#143a8a);
   color:#fff;
-  padding:6px 12px;
-  font-size:13px;
+  padding:10px 0;
+}
+.nav{
+  max-width:1200px;
+  margin:auto;
   display:flex;
   justify-content:space-between;
+  align-items:center;
+}
+.nav a{
+  color:#fff;
+  text-decoration:none;
+  margin:0 12px;
+  font-size:14px;
+  font-weight:bold;
 }
 
-/* MAIN GRID */
-.main{
-  display:grid;
-  grid-template-columns:180px 1fr 220px;
-  gap:10px;
-  padding:10px;
-}
-
-/* LEFT */
-.left{
-  background:#e6e6b8;
-  border:2px solid #999;
+/* INFO BAR */
+.infobar{
+  background:#ffe082;
   padding:8px;
-}
-.left h4{
-  color:#cc0000;
-  margin:0 0 8px;
-}
-.left ul{list-style:none;padding:0;margin:0}
-.left li{
-  padding:4px 0;
-  font-size:13px;
-  border-bottom:1px dotted #999;
-}
-
-/* CENTER */
-.center{
   text-align:center;
-}
-.center h1{
-  color:#cc0000;
-  font-size:28px;
-  margin:10px 0 5px;
-}
-.center p{
   font-size:14px;
 }
-.ask-box{
-  width:80%;
-  padding:10px;
-  border:2px solid #999;
-  margin:10px auto;
-  background:#fff;
+
+/* MAIN */
+.container{
+  max-width:1200px;
+  margin:20px auto;
+  display:grid;
+  grid-template-columns:280px 1fr 260px;
+  gap:16px;
 }
-.ask-btn{
-  background:#cc0000;
+
+/* CARD */
+.card{
+  background:#fff;
+  border-radius:6px;
+  border:1px solid #ccc;
+  padding:14px;
+}
+
+/* LOGIN */
+.card h3{
+  margin-top:0;
+  font-size:18px;
+  border-bottom:1px solid #ddd;
+  padding-bottom:6px;
+}
+input{
+  width:100%;
+  padding:8px;
+  margin:8px 0;
+  border:1px solid #bbb;
+}
+button{
+  width:100%;
+  padding:8px;
+  background:#1f4ea8;
   color:#fff;
   border:none;
-  padding:6px 14px;
   font-weight:bold;
   cursor:pointer;
 }
-.ask-btn:hover{background:#a00000}
-
-/* RIGHT */
-.right{
-  background:#e6e6b8;
-  border:2px solid #999;
-  padding:10px;
-}
-.right h3{
-  margin-top:0;
-  font-size:16px;
-}
-.right input{
-  width:100%;
-  padding:6px;
-  margin-bottom:8px;
-}
-.right button{
-  width:100%;
-  padding:6px;
-  background:#003366;
-  color:#fff;
-  border:none;
-  font-weight:bold;
-}
+button:hover{background:#143a8a}
 .link{
   font-size:12px;
-  color:#0000cc;
+  color:#1f4ea8;
   cursor:pointer;
   text-decoration:underline;
 }
+#msg{font-size:12px;color:red}
+
+/* CENTER */
+.notice h4{
+  margin:0 0 6px;
+  color:#1f4ea8;
+}
+.notice{
+  border-bottom:1px dotted #aaa;
+  padding:8px 0;
+  font-size:14px;
+}
+
+/* RIGHT */
+.help p{font-size:13px;margin:6px 0}
 
 /* FOOTER */
 .footer{
-  background:#6c6aa6;
+  background:#143a8a;
   color:#fff;
-  font-size:12px;
   text-align:center;
-  padding:8px;
+  padding:10px;
+  font-size:12px;
+  margin-top:20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<!-- HEADER -->
+<div class="header">
+  <div class="nav">
+    <div>
+      <img src="pecos.png" height="32" style="vertical-align:middle">
+      <span style="font-weight:bold;margin-left:6px">Pecos Portal</span>
+    </div>
+    <div>
+      <a href="#">Home</a>
+      <a href="#">Services</a>
+      <a href="#">Register</a>
+      <a href="#">FAQ</a>
+    </div>
+  </div>
+</div>
 
-  <div class="topbar">
-    <div>Home | About | Help</div>
-    <div>Ask about CORPORATE SERVICES</div>
+<!-- INFO -->
+<div class="infobar">
+  Welcome to Pecos Member Portal | Finance • Real Estate • Stocks & Shares
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- LEFT LOGIN -->
+  <div class="card">
+    <h3>Quick Login</h3>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <div class="main">
+  <!-- CENTER CONTENT -->
+  <div class="card">
+    <h3>Notifications</h3>
 
-    <!-- LEFT -->
-    <div class="left">
-      <h4>May I Suggest:</h4>
-      <ul>
-        <li>Finance</li>
-        <li>Real Estate</li>
-        <li>Stocks & Shares</li>
-        <li>Investments</li>
-        <li>Loans</li>
-      </ul>
+    <div class="notice">
+      <h4>Investment Services</h4>
+      Mutual Funds, Stocks & Long Term Wealth Planning.
     </div>
 
-    <!-- CENTER -->
-    <div class="center">
-      <img src="pecos.png" height="50"><br>
-      <h1>Have a Question?</h1>
-      <p>We deal in Finance, Real Estate, Stocks & Shares.</p>
-
-      <div class="ask-box">
-        <p><strong>Open an Account with Pecos</strong></p>
-        <p>Secure • Transparent • Professional</p>
-        <a href="registeration.html">
-          <button class="ask-btn">Register</button>
-        </a>
-      </div>
-
-      <p><strong>Contact:</strong><br>
-      karan@pecos.in<br>
-      Akola, Maharashtra – 444001</p>
+    <div class="notice">
+      <h4>Loan Assistance</h4>
+      Home Loans, Business Loans, Personal Loans.
     </div>
 
-    <!-- RIGHT -->
-    <div class="right">
-      <h3>Member Login</h3>
-      <input id="email" type="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <p id="msg"></p>
-      <span class="link" onclick="resetPassword()">Forgot Password?</span>
+    <div class="notice">
+      <h4>Insurance Solutions</h4>
+      Health, Motor & SME Insurance available.
     </div>
 
+    <div class="notice">
+      <h4>Real Estate Advisory</h4>
+      Residential & Commercial Property Guidance.
+    </div>
   </div>
 
-  <div class="footer">
-    © 2025 Pecos | Finance • Real Estate • Stocks & Shares
+  <!-- RIGHT HELP -->
+  <div class="card help">
+    <h3>Help Desk</h3>
+    <p>📞 8669334862</p>
+    <p>📧 karan@pecos.in</p>
+    <p><strong>Office:</strong><br>
+    210, 2nd Floor,<br>
+    Yamuna Business Park,<br>
+    Akola – 444001</p>
   </div>
 
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  © 2025 Pecos | Secure Member Portal
 </div>
 
 <script>
@@ -194,6 +204,7 @@ const firebaseConfig={
   projectId:"pecos-432b5"
 };
 firebase.initializeApp(firebaseConfig);
+
 const auth=firebase.auth();
 const db=firebase.firestore();
 
@@ -202,19 +213,19 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 auth.onAuthStateChanged(async(user)=>{
   if(user && user.emailVerified){
     const doc=await db.collection("members").doc(user.uid).get();
-    window.location.href=doc.data()?.isAdmin?"admin.html":"member.html";
+    location.href=doc.data()?.isAdmin?"admin.html":"member.html";
   }
 });
 
 async function login(){
+  msg.innerText="";
   const email=document.getElementById("email").value.trim();
   const password=document.getElementById("password").value.trim();
-  msg.innerText="";
   if(!email||!password){msg.innerText="Please fill all fields";return;}
   try{
     const res=await auth.signInWithEmailAndPassword(email,password);
-    if(!res.user.emailVerified){msg.innerText="Please verify your email";}
-  }catch(err){msg.innerText=err.message;}
+    if(!res.user.emailVerified) msg.innerText="Please verify your email";
+  }catch(e){msg.innerText=e.message;}
 }
 
 function resetPassword(){
