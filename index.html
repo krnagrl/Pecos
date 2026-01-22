@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Member Portal</title>
+<title>Pecos – Financial Services Portal</title>
 <link rel="icon" href="pecos.png">
 
 <!-- Firebase -->
@@ -12,189 +11,236 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{margin-left:10%;margin-right:10%;background:#f2f2f2}
+*{box-sizing:border-box;font-family:Verdana,Arial,sans-serif}
+body{margin:0;background:#7f8fa6}
+
+/* PAGE FRAME */
+.wrapper{
+  width:1100px;
+  margin:20px auto;
+  background:#dcdde1;
+  border:3px solid #2f3640;
+}
 
 /* HEADER */
 .header{
-  background:linear-gradient(#1f4ea8,#143a8a);
-  color:#fff;
-  padding:10px 0;
+  background:linear-gradient(#ff9f1a,#e67e22);
+  padding:10px;
+  color:#000;
+  font-size:22px;
+  font-weight:bold;
 }
-.nav{
-  max-width:1200px;
-  margin:auto;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
+.header span{color:#fff}
+
+/* NAV BAR */
+.navbar{
+  background:#273c75;
+  padding:6px;
 }
-.nav a{
+.navbar a{
   color:#fff;
   text-decoration:none;
-  margin:0 12px;
-  font-size:14px;
+  font-size:13px;
+  font-weight:bold;
+  margin:0 10px;
+}
+
+/* TICKER */
+.ticker{
+  background:#fbc531;
+  font-size:13px;
+  padding:6px;
   font-weight:bold;
 }
 
-/* INFO BAR */
-.infobar{
-  background:#ffe082;
-  padding:8px;
+/* MAIN GRID */
+.main{
+  display:grid;
+  grid-template-columns:220px 1fr 260px;
+  gap:10px;
+  padding:10px;
+}
+
+/* LEFT MENU */
+.menu{
+  background:#718093;
+  border:2px solid #2f3640;
+}
+.menu div{
+  padding:10px;
+  border-bottom:1px solid #2f3640;
+  background:#40739e;
+  color:#fff;
+  font-size:13px;
+  font-weight:bold;
+  cursor:pointer;
+}
+.menu div:hover{background:#273c75}
+
+/* CENTER */
+.center{
+  background:#ecf0f1;
+  border:2px solid #2f3640;
+  padding:10px;
+}
+
+.banner{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.box{
+  border:2px solid #7f8fa6;
+  background:#dcdde1;
+  padding:10px;
   text-align:center;
+}
+.box h3{
+  margin:0;
+  background:#273c75;
+  color:#fff;
+  padding:5px;
   font-size:14px;
 }
+.box p{font-size:13px;margin:10px 0 0}
 
-/* MAIN */
-.container{
-  max-width:1200px;
-  margin:20px auto;
-  display:grid;
-  grid-template-columns:280px 1fr 260px;
-  gap:16px;
+/* NEWS */
+.news{
+  border-top:2px dashed #7f8fa6;
+  margin-top:10px;
+  padding-top:10px;
 }
-
-/* CARD */
-.card{
-  background:#fff;
-  border-radius:6px;
-  border:1px solid #ccc;
-  padding:14px;
-}
+.news h4{margin:0;color:#273c75}
+.news p{font-size:13px}
 
 /* LOGIN */
-.card h3{
-  margin-top:0;
-  font-size:18px;
-  border-bottom:1px solid #ddd;
-  padding-bottom:6px;
+.login{
+  background:#dcdde1;
+  border:2px solid #2f3640;
+  padding:10px;
+}
+.login h3{
+  margin:0 0 10px;
+  background:#273c75;
+  color:#fff;
+  padding:6px;
+  font-size:14px;
 }
 input{
   width:100%;
-  padding:8px;
-  margin:8px 0;
-  border:1px solid #bbb;
+  padding:6px;
+  margin-bottom:6px;
+  border:1px solid #7f8fa6;
 }
 button{
   width:100%;
-  padding:8px;
-  background:#1f4ea8;
-  color:#fff;
-  border:none;
+  padding:6px;
+  background:#44bd32;
+  border:2px solid #2f3640;
   font-weight:bold;
   cursor:pointer;
 }
-button:hover{background:#143a8a}
+button:hover{background:#4cd137}
 .link{
-  font-size:12px;
-  color:#1f4ea8;
-  cursor:pointer;
+  font-size:11px;
+  color:#273c75;
   text-decoration:underline;
+  cursor:pointer;
 }
-#msg{font-size:12px;color:red}
-
-/* CENTER */
-.notice h4{
-  margin:0 0 6px;
-  color:#1f4ea8;
-}
-.notice{
-  border-bottom:1px dotted #aaa;
-  padding:8px 0;
-  font-size:14px;
-}
-
-/* RIGHT */
-.help p{font-size:13px;margin:6px 0}
+#msg{font-size:11px;color:red}
 
 /* FOOTER */
 .footer{
-  background:#143a8a;
+  background:#273c75;
   color:#fff;
   text-align:center;
-  padding:10px;
-  font-size:12px;
-  margin-top:20px;
+  font-size:11px;
+  padding:8px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="nav">
-    <div>
-      <img src="pecos.png" height="32" style="vertical-align:middle">
-      <span style="font-weight:bold;margin-left:6px">Pecos Portal</span>
-    </div>
-    <div>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Register</a>
-      <a href="#">FAQ</a>
-    </div>
-  </div>
-</div>
+<div class="wrapper">
 
-<!-- INFO -->
-<div class="infobar">
-  Welcome to Pecos Member Portal | Finance • Real Estate • Stocks & Shares
-</div>
-
-<!-- MAIN -->
-<div class="container">
-
-  <!-- LEFT LOGIN -->
-  <div class="card">
-    <h3>Quick Login</h3>
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p id="msg"></p>
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+  <!-- HEADER -->
+  <div class="header">
+    <img src="pecos.png" height="30" style="vertical-align:middle">
+    <span>Pecos Financial Services</span>
   </div>
 
-  <!-- CENTER CONTENT -->
-  <div class="card">
-    <h3>Notifications</h3>
-
-    <div class="notice">
-      <h4>Investment Services</h4>
-      Mutual Funds, Stocks & Long Term Wealth Planning.
-    </div>
-
-    <div class="notice">
-      <h4>Loan Assistance</h4>
-      Home Loans, Business Loans, Personal Loans.
-    </div>
-
-    <div class="notice">
-      <h4>Insurance Solutions</h4>
-      Health, Motor & SME Insurance available.
-    </div>
-
-    <div class="notice">
-      <h4>Real Estate Advisory</h4>
-      Residential & Commercial Property Guidance.
-    </div>
+  <!-- NAV -->
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">Investments</a>
+    <a href="#">Insurance</a>
+    <a href="#">Loans</a>
+    <a href="#">Contact</a>
   </div>
 
-  <!-- RIGHT HELP -->
-  <div class="card help">
-    <h3>Help Desk</h3>
-    <p>📞 8669334862</p>
-    <p>📧 karan@pecos.in</p>
-    <p><strong>Office:</strong><br>
-    210, 2nd Floor,<br>
-    Yamuna Business Park,<br>
-    Akola – 444001</p>
+  <!-- TICKER -->
+  <div class="ticker">
+    Market Update: Sensex ▲ 72,345 | Nifty ▲ 22,030 | Secure Financial Solutions Since 2000
   </div>
 
-</div>
+  <!-- MAIN -->
+  <div class="main">
 
-<!-- FOOTER -->
-<div class="footer">
-  © 2025 Pecos | Secure Member Portal
+    <!-- LEFT MENU -->
+    <div class="menu">
+      <div>Investments</div>
+      <div>Insurance</div>
+      <div>Loans</div>
+      <div>Real Estate</div>
+      <div>Financial News</div>
+      <div>Calculators</div>
+    </div>
+
+    <!-- CENTER -->
+    <div class="center">
+      <div class="banner">
+        <div class="box">
+          <h3>INVEST WISELY</h3>
+          <p>Mutual Funds, Stocks & Wealth Planning</p>
+        </div>
+        <div class="box">
+          <h3>GET INSURED</h3>
+          <p>Health, Motor & SME Insurance</p>
+        </div>
+        <div class="box">
+          <h3>APPLY FOR LOANS</h3>
+          <p>Home, Business & Personal Loans</p>
+        </div>
+      </div>
+
+      <div class="news">
+        <h4>Latest Updates</h4>
+        <p>✔ New Investment Plans Launched</p>
+        <p>✔ Fast Loan Processing Available</p>
+        <p>✔ Affordable Insurance Packages</p>
+      </div>
+    </div>
+
+    <!-- LOGIN -->
+    <div class="login">
+      <h3>Member Login</h3>
+      <input id="email" type="email" placeholder="Email ID">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p id="msg"></p>
+      <div class="link" onclick="resetPassword()">Forgot Password?</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    © 2025 Pecos | Finance • Insurance • Loans • Real Estate
+  </div>
+
 </div>
 
 <script>
@@ -207,7 +253,6 @@ firebase.initializeApp(firebaseConfig);
 
 const auth=firebase.auth();
 const db=firebase.firestore();
-
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 auth.onAuthStateChanged(async(user)=>{
@@ -219,12 +264,12 @@ auth.onAuthStateChanged(async(user)=>{
 
 async function login(){
   msg.innerText="";
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value.trim();
-  if(!email||!password){msg.innerText="Please fill all fields";return;}
+  const email=email.value.trim();
+  const password=password.value.trim();
+  if(!email||!password){msg.innerText="Enter all details";return;}
   try{
     const res=await auth.signInWithEmailAndPassword(email,password);
-    if(!res.user.emailVerified) msg.innerText="Please verify your email";
+    if(!res.user.emailVerified) msg.innerText="Verify your email first";
   }catch(e){msg.innerText=e.message;}
 }
 
@@ -238,5 +283,3 @@ function resetPassword(){
 
 </body>
 </html>
-
-
