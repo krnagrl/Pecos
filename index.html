@@ -193,14 +193,17 @@ footer{
 
 <!-- NAVBAR -->
 <div class="navbar">
-  <ul>
-    <li>Home</li>
-    <li>Payment ▾</li>
-    <li>Download ▾</li>
-    <li>Modifications</li>
-    <li>Service Providers ▾</li>
-    <li>FAQ's ▾</li>
-  </ul>
+  <div class="nav-inner">
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li>Home</li>
+      <li>Payment ▾</li>
+      <li>Download ▾</li>
+      <li>Modifications</li>
+      <li>Service Providers ▾</li>
+      <li>FAQ's ▾</li>
+    </ul>
+  </div>
 </div>
 
 <!-- MOVING BAR -->
@@ -314,5 +317,6 @@ function resetPassword(){
 
 </body>
 </html>
+
 
 
