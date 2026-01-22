@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos – Secure Member Portal</title>
+<title>Pecos – Member Examination Portal</title>
 <link rel="icon" type="image/png" href="pecos.png">
 
-<!-- Firebase -->
+<!-- Firebase (UNCHANGED) -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
@@ -15,161 +15,159 @@
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Tahoma,Arial,sans-serif;
-  background:#f6f3c5; /* Ask Jeeves yellow */
-  font-size:12px;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  font-size:13px;
   color:#000;
 }
 
-/* TOP LINKS */
-.top-links{
-  background:#6b6b9f;
+/* HEADER BAR */
+.top-bar{
+  background:#0b4f8a;
   color:#fff;
-  padding:4px 10px;
-  font-size:11px;
+  padding:8px 15px;
+  font-size:12px;
 }
-.top-links a{
+.top-bar a{
   color:#fff;
   text-decoration:none;
-  margin-right:12px;
+  margin-right:15px;
   font-weight:bold;
 }
 
 /* HEADER */
 .header{
-  background:#f6f3c5;
-  border-bottom:2px solid #999966;
-  padding:10px;
+  background:#ffffff;
+  border-bottom:3px solid #0b4f8a;
+  padding:12px 15px;
   display:flex;
   align-items:center;
   gap:15px;
 }
 .logo-box{
-  width:80px;
-  height:110px;
-  border:1px solid #666;
-  background:#eee;
+  width:70px;
+  height:70px;
+  border:1px solid #ccc;
+  background:#f0f0f0;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-weight:bold;
+  font-size:11px;
 }
 .header h1{
   margin:0;
-  font-size:26px;
-  color:#b00000;
+  font-size:22px;
+  color:#0b4f8a;
 }
 
-/* MAIN WRAPPER */
+/* CONTAINER */
 .container{
-  max-width:1000px;
-  margin:10px auto;
-  background:#fffde5;
-  border:2px solid #999966;
-  padding:10px;
+  max-width:1100px;
+  margin:15px auto;
+  background:#fff;
+  border:1px solid #ccc;
+  padding:15px;
 }
 
 /* LAYOUT */
 .layout{
   display:grid;
-  grid-template-columns:200px 1fr 260px;
-  gap:10px;
+  grid-template-columns:240px 1fr 280px;
+  gap:15px;
 }
 
-/* LEFT MENU */
+/* LEFT PANEL */
 .sidebar{
-  background:#f0f0c0;
-  border:1px solid #999966;
-  padding:8px;
+  background:#f7f7f7;
+  border:1px solid #ccc;
+  padding:12px;
 }
 .sidebar h4{
-  margin:0 0 6px;
-  color:#000;
-  border-bottom:1px solid #999966;
+  margin:0 0 8px;
+  color:#0b4f8a;
+  border-bottom:1px solid #ccc;
+  padding-bottom:5px;
 }
 .sidebar ul{list-style:none;padding:0;margin:0}
-.sidebar li{margin:6px 0}
+.sidebar li{margin:8px 0}
 .sidebar a{
-  color:#0000cc;
+  color:#0b4f8a;
   text-decoration:underline;
   font-weight:bold;
 }
 
-/* CENTER */
+/* CENTER CONTENT */
 .main{
-  background:#fff;
-  border:1px solid #999966;
-  padding:10px;
+  background:#ffffff;
+  border:1px solid #ccc;
+  padding:15px;
 }
 .main h2{
-  margin:0 0 8px;
-  color:#b00000;
+  margin:0 0 10px;
+  color:#0b4f8a;
   font-size:18px;
 }
-.search-box{
-  border:2px solid #999966;
-  background:#fffff0;
+.notice{
+  background:#fff7e0;
+  border-left:5px solid #ff9800;
   padding:10px;
-  margin-bottom:10px;
+  margin-bottom:15px;
 }
-.search-box input{
-  width:100%;
-  padding:6px;
-  border:1px solid #666;
-}
+.notice b{color:#000}
 .section{
-  margin-top:10px;
+  margin-top:15px;
 }
 .section h4{
-  margin:0 0 4px;
-  color:#000;
+  margin:0 0 5px;
+  color:#0b4f8a;
 }
 
-/* RIGHT LOGIN */
+/* LOGIN BOX */
 .login-box{
-  background:#f0f0c0;
-  border:1px solid #999966;
-  padding:10px;
+  background:#f7f7f7;
+  border:1px solid #ccc;
+  padding:15px;
 }
 .login-box h3{
-  margin:0 0 8px;
-  font-size:14px;
+  margin:0 0 10px;
+  font-size:15px;
+  color:#0b4f8a;
 }
 .login-box input{
   width:100%;
-  padding:5px;
-  margin-bottom:6px;
-  border:1px solid #666;
+  padding:7px;
+  margin-bottom:8px;
+  border:1px solid #999;
 }
 .login-box button{
   width:100%;
-  background:#b00000;
+  background:#0b4f8a;
   color:#fff;
   border:none;
-  padding:6px;
+  padding:8px;
   font-weight:bold;
   cursor:pointer;
 }
 .login-box a{
   font-size:11px;
-  color:#0000cc;
+  color:#0b4f8a;
   text-decoration:underline;
   cursor:pointer;
 }
 #msg{
   font-size:11px;
-  color:#b00000;
-  margin-top:4px;
+  color:#c00000;
+  margin-top:5px;
 }
 
 /* FOOTER */
 footer{
-  background:#6b6b9f;
+  background:#0b4f8a;
   color:#fff;
   text-align:center;
-  padding:8px;
+  padding:10px;
   font-size:11px;
-  margin-top:10px;
+  margin-top:15px;
 }
 
 /* MOBILE */
@@ -181,16 +179,16 @@ footer{
 
 <body>
 
-<div class="top-links">
+<div class="top-bar">
   <a>Home</a>
-  <a>About</a>
-  <a>Help</a>
+  <a>About Us</a>
+  <a>Help Desk</a>
   <a>Corporate Services</a>
 </div>
 
 <div class="header">
-  <div class="logo-box">IMAGE</div>
-  <h1>Pecos Financial Portal</h1>
+  <div class="logo-box">LOGO</div>
+  <h1>Pecos Member Services Portal</h1>
 </div>
 
 <div class="container">
@@ -198,40 +196,41 @@ footer{
 
 <!-- LEFT -->
 <aside class="sidebar">
-<h4>May I Suggest:</h4>
+<h4>Important Links</h4>
 <ul>
+<li><a>Examination Schedule</a></li>
+<li><a>Study Material</a></li>
 <li><a>Mutual Funds</a></li>
-<li><a>Insurance</a></li>
-<li><a>NPS</a></li>
-<li><a>Health</a></li>
-<li><a>SME Protection</a></li>
+<li><a>Insurance Services</a></li>
+<li><a>NPS & Retirement</a></li>
 </ul>
 </aside>
 
 <!-- CENTER -->
 <main class="main">
-<h2>Have a Question?</h2>
+<h2>Welcome to Pecos Portal</h2>
 
-<div class="search-box">
-<input placeholder="Ask Pecos about investments, insurance or retirement">
+<div class="notice">
+<b>Notification:</b><br>
+Member services are accessible only to registered users. Please login to continue.
 </div>
 
-<p><b>Secure Member Financial Portal</b></p>
-<p>Access restricted to registered Pecos members only.</p>
+<p><b>Secure Financial Member Platform</b></p>
+<p>This portal provides access to investments, insurance, and retirement services.</p>
 
 <div class="section">
 <h4>Investments</h4>
-<p>SIP, lump sum & portfolio review via regulated AMCs.</p>
+<p>Mutual funds, SIPs and portfolio review through regulated AMCs.</p>
 </div>
 
 <div class="section">
 <h4>Insurance</h4>
-<p>Health, Motor & SME insurance via IRDAI insurers.</p>
+<p>Health, Motor & SME insurance from IRDAI approved insurers.</p>
 </div>
 
 <div class="section">
-<h4>Security</h4>
-<p>Encrypted login, verified access & role-based control.</p>
+<h4>Security & Compliance</h4>
+<p>Encrypted authentication with role-based access control.</p>
 </div>
 </main>
 
@@ -243,7 +242,7 @@ footer{
 <button onclick="login()">Sign In</button>
 <p id="msg"></p>
 <a onclick="resetPassword()">Forgot password?</a>
-<p style="font-size:10px;margin-top:6px">🔒 Authorized access only</p>
+<p style="font-size:10px;margin-top:8px">🔒 Authorized access only</p>
 </aside>
 
 </div>
@@ -253,7 +252,7 @@ footer{
 © 2025 Pecos Associates · Mutual fund investments are subject to market risks
 </footer>
 
-<!-- 🔐 ORIGINAL FUNCTIONALITY (UNCHANGED) -->
+<!-- 🔐 FIREBASE FUNCTIONALITY (100% UNCHANGED) -->
 <script>
 const firebaseConfig={
   apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -278,12 +277,10 @@ async function login(){
   const email=document.getElementById("email").value.trim();
   const password=document.getElementById("password").value.trim();
   msg.innerText="";
-
   if(!email||!password){
     msg.innerText="Please fill all fields";
     return;
   }
-
   try{
     const res=await auth.signInWithEmailAndPassword(email,password);
     if(!res.user.emailVerified){
