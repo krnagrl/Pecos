@@ -39,6 +39,61 @@ body{margin:0;background:#e9edf3}
   font-size:14px;
 }
 .nav a:hover{background:#16336b}
+/* DROPDOWN NAV */
+.nav-item{
+  position:relative;
+}
+
+.nav-btn{
+  background:none;
+  border:none;
+  color:#fff;
+  padding:12px 14px;
+  font-size:14px;
+  cursor:pointer;
+}
+
+.nav-btn:hover{
+  background:#16336b;
+}
+
+.dropdown{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#ffffff;
+  min-width:200px;
+  border:1px solid #bdbdbd;
+  z-index:1000;
+}
+
+.dropdown a{
+  display:block;
+  color:#1c3f87;
+  padding:10px 12px;
+  text-decoration:none;
+  font-size:13px;
+}
+
+.dropdown a:hover{
+  background:#e9edf3;
+}
+
+.nav-item.active .dropdown{
+  display:block;
+}
+
+/* MOBILE FIX */
+@media(max-width:600px){
+  .nav{
+    flex-direction:column;
+  }
+  .dropdown{
+    position:static;
+    border:none;
+  }
+}
 
 /* INFO */
 .infobar{
@@ -148,15 +203,51 @@ button:hover{background:#14316a}
 </div>
 
 <!-- NAV -->
+<!-- NAV -->
 <div class="nav">
+
   <a href="#">Home</a>
-  <a href="#">Payments</a>
-  <a href="#">Downloads</a>
-  <a href="#">Services</a>
-  <a href="#">Study Material</a>
-  <a href="#">Practice Test</a>
-  <a href="#">FAQ</a>
+
+  <div class="nav-item">
+    <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
+    <div class="dropdown">
+      <a href="#">Fixed Deposit</a>
+      <a href="#">Recurring Deposit</a>
+      <a href="#">Annuity Deposit</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
+    <div class="dropdown">
+      <a href="#">Mutual Funds</a>
+      <a href="#">Demat & Securities</a>
+      <a href="#">NPS</a>
+      <a href="#">PPF</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
+    <div class="dropdown">
+      <a href="#">Health Insurance</a>
+      <a href="#">SME Insurance</a>
+      <a href="#">Motor Insurance</a>
+    </div>
+  </div>
+
+  <div class="nav-item">
+    <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
+    <div class="dropdown">
+      <a href="#">Personal Loan</a>
+      <a href="#">Car Loan</a>
+      <a href="#">Home Loan</a>
+      <a href="#">Gold Loan</a>
+    </div>
+  </div>
+
 </div>
+
 
 <!-- INFO -->
 <div class="infobar">
@@ -243,6 +334,18 @@ function resetPassword(){
   alert("Password reset link sent");
 }
 </script>
+<script>
+function toggleMenu(btn){
+  document.querySelectorAll('.nav-item').forEach(item=>{
+    if(item.contains(btn)){
+      item.classList.toggle('active');
+    }else{
+      item.classList.remove('active');
+    }
+  });
+}
+</script>
 
 </body>
 </html>
+
