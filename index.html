@@ -205,7 +205,12 @@ button:hover{background:#14316a}
 <!-- NAV -->
 <div class="nav">
 
-  <a href="/index.html">Home</a>
+    <div class="nav-item">
+    <button class="nav-btn" onclick="toggleMenu(this)">Home</button>
+    <div class="dropdown">
+      <a href="/index.html">Home</a>     
+    </div>
+  </div>
 
   <!-- DEPOSITS -->
   <div class="nav-item">
@@ -379,4 +384,5 @@ async function loadInvestment(e){
 
 </body>
 </html>
+
 
