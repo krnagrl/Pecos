@@ -1,4 +1,3 @@
-perfect now recreate my website just like this webpage image "
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,103 +12,106 @@ perfect now recreate my website just like this webpage image "
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
-*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
-body{margin-left:10%;margin-right:10%;background:#f2f2f2}
+*{box-sizing:border-box;font-family:Verdana,Arial,sans-serif}
+body{margin:0;background:#e9edf3}
 
-/* HEADER */
-.header{
-  background:linear-gradient(#1f4ea8,#143a8a);
-  color:#fff;
-  padding:10px 0;
-}
-.nav{
-  max-width:1200px;
-  margin:auto;
+/* TOP HEADER */
+.topbar{
+  background:#fff;
+  border-bottom:1px solid #ccc;
+  padding:8px 10%;
   display:flex;
-  justify-content:space-between;
   align-items:center;
 }
-.nav a{
+.topbar img{height:42px}
+
+/* NAV BAR */
+.navbar{
+  background:linear-gradient(#2d56a5,#1c3f87);
+  padding:0 10%;
+}
+.navbar a{
   color:#fff;
   text-decoration:none;
-  margin:0 12px;
   font-size:14px;
-  font-weight:bold;
+  padding:12px 14px;
+  display:inline-block;
 }
+.navbar a:hover{background:#16336b}
 
-/* INFO BAR */
+/* INFO STRIP */
 .infobar{
   background:#ffe082;
   padding:8px;
   text-align:center;
   font-size:14px;
+  border-bottom:1px solid #e0c15f;
 }
 
-/* MAIN */
+/* MAIN LAYOUT */
 .container{
   max-width:1200px;
-  margin:20px auto;
+  margin:18px auto;
   display:grid;
-  grid-template-columns:280px 1fr 260px;
+  grid-template-columns:260px 1fr 260px;
   gap:16px;
 }
 
 /* CARD */
 .card{
   background:#fff;
+  border:1px solid #bdbdbd;
   border-radius:6px;
-  border:1px solid #ccc;
-  padding:14px;
+  padding:12px;
+}
+.card h3{
+  margin:0 0 10px;
+  font-size:16px;
+  color:#1c3f87;
+  border-bottom:1px solid #ccc;
+  padding-bottom:6px;
 }
 
 /* LOGIN */
-.card h3{
-  margin-top:0;
-  font-size:18px;
-  border-bottom:1px solid #ddd;
-  padding-bottom:6px;
-}
 input{
   width:100%;
   padding:8px;
   margin:8px 0;
-  border:1px solid #bbb;
+  border:1px solid #aaa;
+  border-radius:3px;
 }
 button{
   width:100%;
-  padding:8px;
-  background:#1f4ea8;
+  padding:9px;
+  background:#1c3f87;
   color:#fff;
   border:none;
   font-weight:bold;
   cursor:pointer;
 }
-button:hover{background:#143a8a}
+button:hover{background:#14316a}
 .link{
   font-size:12px;
-  color:#1f4ea8;
+  color:#1c3f87;
   cursor:pointer;
   text-decoration:underline;
 }
 #msg{font-size:12px;color:red}
 
-/* CENTER */
-.notice h4{
-  margin:0 0 6px;
-  color:#1f4ea8;
-}
+/* NOTIFICATIONS */
 .notice{
-  border-bottom:1px dotted #aaa;
-  padding:8px 0;
   font-size:14px;
+  padding:10px 0;
+  border-bottom:1px dotted #999;
 }
+.notice b{color:#1c3f87}
 
-/* RIGHT */
+/* RIGHT BOX */
 .help p{font-size:13px;margin:6px 0}
 
 /* FOOTER */
 .footer{
-  background:#143a8a;
+  background:#1c3f87;
   color:#fff;
   text-align:center;
   padding:10px;
@@ -121,25 +123,25 @@ button:hover{background:#143a8a}
 
 <body>
 
-<!-- HEADER -->
-<div class="header">
-  <div class="nav">
-    <div>
-      <img src="pecos.png" height="32" style="vertical-align:middle">
-      <span style="font-weight:bold;margin-left:6px">Pecos Portal</span>
-    </div>
-    <div>
-      <a href="#">Home</a>
-      <a href="#">Services</a>
-      <a href="#">Register</a>
-      <a href="#">FAQ</a>
-    </div>
-  </div>
+<!-- HEADER LOGO -->
+<div class="topbar">
+  <img src="pecos.png">
+</div>
+
+<!-- NAVIGATION -->
+<div class="navbar">
+  <a href="#">Home</a>
+  <a href="#">Payments</a>
+  <a href="#">Downloads</a>
+  <a href="#">Services</a>
+  <a href="#">Study Material</a>
+  <a href="#">Practice Test</a>
+  <a href="#">FAQ</a>
 </div>
 
 <!-- INFO -->
 <div class="infobar">
-  Welcome to Pecos Member Portal | Finance • Real Estate • Stocks & Shares
+  Welcome to the Pecos Member Portal | Best viewed on Google Chrome
 </div>
 
 <!-- MAIN -->
@@ -148,47 +150,49 @@ button:hover{background:#143a8a}
   <!-- LEFT LOGIN -->
   <div class="card">
     <h3>Quick Login</h3>
-    <input id="email" type="email" placeholder="Email">
+    <input id="email" type="email" placeholder="User ID / Email">
     <input id="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
     <p id="msg"></p>
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <!-- CENTER CONTENT -->
+  <!-- CENTER -->
   <div class="card">
     <h3>Notifications</h3>
 
     <div class="notice">
-      <h4>Investment Services</h4>
-      Mutual Funds, Stocks & Long Term Wealth Planning.
+      <b>Investment Services</b><br>
+      Mutual Funds, Stocks & Wealth Planning
     </div>
 
     <div class="notice">
-      <h4>Loan Assistance</h4>
-      Home Loans, Business Loans, Personal Loans.
+      <b>Loan Assistance</b><br>
+      Home, Business & Personal Loans
     </div>
 
     <div class="notice">
-      <h4>Insurance Solutions</h4>
-      Health, Motor & SME Insurance available.
+      <b>Insurance Solutions</b><br>
+      Health, Motor & SME Insurance
     </div>
 
     <div class="notice">
-      <h4>Real Estate Advisory</h4>
-      Residential & Commercial Property Guidance.
+      <b>Real Estate Advisory</b><br>
+      Residential & Commercial Guidance
     </div>
   </div>
 
-  <!-- RIGHT HELP -->
+  <!-- RIGHT -->
   <div class="card help">
     <h3>Help Desk</h3>
     <p>📞 8669334862</p>
     <p>📧 karan@pecos.in</p>
-    <p><strong>Office:</strong><br>
-    210, 2nd Floor,<br>
-    Yamuna Business Park,<br>
-    Akola – 444001</p>
+    <p>
+      <b>Office:</b><br>
+      210, 2nd Floor,<br>
+      Yamuna Business Park,<br>
+      Akola – 444001
+    </p>
   </div>
 
 </div>
@@ -220,8 +224,8 @@ auth.onAuthStateChanged(async(user)=>{
 
 async function login(){
   msg.innerText="";
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value.trim();
+  const email=email.value.trim();
+  const password=password.value.trim();
   if(!email||!password){msg.innerText="Please fill all fields";return;}
   try{
     const res=await auth.signInWithEmailAndPassword(email,password);
@@ -239,5 +243,3 @@ function resetPassword(){
 
 </body>
 </html>
-
-
