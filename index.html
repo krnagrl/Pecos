@@ -219,13 +219,14 @@ button:hover{background:#14316a}
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
-    <div class="dropdown">
-      <a href="#">Mutual Funds</a>
-      <a href="#">Demat & Securities</a>
-      <a href="#">NPS</a>
-      <a href="#">PPF</a>
-    </div>
+<div class="dropdown">
+  <a href="#" onclick="loadInvestment('Mutual Funds')">Mutual Funds</a>
+  <a href="#" onclick="loadInvestment('Demat & Securities')">Demat & Securities</a>
+  <a href="#" onclick="loadInvestment('NPS')">NPS</a>
+  <a href="#" onclick="loadInvestment('PPF')">PPF</a>
+</div>
   </div>
+
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
@@ -268,7 +269,7 @@ button:hover{background:#14316a}
   </div>
 
   <!-- CENTER -->
-  <div class="card">
+<div class="card" id="mainContent">
     <h3>Notifications</h3>
     <div class="notice"><b>Investment Services</b><br>Mutual Funds, Stocks & Wealth Planning</div>
     <div class="notice"><b>Loan Assistance</b><br>Home, Business & Personal Loans</div>
@@ -345,7 +346,49 @@ function toggleMenu(btn){
   });
 }
 </script>
+<script>
+async function loadInvestment(docName){
+  const main = document.getElementById("mainContent");
+
+  // Loading state
+  main.innerHTML = `
+    <h3>${docName}</h3>
+    <p>Loading data...</p>
+  `;
+
+  try{
+    const doc = await db.collection("Content").doc(docName).get();
+
+    if(!doc.exists){
+      main.innerHTML = `
+        <h3>${docName}</h3>
+        <p>No data found.</p>
+      `;
+      return;
+    }
+
+    const data = doc.data().Data || "No content available";
+
+    main.innerHTML = `
+      <h3>${docName}</h3>
+      <div class="notice">
+        ${data}
+      </div>
+    `;
+
+  }catch(err){
+    main.innerHTML = `
+      <h3>Error</h3>
+      <p>${err.message}</p>
+    `;
+  }
+
+  // Close dropdown after click (UX polish)
+  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+}
+</script>
 
 </body>
 </html>
+
 
