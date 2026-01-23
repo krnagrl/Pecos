@@ -203,49 +203,50 @@ button:hover{background:#14316a}
 </div>
 
 <!-- NAV -->
-<!-- NAV -->
 <div class="nav">
 
   <a href="#">Home</a>
 
+  <!-- DEPOSITS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
-<div class="dropdown">
-  <a href="#" onclick="loadContent('Fixed Deposit')">Fixed Deposit</a>
-  <a href="#" onclick="loadContent('Recurring Deposit')">Recurring Deposit</a>
-  <a href="#" onclick="loadContent('Annuity Deposit')">Annuity Deposit</a>
-</div>
+    <div class="dropdown">
+      <a href="#" data-doc="Fixed Deposit" onclick="loadInvestment(event)">Fixed Deposit</a>
+      <a href="#" data-doc="Recurring Deposit" onclick="loadInvestment(event)">Recurring Deposit</a>
+      <a href="#" data-doc="Annuity Deposit" onclick="loadInvestment(event)">Annuity Deposit</a>
+    </div>
   </div>
 
+  <!-- INVESTMENTS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
-<div class="dropdown">
-  <a href="#" onclick="loadContent('Mutual Funds')">Mutual Funds</a>
-  <a href="#" onclick="loadContent('Demat & Securities')">Demat & Securities</a>
-  <a href="#" onclick="loadContent('NPS')">NPS</a>
-  <a href="#" onclick="loadContent('PPF')">PPF</a>
-</div>
+    <div class="dropdown">
+      <a href="#" data-doc="Mutual Funds" onclick="loadInvestment(event)">Mutual Funds</a>
+      <a href="#" data-doc="Demat & Securities" onclick="loadInvestment(event)">Demat & Securities</a>
+      <a href="#" data-doc="NPS" onclick="loadInvestment(event)">NPS</a>
+      <a href="#" data-doc="PPF" onclick="loadInvestment(event)">PPF</a>
+    </div>
   </div>
 
-
+  <!-- INSURANCE -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
-<div class="dropdown">
-  <a href="#" onclick="loadContent('Health Insurance')">Health Insurance</a>
-  <a href="#" onclick="loadContent('SME Insurance')">SME Insurance</a>
-  <a href="#" onclick="loadContent('Motor Insurance')">Motor Insurance</a>
-</div>
+    <div class="dropdown">
+      <a href="#" data-doc="Health Insurance" onclick="loadInvestment(event)">Health Insurance</a>
+      <a href="#" data-doc="SME Insurance" onclick="loadInvestment(event)">SME Insurance</a>
+      <a href="#" data-doc="Motor Insurance" onclick="loadInvestment(event)">Motor Insurance</a>
+    </div>
   </div>
 
+  <!-- LOANS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
-<div class="dropdown">
-  <a href="#" onclick="loadContent('Personal Loan')">Personal Loan</a>
-  <a href="#" onclick="loadContent('Car Loan')">Car Loan</a>
-  <a href="#" onclick="loadContent('Home Loan')">Home Loan</a>
-  <a href="#" onclick="loadContent('Gold Loan')">Gold Loan</a>
-</div>
-
+    <div class="dropdown">
+      <a href="#" data-doc="Personal Loan" onclick="loadInvestment(event)">Personal Loan</a>
+      <a href="#" data-doc="Car Loan" onclick="loadInvestment(event)">Car Loan</a>
+      <a href="#" data-doc="Home Loan" onclick="loadInvestment(event)">Home Loan</a>
+      <a href="#" data-doc="Gold Loan" onclick="loadInvestment(event)">Gold Loan</a>
+    </div>
   </div>
 
 </div>
@@ -270,12 +271,14 @@ button:hover{background:#14316a}
   </div>
 
   <!-- CENTER -->
-<div class="card" id="mainContent">
+  <div class="card">
     <h3>Notifications</h3>
-    <div class="notice"><b>Investment Services</b><br>Mutual Funds, Stocks & Wealth Planning</div>
-    <div class="notice"><b>Loan Assistance</b><br>Home, Business & Personal Loans</div>
-    <div class="notice"><b>Insurance Solutions</b><br>Health, Motor & SME Insurance</div>
-    <div class="notice"><b>Real Estate Advisory</b><br>Residential & Commercial Guidance</div>
+    <div id="mainContent">
+      <div class="notice"><b>Investment Services</b><br>Mutual Funds, Stocks & Wealth Planning</div>
+      <div class="notice"><b>Loan Assistance</b><br>Home, Business & Personal Loans</div>
+      <div class="notice"><b>Insurance Solutions</b><br>Health, Motor & SME Insurance</div>
+      <div class="notice"><b>Real Estate Advisory</b><br>Residential & Commercial Guidance</div>
+    </div>
   </div>
 
   <!-- HELP -->
@@ -336,6 +339,7 @@ function resetPassword(){
   alert("Password reset link sent");
 }
 </script>
+
 <script>
 function toggleMenu(btn){
   document.querySelectorAll('.nav-item').forEach(item=>{
@@ -346,56 +350,32 @@ function toggleMenu(btn){
     }
   });
 }
-</script>
-<script>
-async function loadContent(collectionName){
-  const main = document.getElementById("mainContent");
 
-  // Loading state
-  main.innerHTML = `
-    <h3>${collectionName}</h3>
-    <p>Loading data...</p>
-  `;
+/* 🔥 NEW FUNCTION: Load Content From Firestore */
+async function loadInvestment(e){
+  e.preventDefault();
+  const docName = e.target.getAttribute("data-doc");
 
   try{
-    const snapshot = await db
-      .collection(collectionName)
-      .limit(1)
-      .get();
+    const doc = await db.collection("Content").doc(docName).get();
+    const data = doc.data()?.Data || "No data found";
 
-    if(snapshot.empty){
-      main.innerHTML = `
-        <h3>${collectionName}</h3>
-        <p>No data found.</p>
-      `;
-      return;
-    }
-
-    const data = snapshot.docs[0].data().Data || "No content available";
-
-    main.innerHTML = `
-      <h3>${collectionName}</h3>
+    document.getElementById("mainContent").innerHTML = `
       <div class="notice">
+        <b>${docName}</b><br>
         ${data}
       </div>
     `;
-
   }catch(err){
-    main.innerHTML = `
-      <h3>Error</h3>
-      <p>${err.message}</p>
+    document.getElementById("mainContent").innerHTML = `
+      <div class="notice">
+        <b>Error</b><br>
+        Unable to load data.
+      </div>
     `;
   }
-
-  // Close dropdown after click
-  document.querySelectorAll('.nav-item')
-    .forEach(i => i.classList.remove('active'));
 }
 </script>
 
-
 </body>
 </html>
-
-
-
