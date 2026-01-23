@@ -210,41 +210,42 @@ button:hover{background:#14316a}
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
-    <div class="dropdown">
-      <a href="#">Fixed Deposit</a>
-      <a href="#">Recurring Deposit</a>
-      <a href="#">Annuity Deposit</a>
-    </div>
+<div class="dropdown">
+  <a href="#" onclick="loadContent('Fixed Deposit')">Fixed Deposit</a>
+  <a href="#" onclick="loadContent('Recurring Deposit')">Recurring Deposit</a>
+  <a href="#" onclick="loadContent('Annuity Deposit')">Annuity Deposit</a>
+</div>
   </div>
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
 <div class="dropdown">
-  <a href="#" onclick="loadInvestment('Mutual Funds')">Mutual Funds</a>
-  <a href="#" onclick="loadInvestment('Demat & Securities')">Demat & Securities</a>
-  <a href="#" onclick="loadInvestment('NPS')">NPS</a>
-  <a href="#" onclick="loadInvestment('PPF')">PPF</a>
+  <a href="#" onclick="loadContent('Mutual Funds')">Mutual Funds</a>
+  <a href="#" onclick="loadContent('Demat & Securities')">Demat & Securities</a>
+  <a href="#" onclick="loadContent('NPS')">NPS</a>
+  <a href="#" onclick="loadContent('PPF')">PPF</a>
 </div>
   </div>
 
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
-    <div class="dropdown">
-      <a href="#">Health Insurance</a>
-      <a href="#">SME Insurance</a>
-      <a href="#">Motor Insurance</a>
-    </div>
+<div class="dropdown">
+  <a href="#" onclick="loadContent('Health Insurance')">Health Insurance</a>
+  <a href="#" onclick="loadContent('SME Insurance')">SME Insurance</a>
+  <a href="#" onclick="loadContent('Motor Insurance')">Motor Insurance</a>
+</div>
   </div>
 
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
-    <div class="dropdown">
-      <a href="#">Personal Loan</a>
-      <a href="#">Car Loan</a>
-      <a href="#">Home Loan</a>
-      <a href="#">Gold Loan</a>
-    </div>
+<div class="dropdown">
+  <a href="#" onclick="loadContent('Personal Loan')">Personal Loan</a>
+  <a href="#" onclick="loadContent('Car Loan')">Car Loan</a>
+  <a href="#" onclick="loadContent('Home Loan')">Home Loan</a>
+  <a href="#" onclick="loadContent('Gold Loan')">Gold Loan</a>
+</div>
+
   </div>
 
 </div>
@@ -347,30 +348,33 @@ function toggleMenu(btn){
 }
 </script>
 <script>
-async function loadInvestment(docName){
+async function loadContent(collectionName){
   const main = document.getElementById("mainContent");
 
   // Loading state
   main.innerHTML = `
-    <h3>${docName}</h3>
+    <h3>${collectionName}</h3>
     <p>Loading data...</p>
   `;
 
   try{
-    const doc = await db.collection("Content").doc(docName).get();
+    const snapshot = await db
+      .collection(collectionName)
+      .limit(1)
+      .get();
 
-    if(!doc.exists){
+    if(snapshot.empty){
       main.innerHTML = `
-        <h3>${docName}</h3>
+        <h3>${collectionName}</h3>
         <p>No data found.</p>
       `;
       return;
     }
 
-    const data = doc.data().Data || "No content available";
+    const data = snapshot.docs[0].data().Data || "No content available";
 
     main.innerHTML = `
-      <h3>${docName}</h3>
+      <h3>${collectionName}</h3>
       <div class="notice">
         ${data}
       </div>
@@ -383,12 +387,15 @@ async function loadInvestment(docName){
     `;
   }
 
-  // Close dropdown after click (UX polish)
-  document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active'));
+  // Close dropdown after click
+  document.querySelectorAll('.nav-item')
+    .forEach(i => i.classList.remove('active'));
 }
 </script>
 
+
 </body>
 </html>
+
 
 
