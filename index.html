@@ -13,7 +13,18 @@
 
 <style>
 *{box-sizing:border-box;font-family:Verdana,Arial,sans-serif}
-body{margin:0;background:#e9edf3}
+body{
+  margin:0;
+  background:#e9edf3;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+.page-wrapper{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
 
 /* HEADER */
 .header{
@@ -171,10 +182,17 @@ button:hover{background:#14316a}
   background:#1c3f87;
   color:#fff;
   text-align:center;
-  padding:10px;
-  font-size:12px;
-  margin-top:20px;
+  padding:14px 10%;
+  font-size:11.5px;
+  line-height:1.6;
 }
+.footer b{
+  font-weight:600;
+}
+.footer span{
+  opacity:0.9;
+}
+
 
 /* 📱 MOBILE FRIENDLY */
 @media(max-width:900px){
@@ -198,6 +216,7 @@ button:hover{background:#14316a}
 </head>
 
 <body>
+<div class="page-wrapper">
 
 <!-- HEADER -->
 <div class="header">
@@ -298,10 +317,29 @@ button:hover{background:#14316a}
   </div>
 
 </div>
+</div>
 
 <div class="footer">
-  © 2025 Pecos | Secure Member Portal
+  <b>© 2025 PECOS</b> — All Rights Reserved<br>
+
+  <span>
+    PECOS is a financial services facilitator. Mutual fund investments are subject to market risks. 
+    Read all scheme related documents carefully.
+  </span><br>
+
+  <span>
+    Insurance is subject to policy terms & conditions. Loans are subject to eligibility and approval.
+  </span><br>
+
+  <span>
+    Registered with AMFI | Regulated by SEBI / IRDAI / RBI where applicable
+  </span><br>
+
+  <span>
+    Insurance License No: <b>ILGD00047707</b> | AMFI ARN: <b>270481</b>
+  </span>
 </div>
+
 
 <!-- 🔒 FUNCTIONAL CODE (UNCHANGED) -->
 <script>
@@ -382,6 +420,7 @@ async function loadInvestment(e){
 
 </body>
 </html>
+
 
 
 
