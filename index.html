@@ -194,24 +194,136 @@ button:hover{background:#14316a}
 }
 
 
-/* 📱 MOBILE FRIENDLY */
-@media(max-width:900px){
-  .header,.nav{padding:8px 5%}
+/* =========================
+   APP-LIKE MOBILE UI
+========================= */
+
+/* App header */
+.app-header{
+  display:none;
+}
+
+@media (max-width:768px){
+
+  body{
+    background:#f4f6fb;
+  }
+
+  /* Hide desktop header */
+  .header{
+    display:none;
+  }
+
+  /* App Header */
+  .app-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:12px 16px;
+    background:#1c3f87;
+    color:#fff;
+    position:sticky;
+    top:0;
+    z-index:2000;
+  }
+
+  .app-header img{
+    height:34px;
+  }
+
+  .menu-btn{
+    font-size:22px;
+    background:none;
+    border:none;
+    color:#fff;
+    cursor:pointer;
+  }
+
+  /* Mobile Nav */
+  .nav{
+    position:fixed;
+    top:56px;
+    left:0;
+    width:100%;
+    height:calc(100vh - 56px);
+    background:#fff;
+    flex-direction:column;
+    padding:0;
+    transform:translateY(-120%);
+    transition:0.3s ease;
+    overflow-y:auto;
+  }
+
+  .nav.open{
+    transform:translateY(0);
+  }
+
+  .nav a,
+  .nav-btn{
+    width:100%;
+    text-align:left;
+    padding:14px 16px;
+    font-size:16px;
+    color:#1c3f87;
+    background:#fff;
+    border-bottom:1px solid #eee;
+  }
+
+  .nav-btn{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+  }
+
+  .nav a:hover,
+  .nav-btn:hover{
+    background:#f2f4f8;
+  }
+
+  /* Dropdown accordion */
+  .dropdown{
+    position:static;
+    border:none;
+    display:none;
+    background:#f9fafc;
+  }
+
+  .nav-item.active .dropdown{
+    display:block;
+  }
+
+  .dropdown a{
+    padding-left:32px;
+    font-size:15px;
+  }
+
+  /* Layout */
   .container{
     grid-template-columns:1fr;
-    margin:12px;
+    margin:10px;
+  }
+
+  .side-card{
+    order:2;
+  }
+
+  .card{
+    border-radius:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.06);
+    border:none;
+  }
+
+  .infobar{
+    font-size:13px;
+    padding:10px;
+  }
+
+  .footer{
+    font-size:11px;
+    padding:16px;
   }
 }
 
-@media(max-width:600px){
-  .nav a{
-    flex:1 1 50%;
-    text-align:center;
-    padding:10px;
-  }
-  .header img{height:36px}
-  .card h3{font-size:15px}
-}
 </style>
 </head>
 
@@ -221,9 +333,14 @@ button:hover{background:#14316a}
 <div class="header">
   <img src="pecos.png">
 </div>
+<!-- APP HEADER (MOBILE) -->
+<div class="app-header">
+  <img src="pecos.png">
+  <button class="menu-btn" onclick="toggleMobileNav()">☰</button>
+</div>
 
 <!-- NAV -->
-<div class="nav">
+<div class="nav" id="mobileNav">
 
       <a href="/index.html"><b>Home</b></a>     
   
@@ -414,9 +531,22 @@ async function loadInvestment(e){
   }
 }
 </script>
+<script>
+function toggleMobileNav(){
+  document.getElementById("mobileNav").classList.toggle("open");
+}
+
+/* Close menu when link clicked */
+document.querySelectorAll('.nav a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.getElementById("mobileNav").classList.remove("open");
+  });
+});
+</script>
 
 </body>
 </html>
+
 
 
 
