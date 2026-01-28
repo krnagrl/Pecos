@@ -171,12 +171,75 @@ button:hover { background: #163472 }
 }
 .footer span { opacity: 0.9 }
 
-/* ================= MOBILE ================= */
-@media(max-width: 900px) {
+/* ================= HAMBURGER ================= */
+.hamburger {
+  display: none;
+  margin-left: auto;
+  font-size: 26px;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* ================= MOBILE NAV ================= */
+@media (max-width: 900px) {
+
+  .header {
+    padding: 10px 16px;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    transform: translateY(-120%);
+    transition: 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav.open {
+    transform: translateY(0);
+  }
+
+  .nav a,
+  .nav-btn {
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    font-size: 15px;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .dropdown {
+    position: static;
+    box-shadow: none;
+    border-radius: 10px;
+    margin-top: 6px;
+  }
+
+  .dropdown a {
+    padding-left: 22px;
+  }
+
   .container {
-    grid-template-columns: 1fr;
+    margin-top: 12px;
+  }
+
+  .side-card {
+    order: 2;
   }
 }
+
 
 
 </style>
@@ -187,10 +250,11 @@ button:hover { background: #163472 }
 <!-- HEADER -->
 <div class="header">
   <img src="pecos.png">
+  <div class="hamburger" onclick="toggleNav()">☰</div>
 </div>
 
 <!-- NAV -->
-<div class="nav">
+<div class="nav" id="mobileNav">
 
       <a href="/index.html"><b>Home</b></a>     
   
@@ -382,9 +446,22 @@ async function loadInvestment(e){
 }
 </script>
 
+<script>
+function toggleNav(){
+  document.getElementById("mobileNav").classList.toggle("open");
+}
+
+/* Close nav when link clicked (mobile UX) */
+document.querySelectorAll('.nav a, .dropdown a').forEach(link=>{
+  link.addEventListener('click',()=>{
+    document.getElementById("mobileNav").classList.remove("open");
+  });
+});
+</script>
 
 </body>
 </html>
+
 
 
 
