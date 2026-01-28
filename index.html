@@ -188,14 +188,9 @@ button:hover { background: #163472 }
 <div class="header">
   <img src="pecos.png">
 </div>
-<!-- APP HEADER (MOBILE) -->
-<div class="app-header">
-  <img src="pecos.png">
-  <button class="menu-btn" onclick="toggleMobileNav()">☰</button>
-</div>
 
 <!-- NAV -->
-<div class="nav" id="mobileNav">
+<div class="nav">
 
       <a href="/index.html"><b>Home</b></a>     
   
@@ -386,21 +381,11 @@ async function loadInvestment(e){
   }
 }
 </script>
-<script>
-function toggleMobileNav(){
-  document.getElementById("mobileNav").classList.toggle("open");
-}
 
-/* Close menu when link clicked */
-document.querySelectorAll('.nav a').forEach(link=>{
-  link.addEventListener('click',()=>{
-    document.getElementById("mobileNav").classList.remove("open");
-  });
-});
-</script>
 
 </body>
 </html>
+
 
 
 
