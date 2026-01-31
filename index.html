@@ -28,10 +28,6 @@ html, body {
   overflow-x: hidden;
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
 body {
   margin: 0;
   background: #eef2f7;
@@ -39,10 +35,6 @@ body {
   display: flex;
   flex-direction: column;
   padding-top: 60px;
-  font-weight: 400;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ================= HEADER ================= */
@@ -69,10 +61,9 @@ body {
   margin-left: auto;
   font-size: 26px;
   cursor: pointer;
-  user-select: none;
 }
 
-/* ================= NAV (MOBILE FIRST) ================= */
+/* ================= NAV (SAME DESIGN) ================= */
 .nav {
   position: fixed;
   top: 60px;
@@ -109,7 +100,7 @@ body {
   background: rgba(255,255,255,0.15);
 }
 
-/* ================= DROPDOWNS (MOBILE) ================= */
+/* ================= DROPDOWNS ================= */
 .nav-item {
   width: 100%;
 }
@@ -132,6 +123,7 @@ body {
   background: #f1f4fa;
 }
 
+/* 🔥 CLICK CONTROLS DROPDOWN (MOBILE + DESKTOP) */
 .nav-item.active .dropdown {
   display: block;
 }
@@ -145,7 +137,7 @@ body {
   border-bottom: 1px solid #ead27a;
 }
 
-/* ================= MAIN LAYOUT ================= */
+/* ================= MAIN ================= */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -168,64 +160,6 @@ body {
   margin: 0 0 12px;
   font-size: 16px;
   color: #1c3f87;
-  border-bottom: 1px solid #eef1f6;
-  padding-bottom: 8px;
-}
-
-/* ================= FORM ================= */
-input {
-  width: 100%;
-  padding: 11px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #d0d6e5;
-  font-size: 14px;
-}
-
-input:focus {
-  outline: none;
-  border-color: #1c3f87;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  background: #1c3f87;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #163472;
-}
-
-.link {
-  font-size: 12px;
-  color: #1c3f87;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-#msg {
-  font-size: 12px;
-  color: red;
-}
-
-/* ================= NOTICES ================= */
-.notice {
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  background: #f6f8fc;
-  font-size: 14px;
-}
-
-.notice b {
-  color: #1c3f87;
 }
 
 /* ================= FOOTER ================= */
@@ -236,14 +170,9 @@ button:hover {
   text-align: center;
   padding: 14px;
   font-size: 11px;
-  line-height: 1.6;
 }
 
-.footer span {
-  opacity: 0.9;
-}
-
-/* ================= DESKTOP NAV FIX ================= */
+/* ================= DESKTOP FIX (NO DESIGN CHANGE) ================= */
 @media (min-width: 901px) {
 
   body {
@@ -252,66 +181,54 @@ button:hover {
 
   .header {
     position: static;
-    height: auto;
   }
 
   .hamburger {
     display: none;
   }
 
-  /* NAV BAR */
+  /* NAV stays visible on desktop */
   .nav {
     position: static;
     transform: none;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 0 8%;
+    align-items: flex-start;
+    padding: 6px 8%;
+    gap: 12px;
   }
 
-  /* MENU ITEM */
+  /* KEEP SAME BUTTON STYLE */
+  .nav a,
+  .nav-btn {
+    width: auto;
+    padding: 12px 14px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  /* 🔑 REQUIRED FOR DROPDOWN CLICK */
   .nav-item {
     position: relative;
     width: auto;
   }
 
-  /* LINKS & BUTTONS */
-  .nav a,
-  .nav-btn {
-    width: auto;
-    padding: 10px 14px;
-    font-size: 14px;
-    white-space: nowrap;
-    text-align: center;
-  }
-
-  /* DROPDOWN */
+  /* DROPDOWN OPENS BELOW BUTTON */
   .dropdown {
     position: absolute;
     top: 100%;
     left: 0;
     min-width: 220px;
-    margin-top: 8px;
-    display: none;
-    background: #ffffff;
-    border-radius: 12px;
+    margin-top: 6px;
     box-shadow: 0 12px 30px rgba(0,0,0,0.12);
     z-index: 2000;
   }
 
-  .nav-item.active .dropdown {
-    display: block;
-  }
-
-  /* MAIN GRID */
   .container {
     display: grid;
     grid-template-columns: 280px 1fr 280px;
     gap: 22px;
   }
 }
-
 
 </style>
 </head>
@@ -532,6 +449,7 @@ document.querySelectorAll('.nav a, .dropdown a').forEach(link=>{
 
 </body>
 </html>
+
 
 
 
