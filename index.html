@@ -23,31 +23,29 @@
                "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-
 html, body {
   width: 100%;
   overflow-x: hidden;
 }
+
 html {
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  font-weight: 400;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 body {
   margin: 0;
   background: #eef2f7;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 60px; /* space for fixed header */
+  padding-top: 60px;
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* ================= HEADER (APP BAR) ================= */
+/* ================= HEADER ================= */
 .header {
   position: fixed;
   top: 0;
@@ -74,7 +72,7 @@ body {
   user-select: none;
 }
 
-/* ================= NAV (MOBILE DRAWER STYLE) ================= */
+/* ================= NAV (MOBILE FIRST) ================= */
 .nav {
   position: fixed;
   top: 60px;
@@ -103,6 +101,7 @@ body {
   text-align: left;
   background: transparent;
   border: none;
+  cursor: pointer;
 }
 
 .nav a:hover,
@@ -110,7 +109,7 @@ body {
   background: rgba(255,255,255,0.15);
 }
 
-/* ================= DROPDOWNS ================= */
+/* ================= DROPDOWNS (MOBILE) ================= */
 .nav-item {
   width: 100%;
 }
@@ -244,7 +243,7 @@ button:hover {
   opacity: 0.9;
 }
 
-/* ================= DESKTOP ENHANCEMENT ================= */
+/* ================= DESKTOP NAV FIX ================= */
 @media (min-width: 901px) {
 
   body {
@@ -260,28 +259,58 @@ button:hover {
     display: none;
   }
 
+  /* NAV BAR */
   .nav {
     position: static;
-    flex-direction: row;
     transform: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
     padding: 0 8%;
   }
 
+  /* MENU ITEM */
+  .nav-item {
+    position: relative;
+    width: auto;
+  }
+
+  /* LINKS & BUTTONS */
+  .nav a,
+  .nav-btn {
+    width: auto;
+    padding: 10px 14px;
+    font-size: 14px;
+    white-space: nowrap;
+    text-align: center;
+  }
+
+  /* DROPDOWN */
+  .dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    margin-top: 8px;
+    display: none;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    z-index: 2000;
+  }
+
+  .nav-item.active .dropdown {
+    display: block;
+  }
+
+  /* MAIN GRID */
   .container {
     display: grid;
     grid-template-columns: 280px 1fr 280px;
     gap: 22px;
   }
-
-  .dropdown {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    min-width: 220px;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
-  }
 }
-
 
 
 </style>
@@ -503,6 +532,7 @@ document.querySelectorAll('.nav a, .dropdown a').forEach(link=>{
 
 </body>
 </html>
+
 
 
 
