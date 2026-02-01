@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mafia Economics – An In‑Depth Analysis</title>
+
+  <!-- =====================
+       COLOR SYSTEM
+       Replace these variables with YOUR webpage color codes
+       ===================== -->
+  <style>
+    :root {
+      --bg: #0f1115;           /* replace with your background */
+      --surface: #171a21;      /* cards/sections */
+      --primary: #c9a24d;      /* highlights */
+      --secondary: #8b8f9c;    /* muted text */
+      --text: #e8e9ed;         /* main text */
+      --danger: #b84a4a;       /* risk/illegal indicators */
+      --success: #4ab87a;      /* money/flow indicators */
+      --border: #2a2f3a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 60px 24px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(201,162,77,0.15), transparent);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    header p {
+      max-width: 900px;
+      margin: auto;
+      color: var(--secondary);
+    }
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 40px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 64px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      margin-top: 24px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    h3 {
+      margin-top: 24px;
+      color: var(--text);
+    }
+
+    .muted { color: var(--secondary); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    /* =====================
+       SIMPLE CHART STYLES
+       ===================== */
+    .bar-chart {
+      display: flex;
+      gap: 12px;
+      align-items: flex-end;
+      height: 180px;
+      margin-top: 20px;
+    }
+
+    .bar {
+      flex: 1;
+      background: var(--primary);
+      border-radius: 6px 6px 0 0;
+      position: relative;
+    }
+
+    .bar span {
+      position: absolute;
+      bottom: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--secondary);
+      white-space: nowrap;
+    }
+
+    .bar::after {
+      content: attr(data-value) '%';
+      position: absolute;
+      top: -26px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      color: var(--text);
+    }
+
+    /* =====================
+       FLOW DIAGRAM
+       ===================== */
+    .flow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .node {
+      padding: 12px 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+
+    .arrow {
+      color: var(--primary);
+      font-size: 1.4rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      color: var(--secondary);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Businesses Supposedly Controlled by Mafias</h1>
+  <p>
+    An analytical, educational overview of how organized crime networks have historically
+    infiltrated legitimate industries worldwide. This page focuses on <strong>patterns,
+    incentives, and mechanisms</strong> — not accusations against individuals.
+  </p>
+</header>
+
+<main>
+
+  <!-- ================= REAL ESTATE ================= -->
+  <section>
+    <h2>1. Real Estate</h2>
+    <div class="card">
+      <p>
+        Real estate has long been considered one of the most effective sectors for mafia and
+        organized crime groups to operate in. The reasons are simple: high transaction values,
+        opaque pricing, political dependency, and slow legal processes.
+      </p>
+
+      <h3>How Control Happens</h3>
+      <ul class="muted">
+        <li>Bribing land‑revenue, municipal, and registry officials.</li>
+        <li>Illegal conversion of government or agricultural land into private/commercial land.</li>
+        <li>Forced acquisition of plots at distress prices using threats or political pressure.</li>
+        <li>Artificial scarcity by hoarding land to manipulate prices.</li>
+      </ul>
+
+      <h3>Money Flow (Typical Pattern)</h3>
+      <div class="flow">
+        <div class="node">Political Influence</div>
+        <div class="arrow">→</div>
+        <div class="node">Land Records Manipulation</div>
+        <div class="arrow">→</div>
+        <div class="node">Cheap Acquisition</div>
+        <div class="arrow">→</div>
+        <div class="node">Price Inflation</div>
+        <div class="arrow">→</div>
+        <div class="node">Public Sale</div>
+      </div>
+
+      <h3>Risk vs Profit (Indicative)</h3>
+      <div class="bar-chart">
+        <div class="bar" style="height:70%" data-value="70"><span>Profit</span></div>
+        <div class="bar" style="height:35%; background:var(--danger)" data-value="35"><span>Legal Risk</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LIQUOR ================= -->
+  <section>
+    <h2>2. Liquor Trade</h2>
+    <div class="card">
+      <p>
+        The liquor industry is one of the most license‑heavy and cash‑intensive businesses.
+        Wherever strict quotas, state monopolies, or complex permits exist, mafia influence
+        historically tends to follow.
+      </p>
+
+      <h3>Common Mafia Entry Points</h3>
+      <ul class="muted">
+        <li>Control over retail licenses through political connections.</li>
+        <li>Benami ownership of liquor shops and distribution contracts.</li>
+        <li>Smuggling and parallel supply chains to avoid excise duties.</li>
+        <li>Threatening competitors who attempt independent entry.</li>
+      </ul>
+
+      <h3>Why Liquor Is Attractive</h3>
+      <div class="grid">
+        <div class="node">Daily Cash Flow</div>
+        <div class="node">High Taxes = High Evasion Scope</div>
+        <div class="node">Addiction‑Driven Demand</div>
+        <div class="node">Political Funding Channel</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MANUFACTURING ================= -->
+  <section>
+    <h2>3. Manufacturing</h2>
+    <div class="card">
+      <p>
+        Certain manufacturing sectors require rare licenses, massive capital, or state
+        approvals. Organized crime networks often exploit these barriers by securing exclusive
+        access and blocking new entrants.
+      </p>
+
+      <h3>Heavily Influenced Segments</h3>
+      <ul class="muted">
+        <li>Defence equipment and dual‑use engineering goods.</li>
+        <li>Metals, cement, and large‑scale infrastructure inputs.</li>
+        <li>Mining and natural resource extraction.</li>
+      </ul>
+
+      <h3>Control Structure</h3>
+      <div class="flow">
+        <div class="node">Licensing Authority</div>
+        <div class="arrow">→</div>
+        <div class="node">Exclusive Permit</div>
+        <div class="arrow">→</div>
+        <div class="node">Supply Control</div>
+        <div class="arrow">→</div>
+        <div class="node">Price Power</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= HEALTHCARE ================= -->
+  <section>
+    <h2>4. Healthcare</h2>
+    <div class="card">
+      <p>
+        Healthcare is not traditionally associated with mafias, yet it presents enormous
+        opportunities due to urgency, emotional vulnerability, and government spending.
+      </p>
+
+      <h3>Observed Patterns</h3>
+      <ul class="muted">
+        <li>Overbilling insurance and government health schemes.</li>
+        <li>Control of diagnostics, ambulance, and medical supply chains.</li>
+        <li>Counterfeit or sub‑standard drug distribution.</li>
+      </ul>
+
+      <p class="muted">
+        In many cases, the mafia role is indirect — operating through shell companies,
+        hospital management firms, or supply contractors.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= FINANCE ================= -->
+  <section>
+    <h2>5. Finance & Stock Markets</h2>
+    <div class="card">
+      <p>
+        Financial markets allow organized crime to convert illegal income into legal wealth —
+        a process commonly referred to as <strong>money laundering</strong>.
+      </p>
+
+      <h3>Methods Used</h3>
+      <ul class="muted">
+        <li>Pump‑and‑dump schemes using shell investors.</li>
+        <li>Insider information obtained via bribery.</li>
+        <li>Layering money through multiple accounts and instruments.</li>
+      </ul>
+
+      <h3>Typical Laundering Path</h3>
+      <div class="flow">
+        <div class="node">Illegal Cash</div>
+        <div class="arrow">→</div>
+        <div class="node">Shell Companies</div>
+        <div class="arrow">→</div>
+        <div class="node">Stock / Funds</div>
+        <div class="arrow">→</div>
+        <div class="node">Clean Capital</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= LOGISTICS ================= -->
+  <section>
+    <h2>6. Trade & Logistics</h2>
+    <div class="card">
+      <p>
+        Logistics is the bloodstream of any economy. Control over ports, warehouses, and
+        transport routes provides enormous leverage to organized crime groups.
+      </p>
+
+      <h3>Key Advantages</h3>
+      <ul class="muted">
+        <li>Smuggling goods alongside legal cargo.</li>
+        <li>Extortion of transporters and warehouse operators.</li>
+        <li>Manipulation of import‑export documentation.</li>
+      </ul>
+
+      <h3>Strategic Impact</h3>
+      <p class="muted">
+        Once logistics is influenced, mafias indirectly gain power over multiple industries
+        simultaneously — from retail to manufacturing.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Educational content for awareness and analysis only. This page discusses historical and
+  structural patterns, not allegations against any specific individual or organization.
+</footer>
+
+</body>
+</html>
