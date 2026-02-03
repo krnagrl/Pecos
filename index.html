@@ -10,294 +10,275 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-
 <style>
 /* ================= GLOBAL RESET ================= */
-* {
-  box-sizing: border-box;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
-               "Segoe UI", Roboto, Arial, sans-serif;
+*{
+  box-sizing:border-box;
+  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
 }
 
-html, body {
-  width: 100%;
-  overflow-x: hidden;
+html,body{
+  width:100%;
+  overflow-x:hidden
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-body {
-  margin: 0;
-  background: #eef2f7;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding-top: 60px;
-  font-weight: 400;
-  line-height: 1.5;
+body{
+  margin:0;
+  background:#eef2f7;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  padding-top:60px;
+  font-weight:400;
+  line-height:1.5
 }
 
 /* ================= HEADER ================= */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  background: #fff;
-  border-bottom: 1px solid #e3e6ee;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  z-index: 1000;
+.header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:60px;
+  background:#fff;
+  border-bottom:1px solid #e3e6ee;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  z-index:1000
 }
 
-.header img {
-  height: 40px;
-}
+.header img{height:40px}
 
-/* ================= HAMBURGER ================= */
-.hamburger {
-  margin-left: auto;
-  font-size: 26px;
-  cursor: pointer;
-  user-select: none;
+.hamburger{
+  margin-left:auto;
+  font-size:26px;
+  cursor:pointer;
+  user-select:none
 }
 
 /* ================= NAV ================= */
-.nav {
-  position: fixed;
-  top: 60px;
-  left: 0;
-  width: 100%;
-  background: linear-gradient(135deg,#2d56a5,#1c3f87);
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  transform: translateY(-100%);
-  transition: transform 0.25s ease;
-  z-index: 999;
+.nav{
+  position:fixed;
+  top:60px;
+  left:0;
+  width:100%;
+  background:linear-gradient(135deg,#2d56a5,#1c3f87);
+  display:flex;
+  flex-direction:column;
+  padding:10px;
+  transform:translateY(-100%);
+  transition:transform .25s ease;
+  z-index:999
 }
 
-.nav.open {
-  transform: translateY(0);
+.nav.open{transform:translateY(0)}
+
+.nav a,.nav-btn{
+  width:100%;
+  color:#fff;
+  padding:14px 16px;
+  font-size:15px;
+  border-radius:10px;
+  text-align:left;
+  background:transparent;
+  border:none;
+  cursor:pointer
 }
 
-.nav a,
-.nav-btn {
-  width: 100%;
-  color: #fff;
-  padding: 14px 16px;
-  font-size: 15px;
-  border-radius: 10px;
-  text-align: left;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.nav a:hover,.nav-btn:hover{background:rgba(255,255,255,.15)}
+
+.nav-item{width:100%}
+
+.dropdown{
+  display:none;
+  background:#fff;
+  margin-top:6px;
+  border-radius:10px;
+  overflow:hidden
 }
 
-.nav a:hover,
-.nav-btn:hover {
-  background: rgba(255,255,255,0.15);
+.dropdown a{
+  color:#1c3f87;
+  padding:12px 18px;
+  font-size:14px
 }
 
-/* ================= DROPDOWNS ================= */
-.nav-item {
-  width: 100%;
-}
+.dropdown a:hover{background:#f1f4fa}
 
-.dropdown {
-  display: none;
-  background: #ffffff;
-  margin-top: 6px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.dropdown a {
-  color: #1c3f87;
-  padding: 12px 18px;
-  font-size: 14px;
-}
-
-.dropdown a:hover {
-  background: #f1f4fa;
-}
-
-.nav-item.active .dropdown {
-  display: block;
-}
+.nav-item.active .dropdown{display:block}
 
 /* ================= INFO BAR ================= */
-.infobar {
-  background: #fff7d6;
-  padding: 8px 12px;
-  text-align: center;
-  font-size: 12px;
-  border-bottom: 1px solid #ead27a;
+.infobar{
+  background:#fff7d6;
+  padding:8px 12px;
+  text-align:center;
+  font-size:12px;
+  border-bottom:1px solid #ead27a
 }
 
 /* ================= MAIN LAYOUT ================= */
-.container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 16px auto;
-  padding: 0 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.container{
+  width:100%;
+  max-width:1200px;
+  margin:16px auto;
+  padding:0 12px;
+  display:flex;
+  flex-direction:column;
+  gap:14px
 }
 
 /* ================= CARDS ================= */
-.card {
-  background: #fff;
-  border-radius: 14px;
-  padding: 16px;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:16px;
+  box-shadow:0 10px 28px rgba(0,0,0,.08)
 }
 
-.card h3 {
-  margin: 0 0 12px;
-  font-size: 16px;
-  color: #1c3f87;
-  border-bottom: 1px solid #eef1f6;
-  padding-bottom: 8px;
+.card h3{
+  margin:0 0 12px;
+  font-size:16px;
+  color:#1c3f87;
+  border-bottom:1px solid #eef1f6;
+  padding-bottom:8px
 }
 
 /* ================= FORM ================= */
-input {
-  width: 100%;
-  padding: 11px;
-  margin: 8px 0;
-  border-radius: 8px;
-  border: 1px solid #d0d6e5;
-  font-size: 14px;
+input{
+  width:100%;
+  padding:11px;
+  margin:8px 0;
+  border-radius:8px;
+  border:1px solid #d0d6e5;
+  font-size:14px
 }
 
-input:focus {
-  outline: none;
-  border-color: #1c3f87;
+input:focus{
+  outline:none;
+  border-color:#1c3f87
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 6px;
-  background: #1c3f87;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  cursor: pointer;
+button{
+  width:100%;
+  padding:12px;
+  margin-top:6px;
+  background:#1c3f87;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer
 }
 
-button:hover {
-  background: #163472;
+button:hover{background:#163472}
+
+.link{
+  font-size:12px;
+  color:#1c3f87;
+  cursor:pointer;
+  text-decoration:underline
 }
 
-.link {
-  font-size: 12px;
-  color: #1c3f87;
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-#msg {
-  font-size: 12px;
-  color: red;
-}
+#msg{font-size:12px;color:red}
 
 /* ================= NOTICES ================= */
-.notice {
-  padding: 14px;
-  margin-bottom: 12px;
-  border-radius: 12px;
-  background: #f6f8fc;
-  font-size: 14px;
+.notice{
+  padding:14px;
+  margin-bottom:12px;
+  border-radius:12px;
+  background:#f6f8fc;
+  font-size:14px
 }
 
-.notice b {
-  color: #1c3f87;
-}
+.notice b{color:#1c3f87}
 
 /* ================= FOOTER ================= */
-.footer {
-  margin-top: auto;
-  background: #1c3f87;
-  color: #fff;
-  text-align: center;
-  padding: 14px;
-  font-size: 11px;
-  line-height: 1.6;
+.footer{
+  margin-top:auto;
+  background:#1c3f87;
+  color:#fff;
+  text-align:center;
+  padding:14px;
+  font-size:11px;
+  line-height:1.6
 }
 
-.footer span {
-  opacity: 0.9;
-}
-
-/* ================= DESKTOP FIX (ONLY NAV) ================= */
-@media (min-width: 901px) {
-
-  body {
-    padding-top: 0;
+/* ================= DESKTOP ================= */
+@media(min-width:901px){
+  body{padding-top:0}
+  .header{position:static;height:auto}
+  .hamburger{display:none}
+  .nav{
+    position:static;
+    transform:none;
+    flex-direction:row;
+    align-items:center;
+    padding:8px 16px;
+    gap:12px
   }
-
-  .header {
-    position: static;
-    height: auto;
+  .nav a,.nav-btn{width:auto;white-space:nowrap}
+  .nav-item{position:relative;width:auto}
+  .dropdown{
+    position:absolute;
+    top:100%;
+    left:0;
+    margin-top:6px;
+    min-width:220px;
+    z-index:2000
   }
-
-  .hamburger {
-    display: none;
-  }
-
-  /* NAV visible */
-  .nav {
-    position: static;
-    transform: translateY(0);
-    flex-direction: row;
-    align-items: center;
-    padding: 8px 16px;
-    gap: 12px;
-  }
-
-  /* prevent mobile width issues */
-  .nav a,
-  .nav-btn {
-    width: auto;
-    white-space: nowrap;
-  }
-
-  /* dropdown anchor */
-  .nav-item {
-    position: relative;
-    width: auto;
-  }
-
-  /* dropdown positioning */
-  .dropdown {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    margin-top: 6px;
-    min-width: 220px;
-    z-index: 2000;
-  }
-
-  .container {
-    display: grid;
-    grid-template-columns: 280px 1fr 280px;
-    gap: 22px;
+  .container{
+    display:grid;
+    grid-template-columns:280px 1fr 280px;
+    gap:22px
   }
 }
 
+/* ================= MOBILE APP MODE ================= */
+@media(max-width:900px){
+  body{
+    background:#f5f7fb;
+    padding-bottom:72px
+  }
+  .container{
+    margin:0;
+    padding:12px
+  }
+  .card{
+    border-radius:16px;
+    box-shadow:0 6px 18px rgba(0,0,0,.06)
+  }
+  .footer{display:none}
 
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:64px;
+    background:#fff;
+    border-top:1px solid #e6e9f0;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    z-index:2000
+  }
+  .bottom-nav button{
+    background:none;
+    border:none;
+    font-size:11px;
+    color:#1c3f87;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px
+  }
+}
 </style>
 </head>
 
@@ -312,10 +293,8 @@ button:hover {
 <!-- NAV -->
 <div class="nav" id="mobileNav">
 
-      <a href="/index.html"><b>Home</b></a>     
-  
+  <a href="/index.html"><b>Home</b></a>
 
-  <!-- DEPOSITS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
     <div class="dropdown">
@@ -325,7 +304,6 @@ button:hover {
     </div>
   </div>
 
-  <!-- INVESTMENTS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
     <div class="dropdown">
@@ -336,7 +314,6 @@ button:hover {
     </div>
   </div>
 
-  <!-- INSURANCE -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
     <div class="dropdown">
@@ -346,7 +323,6 @@ button:hover {
     </div>
   </div>
 
-  <!-- LOANS -->
   <div class="nav-item">
     <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
     <div class="dropdown">
@@ -359,17 +335,13 @@ button:hover {
 
 </div>
 
-
-<!-- INFO -->
 <div class="infobar">
   Welcome to the Pecos Member Portal | Best viewed on Google Chrome
 </div>
 
-<!-- MAIN -->
 <div class="container">
 
-  <!-- LOGIN -->
-<div class="card side-card">
+  <div class="card side-card">
     <h3>Quick Login</h3>
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
@@ -378,7 +350,6 @@ button:hover {
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <!-- CENTER -->
   <div class="card">
     <div id="mainContent">
       <div class="notice"><b>Investment Services</b><br>Mutual Funds, Stocks & Wealth Planning</div>
@@ -388,23 +359,25 @@ button:hover {
     </div>
   </div>
 
-  <!-- HELP -->
-<div class="card side-card">
+  <div class="card side-card">
     <h3>Help Desk</h3>
     <p>📧 karan@pecos.in</p>
-
-
   </div>
 
 </div>
 
 <div class="footer">
-  <b>© 2025 PECOS</b> — All Rights Reserved<br>
-  <span>
-    Insurance License No: <b>ILGD00047707</b> | AMFI ARN: <b>270481</b>
-  </span>
+  <b>© 2025 PECOS</b><br>
+  Insurance License No: <b>ILGD00047707</b> | AMFI ARN: <b>270481</b>
 </div>
 
+<!-- MOBILE BOTTOM NAV -->
+<div class="bottom-nav">
+  <button onclick="location.href='index.html'">🏠<span>Home</span></button>
+  <button onclick="toggleNav()">📂<span>Menu</span></button>
+  <button onclick="loadInvestment(event)" data-doc="Mutual Funds">📊<span>Invest</span></button>
+  <button onclick="location.href='member.html'">👤<span>Account</span></button>
+</div>
 
 <!-- 🔒 FUNCTIONAL CODE (UNCHANGED) -->
 <script>
@@ -444,77 +417,30 @@ function resetPassword(){
   auth.sendPasswordResetEmail(email);
   alert("Password reset link sent");
 }
-</script>
 
-<script>
 function toggleMenu(btn){
   document.querySelectorAll('.nav-item').forEach(item=>{
-    if(item.contains(btn)){
-      item.classList.toggle('active');
-    }else{
-      item.classList.remove('active');
-    }
+    item.contains(btn)?item.classList.toggle('active'):item.classList.remove('active');
   });
 }
 
-/* 🔥 NEW FUNCTION: Load Content From Firestore */
-async function loadInvestment(e){
-  e.preventDefault();
-  const docName = e.target.getAttribute("data-doc");
-
-  try{
-    const doc = await db.collection("Content").doc(docName).get();
-    const data = doc.data()?.Data || "No data found";
-
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>${docName}</b><br>
-        ${data}
-      </div>
-    `;
-  }catch(err){
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>Error</b><br>
-        Unable to load data.
-      </div>
-    `;
-  }
-}
-</script>
-
-<script>
 function toggleNav(){
   document.getElementById("mobileNav").classList.toggle("open");
 }
 
-/* Close nav when link clicked (mobile UX) */
-document.querySelectorAll('.nav a, .dropdown a').forEach(link=>{
-  link.addEventListener('click',()=>{
-    document.getElementById("mobileNav").classList.remove("open");
-  });
-});
+async function loadInvestment(e){
+  e.preventDefault();
+  const docName=e.target.getAttribute("data-doc");
+  try{
+    const doc=await db.collection("Content").doc(docName).get();
+    document.getElementById("mainContent").innerHTML=
+      `<div class="notice"><b>${docName}</b><br>${doc.data()?.Data||"No data found"}</div>`;
+  }catch{
+    document.getElementById("mainContent").innerHTML=
+      `<div class="notice"><b>Error</b><br>Unable to load data.</div>`;
+  }
+}
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
