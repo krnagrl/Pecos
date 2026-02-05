@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pecos</title>
+<title>Pecos | Member Portal</title>
 <link rel="icon" href="pecos.png">
 
 <!-- Firebase (UNCHANGED) -->
@@ -16,268 +16,109 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-/* ================= GLOBAL RESET ================= */
-*{
-  box-sizing:border-box;
-  font-family:"Inter",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif
+:root{
+  --primary:#1c3f87;
+  --bg:#f4f6fb;
+  --card:#ffffff;
+  --muted:#6b7280;
 }
 
-html,body{
-  width:100%;
-  overflow-x:hidden
-}
+*{box-sizing:border-box;font-family:Inter,system-ui,Arial}
+html,body{margin:0;padding:0;background:var(--bg)}
 
-body{
-  margin:0;
-  background:#eef2f7;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  padding-top:60px;
-  font-weight:400;
-  line-height:1.5
-}
-
-/* ================= HEADER ================= */
+/* HEADER */
 .header{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:60px;
+  position:sticky;top:0;z-index:1000;
   background:#fff;
-  border-bottom:1px solid #e3e6ee;
-  padding:0 16px;
-  display:flex;
-  align-items:center;
-  z-index:1000
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px;
+  border-bottom:1px solid #e5e7eb
 }
+.header img{height:42px}
+.hamburger{font-size:26px;cursor:pointer;display:none}
 
-.header img{height:40px}
-
-.hamburger{
-  margin-left:auto;
-  font-size:26px;
-  cursor:pointer;
-  user-select:none
-}
-
-/* ================= NAV ================= */
+/* NAV */
 .nav{
-  position:fixed;
-  top:60px;
-  left:0;
-  width:100%;
-  background:linear-gradient(135deg,#2d56a5,#1c3f87);
-  display:flex;
-  flex-direction:column;
-  padding:10px;
-  transform:translateY(-100%);
-  transition:transform .25s ease;
-  z-index:999
+  display:flex;gap:18px;align-items:center
 }
-
-.nav.open{transform:translateY(0)}
-
 .nav a,.nav-btn{
-  width:100%;
-  color:#fff;
-  padding:14px 16px;
-  font-size:15px;
-  border-radius:10px;
-  text-align:left;
-  background:transparent;
-  border:none;
-  cursor:pointer
+  background:none;border:none;cursor:pointer;
+  font-weight:500;color:#111827;font-size:14px
 }
-
-.nav a:hover,.nav-btn:hover{background:rgba(255,255,255,.15)}
-
-.nav-item{width:100%}
-
+.nav a:hover,.nav-btn:hover{color:var(--primary)}
+.nav-item{position:relative}
 .dropdown{
-  display:none;
-  background:#fff;
-  margin-top:6px;
-  border-radius:10px;
-  overflow:hidden
+  display:none;position:absolute;top:120%;left:0;
+  background:#fff;border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  overflow:hidden;min-width:220px
 }
-
-.dropdown a{
-  color:#1c3f87;
-  padding:12px 18px;
-  font-size:14px
-}
-
-.dropdown a:hover{background:#f1f4fa}
-
+.dropdown a{display:block;padding:12px 16px;color:#111;font-size:14px}
+.dropdown a:hover{background:#f1f5ff}
 .nav-item.active .dropdown{display:block}
 
-/* ================= INFO BAR ================= */
+/* INFO */
 .infobar{
   background:#fff7d6;
-  padding:8px 12px;
-  text-align:center;
-  font-size:12px;
-  border-bottom:1px solid #ead27a
+  text-align:center;padding:8px;font-size:13px
 }
 
-/* ================= MAIN LAYOUT ================= */
+/* LAYOUT */
 .container{
-  width:100%;
-  max-width:1200px;
-  margin:16px auto;
-  padding:0 12px;
-  display:flex;
-  flex-direction:column;
-  gap:14px
+  max-width:1200px;margin:24px auto;padding:0 16px;
+  display:grid;gap:24px
 }
 
-/* ================= CARDS ================= */
+/* CARDS */
 .card{
-  background:#fff;
-  border-radius:14px;
-  padding:16px;
-  box-shadow:0 10px 28px rgba(0,0,0,.08)
+  background:var(--card);
+  border-radius:18px;
+  padding:20px;
+  box-shadow:0 12px 30px rgba(0,0,0,.08)
 }
+.card h3{margin:0 0 14px;font-size:16px;color:var(--primary)}
 
-.card h3{
-  margin:0 0 12px;
-  font-size:16px;
-  color:#1c3f87;
-  border-bottom:1px solid #eef1f6;
-  padding-bottom:8px
+.notice{
+  padding:16px;border-radius:14px;
+  background:#f5f7ff;margin-bottom:14px
 }
+.notice b{color:var(--primary)}
 
-/* ================= FORM ================= */
+/* FORM */
 input{
-  width:100%;
-  padding:11px;
-  margin:8px 0;
-  border-radius:8px;
-  border:1px solid #d0d6e5;
-  font-size:14px
+  width:100%;padding:12px;margin-bottom:10px;
+  border-radius:10px;border:1px solid #d1d5db
 }
-
-input:focus{
-  outline:none;
-  border-color:#1c3f87
-}
-
+input:focus{outline:none;border-color:var(--primary)}
 button{
-  width:100%;
-  padding:12px;
-  margin-top:6px;
-  background:#1c3f87;
-  color:#fff;
-  border:none;
-  border-radius:10px;
-  font-weight:600;
-  cursor:pointer
+  width:100%;padding:12px;border:none;
+  border-radius:12px;background:var(--primary);
+  color:#fff;font-weight:600;cursor:pointer
 }
-
-button:hover{background:#163472}
-
-.link{
-  font-size:12px;
-  color:#1c3f87;
-  cursor:pointer;
-  text-decoration:underline
-}
-
+button:hover{opacity:.9}
+.link{font-size:12px;color:var(--primary);cursor:pointer}
 #msg{font-size:12px;color:red}
 
-/* ================= NOTICES ================= */
-.notice{
-  padding:14px;
-  margin-bottom:12px;
-  border-radius:12px;
-  background:#f6f8fc;
-  font-size:14px
-}
-
-.notice b{color:#1c3f87}
-
-/* ================= FOOTER ================= */
+/* FOOTER */
 .footer{
-  margin-top:auto;
-  background:#1c3f87;
-  color:#fff;
-  text-align:center;
-  padding:14px;
-  font-size:11px;
-  line-height:1.6
+  background:var(--primary);color:#fff;
+  text-align:center;padding:16px;font-size:12px
 }
 
-/* ================= DESKTOP ================= */
-@media(min-width:901px){
-  body{padding-top:0}
-  .header{position:static;height:auto}
-  .hamburger{display:none}
+/* RESPONSIVE */
+@media(min-width:900px){
+  .container{grid-template-columns:280px 1fr 260px}
+}
+
+@media(max-width:899px){
+  .hamburger{display:block}
   .nav{
-    position:static;
-    transform:none;
-    flex-direction:row;
-    align-items:center;
-    padding:8px 16px;
-    gap:12px
+    position:fixed;top:64px;left:0;width:100%;
+    background:#fff;flex-direction:column;
+    padding:12px;transform:translateY(-120%);
+    transition:.3s
   }
-  .nav a,.nav-btn{width:auto;white-space:nowrap}
-  .nav-item{position:relative;width:auto}
-  .dropdown{
-    position:absolute;
-    top:100%;
-    left:0;
-    margin-top:6px;
-    min-width:220px;
-    z-index:2000
-  }
-  .container{
-    display:grid;
-    grid-template-columns:280px 1fr 280px;
-    gap:22px
-  }
-}
-
-/* ================= MOBILE APP MODE ================= */
-@media(max-width:900px){
-  body{
-    background:#f5f7fb;
-    padding-bottom:72px
-  }
-  .container{
-    margin:0;
-    padding:12px
-  }
-  .card{
-    border-radius:16px;
-    box-shadow:0 6px 18px rgba(0,0,0,.06)
-  }
-  .footer{display:none}
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    height:64px;
-    background:#fff;
-    border-top:1px solid #e6e9f0;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    z-index:2000
-  }
-  .bottom-nav button{
-    background:none;
-    border:none;
-    font-size:11px;
-    color:#1c3f87;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:4px
-  }
+  .nav.open{transform:translateY(0)}
 }
 </style>
 </head>
@@ -287,61 +128,55 @@ button:hover{background:#163472}
 <!-- HEADER -->
 <div class="header">
   <img src="pecos.png">
+  <div class="nav" id="mobileNav">
+    <a href="index.html"><b>Home</b></a>
+
+    <div class="nav-item">
+      <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
+      <div class="dropdown">
+        <a href="#" data-doc="Fixed Deposit" onclick="loadInvestment(event)">Fixed Deposit</a>
+        <a href="#" data-doc="Recurring Deposit" onclick="loadInvestment(event)">Recurring Deposit</a>
+        <a href="#" data-doc="Annuity Deposit" onclick="loadInvestment(event)">Annuity Deposit</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
+      <div class="dropdown">
+        <a href="#" data-doc="Mutual Funds" onclick="loadInvestment(event)">Mutual Funds</a>
+        <a href="#" data-doc="Demat & Securities" onclick="loadInvestment(event)">Demat & Securities</a>
+        <a href="#" data-doc="NPS" onclick="loadInvestment(event)">NPS</a>
+        <a href="#" data-doc="PPF" onclick="loadInvestment(event)">PPF</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
+      <div class="dropdown">
+        <a href="#" data-doc="Health Insurance" onclick="loadInvestment(event)">Health Insurance</a>
+        <a href="#" data-doc="SME Insurance" onclick="loadInvestment(event)">SME Insurance</a>
+        <a href="#" data-doc="Motor Insurance" onclick="loadInvestment(event)">Motor Insurance</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
+      <div class="dropdown">
+        <a href="#" data-doc="Personal Loan" onclick="loadInvestment(event)">Personal Loan</a>
+        <a href="#" data-doc="Car Loan" onclick="loadInvestment(event)">Car Loan</a>
+        <a href="#" data-doc="Home Loan" onclick="loadInvestment(event)">Home Loan</a>
+        <a href="#" data-doc="Gold Loan" onclick="loadInvestment(event)">Gold Loan</a>
+      </div>
+    </div>
+  </div>
   <div class="hamburger" onclick="toggleNav()">☰</div>
 </div>
 
-<!-- NAV -->
-<div class="nav" id="mobileNav">
-
-  <a href="/index.html"><b>Home</b></a>
-
-  <div class="nav-item">
-    <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
-    <div class="dropdown">
-      <a href="#" data-doc="Fixed Deposit" onclick="loadInvestment(event)">Fixed Deposit</a>
-      <a href="#" data-doc="Recurring Deposit" onclick="loadInvestment(event)">Recurring Deposit</a>
-      <a href="#" data-doc="Annuity Deposit" onclick="loadInvestment(event)">Annuity Deposit</a>
-    </div>
-  </div>
-
-  <div class="nav-item">
-    <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
-    <div class="dropdown">
-      <a href="#" data-doc="Mutual Funds" onclick="loadInvestment(event)">Mutual Funds</a>
-      <a href="#" data-doc="Demat & Securities" onclick="loadInvestment(event)">Demat & Securities</a>
-      <a href="#" data-doc="NPS" onclick="loadInvestment(event)">NPS</a>
-      <a href="#" data-doc="PPF" onclick="loadInvestment(event)">PPF</a>
-    </div>
-  </div>
-
-  <div class="nav-item">
-    <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
-    <div class="dropdown">
-      <a href="#" data-doc="Health Insurance" onclick="loadInvestment(event)">Health Insurance</a>
-      <a href="#" data-doc="SME Insurance" onclick="loadInvestment(event)">SME Insurance</a>
-      <a href="#" data-doc="Motor Insurance" onclick="loadInvestment(event)">Motor Insurance</a>
-    </div>
-  </div>
-
-  <div class="nav-item">
-    <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
-    <div class="dropdown">
-      <a href="#" data-doc="Personal Loan" onclick="loadInvestment(event)">Personal Loan</a>
-      <a href="#" data-doc="Car Loan" onclick="loadInvestment(event)">Car Loan</a>
-      <a href="#" data-doc="Home Loan" onclick="loadInvestment(event)">Home Loan</a>
-      <a href="#" data-doc="Gold Loan" onclick="loadInvestment(event)">Gold Loan</a>
-    </div>
-  </div>
-
-</div>
-
-<div class="infobar">
-  Welcome to the Pecos Member Portal | Best viewed on Google Chrome
-</div>
+<div class="infobar">Welcome to the Pecos Member Portal</div>
 
 <div class="container">
 
-  <div class="card side-card">
+  <div class="card">
     <h3>Quick Login</h3>
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
@@ -359,7 +194,7 @@ button:hover{background:#163472}
     </div>
   </div>
 
-  <div class="card side-card">
+  <div class="card">
     <h3>Help Desk</h3>
     <p>📧 karan@pecos.in</p>
   </div>
@@ -371,75 +206,19 @@ button:hover{background:#163472}
   Insurance License No: <b>ILGD00047707</b> | AMFI ARN: <b>270481</b>
 </div>
 
-<!-- MOBILE BOTTOM NAV -->
-<div class="bottom-nav">
-  <button onclick="location.href='index.html'">🏠<span>Home</span></button>
-  <button onclick="toggleNav()">📂<span>Menu</span></button>
-  <button onclick="loadInvestment(event)" data-doc="Mutual Funds">📊<span>Invest</span></button>
-  <button onclick="location.href='member.html'">👤<span>Account</span></button>
-</div>
-
-<!-- 🔒 FUNCTIONAL CODE (UNCHANGED) -->
+<!-- FUNCTIONAL CODE UNCHANGED -->
 <script>
-const firebaseConfig={
-  apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain:"pecos-432b5.firebaseapp.com",
-  projectId:"pecos-432b5"
-};
+const firebaseConfig={apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",authDomain:"pecos-432b5.firebaseapp.com",projectId:"pecos-432b5"};
 firebase.initializeApp(firebaseConfig);
-
 const auth=firebase.auth();
 const db=firebase.firestore();
-
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-
-auth.onAuthStateChanged(async(user)=>{
-  if(user && user.emailVerified){
-    const doc=await db.collection("members").doc(user.uid).get();
-    location.href=doc.data()?.isAdmin?"admin.html":"member.html";
-  }
-});
-
-async function login(){
-  msg.innerText="";
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value.trim();
-  if(!email||!password){msg.innerText="Please fill all fields";return;}
-  try{
-    const res=await auth.signInWithEmailAndPassword(email,password);
-    if(!res.user.emailVerified) msg.innerText="Please verify your email";
-  }catch(e){msg.innerText=e.message;}
-}
-
-function resetPassword(){
-  const email=prompt("Enter registered email");
-  if(!email)return;
-  auth.sendPasswordResetEmail(email);
-  alert("Password reset link sent");
-}
-
-function toggleMenu(btn){
-  document.querySelectorAll('.nav-item').forEach(item=>{
-    item.contains(btn)?item.classList.toggle('active'):item.classList.remove('active');
-  });
-}
-
-function toggleNav(){
-  document.getElementById("mobileNav").classList.toggle("open");
-}
-
-async function loadInvestment(e){
-  e.preventDefault();
-  const docName=e.target.getAttribute("data-doc");
-  try{
-    const doc=await db.collection("Content").doc(docName).get();
-    document.getElementById("mainContent").innerHTML=
-      `<div class="notice"><b>${docName}</b><br>${doc.data()?.Data||"No data found"}</div>`;
-  }catch{
-    document.getElementById("mainContent").innerHTML=
-      `<div class="notice"><b>Error</b><br>Unable to load data.</div>`;
-  }
-}
+auth.onAuthStateChanged(async(user)=>{if(user&&user.emailVerified){const doc=await db.collection("members").doc(user.uid).get();location.href=doc.data()?.isAdmin?"admin.html":"member.html";}});
+async function login(){msg.innerText="";const email=document.getElementById("email").value.trim();const password=document.getElementById("password").value.trim();if(!email||!password){msg.innerText="Please fill all fields";return;}try{const res=await auth.signInWithEmailAndPassword(email,password);if(!res.user.emailVerified)msg.innerText="Please verify your email";}catch(e){msg.innerText=e.message;}}
+function resetPassword(){const email=prompt("Enter registered email");if(!email)return;auth.sendPasswordResetEmail(email);alert("Password reset link sent");}
+function toggleMenu(btn){document.querySelectorAll('.nav-item').forEach(item=>{item.contains(btn)?item.classList.toggle('active'):item.classList.remove('active');});}
+function toggleNav(){document.getElementById("mobileNav").classList.toggle("open");}
+async function loadInvestment(e){e.preventDefault();const docName=e.target.getAttribute("data-doc");try{const doc=await db.collection("Content").doc(docName).get();document.getElementById("mainContent").innerHTML=`<div class="notice"><b>${docName}</b><br>${doc.data()?.Data||"No data found"}</div>`;}catch{document.getElementById("mainContent").innerHTML=`<div class="notice"><b>Error</b><br>Unable to load data.</div>`;}}
 </script>
 
 </body>
