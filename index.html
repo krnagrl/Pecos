@@ -41,6 +41,16 @@ body{
   flex-direction:column;
 }
 
+/* PAGE WRAPPER (10% MARGIN BOTH SIDES) */
+.page{
+  width:80%;
+  max-width:1400px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+
 /* HEADER */
 .header{
   position:sticky;
@@ -127,12 +137,12 @@ body{
 
 /* MAIN LAYOUT */
 .container{
-  max-width:1200px;
+  max-width:100%;
   margin:24px auto;
   padding:0 16px;
   display:grid;
   gap:24px;
-  flex:1; /* KEY FOR FOOTER */
+  flex:1;
 }
 
 /* CARDS */
@@ -218,6 +228,10 @@ button:hover{
 }
 
 @media (max-width:899px){
+  .page{
+    width:100%;
+  }
+
   .hamburger{
     display:block;
   }
@@ -342,4 +356,5 @@ async function loadInvestment(e){e.preventDefault();const docName=e.target.getAt
 
 </body>
 </html>
+
 
