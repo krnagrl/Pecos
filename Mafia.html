@@ -1,355 +1,245 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mafia Economics – An In‑Depth Analysis</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pecos | Town Member Portal</title>
+<link rel="icon" href="pecos.png">
 
-  <!-- =====================
-       COLOR SYSTEM
-       Replace these variables with YOUR webpage color codes
-       ===================== -->
-  <style>
-    :root {
-      --bg: #0f1115;           /* replace with your background */
-      --surface: #171a21;      /* cards/sections */
-      --primary: #c9a24d;      /* highlights */
-      --secondary: #8b8f9c;    /* muted text */
-      --text: #e8e9ed;         /* main text */
-      --danger: #b84a4a;       /* risk/illegal indicators */
-      --success: #4ab87a;      /* money/flow indicators */
-      --border: #2a2f3a;
-    }
+<!-- Firebase (UNCHANGED) -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-    * { box-sizing: border-box; }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
+<style>
+:root{
+  --primary:#1c3f87;
+  --dark:#0f1f44;
+  --bg:#f4f6fb;
+  --card:#ffffff;
+}
 
-    header {
-      padding: 60px 24px;
-      text-align: center;
-      background: linear-gradient(180deg, rgba(201,162,77,0.15), transparent);
-      border-bottom: 1px solid var(--border);
-    }
+*{
+  box-sizing:border-box;
+  font-family:Inter,system-ui;
+}
 
-    header h1 {
-      font-size: 2.6rem;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+}
 
-    header p {
-      max-width: 900px;
-      margin: auto;
-      color: var(--secondary);
-    }
+/* HEADER */
+.header{
+  background:white;
+  padding:14px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid #e5e7eb;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    main {
-      max-width: 1200px;
-      margin: auto;
-      padding: 40px 24px 80px;
-    }
+.header img{
+  height:42px;
+}
 
-    section {
-      margin-bottom: 64px;
-    }
+.nav a{
+  text-decoration:none;
+  color:#111;
+  margin-left:20px;
+  font-weight:500;
+}
 
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 28px;
-      margin-top: 24px;
-    }
+.nav a:hover{
+  color:var(--primary);
+}
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 8px;
-      color: var(--primary);
-    }
+/* HERO IMAGE SECTION */
+.hero{
+  position:relative;
+  height:420px;
+  background:url("PECOSS.png") center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
 
-    h3 {
-      margin-top: 24px;
-      color: var(--text);
-    }
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.45);
+}
 
-    .muted { color: var(--secondary); }
+.hero-content{
+  position:relative;
+  color:white;
+  text-align:center;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-    }
+.hero-content h1{
+  font-size:42px;
+  margin:0;
+}
 
-    /* =====================
-       SIMPLE CHART STYLES
-       ===================== */
-    .bar-chart {
-      display: flex;
-      gap: 12px;
-      align-items: flex-end;
-      height: 180px;
-      margin-top: 20px;
-    }
+.hero-content p{
+  margin-top:12px;
+  font-size:16px;
+}
 
-    .bar {
-      flex: 1;
-      background: var(--primary);
-      border-radius: 6px 6px 0 0;
-      position: relative;
-    }
+/* MAIN SECTION */
+.container{
+  width:85%;
+  margin:-60px auto 40px;
+  display:grid;
+  grid-template-columns:280px 1fr 260px;
+  gap:24px;
+}
 
-    .bar span {
-      position: absolute;
-      bottom: -28px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: var(--secondary);
-      white-space: nowrap;
-    }
+.card{
+  background:white;
+  padding:22px;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
 
-    .bar::after {
-      content: attr(data-value) '%';
-      position: absolute;
-      top: -26px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.75rem;
-      color: var(--text);
-    }
+.card h3{
+  margin-top:0;
+  color:var(--primary);
+}
 
-    /* =====================
-       FLOW DIAGRAM
-       ===================== */
-    .flow {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      margin-top: 20px;
-    }
+/* LOGIN */
+input{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border-radius:10px;
+  border:1px solid #d1d5db;
+}
 
-    .node {
-      padding: 12px 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.9rem;
-    }
+button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:var(--primary);
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
 
-    .arrow {
-      color: var(--primary);
-      font-size: 1.4rem;
-    }
+button:hover{
+  opacity:.9;
+}
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 24px;
-      text-align: center;
-      color: var(--secondary);
-      font-size: 0.85rem;
-    }
-  </style>
+.notice{
+  background:#f1f5ff;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:14px;
+}
+
+.notice b{
+  color:var(--primary);
+}
+
+.footer{
+  background:var(--dark);
+  color:white;
+  text-align:center;
+  padding:20px;
+  font-size:12px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .container{
+    grid-template-columns:1fr;
+    margin-top:20px;
+  }
+
+  .hero{
+    height:300px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-<header>
-  <h1>Businesses Supposedly Controlled by Mafias</h1>
-  <p>
-    An analytical, educational overview of how organized crime networks have historically
-    infiltrated legitimate industries worldwide. This page focuses on <strong>patterns,
-    incentives, and mechanisms</strong> — not accusations against individuals.
-  </p>
-</header>
+<!-- HEADER -->
+<div class="header">
+  <img src="pecos.png">
+  <div class="nav">
+    <a href="#">Home</a>
+    <a href="#">Bank</a>
+    <a href="#">Investments</a>
+    <a href="#">Insurance</a>
+    <a href="#">Loans</a>
+  </div>
+</div>
 
-<main>
+<!-- HERO IMAGE -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>Welcome to Pecos Town</h1>
+    <p>Your Financial Ecosystem — Bank • Factory • Hospital • Pub • Church</p>
+  </div>
+</div>
 
-  <!-- ================= REAL ESTATE ================= -->
-  <section>
-    <h2>1. Real Estate</h2>
-    <div class="card">
-      <p>
-        Real estate has long been considered one of the most effective sectors for mafia and
-        organized crime groups to operate in. The reasons are simple: high transaction values,
-        opaque pricing, political dependency, and slow legal processes.
-      </p>
+<!-- MAIN CONTENT -->
+<div class="container">
 
-      <h3>How Control Happens</h3>
-      <ul class="muted">
-        <li>Bribing land‑revenue, municipal, and registry officials.</li>
-        <li>Illegal conversion of government or agricultural land into private/commercial land.</li>
-        <li>Forced acquisition of plots at distress prices using threats or political pressure.</li>
-        <li>Artificial scarcity by hoarding land to manipulate prices.</li>
-      </ul>
+  <!-- LOGIN -->
+  <div class="card">
+    <h3>Member Login</h3>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg" style="color:red;font-size:12px;"></p>
+    <span style="font-size:12px;color:var(--primary);cursor:pointer;" onclick="resetPassword()">Forgot Password?</span>
+  </div>
 
-      <h3>Money Flow (Typical Pattern)</h3>
-      <div class="flow">
-        <div class="node">Political Influence</div>
-        <div class="arrow">→</div>
-        <div class="node">Land Records Manipulation</div>
-        <div class="arrow">→</div>
-        <div class="node">Cheap Acquisition</div>
-        <div class="arrow">→</div>
-        <div class="node">Price Inflation</div>
-        <div class="arrow">→</div>
-        <div class="node">Public Sale</div>
-      </div>
-
-      <h3>Risk vs Profit (Indicative)</h3>
-      <div class="bar-chart">
-        <div class="bar" style="height:70%" data-value="70"><span>Profit</span></div>
-        <div class="bar" style="height:35%; background:var(--danger)" data-value="35"><span>Legal Risk</span></div>
-      </div>
+  <!-- SERVICES -->
+  <div class="card">
+    <div id="mainContent">
+      <div class="notice"><b>Bank (Deposits)</b><br>Fixed, Recurring & Annuity Deposits</div>
+      <div class="notice"><b>Factory (Investments)</b><br>Mutual Funds, Demat & Wealth Planning</div>
+      <div class="notice"><b>Hospital (Insurance)</b><br>Health, Motor & SME Coverage</div>
+      <div class="notice"><b>Town Development (Loans)</b><br>Home, Car, Gold & Personal Loans</div>
     </div>
-  </section>
+  </div>
 
-  <!-- ================= LIQUOR ================= -->
-  <section>
-    <h2>2. Liquor Trade</h2>
-    <div class="card">
-      <p>
-        The liquor industry is one of the most license‑heavy and cash‑intensive businesses.
-        Wherever strict quotas, state monopolies, or complex permits exist, mafia influence
-        historically tends to follow.
-      </p>
+  <!-- HELP -->
+  <div class="card">
+    <h3>Town Help Desk</h3>
+    <p>📧 karan@pecos.in</p>
+    <p>Akola, Maharashtra</p>
+  </div>
 
-      <h3>Common Mafia Entry Points</h3>
-      <ul class="muted">
-        <li>Control over retail licenses through political connections.</li>
-        <li>Benami ownership of liquor shops and distribution contracts.</li>
-        <li>Smuggling and parallel supply chains to avoid excise duties.</li>
-        <li>Threatening competitors who attempt independent entry.</li>
-      </ul>
+</div>
 
-      <h3>Why Liquor Is Attractive</h3>
-      <div class="grid">
-        <div class="node">Daily Cash Flow</div>
-        <div class="node">High Taxes = High Evasion Scope</div>
-        <div class="node">Addiction‑Driven Demand</div>
-        <div class="node">Political Funding Channel</div>
-      </div>
-    </div>
-  </section>
+<div class="footer">
+  © 2025 PECOS TOWN FINANCIAL ECOSYSTEM <br>
+  Insurance License No: ILGD00047707 | AMFI ARN: 270481
+</div>
 
-  <!-- ================= MANUFACTURING ================= -->
-  <section>
-    <h2>3. Manufacturing</h2>
-    <div class="card">
-      <p>
-        Certain manufacturing sectors require rare licenses, massive capital, or state
-        approvals. Organized crime networks often exploit these barriers by securing exclusive
-        access and blocking new entrants.
-      </p>
-
-      <h3>Heavily Influenced Segments</h3>
-      <ul class="muted">
-        <li>Defence equipment and dual‑use engineering goods.</li>
-        <li>Metals, cement, and large‑scale infrastructure inputs.</li>
-        <li>Mining and natural resource extraction.</li>
-      </ul>
-
-      <h3>Control Structure</h3>
-      <div class="flow">
-        <div class="node">Licensing Authority</div>
-        <div class="arrow">→</div>
-        <div class="node">Exclusive Permit</div>
-        <div class="arrow">→</div>
-        <div class="node">Supply Control</div>
-        <div class="arrow">→</div>
-        <div class="node">Price Power</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= HEALTHCARE ================= -->
-  <section>
-    <h2>4. Healthcare</h2>
-    <div class="card">
-      <p>
-        Healthcare is not traditionally associated with mafias, yet it presents enormous
-        opportunities due to urgency, emotional vulnerability, and government spending.
-      </p>
-
-      <h3>Observed Patterns</h3>
-      <ul class="muted">
-        <li>Overbilling insurance and government health schemes.</li>
-        <li>Control of diagnostics, ambulance, and medical supply chains.</li>
-        <li>Counterfeit or sub‑standard drug distribution.</li>
-      </ul>
-
-      <p class="muted">
-        In many cases, the mafia role is indirect — operating through shell companies,
-        hospital management firms, or supply contractors.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================= FINANCE ================= -->
-  <section>
-    <h2>5. Finance & Stock Markets</h2>
-    <div class="card">
-      <p>
-        Financial markets allow organized crime to convert illegal income into legal wealth —
-        a process commonly referred to as <strong>money laundering</strong>.
-      </p>
-
-      <h3>Methods Used</h3>
-      <ul class="muted">
-        <li>Pump‑and‑dump schemes using shell investors.</li>
-        <li>Insider information obtained via bribery.</li>
-        <li>Layering money through multiple accounts and instruments.</li>
-      </ul>
-
-      <h3>Typical Laundering Path</h3>
-      <div class="flow">
-        <div class="node">Illegal Cash</div>
-        <div class="arrow">→</div>
-        <div class="node">Shell Companies</div>
-        <div class="arrow">→</div>
-        <div class="node">Stock / Funds</div>
-        <div class="arrow">→</div>
-        <div class="node">Clean Capital</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= LOGISTICS ================= -->
-  <section>
-    <h2>6. Trade & Logistics</h2>
-    <div class="card">
-      <p>
-        Logistics is the bloodstream of any economy. Control over ports, warehouses, and
-        transport routes provides enormous leverage to organized crime groups.
-      </p>
-
-      <h3>Key Advantages</h3>
-      <ul class="muted">
-        <li>Smuggling goods alongside legal cargo.</li>
-        <li>Extortion of transporters and warehouse operators.</li>
-        <li>Manipulation of import‑export documentation.</li>
-      </ul>
-
-      <h3>Strategic Impact</h3>
-      <p class="muted">
-        Once logistics is influenced, mafias indirectly gain power over multiple industries
-        simultaneously — from retail to manufacturing.
-      </p>
-    </div>
-  </section>
-
-</main>
-
-<footer>
-  Educational content for awareness and analysis only. This page discusses historical and
-  structural patterns, not allegations against any specific individual or organization.
-</footer>
+<!-- FUNCTIONAL CODE UNCHANGED -->
+<script>
+const firebaseConfig={apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",authDomain:"pecos-432b5.firebaseapp.com",projectId:"pecos-432b5"};
+firebase.initializeApp(firebaseConfig);
+const auth=firebase.auth();
+const db=firebase.firestore();
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+auth.onAuthStateChanged(async(user)=>{if(user&&user.emailVerified){const doc=await db.collection("members").doc(user.uid).get();location.href=doc.data()?.isAdmin?"admin.html":"member.html";}});
+async function login(){msg.innerText="";const email=document.getElementById("email").value.trim();const password=document.getElementById("password").value.trim();if(!email||!password){msg.innerText="Please fill all fields";return;}try{const res=await auth.signInWithEmailAndPassword(email,password);if(!res.user.emailVerified)msg.innerText="Please verify your email";}catch(e){msg.innerText=e.message;}}
+function resetPassword(){const email=prompt("Enter registered email");if(!email)return;auth.sendPasswordResetEmail(email);alert("Password reset link sent");}
+</script>
 
 </body>
 </html>
