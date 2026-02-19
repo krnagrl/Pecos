@@ -211,14 +211,65 @@ button:hover{
 }
 
 /* FOOTER */
+/* NEW FOOTER */
 .footer{
-  background:var(--primary);
+  background:#2f2f2f;
   color:#fff;
-  text-align:center;
-  padding:18px 12px;
-  font-size:12px;
-  margin-top:auto;
+  padding:50px 0;
+  font-size:14px;
 }
+
+.footer-container{
+  width:80%;
+  max-width:1400px;
+  margin:0 auto;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:40px;
+}
+
+.footer-left,
+.footer-right{
+  flex:1;
+  min-width:280px;
+}
+
+.footer a{
+  color:#fff;
+  text-decoration:underline;
+}
+
+.footer p{
+  margin:6px 0;
+  line-height:1.6;
+}
+
+.social-icons{
+  margin-top:15px;
+  display:flex;
+  gap:12px;
+}
+
+.social-icons a{
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#444;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:16px;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:40px;
+  font-size:12px;
+  opacity:.8;
+}
+
 
 /* RESPONSIVE */
 @media (min-width:900px){
@@ -344,11 +395,32 @@ button:hover{
   </div>
 
 </div>
+  <div class="footer">
 
-<div class="footer">
-  <b>© 2025 PECOS</b><br>
+  <div class="footer-container">
+
+    <div class="footer-left">
+      <p><b>Office:</b> (+44) 0000 000000 Ext. 00</p>
+      <p><b>Mobile:</b> (+44) 0000 000000</p>
+      <p><a href="mailto:email@email.com">email@email.com</a></p>
+
+      <div class="social-icons">
+        <a href="#">T</a>
+        <a href="#">in</a>
+        <a href="#">IG</a>
+      </div>
+    </div>
+
+    <div class="footer-right">
+      <p><b>For speaking requests and enquiries, please contact:</b></p>
+      <p>Name here</p>
+      <p>Phone: (+44) 0000 000000</p>
+      <p><a href="mailto:email@email.com">email@email.com</a></p>
+    </div>
+      <b>© 2025 PECOS</b><br>
   Insurance License No: <b>ILGD00047707</b> | AMFI ARN: <b>270481</b>
-</div>
+  </div>
+
 
 <!-- FUNCTIONAL CODE UNCHANGED -->
 <script>
@@ -367,6 +439,7 @@ async function loadInvestment(e){e.preventDefault();const docName=e.target.getAt
 
 </body>
 </html>
+
 
 
 
