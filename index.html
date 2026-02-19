@@ -11,41 +11,26 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --primary:#1c3f87;
-  --bg:#f4f6fb;
-  --card:#ffffff;
-  --muted:#6b7280;
+  --dark:#2f2f2f;
+  --card:#3a3a3a;
+  --text:#ffffff;
+  --muted:#bdbdbd;
 }
 
 *{
   box-sizing:border-box;
-  font-family:Inter,system-ui,Arial;
+  font-family:Inter,system-ui;
 }
 
-html, body{
-  margin:0;
-  padding:0;
-  height:100%;
-  background:var(--bg);
-}
-
-/* FLEX PAGE FOR STICKY FOOTER */
 body{
-  display:flex;
-  flex-direction:column;
-}
-
-/* PAGE WRAPPER (10% MARGIN BOTH SIDES) */
-.page{
-  width:80%;
-  max-width:1400px;
-  margin:0 auto;
+  margin:0;
+  background:var(--dark);
+  color:var(--text);
   display:flex;
   flex-direction:column;
   min-height:100vh;
@@ -53,142 +38,65 @@ body{
 
 /* HEADER */
 .header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
+  background:#222;
+  padding:14px 40px;
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
-  border-bottom:1px solid #e5e7eb;
+  align-items:center;
 }
 
 .header img{
   height:42px;
 }
 
-.hamburger{
-  font-size:26px;
-  cursor:pointer;
-  display:none;
-}
-
-/* NAV */
-.nav{
-  display:flex;
-  gap:18px;
-  align-items:center;
-}
-
-.nav a,
-.nav-btn{
-  background:none;
-  border:none;
-  cursor:pointer;
-  font-weight:500;
-  color:#111827;
+.nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:20px;
   font-size:14px;
 }
 
-.nav a:hover,
-.nav-btn:hover{
-  color:var(--primary);
+.nav a:hover{
+  color:#ccc;
 }
 
-.nav-item{
-  position:relative;
-}
-
-.dropdown{
-  display:none;
-  position:absolute;
-  top:120%;
-  left:0;
-  background:#fff;
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
-  overflow:hidden;
-  min-width:220px;
-}
-
-.dropdown a{
-  display:block;
-  padding:12px 16px;
-  color:#111;
-  font-size:14px;
-}
-
-.dropdown a:hover{
-  background:#f1f5ff;
-}
-
-.nav-item.active .dropdown{
-  display:block;
-}
-
-/* INFO BAR */
-.infobar{
-  background:#fff7d6;
-  text-align:center;
-  padding:8px;
-  font-size:13px;
-}
-
-/* MAIN LAYOUT */
-.container{
-  max-width:100%;
-  margin:24px auto;
-  padding:0 16px;
+/* MAIN WRAPPER */
+.main-wrapper{
+  width:80%;
+  max-width:1200px;
+  margin:40px auto;
   display:grid;
-  gap:24px;
+  grid-template-columns:350px 1fr;
+  gap:40px;
   flex:1;
 }
 
-/* CARDS */
+/* CARD */
 .card{
   background:var(--card);
-  border-radius:18px;
-  padding:20px;
-  box-shadow:0 12px 30px rgba(0,0,0,.08);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
 }
 
 .card h3{
-  margin:0 0 14px;
-  font-size:16px;
-  color:var(--primary);
-}
-
-.notice{
-  padding:16px;
-  border-radius:14px;
-  background:#f5f7ff;
-  margin-bottom:14px;
-}
-
-.notice b{
-  color:var(--primary);
+  margin-top:0;
 }
 
 /* FORM */
 input{
   width:100%;
   padding:12px;
-  margin-bottom:10px;
-  border-radius:10px;
-  border:1px solid #d1d5db;
-}
-
-input:focus{
-  outline:none;
-  border-color:var(--primary);
+  margin-bottom:12px;
+  border-radius:8px;
+  border:none;
 }
 
 button{
   width:100%;
   padding:12px;
   border:none;
-  border-radius:12px;
+  border-radius:8px;
   background:var(--primary);
   color:#fff;
   font-weight:600;
@@ -201,178 +109,56 @@ button:hover{
 
 .link{
   font-size:12px;
-  color:var(--primary);
+  color:#ccc;
   cursor:pointer;
 }
 
 #msg{
   font-size:12px;
-  color:red;
+  color:#ff6b6b;
+}
+
+/* NOTICE */
+.notice{
+  background:#444;
+  padding:16px;
+  border-radius:12px;
+  margin-bottom:15px;
 }
 
 /* FOOTER */
-/* NEW FOOTER */
 .footer{
   background:#2f2f2f;
-  color:#fff;
-  padding:50px 0;
-  font-size:14px;
-}
-
-.footer-container{
-  width:80%;
-  max-width:1400px;
-  margin:0 auto;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:40px;
-}
-
-.footer-left,
-.footer-right{
-  flex:1;
-  min-width:280px;
-}
-
-.footer a{
-  color:#fff;
-  text-decoration:underline;
-}
-
-.footer p{
-  margin:6px 0;
-  line-height:1.6;
-}
-
-.social-icons{
-  margin-top:15px;
-  display:flex;
-  gap:12px;
-}
-
-.social-icons a{
-  width:36px;
-  height:36px;
-  border-radius:50%;
-  background:#444;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
-  font-size:16px;
-}
-
-.footer-bottom{
+  padding:40px;
   text-align:center;
-  margin-top:40px;
-  font-size:12px;
-  opacity:.8;
+  font-size:13px;
 }
-
 
 /* RESPONSIVE */
-@media (min-width:900px){
-  .container{
-    grid-template-columns:280px 1fr 260px;
+@media(max-width:900px){
+  .main-wrapper{
+    grid-template-columns:1fr;
   }
 }
-
-@media (max-width:899px){
-  .page{
-    width:100%;
-  }
-
-  .hamburger{
-    display:block;
-  }
-
-  .nav{
-    position:fixed;
-    top:64px;
-    left:0;
-    width:100%;
-    background:#fff;
-    flex-direction:column;
-    padding:12px;
-    transform:translateY(-120%);
-    transition:.3s;
-  }
-
-  .nav.open{
-    transform:translateY(0);
-  }
-}
-@media (min-width:900px){
-  .container{
-    grid-template-columns:280px 1fr 260px;
-    align-items:stretch; /* makes all grid items same height */
-  }
-
-  .card{
-    height:420px;      /* 👈 Set your fixed height here */
-    overflow:auto;     /* scroll if content exceeds height */
-  }
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- NAVBAR -->
 <div class="header">
   <img src="pecos.png">
-  <div class="nav" id="mobileNav">
-    <a href="index.html"><b>Home</b></a>
-
-    <div class="nav-item">
-      <button class="nav-btn" onclick="toggleMenu(this)">Deposits ▾</button>
-      <div class="dropdown">
-        <a href="#" data-doc="Fixed Deposit" onclick="loadInvestment(event)">Fixed Deposit</a>
-        <a href="#" data-doc="Recurring Deposit" onclick="loadInvestment(event)">Recurring Deposit</a>
-        <a href="#" data-doc="Annuity Deposit" onclick="loadInvestment(event)">Annuity Deposit</a>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <button class="nav-btn" onclick="toggleMenu(this)">Investments ▾</button>
-      <div class="dropdown">
-        <a href="#" data-doc="Mutual Funds" onclick="loadInvestment(event)">Mutual Funds</a>
-        <a href="#" data-doc="Demat & Securities" onclick="loadInvestment(event)">Demat & Securities</a>
-        <a href="#" data-doc="NPS" onclick="loadInvestment(event)">NPS</a>
-        <a href="#" data-doc="PPF" onclick="loadInvestment(event)">PPF</a>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <button class="nav-btn" onclick="toggleMenu(this)">Insurance ▾</button>
-      <div class="dropdown">
-        <a href="#" data-doc="Health Insurance" onclick="loadInvestment(event)">Health Insurance</a>
-        <a href="#" data-doc="SME Insurance" onclick="loadInvestment(event)">SME Insurance</a>
-        <a href="#" data-doc="Motor Insurance" onclick="loadInvestment(event)">Motor Insurance</a>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <button class="nav-btn" onclick="toggleMenu(this)">Loans ▾</button>
-      <div class="dropdown">
-        <a href="#" data-doc="Personal Loan" onclick="loadInvestment(event)">Personal Loan</a>
-        <a href="#" data-doc="Car Loan" onclick="loadInvestment(event)">Car Loan</a>
-        <a href="#" data-doc="Home Loan" onclick="loadInvestment(event)">Home Loan</a>
-        <a href="#" data-doc="Gold Loan" onclick="loadInvestment(event)">Gold Loan</a>
-      </div>
-    </div>
+  <div class="nav">
+    <a href="#">Home</a>
   </div>
-  <div class="hamburger" onclick="toggleNav()">☰</div>
 </div>
 
-<div class="infobar">Welcome to the Pecos Member Portal</div>
+<!-- MAIN CONTENT -->
+<div class="main-wrapper">
 
-<div class="container">
-
+  <!-- LOGIN SECTION -->
   <div class="card">
-    <h3>Quick Login</h3>
+    <h3>Member Login</h3>
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
@@ -380,6 +166,7 @@ button:hover{
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
+  <!-- MAIN SECTION -->
   <div class="card">
     <div id="mainContent">
       <div class="notice"><b>Investment Services</b><br>Mutual Funds, Stocks & Wealth Planning</div>
@@ -389,35 +176,12 @@ button:hover{
     </div>
   </div>
 
-  <div class="card">
-    <h3>Help Desk</h3>
-    <p>📧 karan@pecos.in</p>
-  </div>
-
 </div>
-  <div class="footer">
 
-  <div class="footer-container">
-
-    <div class="footer-left">
-      <p><b>Mobile:</b> (+91) 8669334862</p>
-      <p><b>Email:</b><a href="mailto:karan@pecos.in"> karan@pecos.in</a></p>
-      <div class="social-icons">
-        <a href="#">T</a>
-        <a href="#">in</a>
-        <a href="#">IG</a>
-      </div>
-    </div>
-
-    <div class="footer-right">
-      <p><b>Office:</b> 210 Yamuna Business Park,<br> Akola MH 444001</p>
-
-      <br><b>© 2025 PECOS</b><br>
-    </div>
-   
-
-  </div>
-
+<!-- FOOTER -->
+<div class="footer">
+  © 2025 PECOS | Finance • Real Estate • Stocks & Shares
+</div>
 
 <!-- FUNCTIONAL CODE UNCHANGED -->
 <script>
@@ -429,18 +193,8 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 auth.onAuthStateChanged(async(user)=>{if(user&&user.emailVerified){const doc=await db.collection("members").doc(user.uid).get();location.href=doc.data()?.isAdmin?"admin.html":"member.html";}});
 async function login(){msg.innerText="";const email=document.getElementById("email").value.trim();const password=document.getElementById("password").value.trim();if(!email||!password){msg.innerText="Please fill all fields";return;}try{const res=await auth.signInWithEmailAndPassword(email,password);if(!res.user.emailVerified)msg.innerText="Please verify your email";}catch(e){msg.innerText=e.message;}}
 function resetPassword(){const email=prompt("Enter registered email");if(!email)return;auth.sendPasswordResetEmail(email);alert("Password reset link sent");}
-function toggleMenu(btn){document.querySelectorAll('.nav-item').forEach(item=>{item.contains(btn)?item.classList.toggle('active'):item.classList.remove('active');});}
-function toggleNav(){document.getElementById("mobileNav").classList.toggle("open");}
 async function loadInvestment(e){e.preventDefault();const docName=e.target.getAttribute("data-doc");try{const doc=await db.collection("Content").doc(docName).get();document.getElementById("mainContent").innerHTML=`<div class="notice"><b>${docName}</b><br>${doc.data()?.Data||"No data found"}</div>`;}catch{document.getElementById("mainContent").innerHTML=`<div class="notice"><b>Error</b><br>Unable to load data.</div>`;}}
 </script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
