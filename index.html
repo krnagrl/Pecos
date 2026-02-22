@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+change the theme of this webpage and make it good trustable website and add some content, pages, links, images, maps, etc "<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -6,30 +6,28 @@
 <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
 <link rel="icon" href="pecos.png">
 
-<!-- Firebase (UNCHANGED) -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
 <style>
-
 :root{
-  --primary:#0d1b2a;
-  --gold:#c6a15b;
-  --light:#f4f6f9;
-  --text:#333;
+  --bg:#000;
+  --card:#111;
+  --border:#fff;
+  --text:#fff;
+  --muted:#888;
 }
 
 *{
   box-sizing:border-box;
-  font-family:'Poppins',sans-serif;
+  font-family: "Courier New", monospace;
 }
 
 body{
   margin:0;
-  background:var(--light);
+  background:var(--bg);
   color:var(--text);
   display:flex;
   flex-direction:column;
@@ -38,137 +36,146 @@ body{
 
 /* HEADER */
 .header{
-  background:#fff;
-  padding:20px 50px;
+  border-bottom:1px solid var(--border);
+  padding:20px 40px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  box-shadow:0 3px 15px rgba(0,0,0,0.05);
 }
 
 .header img{
-  height:45px;
+  height:40px;
+  filter:grayscale(100%) contrast(200%);
 }
 
 .nav a{
+  color:#fff;
   text-decoration:none;
-  color:#333;
-  margin-left:25px;
-  font-weight:500;
-  cursor:pointer;
+  margin-left:20px;
+  font-size:14px;
 }
 
 .nav a:hover{
-  color:var(--gold);
+  text-decoration:underline;
 }
 
 /* MAIN WRAPPER */
 .main-wrapper{
-  width:90%;
+  width:85%;
   max-width:1200px;
   margin:60px auto;
   display:grid;
-  grid-template-columns:400px 1fr;
+  grid-template-columns:350px 1fr;
   gap:40px;
   flex:1;
 }
 
 /* CARD */
 .card{
-  background:#fff;
-  padding:35px;
-  border-radius:8px;
-  box-shadow:0 5px 25px rgba(0,0,0,0.06);
+  background:var(--card);
+  padding:30px;
+  border:1px solid var(--border);
 }
 
+/* LOGIN */
 .card h3{
   margin-top:0;
-  margin-bottom:20px;
-  color:var(--primary);
+  border-bottom:1px solid var(--border);
+  padding-bottom:10px;
 }
 
-/* INPUT */
 input{
   width:100%;
-  padding:12px;
-  margin-bottom:15px;
-  border:1px solid #ddd;
-  border-radius:4px;
+  padding:10px;
+  margin-bottom:12px;
+  background:#000;
+  border:1px solid #fff;
+  color:#fff;
+}
+
+input:focus{
+  outline:none;
+  background:#111;
 }
 
 button{
   width:100%;
-  padding:12px;
-  background:var(--primary);
-  color:#fff;
+  padding:10px;
+  background:#fff;
+  color:#000;
   border:none;
   cursor:pointer;
-  font-weight:600;
-  border-radius:4px;
+  font-weight:bold;
 }
 
 button:hover{
-  background:#000;
+  background:#ccc;
 }
 
 .link{
-  font-size:13px;
-  color:var(--primary);
+  font-size:12px;
+  color:#aaa;
   cursor:pointer;
 }
 
-#msg{
-  font-size:13px;
-  color:red;
+.link:hover{
+  text-decoration:underline;
 }
 
-/* BRAND */
+#msg{
+  font-size:12px;
+  color:#ff4444;
+}
+
+/* MAIN BRAND */
 .main-card{
   display:flex;
-  flex-direction:column;
+  align-items:center;
   justify-content:center;
+  text-align:center;
 }
 
 .brand-content h1{
-  font-size:50px;
+  font-size:60px;
+  letter-spacing:6px;
   margin:0;
-  color:var(--primary);
 }
 
 .brand-content h2{
-  font-weight:400;
-  margin:15px 0;
-  color:#555;
+  font-weight:normal;
+  margin:20px 0;
+  font-size:18px;
+  color:#ccc;
 }
 
 .brand-content p{
-  margin-top:25px;
-  color:#777;
-  line-height:1.7;
+  margin-top:30px;
+  font-size:13px;
+  letter-spacing:3px;
+  color:#888;
 }
 
 .notice{
-  background:#f9fafc;
-  padding:20px;
-  border-left:4px solid var(--gold);
+  border:1px solid #fff;
+  padding:15px;
   margin-top:20px;
 }
 
 /* FOOTER */
 .footer{
-  background:var(--primary);
-  color:#fff;
+  border-top:1px solid var(--border);
   padding:30px;
   text-align:center;
-  font-size:13px;
+  font-size:12px;
+  color:#888;
 }
 
+/* RESPONSIVE */
 @media(max-width:900px){
   .main-wrapper{
     grid-template-columns:1fr;
   }
 }
-
 </style>
 </head>
 
@@ -178,11 +185,11 @@ button:hover{
 <div class="header">
   <img src="pecos.png">
   <div class="nav">
-    <a onclick="location.reload()">Home</a>
+    <a href="#">Home</a>
   </div>
 </div>
 
-<!-- MAIN -->
+<!-- MAIN CONTENT -->
 <div class="main-wrapper">
 
   <!-- LOGIN -->
@@ -195,17 +202,12 @@ button:hover{
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <!-- BRAND -->
+  <!-- BRAND SECTION -->
   <div class="card main-card">
     <div id="mainContent" class="brand-content">
       <h1>PECOS</h1>
       <h2>Wealth. Strategy. Ownership.</h2>
-      <p>
-        Pecos is a professional wealth advisory platform focused on
-        disciplined investing, real estate strategy, and long-term
-        capital growth. We believe in research-backed decisions and
-        structured wealth creation.
-      </p>
+      <p>BUILDING ASSETS THAT OUTLAST TIME</p>
     </div>
   </div>
 
@@ -213,11 +215,10 @@ button:hover{
 
 <!-- FOOTER -->
 <div class="footer">
-  © 2025 PECOS Wealth Advisory | Akola, Maharashtra
+  © 2025 PECOS
 </div>
 
 <script>
-
 const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
   authDomain: "pecos-432b5.firebaseapp.com",
@@ -290,7 +291,6 @@ async function loadInvestment(e){
     `;
   }
 }
-
 </script>
 
 </body>
