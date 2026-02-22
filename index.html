@@ -33,7 +33,6 @@ body{
   min-height:100vh;
 }
 
-/* HEADER */
 .header{
   background:#fff;
   padding:20px 50px;
@@ -47,7 +46,6 @@ body{
   height:45px;
 }
 
-/* MAIN */
 .main-wrapper{
   width:90%;
   max-width:1100px;
@@ -133,7 +131,6 @@ button:hover{
 
 <div class="main-wrapper">
 
-  <!-- LOGIN -->
   <div class="card">
     <h3>Member Login</h3>
     <input id="email" type="email" placeholder="Email">
@@ -143,7 +140,6 @@ button:hover{
     <p style="cursor:pointer;color:blue;" onclick="resetPassword()">Forgot Password?</p>
   </div>
 
-  <!-- BRAND -->
   <div class="card brand">
     <h1>PECOS</h1>
     <h2>Wealth. Strategy. Ownership.</h2>
@@ -161,20 +157,23 @@ button:hover{
 
 <script>
 
-// FIREBASE CONFIG (Your Original Working Config)
+// 🔥 FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  apiKey: "YOUR_API_KEY",
   authDomain: "pecos-432b5.firebaseapp.com",
   projectId: "pecos-432b5"
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+// Ensure persistence
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+.catch(error => console.error(error));
 
-// AUTH STATE LISTENER
+// 🔐 AUTH STATE LISTENER
 auth.onAuthStateChanged(async (user) => {
 
   if (!user) return;
@@ -197,19 +196,21 @@ auth.onAuthStateChanged(async (user) => {
 
     const data = doc.data();
 
-    if (data.isAdmin === true) {
+    if (data.role === "admin") {
       window.location.href = "admin.html";
     } else {
       window.location.href = "member.html";
     }
 
   } catch (error) {
-    document.getElementById("msg").innerText = error.message;
+    console.error(error);
+    document.getElementById("msg").innerText =
+      "Access error: " + error.message;
   }
 
 });
 
-// LOGIN FUNCTION
+// 🔑 LOGIN FUNCTION
 async function login(){
 
   const msg = document.getElementById("msg");
@@ -226,12 +227,13 @@ async function login(){
   try{
     await auth.signInWithEmailAndPassword(email, password);
   }
-  catch(e){
-    msg.innerText = e.message;
+  catch(error){
+    console.error(error);
+    msg.innerText = error.message;
   }
 }
 
-// RESET PASSWORD
+// 🔁 RESET PASSWORD
 function resetPassword(){
 
   const email = prompt("Enter registered email");
