@@ -19,7 +19,6 @@
   --accent:#e31837;
   --bg:#f5f7fa;
   --text:#222;
-  --muted:#666;
 }
 
 *{
@@ -36,7 +35,6 @@ body{
   min-height:100vh;
 }
 
-/* HEADER */
 .header{
   background:#fff;
   padding:16px 60px;
@@ -46,9 +44,7 @@ body{
   box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
-.header img{
-  height:45px;
-}
+.header img{ height:45px; }
 
 .nav a{
   text-decoration:none;
@@ -57,11 +53,6 @@ body{
   font-weight:500;
 }
 
-.nav a:hover{
-  color:var(--accent);
-}
-
-/* MAIN WRAPPER */
 .main-wrapper{
   width:85%;
   max-width:1200px;
@@ -72,7 +63,6 @@ body{
   flex:1;
 }
 
-/* CARD */
 .card{
   background:#fff;
   padding:35px;
@@ -80,11 +70,9 @@ body{
   box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
-/* LOGIN */
 .card h3{
   margin-top:0;
   color:var(--primary);
-  font-weight:600;
   margin-bottom:25px;
 }
 
@@ -94,12 +82,6 @@ input{
   margin-bottom:15px;
   border-radius:8px;
   border:1px solid #ddd;
-  font-size:14px;
-}
-
-input:focus{
-  outline:none;
-  border-color:var(--primary);
 }
 
 button{
@@ -111,21 +93,6 @@ button{
   color:#fff;
   font-weight:600;
   cursor:pointer;
-  transition:.3s;
-}
-
-button:hover{
-  background:#002244;
-}
-
-.link{
-  font-size:13px;
-  color:var(--primary);
-  cursor:pointer;
-}
-
-.link:hover{
-  text-decoration:underline;
 }
 
 #msg{
@@ -134,7 +101,6 @@ button:hover{
   margin-bottom:10px;
 }
 
-/* BRAND SECTION */
 .main-card{
   display:flex;
   align-items:center;
@@ -147,24 +113,13 @@ button:hover{
 .brand-content h1{
   font-size:48px;
   margin:0;
-  font-weight:700;
 }
 
 .brand-content h2{
   font-weight:400;
   margin:20px 0;
-  font-size:22px;
-  color:#ddd;
 }
 
-.brand-content p{
-  font-size:15px;
-  margin-top:30px;
-  max-width:450px;
-  line-height:1.6;
-}
-
-/* FOOTER */
 .footer{
   background:#001f3f;
   color:#ccc;
@@ -173,11 +128,8 @@ button:hover{
   font-size:13px;
 }
 
-/* RESPONSIVE */
 @media(max-width:900px){
-  .main-wrapper{
-    grid-template-columns:1fr;
-  }
+  .main-wrapper{ grid-template-columns:1fr; }
 }
 </style>
 </head>
@@ -193,25 +145,20 @@ button:hover{
 
 <div class="main-wrapper">
 
-  <!-- LOGIN -->
   <div class="card">
     <h3>Member Login</h3>
     <p id="msg"></p>
     <input id="email" type="email" placeholder="Enter your email">
     <input id="password" type="password" placeholder="Enter your password">
     <button onclick="login()">Login</button>
-    <br><br>
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <!-- BRAND -->
   <div class="card main-card">
-    <div id="mainContent" class="brand-content">
+    <div class="brand-content">
       <h1>PECOS</h1>
       <h2>Wealth. Strategy. Ownership.</h2>
       <p>
-        We help investors build long-term financial strength through disciplined investing,
-        strategic asset allocation and professional wealth management.
+        We help investors build long-term financial strength through disciplined investing.
       </p>
     </div>
   </div>
@@ -230,21 +177,35 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.firestore();
 
+/* Keep user logged in */
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
+/* Safe Redirect Logic */
 auth.onAuthStateChanged(async (user) => {
-  if (user && user.emailVerified) {
+  if (!user) return;
+
+  try {
     const doc = await db.collection("members").doc(user.uid).get();
-    location.href = doc.data()?.isAdmin ? "admin.html" : "member.html";
+
+    if (doc.exists && doc.data().isAdmin === true) {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "member.html";
+    }
+  } catch (error) {
+    console.error("Firestore error:", error);
+    window.location.href = "member.html";
   }
 });
 
+/* Login Function */
 async function login(){
   const msg = document.getElementById("msg");
-  msg.innerText = "";
+  msg.innerText = "Logging in...";
 
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
@@ -255,22 +216,11 @@ async function login(){
   }
 
   try{
-    const res = await auth.signInWithEmailAndPassword(email, password);
-    if(!res.user.emailVerified){
-      msg.innerText = "Please verify your email";
-    }
-  } catch(e){
-    msg.innerText = e.message;
+    await auth.signInWithEmailAndPassword(email, password);
+    msg.innerText = "Success! Redirecting...";
+  } catch(error){
+    msg.innerText = error.message;
   }
-}
-
-function resetPassword(){
-  const email = prompt("Enter registered email");
-  if(!email) return;
-
-  auth.sendPasswordResetEmail(email)
-    .then(()=>alert("Password reset link sent"))
-    .catch(err=>alert(err.message));
 }
 </script>
 
