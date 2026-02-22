@@ -1,4 +1,4 @@
-change the theme of this webpage and make it good trustable website and add some content, pages, links, images, maps, etc "<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -11,24 +11,23 @@ change the theme of this webpage and make it good trustable website and add some
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#000;
-  --card:#111;
-  --border:#fff;
-  --text:#fff;
-  --muted:#888;
+  --primary:#0d1b2a;
+  --gold:#c6a15b;
+  --light:#f4f6f9;
 }
 
 *{
   box-sizing:border-box;
-  font-family: "Courier New", monospace;
+  font-family:'Poppins',sans-serif;
 }
 
 body{
   margin:0;
-  background:var(--bg);
-  color:var(--text);
+  background:var(--light);
   display:flex;
   flex-direction:column;
   min-height:100vh;
@@ -36,141 +35,88 @@ body{
 
 /* HEADER */
 .header{
-  border-bottom:1px solid var(--border);
-  padding:20px 40px;
+  background:#fff;
+  padding:20px 50px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  box-shadow:0 3px 15px rgba(0,0,0,0.05);
 }
 
 .header img{
-  height:40px;
-  filter:grayscale(100%) contrast(200%);
+  height:45px;
 }
 
-.nav a{
-  color:#fff;
-  text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
-}
-
-.nav a:hover{
-  text-decoration:underline;
-}
-
-/* MAIN WRAPPER */
+/* MAIN */
 .main-wrapper{
-  width:85%;
-  max-width:1200px;
+  width:90%;
+  max-width:1100px;
   margin:60px auto;
   display:grid;
-  grid-template-columns:350px 1fr;
+  grid-template-columns:400px 1fr;
   gap:40px;
   flex:1;
 }
 
-/* CARD */
 .card{
-  background:var(--card);
-  padding:30px;
-  border:1px solid var(--border);
+  background:#fff;
+  padding:35px;
+  border-radius:8px;
+  box-shadow:0 5px 25px rgba(0,0,0,0.06);
 }
 
-/* LOGIN */
 .card h3{
   margin-top:0;
-  border-bottom:1px solid var(--border);
-  padding-bottom:10px;
+  color:var(--primary);
 }
 
 input{
   width:100%;
-  padding:10px;
-  margin-bottom:12px;
-  background:#000;
-  border:1px solid #fff;
-  color:#fff;
-}
-
-input:focus{
-  outline:none;
-  background:#111;
+  padding:12px;
+  margin-bottom:15px;
+  border:1px solid #ddd;
+  border-radius:4px;
 }
 
 button{
   width:100%;
-  padding:10px;
-  background:#fff;
-  color:#000;
+  padding:12px;
+  background:var(--primary);
+  color:#fff;
   border:none;
   cursor:pointer;
-  font-weight:bold;
+  border-radius:4px;
+  font-weight:600;
 }
 
 button:hover{
-  background:#ccc;
-}
-
-.link{
-  font-size:12px;
-  color:#aaa;
-  cursor:pointer;
-}
-
-.link:hover{
-  text-decoration:underline;
+  background:#000;
 }
 
 #msg{
-  font-size:12px;
-  color:#ff4444;
-}
-
-/* MAIN BRAND */
-.main-card{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-}
-
-.brand-content h1{
-  font-size:60px;
-  letter-spacing:6px;
-  margin:0;
-}
-
-.brand-content h2{
-  font-weight:normal;
-  margin:20px 0;
-  font-size:18px;
-  color:#ccc;
-}
-
-.brand-content p{
-  margin-top:30px;
+  color:red;
   font-size:13px;
-  letter-spacing:3px;
-  color:#888;
 }
 
-.notice{
-  border:1px solid #fff;
-  padding:15px;
-  margin-top:20px;
+.brand h1{
+  font-size:48px;
+  margin:0;
+  color:var(--primary);
 }
 
-/* FOOTER */
+.brand h2{
+  font-weight:400;
+  color:#555;
+}
+
 .footer{
-  border-top:1px solid var(--border);
-  padding:30px;
+  background:var(--primary);
+  color:#fff;
   text-align:center;
-  font-size:12px;
-  color:#888;
+  padding:25px;
+  font-size:13px;
 }
 
-/* RESPONSIVE */
 @media(max-width:900px){
   .main-wrapper{
     grid-template-columns:1fr;
@@ -181,15 +127,10 @@ button:hover{
 
 <body>
 
-<!-- NAVBAR -->
 <div class="header">
   <img src="pecos.png">
-  <div class="nav">
-    <a href="#">Home</a>
-  </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main-wrapper">
 
   <!-- LOGIN -->
@@ -199,26 +140,28 @@ button:hover{
     <input id="password" type="password" placeholder="Password">
     <button onclick="login()">Login</button>
     <p id="msg"></p>
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+    <p style="cursor:pointer;color:blue;" onclick="resetPassword()">Forgot Password?</p>
   </div>
 
-  <!-- BRAND SECTION -->
-  <div class="card main-card">
-    <div id="mainContent" class="brand-content">
-      <h1>PECOS</h1>
-      <h2>Wealth. Strategy. Ownership.</h2>
-      <p>BUILDING ASSETS THAT OUTLAST TIME</p>
-    </div>
+  <!-- BRAND -->
+  <div class="card brand">
+    <h1>PECOS</h1>
+    <h2>Wealth. Strategy. Ownership.</h2>
+    <p>
+      Professional wealth advisory focused on disciplined investing,
+      structured real estate strategy and long-term capital growth.
+    </p>
   </div>
 
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-  © 2025 PECOS
+  © 2025 PECOS Wealth Advisory | Akola, Maharashtra
 </div>
 
 <script>
+
+// FIREBASE CONFIG (Your Original Working Config)
 const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
   authDomain: "pecos-432b5.firebaseapp.com",
@@ -231,14 +174,44 @@ const db = firebase.firestore();
 
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
+// AUTH STATE LISTENER
 auth.onAuthStateChanged(async (user) => {
-  if (user && user.emailVerified) {
-    const doc = await db.collection("members").doc(user.uid).get();
-    location.href = doc.data()?.isAdmin ? "admin.html" : "member.html";
+
+  if (!user) return;
+
+  if (!user.emailVerified) {
+    document.getElementById("msg").innerText =
+      "Please verify your email before login.";
+    return;
   }
+
+  try {
+
+    const doc = await db.collection("members").doc(user.uid).get();
+
+    if (!doc.exists) {
+      document.getElementById("msg").innerText =
+        "User record not found in database.";
+      return;
+    }
+
+    const data = doc.data();
+
+    if (data.isAdmin === true) {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "member.html";
+    }
+
+  } catch (error) {
+    document.getElementById("msg").innerText = error.message;
+  }
+
 });
 
+// LOGIN FUNCTION
 async function login(){
+
   const msg = document.getElementById("msg");
   msg.innerText = "";
 
@@ -251,17 +224,18 @@ async function login(){
   }
 
   try{
-    const res = await auth.signInWithEmailAndPassword(email, password);
-    if(!res.user.emailVerified){
-      msg.innerText = "Please verify your email";
-    }
-  } catch(e){
+    await auth.signInWithEmailAndPassword(email, password);
+  }
+  catch(e){
     msg.innerText = e.message;
   }
 }
 
+// RESET PASSWORD
 function resetPassword(){
+
   const email = prompt("Enter registered email");
+
   if(!email) return;
 
   auth.sendPasswordResetEmail(email)
@@ -269,28 +243,6 @@ function resetPassword(){
     .catch(err=>alert(err.message));
 }
 
-async function loadInvestment(e){
-  e.preventDefault();
-  const docName = e.target.getAttribute("data-doc");
-
-  try{
-    const doc = await db.collection("Content").doc(docName).get();
-
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>${docName}</b><br>
-        ${doc.data()?.Data || "No data found"}
-      </div>
-    `;
-  }catch{
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>Error</b><br>
-        Unable to load data.
-      </div>
-    `;
-  }
-}
 </script>
 
 </body>
