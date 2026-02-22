@@ -11,18 +11,20 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --bg:#000;
-  --card:#111;
-  --border:#fff;
-  --text:#fff;
-  --muted:#888;
+  --primary:#003366;
+  --accent:#e31837;
+  --bg:#f5f7fa;
+  --text:#222;
+  --muted:#666;
 }
 
 *{
   box-sizing:border-box;
-  font-family: "Courier New", monospace;
+  font-family:'Poppins', sans-serif;
 }
 
 body{
@@ -36,27 +38,27 @@ body{
 
 /* HEADER */
 .header{
-  border-bottom:1px solid var(--border);
-  padding:20px 40px;
+  background:#fff;
+  padding:16px 60px;
   display:flex;
   justify-content:space-between;
   align-items:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.05);
 }
 
 .header img{
-  height:40px;
-  filter:grayscale(100%) contrast(200%);
+  height:45px;
 }
 
 .nav a{
-  color:#fff;
   text-decoration:none;
-  margin-left:20px;
-  font-size:14px;
+  color:var(--primary);
+  margin-left:25px;
+  font-weight:500;
 }
 
 .nav a:hover{
-  text-decoration:underline;
+  color:var(--accent);
 }
 
 /* MAIN WRAPPER */
@@ -65,56 +67,60 @@ body{
   max-width:1200px;
   margin:60px auto;
   display:grid;
-  grid-template-columns:350px 1fr;
-  gap:40px;
+  grid-template-columns:380px 1fr;
+  gap:50px;
   flex:1;
 }
 
 /* CARD */
 .card{
-  background:var(--card);
-  padding:30px;
-  border:1px solid var(--border);
+  background:#fff;
+  padding:35px;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 /* LOGIN */
 .card h3{
   margin-top:0;
-  border-bottom:1px solid var(--border);
-  padding-bottom:10px;
+  color:var(--primary);
+  font-weight:600;
+  margin-bottom:25px;
 }
 
 input{
   width:100%;
-  padding:10px;
-  margin-bottom:12px;
-  background:#000;
-  border:1px solid #fff;
-  color:#fff;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:14px;
 }
 
 input:focus{
   outline:none;
-  background:#111;
+  border-color:var(--primary);
 }
 
 button{
   width:100%;
-  padding:10px;
-  background:#fff;
-  color:#000;
+  padding:14px;
   border:none;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  font-weight:600;
   cursor:pointer;
-  font-weight:bold;
+  transition:.3s;
 }
 
 button:hover{
-  background:#ccc;
+  background:#002244;
 }
 
 .link{
-  font-size:12px;
-  color:#aaa;
+  font-size:13px;
+  color:var(--primary);
   cursor:pointer;
 }
 
@@ -123,51 +129,48 @@ button:hover{
 }
 
 #msg{
-  font-size:12px;
-  color:#ff4444;
+  font-size:13px;
+  color:red;
+  margin-bottom:10px;
 }
 
-/* MAIN BRAND */
+/* BRAND SECTION */
 .main-card{
   display:flex;
   align-items:center;
   justify-content:center;
-  text-align:center;
+  text-align:left;
+  background:linear-gradient(135deg,#003366,#001f3f);
+  color:#fff;
 }
 
 .brand-content h1{
-  font-size:60px;
-  letter-spacing:6px;
+  font-size:48px;
   margin:0;
+  font-weight:700;
 }
 
 .brand-content h2{
-  font-weight:normal;
+  font-weight:400;
   margin:20px 0;
-  font-size:18px;
-  color:#ccc;
+  font-size:22px;
+  color:#ddd;
 }
 
 .brand-content p{
+  font-size:15px;
   margin-top:30px;
-  font-size:13px;
-  letter-spacing:3px;
-  color:#888;
-}
-
-.notice{
-  border:1px solid #fff;
-  padding:15px;
-  margin-top:20px;
+  max-width:450px;
+  line-height:1.6;
 }
 
 /* FOOTER */
 .footer{
-  border-top:1px solid var(--border);
-  padding:30px;
+  background:#001f3f;
+  color:#ccc;
   text-align:center;
-  font-size:12px;
-  color:#888;
+  padding:30px;
+  font-size:13px;
 }
 
 /* RESPONSIVE */
@@ -181,7 +184,6 @@ button:hover{
 
 <body>
 
-<!-- NAVBAR -->
 <div class="header">
   <img src="pecos.png">
   <div class="nav">
@@ -189,33 +191,35 @@ button:hover{
   </div>
 </div>
 
-<!-- MAIN CONTENT -->
 <div class="main-wrapper">
 
   <!-- LOGIN -->
   <div class="card">
     <h3>Member Login</h3>
-    <input id="email" type="email" placeholder="Email">
-    <input id="password" type="password" placeholder="Password">
-    <button onclick="login()">Login</button>
     <p id="msg"></p>
+    <input id="email" type="email" placeholder="Enter your email">
+    <input id="password" type="password" placeholder="Enter your password">
+    <button onclick="login()">Login</button>
+    <br><br>
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
-  <!-- BRAND SECTION -->
+  <!-- BRAND -->
   <div class="card main-card">
     <div id="mainContent" class="brand-content">
       <h1>PECOS</h1>
       <h2>Wealth. Strategy. Ownership.</h2>
-      <p>BUILDING ASSETS THAT OUTLAST TIME</p>
+      <p>
+        We help investors build long-term financial strength through disciplined investing,
+        strategic asset allocation and professional wealth management.
+      </p>
     </div>
   </div>
 
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
-  © 2025 PECOS
+  © 2025 PECOS | All Rights Reserved
 </div>
 
 <script>
@@ -267,29 +271,6 @@ function resetPassword(){
   auth.sendPasswordResetEmail(email)
     .then(()=>alert("Password reset link sent"))
     .catch(err=>alert(err.message));
-}
-
-async function loadInvestment(e){
-  e.preventDefault();
-  const docName = e.target.getAttribute("data-doc");
-
-  try{
-    const doc = await db.collection("Content").doc(docName).get();
-
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>${docName}</b><br>
-        ${doc.data()?.Data || "No data found"}
-      </div>
-    `;
-  }catch{
-    document.getElementById("mainContent").innerHTML = `
-      <div class="notice">
-        <b>Error</b><br>
-        Unable to load data.
-      </div>
-    `;
-  }
 }
 </script>
 
