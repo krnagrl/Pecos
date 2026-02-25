@@ -162,6 +162,7 @@ canvas{
     <h3>Admin Menu</h3>
     <button class="btn-primary" onclick="openPanel()">➕ Add Monthly Income</button>
     <button class="btn-primary" onclick="location.href='member.html'">← Back to Members</button>
+    <button class="btn-primary" onclick="loadInvestments()">📈 Investments</button>
   </aside>
 
   <main class="main">
@@ -192,7 +193,19 @@ canvas{
   <input type="number" placeholder="Other Income" id="otherIncome">
   <button onclick="saveMonth()">Save Month</button>
 </div>
-
+<div id="investmentSection" style="margin-top:30px; display:none;">
+  <h2 style="color:#003366;">My Investments</h2>
+  <table id="investmentTable" style="width:100%; border-collapse:collapse; margin-top:15px;">
+    <thead>
+      <tr style="background:#003366; color:#fff;">
+        <th style="padding:10px; text-align:left;">Stock Name</th>
+        <th style="padding:10px; text-align:left;">Quantity</th>
+        <th style="padding:10px; text-align:left;">Buy Price</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</div>
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -305,6 +318,38 @@ async function loadDashboard(){
         backgroundColor:"#003366"
       }]
     }
+  });
+}
+  async function loadInvestments(){
+
+  investmentSection.style.display = "block";
+
+  const tableBody = document.querySelector("#investmentTable tbody");
+  tableBody.innerHTML = "";
+
+  const snap = await db.collection("Investments").get();
+
+  if(snap.empty){
+    tableBody.innerHTML = `
+      <tr>
+        <td colspan="3" style="padding:12px;">No investments found</td>
+      </tr>
+    `;
+    return;
+  }
+
+  snap.forEach(doc=>{
+    const data = doc.data();
+
+    const row = `
+      <tr style="border-bottom:1px solid #eee;">
+        <td style="padding:10px;">${data.name || "-"}</td>
+        <td style="padding:10px;">${data.quantity || 0}</td>
+        <td style="padding:10px;">₹ ${data.buyPrice || 0}</td>
+      </tr>
+    `;
+
+    tableBody.innerHTML += row;
   });
 }
 </script>
