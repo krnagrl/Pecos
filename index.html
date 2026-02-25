@@ -262,34 +262,24 @@ button:hover{
 <div class="main">
 
   <!-- CONTENT BOX FIXED -->
-  <div class="content-box">
-    <h3>Live Market Overview</h3>
+<div class="content-box">
+  <h3>Live Rate Overview</h3>
 
-    <div class="market-item">
-      <span>NIFTY 50</span>
-      <span id="nifty" class="value">22,450</span>
-    </div>
-
-    <div class="market-item">
-      <span>SENSEX</span>
-      <span id="sensex" class="value">73,120</span>
-    </div>
-
-    <div class="market-item">
-      <span>Gold (₹/10g)</span>
-      <span id="gold" class="value">62,300</span>
-    </div>
-
-    <div class="market-item">
-      <span>Crude Oil ($)</span>
-      <span id="crude" class="value">82.40</span>
-    </div>
-
-    <div class="market-item">
-      <span>Interest Rate (%)</span>
-      <span id="rate" class="value">6.50</span>
-    </div>
+  <div class="market-item">
+    <span>Interest Rate (%)</span>
+    <span id="interest" class="value">15.00</span>
   </div>
+
+  <div class="market-item">
+    <span>Deposit Rate (%)</span>
+    <span id="deposit" class="value">9.00</span>
+  </div>
+
+  <div class="market-item">
+    <span>Coupon Rate</span>
+    <span id="coupon" class="value">25000</span>
+  </div>
+</div>
 
   <!-- LOGIN -->
   <div class="login-box">
@@ -363,35 +353,44 @@ function resetPassword(){
 }
   /* MARKET ANIMATION */
 
-function randomChange(base, variance){
-  return base + (Math.random() * variance * 2 - variance);
+/* RATE FLUCTUATION */
+
+function randomBetween(min, max, decimals = 0){
+  let value = Math.random() * (max - min) + min;
+  return decimals ? value.toFixed(decimals) : Math.round(value);
 }
 
-function updateMarket(id, base, variance, decimals=0){
+function updateRate(id, min, max, decimals = 0){
   const el = document.getElementById(id);
-  let newValue = randomChange(base, variance);
-  
+  const oldValue = parseFloat(el.innerText);
+  const newValue = randomBetween(min, max, decimals);
+
   el.classList.remove("up","down");
 
-  if(newValue > base){
+  if(parseFloat(newValue) > oldValue){
     el.classList.add("up");
   } else {
     el.classList.add("down");
   }
 
-  el.innerText = decimals ? newValue.toFixed(decimals) : Math.round(newValue).toLocaleString();
+  el.innerText = newValue;
 }
 
-setInterval(()=>{
-  updateMarket("nifty",22450,120);
-  updateMarket("sensex",73120,250);
-  updateMarket("gold",62300,300);
-  updateMarket("crude",82.40,2,2);
-  updateMarket("rate",6.50,.05,2);
-},2000);
+/* Run once immediately */
+updateRate("interest", 11, 18, 2);
+updateRate("deposit", 7, 12, 2);
+updateRate("coupon", 5000, 50000, 0);
+
+/* Then update every 10 seconds */
+setInterval(() => {
+  updateRate("interest", 11, 18, 2);
+  updateRate("deposit", 7, 12, 2);
+  updateRate("coupon", 5000, 50000, 0);
+}, 10000);
 </script>
 </body>
 </html>
+
 
 
 
