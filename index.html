@@ -6,10 +6,8 @@
 <title>Pecos - Finance | Real Estate | Stocks & Shares</title>
 <link rel="icon" href="pecos.png">
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
@@ -17,13 +15,13 @@
 <style>
 
 :root{
-  --primary:#2F6F95;        /* Main Corporate Blue */
-  --secondary:#3B7EA5;      /* Button Blue */
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
   --accent:#2F6F95;
-  --bg:#F4F6F8;             /* Light Background */
-  --card:#FFFFFF;           /* Card White */
-  --text:#1F3E56;           /* Dark Blue Text */
-  --muted:#5E6E7E;          /* Soft Grey Text */
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
 }
 
 *{
@@ -85,6 +83,7 @@ body{
 /* MAIN */
 .main{
   display:flex;
+  align-items:flex-start;   /* FIXED */
   gap:40px;
   padding:50px;
   background:var(--bg);
@@ -106,12 +105,7 @@ body{
   margin-bottom:15px;
 }
 
-.content-box p{
-  color:var(--muted);
-  margin-bottom:14px;
-  font-size:15px;
-}
-  .market-item{
+.market-item{
   display:flex;
   justify-content:space-between;
   padding:12px 0;
@@ -142,6 +136,8 @@ body{
   border-radius:16px;
   box-shadow:0 8px 25px rgba(0,0,0,.05);
   max-width:340px;
+  position:sticky;     /* ADDED stability */
+  top:30px;
 }
 
 .login-box h3{
@@ -151,7 +147,6 @@ body{
   font-size:18px;
 }
 
-/* INPUT */
 input{
   width:100%;
   padding:12px 14px;
@@ -168,7 +163,6 @@ input:focus{
   box-shadow:0 0 0 3px rgba(47,111,149,.15);
 }
 
-/* BUTTON */
 button{
   width:100%;
   padding:12px;
@@ -186,14 +180,12 @@ button:hover{
   background:var(--primary);
 }
 
-/* MESSAGE */
 #msg{
   font-size:12px;
   color:red;
   margin-top:6px;
 }
 
-/* LINK */
 .link{
   font-size:12px;
   color:var(--primary);
@@ -243,6 +235,7 @@ button:hover{
 
   .login-box{
     max-width:100%;
+    position:static;
   }
 
   .wrapper{
@@ -257,78 +250,72 @@ button:hover{
 
 <div class="wrapper">
 
-  <!-- HEADER -->
-  <div class="header">
-    <div class="logo">PECOS</div>
-    <div class="nav">
-      <a href="index.html"><b>HOME</b></a>
-      <a href="#">ABOUT</a>
-      <a href="#">CONTACT</a>
+<div class="header">
+  <div class="logo">PECOS</div>
+  <div class="nav">
+    <a href="index.html"><b>HOME</b></a>
+    <a href="#">ABOUT</a>
+    <a href="#">CONTACT</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CONTENT BOX FIXED -->
+  <div class="content-box">
+    <h3>Live Market Overview</h3>
+
+    <div class="market-item">
+      <span>NIFTY 50</span>
+      <span id="nifty" class="value">22,450</span>
+    </div>
+
+    <div class="market-item">
+      <span>SENSEX</span>
+      <span id="sensex" class="value">73,120</span>
+    </div>
+
+    <div class="market-item">
+      <span>Gold (₹/10g)</span>
+      <span id="gold" class="value">62,300</span>
+    </div>
+
+    <div class="market-item">
+      <span>Crude Oil ($)</span>
+      <span id="crude" class="value">82.40</span>
+    </div>
+
+    <div class="market-item">
+      <span>Interest Rate (%)</span>
+      <span id="rate" class="value">6.50</span>
     </div>
   </div>
 
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- CONTENT -->
-<div id="mainContent">
-  <h3>Live Market Overview</h3>
-
-  <div class="market-item">
-    <span>NIFTY 50</span>
-    <span id="nifty" class="value">22,450</span>
-  </div>
-
-  <div class="market-item">
-    <span>SENSEX</span>
-    <span id="sensex" class="value">73,120</span>
-  </div>
-
-  <div class="market-item">
-    <span>Gold (₹/10g)</span>
-    <span id="gold" class="value">62,300</span>
-  </div>
-
-  <div class="market-item">
-    <span>Crude Oil ($)</span>
-    <span id="crude" class="value">82.40</span>
-  </div>
-
-  <div class="market-item">
-    <span>Interest Rate (%)</span>
-    <span id="rate" class="value">6.50</span>
+  <!-- LOGIN -->
+  <div class="login-box">
+    <h3>Member Login</h3>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
   </div>
 
 </div>
 
-    <!-- LOGIN -->
-    <div class="login-box">
-      <h3>Member Login</h3>
-      <input id="email" type="email" placeholder="Email">
-      <input id="password" type="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <p id="msg"></p>
-      <span class="link" onclick="resetPassword()">Forgot Password?</span>
-    </div>
-
+<div class="footer">
+  <div class="footer-left">
+    <b>Mobile:</b> (+91) 8669334862<br>
+    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
   </div>
 
-  <!-- FOOTER -->
-  <div class="footer">
-    <div class="footer-left">
-      <b>Mobile:</b> (+91) 8669334862<br>
-      <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
-      <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
-    </div>
-
-    <div class="footer-right">
-      © 2025 PECOS. All rights reserved.
-    </div>
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
   </div>
-
 </div>
 
-<!-- FIREBASE FUNCTIONALITY (UNCHANGED) -->
+</div>
 <script>
 const firebaseConfig={
   apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -403,8 +390,11 @@ setInterval(()=>{
   updateMarket("rate",6.50,.05,2);
 },2000);
 </script>
-
 </body>
 </html>
+
+
+
+
 
 
