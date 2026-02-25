@@ -111,6 +111,28 @@ body{
   margin-bottom:14px;
   font-size:15px;
 }
+  .market-item{
+  display:flex;
+  justify-content:space-between;
+  padding:12px 0;
+  border-bottom:1px solid #e2e8f0;
+  font-size:15px;
+}
+
+.value{
+  font-weight:600;
+  transition:.3s;
+}
+
+.up{
+  color:#16a34a;
+  transform:translateY(-2px);
+}
+
+.down{
+  color:#dc2626;
+  transform:translateY(2px);
+}
 
 /* LOGIN BOX */
 .login-box{
@@ -249,15 +271,35 @@ button:hover{
   <div class="main">
 
     <!-- CONTENT -->
-    <div class="content-box">
-      <div id="mainContent">
-        <h3>Investment & Financial Services</h3>
-        <p>Mutual Funds, Stocks & Wealth Planning</p>
-        <p>Home, Business & Personal Loans</p>
-        <p>Health, Motor & SME Insurance</p>
-        <p>Residential & Commercial Real Estate Advisory</p>
-      </div>
-    </div>
+<div id="mainContent">
+  <h3>Live Market Overview</h3>
+
+  <div class="market-item">
+    <span>NIFTY 50</span>
+    <span id="nifty" class="value">22,450</span>
+  </div>
+
+  <div class="market-item">
+    <span>SENSEX</span>
+    <span id="sensex" class="value">73,120</span>
+  </div>
+
+  <div class="market-item">
+    <span>Gold (₹/10g)</span>
+    <span id="gold" class="value">62,300</span>
+  </div>
+
+  <div class="market-item">
+    <span>Crude Oil ($)</span>
+    <span id="crude" class="value">82.40</span>
+  </div>
+
+  <div class="market-item">
+    <span>Interest Rate (%)</span>
+    <span id="rate" class="value">6.50</span>
+  </div>
+
+</div>
 
     <!-- LOGIN -->
     <div class="login-box">
@@ -332,8 +374,37 @@ function resetPassword(){
   auth.sendPasswordResetEmail(email);
   alert("Password reset link sent");
 }
+  /* MARKET ANIMATION */
+
+function randomChange(base, variance){
+  return base + (Math.random() * variance * 2 - variance);
+}
+
+function updateMarket(id, base, variance, decimals=0){
+  const el = document.getElementById(id);
+  let newValue = randomChange(base, variance);
+  
+  el.classList.remove("up","down");
+
+  if(newValue > base){
+    el.classList.add("up");
+  } else {
+    el.classList.add("down");
+  }
+
+  el.innerText = decimals ? newValue.toFixed(decimals) : Math.round(newValue).toLocaleString();
+}
+
+setInterval(()=>{
+  updateMarket("nifty",22450,120);
+  updateMarket("sensex",73120,250);
+  updateMarket("gold",62300,300);
+  updateMarket("crude",82.40,2,2);
+  updateMarket("rate",6.50,.05,2);
+},2000);
 </script>
 
 </body>
 </html>
+
 
