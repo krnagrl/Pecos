@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pecos - About Us</title>
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+}
+
+.wrapper{
+  width:85%;
+  max-width:1200px;
+  margin:40px auto;
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 20px 50px rgba(0,0,0,.06);
+  overflow:hidden;
+}
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 30px;
+  background:var(--text);
+  color:white;
+}
+
+.logo{
+  font-weight:700;
+  font-size:20px;
+  letter-spacing:.5px;
+}
+
+.nav{
+  display:flex;
+  gap:30px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+  opacity:.95;
+  transition:.2s;
+}
+
+.nav a:hover{
+  opacity:1;
+  text-decoration:underline;
+}
+
+.main{
+  padding:60px;
+  background:var(--bg);
+}
+
+.about-box{
+  background:var(--card);
+  padding:50px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.about-box h2{
+  margin-top:0;
+  font-size:28px;
+  color:var(--text);
+  margin-bottom:25px;
+}
+
+.about-box h3{
+  margin-top:40px;
+  color:var(--primary);
+  font-size:20px;
+}
+
+.about-box p{
+  line-height:1.8;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.highlight{
+  background:#e8f2f8;
+  padding:15px;
+  border-left:4px solid var(--primary);
+  margin:20px 0;
+  border-radius:8px;
+}
+
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:40px 50px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:60%;
+  line-height:1.7;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+@media(max-width:900px){
+  .main{
+    padding:30px;
+  }
+  .wrapper{
+    width:95%;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+  <div class="logo">PECOS</div>
+  <div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html"><b>ABOUT</b></a>
+    <a href="#">CONTACT</a>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="about-box">
+
+    <h2>About Pecos</h2>
+
+    <p>
+      Pecos operates with a focused and disciplined financial model built around two core pillars:
+      <b>Finance Services</b> and <b>Investments</b>.
+    </p>
+
+    <h3>1️⃣ Finance Services</h3>
+
+    <p>
+      We facilitate lending solutions for both businesses and individuals through our trusted and verified partnered channels.
+      Our role is to connect eligible borrowers with appropriate financial institutions and structured lending platforms.
+    </p>
+
+    <div class="highlight">
+      We earn commission-based income ranging between 
+      <b>0.25% to 2.5%</b> depending on the lending structure and volume.
+    </div>
+
+    <p>
+      Our focus remains on structured, transparent, and sustainable financial facilitation.
+      We do not operate as a direct NBFC — we work through strategic financial partnerships.
+    </p>
+
+    <h3>2️⃣ Investment Operations</h3>
+
+    <p>
+      Alongside financial facilitation, Pecos actively deploys capital into carefully selected financial instruments.
+      Our investment approach is conservative, research-driven, and risk-managed.
+    </p>
+
+    <div class="highlight">
+      We invest primarily in:
+      <ul>
+        <li>Bonds</li>
+        <li>Cash Deposits</li>
+        <li>Stocks & Shares</li>
+      </ul>
+    </div>
+
+    <p>
+      The objective of our investment strategy is capital preservation, steady returns, and long-term growth.
+      Every allocation is based on internal financial analysis and market evaluation.
+    </p>
+
+    <h3>Our Philosophy</h3>
+
+    <p>
+      We believe in disciplined capital allocation, transparent operations, and long-term value creation.
+      Pecos is built on structured growth rather than speculative expansion.
+    </p>
+
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-left">
+    <b>Mobile:</b> (+91) 8669334862<br>
+    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
+  </div>
+
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
