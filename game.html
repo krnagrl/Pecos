@@ -17,7 +17,6 @@ body{
   margin:0;
   display:none;
 }
-
 header{
   background:#1F3E56;
   color:white;
@@ -26,15 +25,8 @@ header{
   display:flex;
   justify-content:space-between;
 }
-
-.balance{
-  font-size:16px;
-}
-
-.container{
-  padding:20px;
-}
-
+.balance{font-size:16px;}
+.container{padding:20px;}
 .bet-section button{
   padding:10px 18px;
   margin:8px;
@@ -44,18 +36,14 @@ header{
   cursor:pointer;
   transition:all 0.3s ease;
 }
-
 .india{background:blue;color:white;}
 .pak{background:green;color:white;}
 .draw{background:gray;color:white;}
-
-/* Selected style */
 .selected{
   background:red !important;
   transform:scale(1.15);
   box-shadow:0 4px 12px rgba(0,0,0,0.3);
 }
-
 input{
   padding:10px;
   margin-top:10px;
@@ -63,14 +51,12 @@ input{
   border:1px solid #ccc;
   width:200px;
 }
-
 .dice-area{
   margin-top:30px;
   display:flex;
   justify-content:center;
   gap:40px;
 }
-
 .dice{
   width:100px;
   height:100px;
@@ -82,41 +68,19 @@ input{
   cursor:pointer;
   transition:transform .6s;
 }
-
 .blue{background:blue;color:white;}
 .green{background:green;color:white;}
-
-.rotate{
-  transform:rotate(720deg);
-}
-
-#result{
-  margin-top:20px;
-  font-size:18px;
-  font-weight:bold;
-}
-
+.rotate{transform:rotate(720deg);}
+#result{margin-top:20px;font-size:18px;font-weight:bold;}
 table{
   width:100%;
   margin-top:30px;
   border-collapse:collapse;
   font-size:14px;
 }
-
-th{
-  background:#1F3E56;
-  color:white;
-  padding:8px;
-}
-
-td{
-  padding:8px;
-  border-bottom:1px solid #ddd;
-}
-
-.leaderboard{
-  margin-top:40px;
-}
+th{background:#1F3E56;color:white;padding:8px;}
+td{padding:8px;border-bottom:1px solid #ddd;}
+.leaderboard{margin-top:40px;}
 </style>
 </head>
 
@@ -157,7 +121,7 @@ td{
 </div>
 
 <script>
-const firebaseConfig = {
+const firebaseConfig = { 
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
   authDomain: "pecos-432b5.firebaseapp.com",
   projectId: "pecos-432b5",
@@ -171,6 +135,7 @@ const db = firebase.firestore();
 
 let selectedBet=null;
 let currentBalance=0;
+let isRolling=false;
 
 auth.onAuthStateChanged(async user=>{
   if(!user){
@@ -197,44 +162,34 @@ async function loadWallet(user){
   document.getElementById("wallet").innerText=currentBalance;
 }
 
-/* ===== Updated Bet Selection ===== */
 function setBet(team){
   selectedBet=team;
-
-  // Remove previous selection
   document.querySelectorAll(".bet-section button")
   .forEach(btn=>btn.classList.remove("selected"));
 
-  // Add selected style
-  if(team==="India") document.getElementById("btnIndia").classList.add("selected");
-  if(team==="Pakistan") document.getElementById("btnPak").classList.add("selected");
-  if(team==="Draw") document.getElementById("btnDraw").classList.add("selected");
+  if(team==="India") btnIndia.classList.add("selected");
+  if(team==="Pakistan") btnPak.classList.add("selected");
+  if(team==="Draw") btnDraw.classList.add("selected");
 }
 
 function rollDice(){
-  if(!selectedBet){
-    alert("Select a team first!");
-    return;
-  }
+  if(isRolling) return;
+  if(!selectedBet){ alert("Select a team first!"); return; }
 
   const bet=parseInt(document.getElementById("betAmount").value);
-  if(!bet || bet<=0){
-    alert("Enter valid bet amount!");
-    return;
-  }
+  if(!bet || bet<=0){ alert("Enter valid bet amount!"); return; }
+  if(bet>currentBalance){ alert("Insufficient balance!"); return; }
 
-  if(bet>currentBalance){
-    alert("Insufficient balance!");
-    return;
-  }
+  isRolling=true;
 
-  const d1=document.getElementById("dice1");
-  const d2=document.getElementById("dice2");
+  const d1=dice1;
+  const d2=dice2;
 
   d1.classList.add("rotate");
   d2.classList.add("rotate");
 
   setTimeout(async()=>{
+
     d1.classList.remove("rotate");
     d2.classList.remove("rotate");
 
@@ -249,42 +204,48 @@ function rollDice(){
     else if(n2>n1) winner="Pakistan";
     else winner="Draw";
 
-    /* Updated multipliers */
     let multiplier = winner==="Draw" ? 2 : 1;
-
     let resultStatus;
     let winAmount=0;
+    let amountChange=0;
 
     if(selectedBet===winner){
       winAmount=bet*multiplier;
-      currentBalance+=winAmount;
+      amountChange=winAmount;
       resultStatus="Win";
     }else{
-      currentBalance-=bet;
+      amountChange=-bet;
       resultStatus="Loss";
     }
 
+    currentBalance+=amountChange;
     document.getElementById("wallet").innerText=currentBalance;
 
     document.getElementById("result").innerText=
     `India: ${n1} | Pakistan: ${n2} → ${winner} wins. You ${resultStatus}!`;
 
-    await updateBalance();
+    await updateBalance(amountChange);
     await saveGame(n1,n2,winner,bet,resultStatus,winAmount);
+
     loadHistory(auth.currentUser);
     loadLeaderboard();
+
+    isRolling=false;
 
   },700);
 }
 
-async function updateBalance(){
+async function updateBalance(amountChange){
   const user=auth.currentUser;
-  await db.collection("members").doc(user.uid)
-  .update({balance:currentBalance});
+
+  await db.collection("members").doc(user.uid).update({
+    balance: firebase.firestore.FieldValue.increment(amountChange)
+  });
 }
 
 async function saveGame(n1,n2,winner,bet,status,winAmount){
   const user=auth.currentUser;
+
   await db.collection("gameResults").add({
     userId:user.uid,
     email:user.email,
@@ -295,7 +256,7 @@ async function saveGame(n1,n2,winner,bet,status,winAmount){
     betAmount:bet,
     result:status,
     winAmount:winAmount,
-    createdAt:new Date()
+    createdAt:firebase.firestore.FieldValue.serverTimestamp()
   });
 }
 
@@ -307,7 +268,7 @@ async function loadHistory(user){
   .get();
 
   if(snap.empty){
-    document.getElementById("history").innerHTML="No games played yet.";
+    history.innerHTML="No games played yet.";
     return;
   }
 
@@ -324,7 +285,7 @@ async function loadHistory(user){
   });
 
   html+="</table>";
-  document.getElementById("history").innerHTML=html;
+  history.innerHTML=html;
 }
 
 async function loadLeaderboard(){
@@ -345,7 +306,7 @@ async function loadLeaderboard(){
   });
 
   html+="</table>";
-  document.getElementById("leaderboard").innerHTML=html;
+  leaderboard.innerHTML=html;
 }
 </script>
 
