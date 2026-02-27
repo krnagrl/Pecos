@@ -54,7 +54,7 @@ header{
   top:0;
   z-index:1000;
 }
-
+.profile-wrapper{display:flex;align-items:center;gap:25px;flex-wrap:wrap}.profile-photo-box{width:140px;height:140px;border-radius:12px;overflow:hidden;border:2px solid #e6edf3;background:#f2f4f7;display:flex;align-items:center;justify-content:center}.profile-photo-box img{width:100%;height:100%;object-fit:cover}
 .brand{
   display:flex;
   align-items:center;
@@ -330,16 +330,28 @@ footer{
           </div>
         </section>
 
-        <section id="profile" class="section" style="display:none;">
-          <h2 style="color:#003366;margin-top:0">Your Profile</h2>
-          <div class="card">
-            <p><strong>Name:</strong> <span id="profile-name">-</span></p>
-            <p><strong>Email:</strong> <span id="profile-email">-</span></p>
-            <p><strong>Phone:</strong> <span id="profile-phone">-</span></p>
-            <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
-            <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
-          </div>
-        </section>
+<section id="profile" class="section" style="display:none;">
+  <h2 style="color:#003366;margin-top:0">Your Profile</h2>
+  <div class="card">
+    <div class="profile-wrapper">
+
+      <!-- Profile Photo -->
+      <div class="profile-photo-box">
+        <img id="profile-photo" src="default-user.png" alt="User Photo">
+      </div>
+
+      <!-- Profile Details -->
+      <div>
+        <p><strong>Name:</strong> <span id="profile-name">-</span></p>
+        <p><strong>Email:</strong> <span id="profile-email">-</span></p>
+        <p><strong>Phone:</strong> <span id="profile-phone">-</span></p>
+        <p><strong>Member ID:</strong> <span id="profile-id">-</span></p>
+        <p><strong>Member Since:</strong> <span id="profile-since">-</span></p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
         <section id="finance" class="section" style="display:none;">
           <h2 style="color:#003366;margin-top:0">Finance</h2>
@@ -418,40 +430,54 @@ footer{
         });
       });
 
-    async function loadMemberData(user) {
-      const docRef = db.collection('members').doc(user.uid);
-      const snap = await docRef.get();
+async function loadMemberData(user) {
+  const docRef = db.collection('members').doc(user.uid);
+  const snap = await docRef.get();
 
-      if (!snap.exists) {
-        alert('Member data not found');
-        return;
-      }
+  if (!snap.exists) {
+    alert('Member data not found');
+    return;
+  }
 
-      const data = snap.data();
+  const data = snap.data();
 
-      document.getElementById('overview-name').innerText =
-        data.displayName || user.email;
+  document.getElementById('overview-name').innerText =
+    data.displayName || user.email;
 
-      document.getElementById('profile-name').innerText =
-        data.displayName || '-';
+  document.getElementById('profile-name').innerText =
+    data.displayName || '-';
 
-      document.getElementById('profile-email').innerText =
-        data.email || '-';
+  document.getElementById('profile-email').innerText =
+    data.email || '-';
 
-      document.getElementById('profile-phone').innerText =
-        data.phone || '-';
+  document.getElementById('profile-phone').innerText =
+    data.phone || '-';
 
-      document.getElementById('profile-id').innerText =
-        data.memberID || '-';
+  document.getElementById('profile-id').innerText =
+    data.memberID || '-';
 
-      document.getElementById('profile-since').innerText =
-        data.memberSince || '-';
+  document.getElementById('profile-since').innerText =
+    data.memberSince || '-';
 
-      if (data.role === 'admin') {
-        document.getElementById('businessMenu').style.display = 'block';
-      }
-    }
+  // ✅ PROFILE PHOTO WITH DEFAULT FALLBACK
+  const photoElement = document.getElementById('profile-photo');
+  const defaultPhoto = "default-user.png"; // <-- Replace with your RAW default image link
 
+  if (data.photo && data.photo.trim() !== "") {
+    photoElement.src = data.photo;
+  } else {
+    photoElement.src = defaultPhoto;
+  }
+
+  // If image URL fails to load
+  photoElement.onerror = function () {
+    this.src = defaultPhoto;
+  };
+
+  if (data.role === 'admin') {
+    document.getElementById('businessMenu').style.display = 'block';
+  }
+}
     async function loadFinanceRequests(user) {
       const listEl = document.getElementById('financeRequestsList');
       listEl.innerHTML = '<p>Loading your requests...</p>';
