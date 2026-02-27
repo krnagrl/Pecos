@@ -30,9 +30,13 @@ body{
 
 /* WRAPPER */
 .wrapper{
-  width:90%;
-  max-width:1300px;
-  margin:30px auto;
+  width:85%;
+  max-width:1200px;
+  margin:40px auto;
+  background:var(--card);
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,.06);
+  overflow:hidden;
 }
 
 /* HEADER */
@@ -40,28 +44,36 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 0;
+  padding:22px 30px;
+  background:var(--text);
+  color:white;
 }
 
 .logo{
   font-weight:600;
   font-size:20px;
-  color:var(--text);
 }
 
 .nav{
   display:flex;
-  gap:25px;
+  gap:30px;
 }
 
 .nav a{
   text-decoration:none;
-  color:var(--text);
+  color:white;
   font-size:14px;
+  opacity:.9;
 }
 
 .nav a:hover{
-  color:var(--primary);
+  opacity:1;
+  text-decoration:underline;
+}
+
+/* MAIN */
+.main{
+  padding:60px 50px;
 }
 
 /* TITLE */
@@ -69,57 +81,62 @@ body{
   font-size:24px;
   font-weight:600;
   color:var(--text);
-  margin:30px 0 40px 0;
+  margin-bottom:40px;
 }
 
-/* MASONRY GALLERY */
+/* GALLERY */
 .gallery{
-  column-count:3;
-  column-gap:25px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
 }
 
+/* EVENT CARD */
 .event-card{
-  break-inside:avoid;
-  margin-bottom:25px;
   background:white;
   border-radius:14px;
   overflow:hidden;
-  box-shadow:0 8px 20px rgba(0,0,0,.05);
+  box-shadow:0 8px 25px rgba(0,0,0,.04);
   transition:.3s;
 }
 
 .event-card:hover{
   transform:translateY(-5px);
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
 }
 
-/* IMAGE */
+/* IMAGE CONTAINER (FIXED PROPERLY) */
 .image-frame{
+  width:100%;
+  aspect-ratio: 4 / 3;   /* keeps uniform ratio */
   overflow:hidden;
+  background:#eef3f7;
   cursor:pointer;
-  position:relative;
 }
 
 .image-frame img{
   width:100%;
-  height:auto;
+  height:100%;
+  object-fit:cover;   /* prevents stretching */
+  object-position:center;
   display:block;
-  transition:transform .5s ease;
+  transition:transform .4s ease;
 }
 
 .image-frame:hover img{
-  transform:scale(1.08);
+  transform:scale(1.05);
 }
 
 /* CONTENT */
 .event-content{
-  padding:18px;
+  padding:22px;
 }
 
 .event-date{
   font-size:12px;
   font-weight:500;
   color:var(--primary);
-  margin-bottom:8px;
+  margin-bottom:10px;
   text-transform:uppercase;
   letter-spacing:1px;
 }
@@ -127,7 +144,32 @@ body{
 .event-desc{
   font-size:14px;
   color:var(--muted);
-  line-height:1.6;
+  line-height:1.7;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:40px 50px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
 }
 
 /* LIGHTBOX */
@@ -146,29 +188,19 @@ body{
   max-width:95%;
   max-height:90%;
   border-radius:10px;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
 }
 
 .lightbox.active{
   display:flex;
 }
 
-/* MOBILE */
-@media(max-width:1000px){
-  .gallery{
-    column-count:2;
+/* RESPONSIVE */
+@media(max-width:900px){
+  .main{
+    padding:35px 25px;
   }
-}
-
-@media(max-width:600px){
-  .gallery{
-    column-count:1;
-  }
-  .nav{
-    gap:15px;
-  }
-  .page-title{
-    font-size:20px;
+  .wrapper{
+    width:95%;
   }
 }
 
@@ -179,15 +211,17 @@ body{
 
 <div class="wrapper">
 
-  <div class="header">
-    <div class="logo">PECOS</div>
-    <div class="nav">
-      <a href="index.html">HOME</a>
-      <a href="about.html">ABOUT</a>
-      <a href="images.html"><b>EVENTS</b></a>
-      <a href="#">CONTACT</a>
-    </div>
+<div class="header">
+  <div class="logo">PECOS</div>
+  <div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="images.html"><b>EVENTS</b></a>
+    <a href="#">CONTACT</a>
   </div>
+</div>
+
+<div class="main">
 
   <div class="page-title">Events & Moments at Pecos</div>
 
@@ -200,7 +234,7 @@ body{
       <div class="event-content">
         <div class="event-date">12 January 2025</div>
         <div class="event-desc">
-          Annual Investor Meet focused on expansion strategy and structured return models.
+          Annual Investor Meet focused on real estate expansion strategy and structured return models.
         </div>
       </div>
     </div>
@@ -212,31 +246,7 @@ body{
       <div class="event-content">
         <div class="event-date">25 March 2025</div>
         <div class="event-desc">
-          Property token launch event with member interaction and growth roadmap.
-        </div>
-      </div>
-    </div>
-
-    <div class="event-card">
-      <div class="image-frame">
-        <img src="images/event3.jpg" alt="Event Image">
-      </div>
-      <div class="event-content">
-        <div class="event-date">18 July 2025</div>
-        <div class="event-desc">
-          Financial growth seminar covering long-term capital structuring.
-        </div>
-      </div>
-    </div>
-
-    <div class="event-card">
-      <div class="image-frame">
-        <img src="images/event4.jpg" alt="Event Image">
-      </div>
-      <div class="event-content">
-        <div class="event-date">05 September 2025</div>
-        <div class="event-desc">
-          Strategic member networking and investment planning discussion.
+          Property token launch event with member discussions and future growth roadmap presentation.
         </div>
       </div>
     </div>
@@ -245,28 +255,39 @@ body{
 
 </div>
 
+<div class="footer">
+  <div>
+    <b>Mobile:</b> (+91) 8669334862<br>
+    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
+  </div>
+
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
+</div>
+
+</div>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <img src="" alt="Preview">
+  <img src="">
 </div>
 
 <script>
-
-// Lightbox functionality
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = lightbox.querySelector('img');
 
-document.querySelectorAll('.image-frame img').forEach(img => {
-  img.addEventListener('click', () => {
+document.querySelectorAll('.image-frame img').forEach(img=>{
+  img.addEventListener('click',()=>{
     lightbox.classList.add('active');
     lightboxImg.src = img.src;
   });
 });
 
-lightbox.addEventListener('click', () => {
+lightbox.addEventListener('click',()=>{
   lightbox.classList.remove('active');
 });
-
 </script>
 
 </body>
