@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Business Dashboard | Pecos</title>
+<title>Registered Members | Pecos</title>
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -10,7 +10,6 @@
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 :root{
@@ -18,14 +17,6 @@
   --bg:#F4F6F8;
   --card:#FFFFFF;
   --text:#1F3E56;
-  --muted:#5E6E7E;
-}
-
-body.dark{
-  --bg:#0f1720;
-  --card:#1c2630;
-  --text:#ffffff;
-  --muted:#9aa7b3;
 }
 
 *{
@@ -38,237 +29,60 @@ body.dark{
 body{
   background:var(--bg);
   display:none;
+  padding:30px;
+}
+
+header{
+  font-size:22px;
+  font-weight:700;
+  margin-bottom:25px;
   color:var(--text);
 }
 
-/* HEADER */
-header{
-  background:var(--text);
-  color:#fff;
-  padding:16px 24px;
-  font-weight:700;
-  font-size:16px;
-  letter-spacing:.5px;
-  position:sticky;
-  top:0;
-  z-index:1000;
+.table-container{
+  background:var(--card);
+  border-radius:16px;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
+  overflow-x:auto;
 }
 
-/* LAYOUT */
-.layout{
-  max-width:1200px;
-  margin:25px auto;
-  display:grid;
-  grid-template-columns:260px 1fr;
-  gap:25px;
-  padding:0 20px;
-}
-
-/* SIDEBAR */
-.sidebar{
-  background:var(--text);
-  color:#fff;
-  border-radius:18px;
-  padding:22px;
-  box-shadow:0 8px 25px rgba(0,0,0,.08);
-}
-
-.sidebar h3{
-  margin-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,.2);
-  padding-bottom:8px;
-}
-
-.sidebar button{
+table{
   width:100%;
-  margin-top:12px;
-  padding:12px;
-  border-radius:12px;
-  border:none;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s ease;
+  border-collapse:collapse;
+  min-width:800px;
+}
+
+th{
+  background:var(--text);
+  color:#fff;
+  padding:14px;
+  text-align:left;
   font-size:14px;
 }
 
-.btn-primary{
-  background:#fff;
-  color:var(--text);
-}
-
-.btn-primary:hover{
-  background:#e9f0f5;
-  transform:translateY(-2px);
-}
-
-/* MAIN PANEL */
-.main{
-  background:var(--card);
-  border-radius:18px;
-  padding:25px;
-  box-shadow:0 10px 30px rgba(0,0,0,.05);
-}
-
-/* HERO */
-.hero{
-  background:#eef4f8;
-  padding:20px;
-  border-radius:14px;
-  margin-bottom:25px;
-}
-
-.hero h2{
-  margin-bottom:8px;
-  font-size:18px;
-}
-
-.hero .summary{
-  font-size:30px;
-  font-weight:700;
-  margin-top:6px;
-}
-
-/* GRID CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px;
-}
-
-.card{
-  background:var(--card);
-  padding:18px;
-  border-radius:14px;
-  border:1px solid #e6edf3;
-  box-shadow:0 4px 15px rgba(0,0,0,.04);
-}
-
-/* CHARTS */
-canvas{
-  margin-top:25px;
-  background:var(--card);
-  padding:16px;
-  border-radius:16px;
-  box-shadow:0 4px 15px rgba(0,0,0,.05);
-}
-
-/* SLIDE PANEL */
-.slide-panel{
-  position:fixed;
-  top:0;
-  right:-420px;
-  width:400px;
-  height:100%;
-  background:var(--card);
-  box-shadow:-6px 0 20px rgba(0,0,0,.2);
-  padding:25px;
-  transition:right .3s ease;
-  z-index:2000;
-  overflow-y:auto;
-}
-
-.slide-panel.active{
-  right:0;
-}
-
-.slide-panel h3{
-  margin-bottom:15px;
-  font-size:18px;
-}
-
-.slide-panel input{
-  width:100%;
-  padding:12px;
-  margin-bottom:12px;
-  border-radius:10px;
-  border:1px solid #d6dee6;
-  outline:none;
-}
-
-.slide-panel input:focus{
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(47,111,149,.15);
-}
-
-.slide-panel button{
-  width:100%;
+td{
   padding:14px;
-  border:none;
-  border-radius:12px;
-  background:var(--text);
-  color:#fff;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.slide-panel button:hover{
-  transform:translateY(-2px);
-}
-
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  display:none;
-  z-index:1500;
-}
-
-.overlay.active{
-  display:block;
-}
-
-/* INVESTMENT TABLE */
-#investmentSection{
-  margin-top:40px;
-}
-
-#investmentSection h2{
-  margin-bottom:10px;
-}
-
-#investmentTable{
-  width:100%;
-  border-collapse:collapse;
-  margin-top:10px;
-  background:var(--card);
-  border-radius:12px;
-  overflow:hidden;
-}
-
-#investmentTable th{
-  background:var(--text);
-  color:#fff;
-  padding:12px;
-  text-align:left;
-}
-
-#investmentTable td{
-  padding:12px;
   border-bottom:1px solid #eee;
+  font-size:14px;
 }
 
-#investmentTable tr:hover{
-  background:#f5f9fc;
+tr:hover{
+  background:#f4f8fb;
 }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  .layout{
-    grid-template-columns:1fr;
-  }
+.balance{
+  font-weight:700;
+  color:green;
+}
 
-  .sidebar{
-    order:2;
-  }
+.role-admin{
+  color:#c0392b;
+  font-weight:700;
+}
 
-  .main{
-    order:1;
-  }
-
-  .slide-panel{
-    width:100%;
+@media(max-width:768px){
+  body{
+    padding:15px;
   }
 }
 </style>
@@ -276,202 +90,81 @@ canvas{
 
 <body>
 
-<header>Pecos — Business Dashboard (Admin)</header>
+<header>📋 Pecos Registered Members (Admin)</header>
 
-<div class="layout">
-
-  <aside class="sidebar">
-    <h3>Admin Menu</h3>
-    <button class="btn-primary" onclick="openPanel()">➕ Add Monthly Income</button>
-    <button class="btn-primary" onclick="location.href='member.html'">← Back to Members</button>
-    <button class="btn-primary" onclick="loadInvestments()">📈 Investments</button>
-  </aside>
-
-  <main class="main">
-
-    <div class="hero">
-      <h2>Total Business Income</h2>
-      <div class="summary" id="grandTotal">₹ 0</div>
-      <div id="monthCount">0 months tracked</div>
-    </div>
-
-    <canvas id="growthChart"></canvas>
-    <canvas id="breakupChart"></canvas>
-
-  </main>
-</div>
-
-<!-- 🔥 SLIDE PANEL -->
-<div class="overlay" id="overlay" onclick="closePanel()"></div>
-
-<div class="slide-panel" id="panel">
-  <h3>Add Monthly Income</h3>
-  <input type="month" id="monthKey" required>
-  <input type="number" placeholder="Interest Income" id="interestIncome">
-  <input type="number" placeholder="Dividend Income" id="dividendIncome">
-  <input type="number" placeholder="Rental Income" id="rentalIncome">
-  <input type="number" placeholder="Trading Income" id="tradingIncome">
-  <input type="number" placeholder="Brokerage Income" id="brokerageIncome">
-  <input type="number" placeholder="Other Income" id="otherIncome">
-  <button onclick="saveMonth()">Save Month</button>
-</div>
-<div id="investmentSection" style="margin-top:30px; display:none;">
-  <h2 style="color:#003366;">My Investments</h2>
-  <table id="investmentTable" style="width:100%; border-collapse:collapse; margin-top:15px;">
+<div class="table-container">
+  <table>
     <thead>
-      <tr style="background:#003366; color:#fff;">
-        <th style="padding:10px; text-align:left;">Stock Name</th>
-        <th style="padding:10px; text-align:left;">Quantity</th>
-        <th style="padding:10px; text-align:left;">Buy Price</th>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Balance</th>
+        <th>Role</th>
+        <th>User ID</th>
       </tr>
     </thead>
-    <tbody></tbody>
+    <tbody id="membersTable">
+      <tr>
+        <td colspan="6">Loading members...</td>
+      </tr>
+    </tbody>
   </table>
 </div>
+
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain: "pecos-432b5.firebaseapp.com",
-  projectId: "pecos-432b5"
-};
+const firebaseConfig = { apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs", authDomain: "pecos-432b5.firebaseapp.com", projectId: "pecos-432b5" };
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-let growthChart, breakupChart;
-
 auth.onAuthStateChanged(async user=>{
   if(!user) return location.href="index.html";
 
   const snap = await db.collection("members").doc(user.uid).get();
-  if(!snap.exists || snap.data().role!=="admin"){
+
+  // Allow only admin
+  if(!snap.exists || snap.data().role !== "admin"){
     return location.href="member.html";
   }
 
   document.body.style.display="block";
-  loadDashboard();
+  loadMembers();
 });
 
-function openPanel(){
-  panel.classList.add("active");
-  overlay.classList.add("active");
-}
-function closePanel(){
-  panel.classList.remove("active");
-  overlay.classList.remove("active");
-}
+async function loadMembers(){
+  const table = document.getElementById("membersTable");
+  table.innerHTML = "";
 
-async function saveMonth(){
-  if(!monthKey.value) return alert("Select month");
+  const snapshot = await db.collection("members").get();
 
-  const data = {
-    monthKey: monthKey.value,
-    interestIncome:+interestIncome.value||0,
-    dividendIncome:+dividendIncome.value||0,
-    rentalIncome:+rentalIncome.value||0,
-    tradingIncome:+tradingIncome.value||0,
-    brokerageIncome:+brokerageIncome.value||0,
-    otherIncome:+otherIncome.value||0,
-    createdAt:new Date()
-  };
-
-  data.totalIncome =
-    data.interestIncome +
-    data.dividendIncome +
-    data.rentalIncome +
-    data.tradingIncome +
-    data.brokerageIncome +
-    data.otherIncome;
-
-  await db.collection("businessIncomeHistory").add(data);
-
-  alert("Monthly data added");
-  closePanel();
-  loadDashboard();
-}
-
-async function loadDashboard(){
-  const snap = await db.collection("businessIncomeHistory")
-    .orderBy("monthKey")
-    .get();
-
-  let labels=[], totals=[], grand=0;
-  snap.forEach(d=>{
-    labels.push(d.data().monthKey);
-    totals.push(d.data().totalIncome);
-    grand += d.data().totalIncome;
-  });
-
-  grandTotal.innerText = "₹ " + grand;
-  monthCount.innerText = snap.size + " months tracked";
-
-  if(growthChart) growthChart.destroy();
-  growthChart = new Chart(document.getElementById("growthChart"),{
-    type:"line",
-    data:{
-      labels,
-      datasets:[{
-        label:"Monthly Income",
-        data:totals,
-        borderColor:"#003366",
-        fill:false
-      }]
-    }
-  });
-
-  const last = snap.docs[snap.size-1]?.data();
-  if(!last) return;
-
-  if(breakupChart) breakupChart.destroy();
-  breakupChart = new Chart(document.getElementById("breakupChart"),{
-    type:"bar",
-    data:{
-      labels:["Interest","Dividend","Rental","Trading","Brokerage","Other"],
-      datasets:[{
-        data:[
-          last.interestIncome,
-          last.dividendIncome,
-          last.rentalIncome,
-          last.tradingIncome,
-          last.brokerageIncome,
-          last.otherIncome
-        ],
-        backgroundColor:"#003366"
-      }]
-    }
-  });
-}
-  async function loadInvestments(){
-
-  investmentSection.style.display = "block";
-
-  const tableBody = document.querySelector("#investmentTable tbody");
-  tableBody.innerHTML = "";
-
-  const snap = await db.collection("Investments").get();
-
-  if(snap.empty){
-    tableBody.innerHTML = `
+  if(snapshot.empty){
+    table.innerHTML = `
       <tr>
-        <td colspan="3" style="padding:12px;">No investments found</td>
+        <td colspan="6">No members found</td>
       </tr>
     `;
     return;
   }
 
-  snap.forEach(doc=>{
+  snapshot.forEach(doc=>{
     const data = doc.data();
 
     const row = `
-      <tr style="border-bottom:1px solid #eee;">
-        <td style="padding:10px;">${data.name || "-"}</td>
-        <td style="padding:10px;">${data.quantity || 0}</td>
-        <td style="padding:10px;">₹ ${data.buyPrice || 0}</td>
+      <tr>
+        <td>${data.name || "-"}</td>
+        <td>${data.email || "-"}</td>
+        <td>${data.phone || "-"}</td>
+        <td class="balance">₹ ${data.balance || 0}</td>
+        <td class="${data.role === 'admin' ? 'role-admin' : ''}">
+          ${data.role || "member"}
+        </td>
+        <td>${doc.id}</td>
       </tr>
     `;
 
-    tableBody.innerHTML += row;
+    table.innerHTML += row;
   });
 }
 </script>
