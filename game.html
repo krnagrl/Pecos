@@ -42,11 +42,19 @@ header{
   border-radius:8px;
   font-weight:bold;
   cursor:pointer;
+  transition:all 0.3s ease;
 }
 
 .india{background:blue;color:white;}
 .pak{background:green;color:white;}
 .draw{background:gray;color:white;}
+
+/* Selected style */
+.selected{
+  background:red !important;
+  transform:scale(1.15);
+  box-shadow:0 4px 12px rgba(0,0,0,0.3);
+}
 
 input{
   padding:10px;
@@ -124,9 +132,9 @@ td{
 <h2>India 🇮🇳 vs Pakistan 🇵🇰</h2>
 
 <div class="bet-section">
-  <button class="india" onclick="setBet('India')">India (2x)</button>
-  <button class="pak" onclick="setBet('Pakistan')">Pakistan (2x)</button>
-  <button class="draw" onclick="setBet('Draw')">Draw (3x)</button>
+  <button id="btnIndia" class="india" onclick="setBet('India')">India (1x)</button>
+  <button id="btnPak" class="pak" onclick="setBet('Pakistan')">Pakistan (1x)</button>
+  <button id="btnDraw" class="draw" onclick="setBet('Draw')">Draw (2x)</button>
 </div>
 
 <input type="number" id="betAmount" placeholder="Enter Bet Amount" min="1">
@@ -189,9 +197,18 @@ async function loadWallet(user){
   document.getElementById("wallet").innerText=currentBalance;
 }
 
+/* ===== Updated Bet Selection ===== */
 function setBet(team){
   selectedBet=team;
-  alert("Selected: "+team);
+
+  // Remove previous selection
+  document.querySelectorAll(".bet-section button")
+  .forEach(btn=>btn.classList.remove("selected"));
+
+  // Add selected style
+  if(team==="India") document.getElementById("btnIndia").classList.add("selected");
+  if(team==="Pakistan") document.getElementById("btnPak").classList.add("selected");
+  if(team==="Draw") document.getElementById("btnDraw").classList.add("selected");
 }
 
 function rollDice(){
@@ -232,7 +249,9 @@ function rollDice(){
     else if(n2>n1) winner="Pakistan";
     else winner="Draw";
 
-    let multiplier = winner==="Draw" ? 3 : 2;
+    /* Updated multipliers */
+    let multiplier = winner==="Draw" ? 2 : 1;
+
     let resultStatus;
     let winAmount=0;
 
