@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1F3E56">
 <title>Pecos - About Us</title>
 <link rel="icon" href="pecos.png">
 
@@ -23,41 +24,47 @@
 *{
   box-sizing:border-box;
   font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
 }
 
-body{
+html,body{
   margin:0;
+  padding:0;
+  min-height:100%;
   background:var(--bg);
 }
 
+/* WRAPPER */
 .wrapper{
-  width:85%;
-  max-width:1200px;
-  margin:40px auto;
-  background:var(--card);
-  border-radius:18px;
-  box-shadow:0 20px 50px rgba(0,0,0,.06);
-  overflow:hidden;
+  width:100%;
+  min-height:100vh;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
 }
 
+/* HEADER */
 .header{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 30px;
+  padding:16px 20px;
   background:var(--text);
   color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
   font-weight:700;
-  font-size:20px;
-  letter-spacing:.5px;
+  font-size:18px;
 }
 
 .nav{
   display:flex;
-  gap:30px;
+  gap:25px;
 }
 
 .nav a{
@@ -66,37 +73,39 @@ body{
   font-weight:500;
   font-size:14px;
   opacity:.95;
-  transition:.2s;
 }
 
 .nav a:hover{
-  opacity:1;
   text-decoration:underline;
 }
 
+/* MAIN */
 .main{
-  padding:60px;
-  background:var(--bg);
+  flex:1;
+  padding:40px 30px;
 }
 
+/* ABOUT BOX */
 .about-box{
   background:var(--card);
-  padding:50px;
+  padding:40px;
   border-radius:16px;
   box-shadow:0 8px 25px rgba(0,0,0,.05);
+  max-width:900px;
+  margin:auto;
 }
 
 .about-box h2{
   margin-top:0;
-  font-size:28px;
+  font-size:26px;
   color:var(--text);
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 .about-box h3{
-  margin-top:40px;
+  margin-top:35px;
   color:var(--primary);
-  font-size:20px;
+  font-size:18px;
 }
 
 .about-box p{
@@ -107,18 +116,18 @@ body{
 
 .highlight{
   background:#e8f2f8;
-    line-height:1.8;
-
   padding:15px;
   border-left:4px solid var(--primary);
   margin:20px 0;
   border-radius:8px;
+  line-height:1.8;
 }
 
+/* FOOTER */
 .footer{
   background:var(--text);
   color:#dbe6ef;
-  padding:40px 50px;
+  padding:35px 25px;
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
@@ -127,6 +136,7 @@ body{
 .footer-left{
   max-width:60%;
   line-height:1.7;
+  font-size:14px;
 }
 
 .footer a{
@@ -144,12 +154,48 @@ body{
   opacity:.8;
 }
 
+/* MOBILE APP NAV */
+.bottom-nav{
+  display:none;
+}
+
+/* RESPONSIVE */
 @media(max-width:900px){
-  .main{
-    padding:30px;
+
+  .nav{
+    display:none;
   }
-  .wrapper{
-    width:95%;
+
+  .main{
+    padding:20px;
+    padding-bottom:90px;
+  }
+
+  .about-box{
+    padding:25px;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+    z-index:1000;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
   }
 }
 
@@ -165,12 +211,12 @@ body{
   <div class="nav">
     <a href="index.html">HOME</a>
     <a href="about.html"><b>ABOUT</b></a>
+    <a href="events.html">EVENTS</a>
     <a href="#">CONTACT</a>
   </div>
 </div>
 
 <div class="main">
-
   <div class="about-box">
 
     <h2>About Pecos</h2>
@@ -180,11 +226,10 @@ body{
       <b>Finance Services</b> and <b>Investments</b>.
     </p>
 
-    <h3>1️⃣ Finance Services</h3>
-
+    <h3>Finance Services</h3>
     <p>
-      We facilitate lending solutions for both businesses and individuals through our trusted and verified partnered channels.
-      Our role is to connect eligible borrowers with appropriate financial institutions and structured lending platforms.
+      We facilitate lending solutions for businesses and individuals through verified partnered channels.
+      We connect eligible borrowers with appropriate financial institutions and structured lending platforms.
     </p>
 
     <div class="highlight">
@@ -193,15 +238,13 @@ body{
     </div>
 
     <p>
-      Our focus remains on structured, transparent, and sustainable financial facilitation.
       We do not operate as a direct NBFC — we work through strategic financial partnerships.
     </p>
 
-    <h3>2️⃣ Investment Operations</h3>
-
+    <h3>Investment Operations</h3>
     <p>
-      Alongside financial facilitation, Pecos actively deploys capital into carefully selected financial instruments.
-      Our investment approach is conservative, research-driven, and risk-managed.
+      Pecos deploys capital into carefully selected financial instruments using a conservative,
+      research-driven and risk-managed approach.
     </p>
 
     <div class="highlight">
@@ -210,19 +253,16 @@ body{
     </div>
 
     <p>
-      The objective of our investment strategy is capital preservation, steady returns, and long-term growth.
-      Every allocation is based on internal financial analysis and market evaluation.
+      Our objective is capital preservation, steady returns and long-term growth.
     </p>
 
     <h3>Our Philosophy</h3>
-
     <p>
-      We believe in disciplined capital allocation, transparent operations, and long-term value creation.
-      Pecos is built on structured growth rather than speculative expansion.
+      We believe in disciplined capital allocation, transparent operations,
+      and structured long-term value creation.
     </p>
 
   </div>
-
 </div>
 
 <div class="footer">
@@ -235,6 +275,13 @@ body{
   <div class="footer-right">
     © 2025 PECOS. All rights reserved.
   </div>
+</div>
+
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="events.html">Events</a>
+  <a href="#">Contact</a>
 </div>
 
 </div>
