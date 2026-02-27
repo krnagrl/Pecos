@@ -6,7 +6,7 @@
 <title>Pecos - Events Gallery</title>
 <link rel="icon" href="pecos.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,7 +15,7 @@
   --bg:#F4F6F8;
   --card:#FFFFFF;
   --text:#1F3E56;
-  --muted:#5E6E7E;
+  --muted:#6B7A89;
 }
 
 *{
@@ -25,7 +25,7 @@
 
 body{
   margin:0;
-  background:linear-gradient(135deg,#e6f0f6,#f8fbfd);
+  background:var(--bg);
 }
 
 /* WRAPPER */
@@ -34,9 +34,8 @@ body{
   max-width:1200px;
   margin:40px auto;
   background:var(--card);
-  border-radius:25px;
-  border:4px solid var(--primary);
-  box-shadow:8px 8px 0px #1f3e56;
+  border-radius:18px;
+  box-shadow:0 15px 40px rgba(0,0,0,.06);
   overflow:hidden;
 }
 
@@ -45,115 +44,106 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 30px;
+  padding:22px 30px;
   background:var(--text);
   color:white;
-  border-bottom:4px solid var(--primary);
 }
 
 .logo{
-  font-weight:700;
+  font-weight:600;
   font-size:20px;
 }
 
 .nav{
   display:flex;
-  gap:25px;
+  gap:30px;
 }
 
 .nav a{
   text-decoration:none;
   color:white;
-  font-weight:600;
   font-size:14px;
+  opacity:.9;
 }
 
 .nav a:hover{
+  opacity:1;
   text-decoration:underline;
 }
 
 /* MAIN */
 .main{
-  padding:50px;
+  padding:60px 50px;
 }
 
 /* TITLE */
 .page-title{
-  font-size:26px;
-  font-weight:700;
+  font-size:24px;
+  font-weight:600;
   color:var(--text);
-  margin-bottom:35px;
-  text-align:center;
+  margin-bottom:40px;
+  letter-spacing:.5px;
 }
 
 /* GALLERY */
 .gallery{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:30px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:35px;
 }
 
 /* EVENT CARD */
 .event-card{
-  background:#ffffff;
-  border-radius:20px;
-  border:3px dashed var(--primary);
-  padding:15px;
-  box-shadow:6px 6px 0px #c9dbe7;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
   transition:.3s;
 }
 
 .event-card:hover{
-  transform:rotate(-1deg) scale(1.02);
+  transform:translateY(-4px);
 }
 
-/* IMAGE FRAME PLACEHOLDER */
+/* IMAGE PLACEHOLDER */
 .image-frame{
-  height:220px;
-  border-radius:18px;
-  border:4px solid var(--primary);
+  height:240px;
+  background:linear-gradient(135deg,#e8eef3,#f5f8fb);
   display:flex;
   align-items:center;
   justify-content:center;
-  background:repeating-linear-gradient(
-    45deg,
-    #f1f7fb,
-    #f1f7fb 10px,
-    #e0eef7 10px,
-    #e0eef7 20px
-  );
-  font-weight:600;
-  color:var(--muted);
+  color:#9aa8b5;
   font-size:14px;
+  letter-spacing:1px;
 }
 
 /* CONTENT */
 .event-content{
-  padding:15px 5px 5px 5px;
+  padding:22px;
 }
 
 .event-date{
-  font-size:13px;
-  font-weight:700;
+  font-size:12px;
+  font-weight:500;
   color:var(--primary);
-  margin-bottom:8px;
+  margin-bottom:10px;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 .event-desc{
   font-size:14px;
   color:var(--muted);
-  line-height:1.6;
+  line-height:1.7;
 }
 
 /* FOOTER */
 .footer{
   background:var(--text);
   color:#dbe6ef;
-  padding:35px 40px;
+  padding:40px 50px;
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
-  border-top:4px solid var(--primary);
 }
 
 .footer a{
@@ -174,7 +164,7 @@ body{
 /* RESPONSIVE */
 @media(max-width:900px){
   .main{
-    padding:30px;
+    padding:35px 25px;
   }
   .wrapper{
     width:95%;
@@ -200,36 +190,36 @@ body{
 
 <div class="main">
 
-  <div class="page-title">🎉 Pecos Event Gallery 🎉</div>
+  <div class="page-title">Events & Moments at Pecos</div>
 
   <div class="gallery">
 
     <div class="event-card">
-      <div class="image-frame">📸 Image Coming Soon</div>
+      <div class="image-frame">Image Placeholder</div>
       <div class="event-content">
         <div class="event-date">12 January 2025</div>
         <div class="event-desc">
-          Annual Investor Meet at Pecos Office. Discussion on business expansion and structured return planning.
+          Annual Investor Meet focused on real estate expansion strategy and structured return models.
         </div>
       </div>
     </div>
 
     <div class="event-card">
-      <div class="image-frame">📸 Image Coming Soon</div>
+      <div class="image-frame">Image Placeholder</div>
       <div class="event-content">
         <div class="event-date">25 March 2025</div>
         <div class="event-desc">
-          Token Launch Event for new property project. Members interaction and Q&A session.
+          Property token launch event with member discussions and future growth roadmap presentation.
         </div>
       </div>
     </div>
 
     <div class="event-card">
-      <div class="image-frame">📸 Image Coming Soon</div>
+      <div class="image-frame">Image Placeholder</div>
       <div class="event-content">
         <div class="event-date">18 July 2025</div>
         <div class="event-desc">
-          Finance Growth Seminar hosted by Pecos. Discussion on investment planning and strategic growth.
+          Financial growth seminar covering investment planning and long-term capital structuring.
         </div>
       </div>
     </div>
