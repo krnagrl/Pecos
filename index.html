@@ -160,16 +160,29 @@ html, body{
 .password-wrapper input{
   padding-right:45px;
 }
-
 .toggle-password{
   position:absolute;
-  right:15px;
+  right:12px;
   top:50%;
   transform:translateY(-50%);
   cursor:pointer;
-  font-size:16px;
-  color:#5E6E7E;
-  user-select:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  color:var(--muted);
+  transition:all .2s ease;
+}
+
+.toggle-password:hover{
+  background:rgba(47,111,149,.08);
+  color:var(--primary);
+}
+
+.toggle-password.active{
+  color:var(--primary);
 }
 input{
   width:100%;
@@ -357,7 +370,17 @@ button:active{
     <input id="email" type="email" placeholder="Email">
 <div class="password-wrapper">
   <input id="password" type="password" placeholder="Password">
-  <span class="toggle-password" onclick="togglePassword()">👁</span>
+<span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
+  <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+    <circle cx="12" cy="12" r="3"/>
+  </svg>
+
+  <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
+    <path d="M1 1l22 22"/>
+  </svg>
+</span>
 </div>    <button onclick="login()">Login</button>
     <p id="msg"></p>
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
@@ -402,13 +425,22 @@ auth.onAuthStateChanged(async(user)=>{
   }
 });
 
-  function togglePassword(){
+function togglePassword(){
   const passwordInput = document.getElementById("password");
+  const eyeOpen = document.getElementById("eyeOpen");
+  const eyeClose = document.getElementById("eyeClose");
+  const eyeIcon = document.getElementById("eyeIcon");
 
   if(passwordInput.type === "password"){
     passwordInput.type = "text";
+    eyeOpen.style.display = "none";
+    eyeClose.style.display = "block";
+    eyeIcon.classList.add("active");
   } else {
     passwordInput.type = "password";
+    eyeOpen.style.display = "block";
+    eyeClose.style.display = "none";
+    eyeIcon.classList.remove("active");
   }
 }
   
@@ -476,6 +508,7 @@ setInterval(() => {
 </script>
 </body>
 </html>
+
 
 
 
