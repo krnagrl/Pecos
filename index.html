@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>PECOS - Finance | Real Estate | Stocks & Shares</title>
+  <meta name="description" content="PECOS provides expert services in Finance, Real Estate, Stocks, and Shares. Log in to view live interest rates, deposit rates, and manage your investments.">
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -153,32 +154,37 @@ html, body{
   color:var(--text);
   font-size:18px;
 }
-.password-wrapper{
-  position:relative;
+/* Updated Password Wrapper */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center; /* Vertically centers the icon */
+  width: 100%;
 }
 
-.password-wrapper input{
-  padding-right:45px;
-}
-.toggle-password{
-  position:absolute;
-  right:12px;
-  top:50%;
-  transform:translateY(-50%);
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:36px;
-  height:36px;
-  border-radius:8px;
-  color:var(--muted);
-  transition:all .2s ease;
+.password-wrapper input {
+  margin-bottom: 15px; /* Keep your spacing */
+  padding-right: 45px; /* Leave space so text doesn't go under the eye */
+  width: 100%;
 }
 
-.toggle-password:hover{
-  background:rgba(47,111,149,.08);
-  color:var(--primary);
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  /* Remove the top 50% transform to let flexbox handle it */
+  top: 0; 
+  height: 45px; /* Matches the approximate height of your input */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+  transition: all .2s ease;
+  z-index: 10;
+}
+
+.toggle-password:hover {
+  color: var(--primary);
 }
 
 .toggle-password.active{
@@ -508,6 +514,7 @@ setInterval(() => {
 </script>
 </body>
 </html>
+
 
 
 
