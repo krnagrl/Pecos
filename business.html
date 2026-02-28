@@ -89,9 +89,6 @@ tr:hover{
 </head>
 
 <body>
-
-<header>📋 Pecos Registered Members (Admin)</header>
-
 <div class="table-container">
   <table>
     <thead>
@@ -101,7 +98,6 @@ tr:hover{
         <th>Phone</th>
         <th>Balance</th>
         <th>Role</th>
-        <th>User ID</th>
       </tr>
     </thead>
     <tbody id="membersTable">
@@ -160,7 +156,6 @@ async function loadMembers(){
         <td class="${data.role === 'admin' ? 'role-admin' : ''}">
           ${data.role || "member"}
         </td>
-        <td>${doc.id}</td>
       </tr>
     `;
 
