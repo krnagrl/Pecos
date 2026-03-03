@@ -1,198 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<!-- SEO OPTIMIZATION -->
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Complete case study of DMart – revenue growth, valuation, business model, margins, risks and lessons.">
+<meta name="keywords" content="DMart story, Radhakishan Damani, DMart revenue, Indian retail case study">
+<meta name="author" content="Pecos">
 <meta name="theme-color" content="#1F3E56">
-<title>Pecos - Digital Media</title>
+
+<title>DMart Full Business Case Study | Pecos</title>
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
 
 :root{
   --primary:#2F6F95;
-  --secondary:#3B7EA5;
-  --accent:#2F6F95;
   --bg:#F4F6F8;
-  --card:#FFFFFF;
+  --card:#ffffff;
   --text:#1F3E56;
   --muted:#5E6E7E;
 }
 
-*{
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  -webkit-tap-highlight-color:transparent;
+.dark{
+  --bg:#0f1720;
+  --card:#1c2733;
+  --text:#ffffff;
+  --muted:#9fb3c8;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  background:var(--bg);
-}
+*{box-sizing:border-box;font-family:'Inter',sans-serif;margin:0;padding:0;}
 
-/* WRAPPER */
-.wrapper{
-  width:100%;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
+body{background:var(--bg);color:var(--text);transition:.3s;}
 
-/* HEADER */
 .header{
+  background:var(--text);
+  color:white;
+  padding:16px 20px;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:16px 20px;
-  background:var(--text);
+}
+
+.header button{
+  background:white;
+  color:black;
+  border:none;
+  padding:6px 12px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.hero{
+  background:linear-gradient(135deg,#2F6F95,#1F3E56);
   color:white;
-  position:sticky;
-  top:0;
-  z-index:1000;
+  padding:80px 20px;
+  text-align:center;
 }
 
-.logo{
-  font-weight:700;
-  font-size:18px;
-}
+.hero h1{font-size:36px;margin-bottom:10px;}
 
-.nav{
-  display:flex;
-  gap:25px;
-}
-
-.nav a{
-  text-decoration:none;
-  color:white;
-  font-weight:500;
-  font-size:14px;
-  opacity:.95;
-}
-
-.nav a:hover{
-  text-decoration:underline;
-}
-
-/* MAIN */
 .main{
-  flex:1;
-  padding:60px 40px;
-  display:flex;
-  justify-content:center;
+  padding:60px 30px;
+  max-width:1100px;
+  margin:auto;
 }
 
-.media-box{
-  width:100%;
-  max-width:1200px;
-  background:var(--card);
-  padding:60px;
-  border-radius:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.06);
+.section{
+  margin-bottom:70px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:.8s;
 }
 
-.media-box h2{
-  margin-top:0;
-  font-size:26px;
-  color:var(--text);
+.section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section h2{
+  margin-bottom:15px;
+  color:var(--primary);
+}
+
+.section p{
+  line-height:1.8;
+  color:var(--muted);
+  margin-bottom:15px;
+}
+
+/* TIMELINE */
+.timeline{
+  border-left:3px solid var(--primary);
+  padding-left:20px;
+}
+
+.timeline div{
   margin-bottom:20px;
 }
 
-.media-box h3{
-  margin-top:35px;
-  color:var(--primary);
-  font-size:18px;
+/* NUMBERS GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:20px;
 }
 
-.media-box p{
-  line-height:1.8;
-  color:var(--muted);
-  font-size:15px;
+.box{
+  background:var(--card);
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,.05);
+  text-align:center;
 }
 
-.highlight{
-  background:#e8f2f8;
-  padding:15px;
-  border-left:4px solid var(--primary);
-  margin:20px 0;
-  border-radius:8px;
-  line-height:1.8;
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:20px;
 }
 
-/* FOOTER */
-.footer{
+table th, table td{
+  border:1px solid #ccc;
+  padding:10px;
+  text-align:center;
+}
+
+table th{
+  background:var(--primary);
+  color:white;
+}
+
+canvas{
+  margin-top:20px;
+}
+
+footer{
   background:var(--text);
-  color:#dbe6ef;
-  padding:35px 25px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
+  color:white;
+  text-align:center;
+  padding:20px;
 }
 
-.footer-left{
-  max-width:60%;
-  line-height:1.7;
-  font-size:14px;
-}
-
-.footer a{
-  color:#7fc3ea;
-  text-decoration:none;
-}
-
-.footer a:hover{
-  text-decoration:underline;
-}
-
-.footer-right{
-  align-self:flex-end;
-  font-size:13px;
-  opacity:.8;
-}
-
-/* MOBILE NAV */
-.bottom-nav{
-  display:none;
-}
-
-@media(max-width:900px){
-
-  .nav{ display:none; }
-
-  .main{
-    padding:20px;
-    padding-bottom:90px;
-  }
-
-  .media-box{
-    padding:25px;
-  }
-
-  .footer{
-    padding-bottom:90px;
-  }
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:var(--text);
-    display:flex;
-    justify-content:space-around;
-    padding:14px 0;
-    z-index:1000;
-  }
-
-  .bottom-nav a{
-    color:white;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:500;
-  }
+@media(max-width:768px){
+  .hero h1{font-size:26px;}
 }
 
 </style>
@@ -200,114 +157,159 @@ html,body{
 
 <body>
 
-<div class="wrapper">
-
 <div class="header">
-  <div class="logo">PECOS</div>
-  <div class="nav">
-    <a href="index.html">HOME</a>
-    <a href="about.html">ABOUT</a>
-    <a href="media.html"><b>MEDIA</b></a>
-    <a href="Contact.html">CONTACT</a>
-  </div>
+  <div><b>PECOS</b></div>
+  <button onclick="toggleDark()">Toggle Dark Mode</button>
+</div>
+
+<div class="hero">
+  <h1>DMart – The Discipline of Scale</h1>
+  <p>India’s Most Profitable Retail Machine</p>
 </div>
 
 <div class="main">
-  <div class="media-box">
 
-    <h2>Pecos Digital Media</h2>
-
-    <p>
-      Pecos Digital Media operates as the creative and digital growth division of PECOS.
-      We help brands, businesses, and professionals build visibility, authority, and measurable growth through strategic media execution.
-    </p>
-
-    <h3>Videography & Production</h3>
-    <p>
-      Professional corporate videos, business promos, brand films, interviews, product shoots, and event coverage.
-      From scripting to final editing — we manage complete production workflows.
-    </p>
-
-    <div class="highlight">
-      Brand Films • Promotional Videos • Reels • Commercial Ads • Corporate Shoots
-    </div>
-
-    <h3>Photography</h3>
-    <p>
-      High-quality business photography including product shoots, office spaces,
-      team portraits, and marketing visuals optimized for digital platforms.
-    </p>
-
-    <h3>Social Media Management</h3>
-    <p>
-      Complete social media handling including content planning,
-      post design, caption writing, growth strategy and analytics monitoring.
-    </p>
-
-    <div class="highlight">
-      Instagram • Facebook • LinkedIn • YouTube • Brand Positioning Strategy
-    </div>
-
-    <h3>Paid Advertising</h3>
-    <p>
-      Performance-driven digital advertising campaigns structured to maximize ROI.
-      We create and manage targeted campaigns across major digital platforms.
-    </p>
-
-    <div class="highlight">
-      Meta Ads (Facebook & Instagram)<br>
-      Google Ads (Search & Display)<br>
-      Lead Generation Campaigns<br>
-      Conversion Optimization
-    </div>
-
-    <h3>Branding & Creative Strategy</h3>
-    <p>
-      Logo development, visual identity systems, brand positioning,
-      content tone, and structured marketing campaigns tailored to business objectives.
-    </p>
-
-    <h3>Website & Digital Presence</h3>
-    <p>
-      Business websites, landing pages, and digital asset creation
-      to support online growth and credibility.
-    </p>
-
-    <h3>Founder</h3>
-    <p>
-      Pecos Digital Media is led by <b>Karan Agrawal</b>,
-      focusing on disciplined execution, strategic growth,
-      and measurable digital expansion for businesses.
-    </p>
-
-    <div class="highlight">
-      Our mission is simple:  
-      <b>Build brand authority. Drive digital growth. Deliver measurable results.</b>
-    </div>
-
-  </div>
+<!-- TIMELINE -->
+<div class="section">
+<h2>Journey Timeline</h2>
+<div class="timeline">
+  <div><b>2002</b> – First store opened in Powai.</div>
+  <div><b>2007-2012</b> – Slow expansion, owned real estate strategy.</div>
+  <div><b>2017</b> – IPO subscribed 100+ times.</div>
+  <div><b>2020</b> – Crossed ₹24,000 Cr revenue.</div>
+  <div><b>2024+</b> – 350+ stores across India.</div>
+</div>
 </div>
 
-<div class="footer">
-  <div class="footer-left">
-    <b>Mobile:</b> (+91) 8669334862<br>
-    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
-    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
-  </div>
-
-  <div class="footer-right">
-    © 2025 PECOS. All rights reserved.
-  </div>
+<!-- BUSINESS MODEL -->
+<div class="section">
+<h2>Business Model</h2>
+<p>
+• Everyday Low Price (EDLP)  
+• Limited SKUs  
+• High inventory turnover  
+• Majority store ownership  
+• Focus on middle class value consumers  
+</p>
 </div>
 
-<div class="bottom-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="media.html">Media</a>
-  <a href="Contact.html">Contact</a>
+<!-- KEY NUMBERS -->
+<div class="section">
+<h2>Key Financial Numbers</h2>
+<div class="grid">
+  <div class="box"><h3>350+</h3><p>Stores</p></div>
+  <div class="box"><h3>₹45,000+ Cr</h3><p>Revenue</p></div>
+  <div class="box"><h3>10%+</h3><p>Operating Margin</p></div>
+  <div class="box"><h3>₹3L+ Cr</h3><p>Market Cap (Approx)</p></div>
+</div>
+</div>
+
+<!-- REVENUE CHART -->
+<div class="section">
+<h2>Revenue Growth (₹ Crores)</h2>
+<canvas id="revenueChart"></canvas>
+</div>
+
+<!-- VALUATION CHART -->
+<div class="section">
+<h2>Market Capitalisation Growth</h2>
+<canvas id="valuationChart"></canvas>
+</div>
+
+<!-- COMPETITOR TABLE -->
+<div class="section">
+<h2>Competitor Comparison</h2>
+<table>
+<tr>
+<th>Company</th>
+<th>Model</th>
+<th>Margins</th>
+<th>Ownership</th>
+</tr>
+<tr>
+<td>DMart</td>
+<td>Cost Leadership</td>
+<td>High</td>
+<td>Owned Stores</td>
+</tr>
+<tr>
+<td>Reliance Retail</td>
+<td>Aggressive Expansion</td>
+<td>Moderate</td>
+<td>Mixed</td>
+</tr>
+<tr>
+<td>Big Bazaar (Past)</td>
+<td>Debt Driven</td>
+<td>Low</td>
+<td>Leased</td>
+</tr>
+</table>
+</div>
+
+<!-- LESSONS -->
+<div class="section">
+<h2>Pecos Business Lessons</h2>
+<p>
+1. Discipline > Speed  
+2. Cash Flow > Hype  
+3. Own Critical Assets  
+4. Expand Slowly  
+5. Protect Margins Relentlessly  
+</p>
 </div>
 
 </div>
+
+<footer>
+© 2025 PECOS | Business Intelligence Platform
+</footer>
+
+<script>
+
+/* DARK MODE */
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+/* SCROLL ANIMATION */
+const sections=document.querySelectorAll(".section");
+window.addEventListener("scroll",()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight-100){
+      sec.classList.add("visible");
+    }
+  });
+});
+
+/* REVENUE CHART */
+new Chart(document.getElementById('revenueChart'),{
+  type:'line',
+  data:{
+    labels:['2017','2018','2019','2020','2021','2022','2023'],
+    datasets:[{
+      label:'Revenue ₹ Cr',
+      data:[11862,15670,19916,24000,30300,41000,45000],
+      borderWidth:2,
+      tension:.4
+    }]
+  }
+});
+
+/* VALUATION CHART */
+new Chart(document.getElementById('valuationChart'),{
+  type:'bar',
+  data:{
+    labels:['IPO 2017','2019','2021','2023','2024'],
+    datasets:[{
+      label:'Market Cap ₹ Cr',
+      data:[39000,90000,200000,280000,300000],
+      borderWidth:1
+    }]
+  }
+});
+
+</script>
 
 </body>
 </html>
