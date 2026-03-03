@@ -110,6 +110,52 @@ body{background:var(--bg);color:var(--text);transition:.3s;}
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:20px;
 }
+/* STORY SPECIAL STYLING */
+
+.story-block{
+  margin-bottom:40px;
+}
+
+.story-block h3{
+  color:var(--primary);
+  margin-bottom:10px;
+  font-size:20px;
+}
+
+.story-highlight{
+  background:#e8f2f8;
+  padding:20px;
+  border-left:4px solid var(--primary);
+  border-radius:10px;
+  margin:20px 0;
+  font-style:italic;
+  color:var(--text);
+}
+
+.story-divider{
+  height:2px;
+  background:linear-gradient(to right,var(--primary),transparent);
+  margin:40px 0;
+  border-radius:2px;
+}
+
+.story-quote{
+  font-size:18px;
+  font-weight:500;
+  color:var(--primary);
+  margin:20px 0;
+}
+
+.fade-in{
+  opacity:0;
+  transform:translateY(20px);
+  transition:all .8s ease;
+}
+
+.fade-in.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 
 .box{
   background:var(--card);
@@ -168,7 +214,199 @@ footer{
 </div>
 
 <div class="main">
+<!-- ================= DMART STORY SECTION ================= -->
 
+
+
+<div class="section">
+
+<h2>The Story – Silence, Patience & Scale</h2>
+
+<div class="story-block fade-in">
+<h3>The Silent Man in White</h3>
+<p>
+In the chaotic trading ring of the Bombay Stock Exchange during the 1990s,
+there stood a man who rarely spoke. While traders shouted and chased momentum,
+he observed quietly.
+</p>
+<p>
+That man was <b>Radhakishan Damani</b>.
+</p>
+<p>
+He built wealth in the stock market first — not by speed, but by patience.
+He understood bubbles, fear, greed, and most importantly — discipline.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>Seeing What Others Ignored</h3>
+<p>
+As India liberalized, consumption was rising.
+But retail was inefficient — fragmented kirana stores,
+broken supply chains, inconsistent pricing.
+</p>
+<p>
+Aggressive players were expanding using debt.
+Damani saw the opportunity — but chose a completely different path.
+</p>
+
+<div class="story-highlight">
+"I don’t want growth at any cost.  
+I want control."
+</div>
+
+<p>
+He wanted a retail model that could survive decades,
+not just impress quarterly investors.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>2002 – One Store. No Noise.</h3>
+<p>
+The first DMart store opened in Powai, Mumbai.
+No celebrities. No advertisements.
+No luxury design.
+</p>
+<p>
+Just visible low prices.
+Every single day.
+</p>
+
+<div class="story-quote">
+Everyday Low Cost. Everyday Low Price.
+</div>
+
+<p>
+Customers noticed immediately.
+Word spread.
+Volume increased.
+Margins stayed protected.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>The Real Estate Masterstroke</h3>
+<p>
+While competitors rented expensive properties,
+DMart began buying stores.
+</p>
+<p>
+Owning real estate meant:
+</p>
+<ul style="color:var(--muted); line-height:1.8;">
+<li>Stable long-term cost structure</li>
+<li>No rent shocks</li>
+<li>Asset appreciation</li>
+<li>Balance sheet strength</li>
+</ul>
+
+<p>
+Expansion was slow. Painfully slow.
+But controlled.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>The Vendor Advantage</h3>
+<p>
+DMart paid suppliers on time — always.
+In Indian retail, delayed payments were normal.
+DMart broke that culture.
+</p>
+<p>
+Suppliers trusted them.
+Trust led to better pricing.
+Better pricing led to higher volume.
+Higher volume led to stronger bargaining power.
+</p>
+
+<div class="story-highlight">
+A silent compounding loop was created.
+</div>
+
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>2017 – The IPO Moment</h3>
+<p>
+When DMart went public, it shocked the markets.
+The IPO was subscribed over 100 times.
+</p>
+<p>
+Investors realized something rare:
+This company was not burning cash.
+It was generating it.
+</p>
+<p>
+The stock multiplied.
+But Damani stayed silent.
+No celebrations.
+No headlines.
+Just execution.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>The Pandemic Test</h3>
+<p>
+When COVID hit, many retailers struggled.
+High rents. Debt pressure. Shutdown losses.
+</p>
+<p>
+DMart survived.
+</p>
+<ul style="color:var(--muted); line-height:1.8;">
+<li>Strong cash reserves</li>
+<li>Owned stores</li>
+<li>Essential goods focus</li>
+<li>Low debt</li>
+</ul>
+
+<p>
+Discipline during good times protects you during bad times.
+</p>
+</div>
+
+<div class="story-divider"></div>
+
+<div class="story-block fade-in">
+<h3>The Real Lesson</h3>
+<p>
+DMart is not just a retail company.
+It is a discipline company disguised as retail.
+</p>
+
+<div class="story-highlight">
+In a country obsessed with speed,  
+DMart proved that slow can win.
+</div>
+
+<p>
+No hype.
+No aggression.
+Just relentless execution.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- ================= END STORY SECTION ================= -->
 <!-- TIMELINE -->
 <div class="section">
 <h2>Journey Timeline</h2>
@@ -307,6 +545,16 @@ new Chart(document.getElementById('valuationChart'),{
       borderWidth:1
     }]
   }
+});
+/* Fade-in Animation */
+const storyElements = document.querySelectorAll('.fade-in');
+
+window.addEventListener('scroll', ()=>{
+  storyElements.forEach(el=>{
+    if(el.getBoundingClientRect().top < window.innerHeight - 80){
+      el.classList.add('visible');
+    }
+  });
 });
 
 </script>
