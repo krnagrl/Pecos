@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margao</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    color: #202122;
+}
+
+.header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #a2a9b1;
+    padding: 15px 30px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    border-right: 1px solid #a2a9b1;
+    background-color: #ffffff;
+}
+
+.sidebar h3 {
+    font-size: 16px;
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+    cursor: pointer;
+    color: #0645ad;
+}
+
+.content {
+    flex: 1;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+h1 {
+    font-size: 32px;
+}
+
+h2 {
+    border-bottom: 1px solid #a2a9b1;
+    padding-bottom: 5px;
+    margin-top: 30px;
+}
+
+.infobox {
+    float: right;
+    width: 250px;
+    background: #f8f9fa;
+    border: 1px solid #a2a9b1;
+    padding: 10px;
+    margin: 10px;
+    font-size: 14px;
+}
+
+.infobox h3 {
+    text-align: center;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    color: gray;
+}
+
+.hidden {
+    display: none;
+}
+</style>
+</head>
+<body>
+
+<div class="header">Margao</div>
+
+<div class="container">
+
+<div class="sidebar">
+    <h3>Contents</h3>
+    <ul>
+        <li onclick="scrollToSection('overview')">Overview</li>
+        <li onclick="scrollToSection('economy')">Economic Structure</li>
+        <li onclick="scrollToSection('governance')">Governance</li>
+        <li onclick="scrollToSection('impact')">Social Impact</li>
+    </ul>
+</div>
+
+<div class="content">
+
+<h1>Mafia Economy of Margao</h1>
+
+<div class="infobox">
+    <h3>Margao</h3>
+    <p><strong>Population:</strong> 400,000</p>
+    <p><strong>Economy Type:</strong> Mafia-controlled</p>
+    <p><strong>Main Industries:</strong><br>
+    Liquor Production<br>
+    Prostitution<br>
+    Gambling<br>
+    Engineering Goods</p>
+</div>
+
+<p><b>The Mafia Economy of Margao</b> refers to a hypothetical system where organized crime controls the economic and social structure of a town with a population of approximately 4 lakh.</p>
+
+<h2 id="overview">Overview</h2>
+<p>Margao operates under a parallel system where illegal and legal activities are deeply interconnected. Organized groups regulate business, trade, and movement within the town.</p>
+
+<h2 id="economy">Economic Structure</h2>
+<p><b>Liquor Production:</b> Large-scale production and distribution of alcohol, both legal and illegal.</p>
+<p><b>Prostitution:</b> A structured network contributing to steady cash flow.</p>
+<p><b>Gambling:</b> Underground betting and casinos that generate significant revenue.</p>
+<p><b>Engineering Goods:</b> Legal manufacturing units used to stabilize and legitimize income.</p>
+
+<h2 id="governance">Governance and Control</h2>
+<p>The town is governed by mafia groups through influence over police, politicians, and local businesses.</p>
+
+<h2 id="impact">Social Impact</h2>
+<p>The system results in corruption and lack of law enforcement, but also provides employment and economic stability.</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+    This is a fictional Wikipedia-style page created for demonstration purposes.
+</div>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+</script>
+
+</body>
+</html>
