@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -348,36 +349,27 @@ button:active{
 <div class="main">
 
   <!-- CONTENT BOX FIXED -->
-<h3>Live Market Rates</h3>
+<div class="content-box">
+  <h3>Live Rate Overview</h3>
 
-<div class="market-item">
-  <span>Gold (24K ₹/gram)</span>
-  <span id="gold" class="value">Loading...</span>
-</div>
+  <div class="market-item">
+    <span>Interest Rate (%)</span>
+    <span id="interest" class="value">15.00</span>
+  </div>
 
-<div class="market-item">
-  <span>Silver (₹/gram)</span>
-  <span id="silver" class="value">Loading...</span>
-</div>
+  <div class="market-item">
+    <span>Deposit Rate (%)</span>
+    <span id="deposit" class="value">9.00</span>
+  </div>
 
-<div class="market-item">
-  <span>Interest Rate (%)</span>
-  <span id="interest" class="value">15.00</span>
-</div>
-
-<div class="market-item">
-  <span>Deposit Rate (%)</span>
-  <span id="deposit" class="value">9.00</span>
-</div>
-
-<div class="market-item">
-  <span>Coupon Rate</span>
-  <span id="coupon" class="value">25000</span>
-</div>
-
-<div class="market-item">
-  <span>Token Rate</span>
-  <span id="fied" class="value">500</span>
+  <div class="market-item">
+    <span>Coupon Rate</span>
+    <span id="coupon" class="value">25000</span>
+  </div>
+    <div class="market-item">
+    <span>Token Rate</span>
+    <span id="fied" class="value">500</span>
+  </div>
 </div>
 
   <!-- LOGIN -->
@@ -409,7 +401,6 @@ button:active{
     <b>Mobile:</b> (+91) 8669334862<br>
     <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
     <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
-    <small>Prices are indicative and may vary from actual market rates.</small>
   </div>
 
   <div class="footer-right">
@@ -522,58 +513,9 @@ setInterval(() => {
   updateRate("deposit", 7, 12, 2);
   updateRate("coupon", 5000, 50000, 0);
 }, 10000);
-
-  /* LIVE GOLD & SILVER PRICES */
-
-async function fetchMetalPrices() {
-  try {
-    // Gold price (per ounce USD)
-    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
-    const goldData = await goldRes.json();
-
-    // Silver price (per ounce USD)
-    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
-    const silverData = await silverRes.json();
-
-    // Convert USD/ounce → INR/gram
-    const usdToInr = 83; // approx (you can make dynamic later)
-
-    const goldPerGram = ((goldData.price / 31.1035) * usdToInr).toFixed(2);
-    const silverPerGram = ((silverData.price / 31.1035) * usdToInr).toFixed(2);
-
-    updateLiveValue("gold", goldPerGram);
-    updateLiveValue("silver", silverPerGram);
-
-  } catch (err) {
-    console.error("Metal price error:", err);
-  }
-}
-
-/* Animation like your rates */
-function updateLiveValue(id, newValue){
-  const el = document.getElementById(id);
-  const oldValue = parseFloat(el.innerText) || 0;
-
-  el.classList.remove("up","down");
-
-  if(newValue > oldValue){
-    el.classList.add("up");
-  } else {
-    el.classList.add("down");
-  }
-
-  el.innerText = newValue;
-}
-
-/* Run on load */
-fetchMetalPrices();
-
-/* Refresh every 60 sec */
-setInterval(fetchMetalPrices, 60000);
 </script>
 </body>
 </html>
-
 
 
 
