@@ -415,32 +415,35 @@ button:active{
 </div>
 </div>
 <script>
-const firebaseConfig={
-  apiKey:"AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain:"pecos-432b5.firebaseapp.com",
-  projectId:"pecos-432b5"
+// FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5"
 };
 
 firebase.initializeApp(firebaseConfig);
-const auth=firebase.auth();
-const db=firebase.firestore();
+const auth = firebase.auth();
+const db = firebase.firestore();
 
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-auth.onAuthStateChanged(async(user)=>{
-  if(user && user.emailVerified){
-    const doc=await db.collection("members").doc(user.uid).get();
-    location.href=doc.data()?.isAdmin ? "admin.html" : "member.html";
+// AUTO REDIRECT AFTER LOGIN
+auth.onAuthStateChanged(async (user) => {
+  if (user && user.emailVerified) {
+    const doc = await db.collection("members").doc(user.uid).get();
+    location.href = doc.data()?.isAdmin ? "admin.html" : "member.html";
   }
 });
 
-function togglePassword(){
+// TOGGLE PASSWORD
+function togglePassword() {
   const passwordInput = document.getElementById("password");
   const eyeOpen = document.getElementById("eyeOpen");
   const eyeClose = document.getElementById("eyeClose");
   const eyeIcon = document.getElementById("eyeIcon");
 
-  if(passwordInput.type === "password"){
+  if (passwordInput.type === "password") {
     passwordInput.type = "text";
     eyeOpen.style.display = "none";
     eyeClose.style.display = "block";
@@ -452,49 +455,54 @@ function togglePassword(){
     eyeIcon.classList.remove("active");
   }
 }
-  
-async function login(){
-  msg.innerText="";
-  const email=document.getElementById("email").value.trim();
-  const password=document.getElementById("password").value.trim();
 
-  if(!email || !password){
-    msg.innerText="Please fill all fields";
+// LOGIN
+async function login() {
+  msg.innerText = "";
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if (!email || !password) {
+    msg.innerText = "Please fill all fields";
     return;
   }
 
-  try{
-    const res=await auth.signInWithEmailAndPassword(email,password);
-    if(!res.user.emailVerified)
-      msg.innerText="Please verify your email";
-  }catch(e){
-    msg.innerText=e.message;
+  try {
+    const res = await auth.signInWithEmailAndPassword(email, password);
+    if (!res.user.emailVerified)
+      msg.innerText = "Please verify your email";
+  } catch (e) {
+    msg.innerText = e.message;
   }
 }
 
-function resetPassword(){
-  const email=prompt("Enter registered email");
-  if(!email) return;
+// RESET PASSWORD
+function resetPassword() {
+  const email = prompt("Enter registered email");
+  if (!email) return;
   auth.sendPasswordResetEmail(email);
   alert("Password reset link sent");
 }
-  /* MARKET ANIMATION */
 
-/* RATE FLUCTUATION */
+/* =========================
+   RATE ANIMATION (Interest/Deposit)
+========================= */
 
-function randomBetween(min, max, decimals = 0){
+function randomBetween(min, max, decimals = 0) {
   let value = Math.random() * (max - min) + min;
   return decimals ? value.toFixed(decimals) : Math.round(value);
 }
 
-function updateRate(id, min, max, decimals = 0){
+function updateRate(id, min, max, decimals = 0) {
   const el = document.getElementById(id);
-  const oldValue = parseFloat(el.innerText);
+  if (!el) return;
+
+  const oldValue = parseFloat(el.innerText) || 0;
   const newValue = randomBetween(min, max, decimals);
 
-  el.classList.remove("up","down");
+  el.classList.remove("up", "down");
 
-  if(parseFloat(newValue) > oldValue){
+  if (parseFloat(newValue) > oldValue) {
     el.classList.add("up");
   } else {
     el.classList.add("down");
@@ -503,39 +511,51 @@ function updateRate(id, min, max, decimals = 0){
   el.innerText = newValue;
 }
 
-/* Run once immediately */
+// RUN INTEREST/DEPOSIT
 updateRate("interest", 11, 18, 2);
 updateRate("deposit", 7, 12, 2);
 
-/* Then update every 10 seconds */
 setInterval(() => {
   updateRate("interest", 11, 18, 2);
   updateRate("deposit", 7, 12, 2);
 }, 10000);
-  
- async function fetchMetalRates() {
+
+/* =========================
+   GOLD & SILVER LIVE RATES
+========================= */
+
+async function fetchMetalRates() {
   try {
-    const res = await fetch("https://api.metals.live/v1/spot");
-    const data = await res.json();
+    // GOLD
+    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
+    const goldData = await goldRes.json();
 
-    const gold = data.find(item => item.gold)?.gold;
-    const silver = data.find(item => item.silver)?.silver;
+    // SILVER
+    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
+    const silverData = await silverRes.json();
 
-    updateLive("gold", gold * 83);
-    updateLive("silver", silver * 83);
+    // Convert USD → INR (approx)
+    const goldINR = goldData.price * 83;
+    const silverINR = silverData.price * 83;
+
+    updateLive("gold", goldINR);
+    updateLive("silver", silverINR);
 
   } catch (e) {
-    console.log("Error fetching metals:", e);
+    console.log("Metal API error:", e);
   }
 }
 
-function updateLive(id, newValue){
+// ANIMATION FOR LIVE RATES
+function updateLive(id, newValue) {
   const el = document.getElementById(id);
+  if (!el) return;
+
   const oldValue = parseFloat(el.innerText) || 0;
 
-  el.classList.remove("up","down");
+  el.classList.remove("up", "down");
 
-  if(newValue > oldValue){
+  if (newValue > oldValue) {
     el.classList.add("up");
   } else {
     el.classList.add("down");
@@ -543,6 +563,10 @@ function updateLive(id, newValue){
 
   el.innerText = newValue.toFixed(0);
 }
+
+// RUN GOLD/SILVER
+fetchMetalRates();
+setInterval(fetchMetalRates, 10000);
 </script>
 </body>
 </html>
