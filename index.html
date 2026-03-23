@@ -362,14 +362,15 @@ button:active{
     <span id="deposit" class="value">9.00</span>
   </div>
 
-  <div class="market-item">
-    <span>Coupon Rate</span>
-    <span id="coupon" class="value">25000</span>
-  </div>
-    <div class="market-item">
-    <span>Token Rate</span>
-    <span id="fied" class="value">500</span>
-  </div>
+<div class="market-item">
+  <span>Gold (₹ / 10g)</span>
+  <span id="gold" class="value">Loading...</span>
+</div>
+
+<div class="market-item">
+  <span>Silver (₹ / kg)</span>
+  <span id="silver" class="value">Loading...</span>
+</div>
 </div>
 
   <!-- LOGIN -->
@@ -505,14 +506,43 @@ function updateRate(id, min, max, decimals = 0){
 /* Run once immediately */
 updateRate("interest", 11, 18, 2);
 updateRate("deposit", 7, 12, 2);
-updateRate("coupon", 5000, 50000, 0);
 
 /* Then update every 10 seconds */
 setInterval(() => {
   updateRate("interest", 11, 18, 2);
   updateRate("deposit", 7, 12, 2);
-  updateRate("coupon", 5000, 50000, 0);
 }, 10000);
+  
+ async function fetchMetalRates() {
+  try {
+    const res = await fetch("https://api.metals.live/v1/spot");
+    const data = await res.json();
+
+    const gold = data.find(item => item.gold)?.gold;
+    const silver = data.find(item => item.silver)?.silver;
+
+    updateLive("gold", gold * 83);
+    updateLive("silver", silver * 83);
+
+  } catch (e) {
+    console.log("Error fetching metals:", e);
+  }
+}
+
+function updateLive(id, newValue){
+  const el = document.getElementById(id);
+  const oldValue = parseFloat(el.innerText) || 0;
+
+  el.classList.remove("up","down");
+
+  if(newValue > oldValue){
+    el.classList.add("up");
+  } else {
+    el.classList.add("down");
+  }
+
+  el.innerText = newValue.toFixed(0);
+}
 </script>
 </body>
 </html>
