@@ -352,24 +352,28 @@ button:active{
 <div class="content-box">
   <h3>Live Rate Overview</h3>
 
+<div class="content-box">
+  <h3>Live Market Rates</h3>
+
   <div class="market-item">
-    <span>Interest Rate (%)</span>
-    <span id="interest" class="value">15.00</span>
+    <span>Bitcoin (₹)</span>
+    <span id="btc" class="value">Loading...</span>
   </div>
 
   <div class="market-item">
-    <span>Deposit Rate (%)</span>
-    <span id="deposit" class="value">9.00</span>
+    <span>Ethereum (₹)</span>
+    <span id="eth" class="value">Loading...</span>
   </div>
 
-<div class="market-item">
-  <span>Gold (₹ / 10g)</span>
-  <span id="gold" class="value">Loading...</span>
-</div>
+  <div class="market-item">
+    <span>MCX Gold (₹ / 10g)</span>
+    <span id="gold" class="value">Loading...</span>
+  </div>
 
-<div class="market-item">
-  <span>Silver (₹ / kg)</span>
-  <span id="silver" class="value">Loading...</span>
+  <div class="market-item">
+    <span>MCX Silver (₹ / kg)</span>
+    <span id="silver" class="value">Loading...</span>
+  </div>
 </div>
 </div>
 
@@ -511,38 +515,39 @@ function updateRate(id, min, max, decimals = 0) {
   el.innerText = newValue;
 }
 
-// RUN INTEREST/DEPOSIT
-updateRate("interest", 11, 18, 2);
-updateRate("deposit", 7, 12, 2);
-
-setInterval(() => {
-  updateRate("interest", 11, 18, 2);
-  updateRate("deposit", 7, 12, 2);
-}, 10000);
-
 /* =========================
-   GOLD & SILVER LIVE RATES
+   LIVE MARKET DATA (REAL API)
 ========================= */
 
-async function fetchMetalRates() {
+async function fetchMarketRates() {
   try {
-    // GOLD
+    // ✅ CRYPTO (CoinGecko - FREE & REALTIME)
+    const cryptoRes = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
+    );
+    const cryptoData = await cryptoRes.json();
+
+    updateLive("btc", cryptoData.bitcoin.inr);
+    updateLive("eth", cryptoData.ethereum.inr);
+
+    // ✅ GOLD & SILVER (USD → INR)
     const goldRes = await fetch("https://api.gold-api.com/price/XAU");
     const goldData = await goldRes.json();
 
-    // SILVER
     const silverRes = await fetch("https://api.gold-api.com/price/XAG");
     const silverData = await silverRes.json();
 
-    // Convert USD → INR (approx)
-    const goldINR = goldData.price * 83;
-    const silverINR = silverData.price * 83;
+    const USDINR = 83; // you can later make this dynamic
+
+    // Convert properly
+    const goldINR = (goldData.price * USDINR) / 31.1035 * 10; // per 10g
+    const silverINR = (silverData.price * USDINR) / 31.1035 * 1000; // per kg
 
     updateLive("gold", goldINR);
     updateLive("silver", silverINR);
 
   } catch (e) {
-    console.log("Metal API error:", e);
+    console.log("Market API error:", e);
   }
 }
 
@@ -561,12 +566,14 @@ function updateLive(id, newValue) {
     el.classList.add("down");
   }
 
-  el.innerText = newValue.toFixed(0);
+  el.innerText = newValue.toLocaleString("en-IN", {
+    maximumFractionDigits: 0
+  });
 }
 
 // RUN GOLD/SILVER
-fetchMetalRates();
-setInterval(fetchMetalRates, 10000);
+fetchMarketRates();
+setInterval(fetchMarketRates, 10000);
 </script>
 </body>
 </html>
