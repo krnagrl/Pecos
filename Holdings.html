@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1F3E56">
+<title>Pecos - Holdings</title>
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
+}
+
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--text);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:700;
+  font-size:18px;
+}
+
+.nav{
+  display:flex;
+  gap:25px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+}
+
+.nav a:hover{
+  text-decoration:underline;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:60px 40px;
+  display:flex;
+  justify-content:center;
+}
+
+.holdings-box{
+  width:100%;
+  max-width:1200px;
+  background:var(--card);
+  padding:60px;
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.holdings-box h2{
+  margin-top:0;
+  font-size:26px;
+  color:var(--text);
+  margin-bottom:30px;
+}
+
+/* TABLE */
+.table{
+  width:100%;
+  border-collapse:collapse;
+  overflow:hidden;
+  border-radius:12px;
+}
+
+.table thead{
+  background:var(--primary);
+  color:white;
+}
+
+.table th, .table td{
+  padding:15px;
+  text-align:left;
+  font-size:14px;
+}
+
+.table tbody tr{
+  border-bottom:1px solid #eee;
+}
+
+.table tbody tr:hover{
+  background:#f2f7fb;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:35px 25px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:60%;
+  font-size:14px;
+  line-height:1.7;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* MOBILE */
+.bottom-nav{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .main{
+    padding:20px;
+    padding-bottom:90px;
+  }
+
+  .holdings-box{
+    padding:25px;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">PECOS</div>
+  <div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="holdings.html"><b>HOLDINGS</b></a>
+    <a href="Contact.html">CONTACT</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="holdings-box">
+
+    <h2>Our Holdings</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Company Name</th>
+          <th>Industry</th>
+          <th>Location</th>
+          <th>Founded</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>SBI</td>
+          <td>Financial Services</td>
+          <td>Mumbai</td>
+          <td>1955</td>
+        </tr>
+
+        <tr>
+          <td>ITC</td>
+          <td>FMCG</td>
+          <td>Kolkata</td>
+          <td>1910</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <b>Mobile:</b> (+91) 8669334862<br>
+    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
+  </div>
+
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="holdings.html">Holdings</a>
+  <a href="Contact.html">Contact</a>
+</div>
+
+</div>
+
+</body>
+</html>
