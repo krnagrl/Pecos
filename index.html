@@ -279,7 +279,28 @@ button:active{
 .bottom-nav{
   display:none;
 }
+.business-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+  border-bottom:1px solid #e2e8f0;
+  font-size:15px;
+}
 
+.view-btn{
+  text-decoration:none;
+  font-size:13px;
+  padding:6px 12px;
+  border-radius:8px;
+  background:var(--primary);
+  color:white;
+  transition:.2s;
+}
+
+.view-btn:hover{
+  background:var(--secondary);
+}
 /* RESPONSIVE DESIGN */
 @media(max-width:900px){
 
@@ -400,7 +421,26 @@ button:active{
   </div>
 
 </div>
+<!-- GROUP BUSINESSES -->
+<div class="content-box">
+  <h3>Group Businesses</h3>
 
+  <div class="business-item">
+    <span>Pecos Securities</span>
+    <a href="#" class="view-btn">View</a>
+  </div>
+
+  <div class="business-item">
+    <span>Club Pecos</span>
+    <a href="#" class="view-btn">View</a>
+  </div>
+
+  <div class="business-item">
+    <span>Pecos Commodities</span>
+    <a href="#" class="view-btn">View</a>
+  </div>
+
+</div>
 <div class="footer">
   <div class="footer-left">
     <b>Mobile:</b> (+91) 8669334862<br>
