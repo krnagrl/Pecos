@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1F3E56">
+<title>Pecos - Firms</title>
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
+}
+
+/* WRAPPER */
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--text);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:700;
+  font-size:18px;
+}
+
+.nav{
+  display:flex;
+  gap:25px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+  opacity:.95;
+}
+
+.nav a:hover{
+  text-decoration:underline;
+}
+
+/* MAIN */
+.main{
+  flex:1;
+  padding:60px 40px;
+  display:flex;
+  justify-content:center;
+}
+
+.firms-box{
+  width:100%;
+  max-width:1200px;
+}
+
+.firms-box h2{
+  font-size:26px;
+  color:var(--text);
+  margin-bottom:30px;
+}
+
+/* GRID */
+.firms-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:25px;
+}
+
+.firm-card{
+  background:var(--card);
+  padding:30px;
+  border-radius:18px;
+  box-shadow:0 10px 25px rgba(0,0,0,.05);
+  transition:.25s;
+}
+
+.firm-card:hover{
+  transform:translateY(-5px);
+}
+
+.firm-card h3{
+  margin-top:0;
+  color:var(--primary);
+  font-size:18px;
+}
+
+.firm-card p{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+.highlight{
+  background:#e8f2f8;
+  padding:12px;
+  border-left:4px solid var(--primary);
+  margin-top:15px;
+  border-radius:6px;
+  font-size:13px;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:35px 25px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:60%;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* MOBILE */
+.bottom-nav{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .main{
+    padding:20px;
+    padding-bottom:90px;
+  }
+
+  .firms-grid{
+    grid-template-columns:1fr;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo">PECOS</div>
+  <div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="firms.html"><b>FIRMS</b></a>
+    <a href="Contact.html">CONTACT</a>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="firms-box">
+
+    <h2>Our Firms</h2>
+
+    <div class="firms-grid">
+
+      <!-- Pecos Investments -->
+      <div class="firm-card">
+        <h3>Pecos Investments</h3>
+        <p>
+          Focused on long-term capital deployment across financial markets including 
+          equities, bonds and structured instruments.
+        </p>
+        <div class="highlight">
+          Objective: Wealth creation through disciplined investing.
+        </div>
+      </div>
+
+      <!-- Pecos Finance -->
+      <div class="firm-card">
+        <h3>Pecos Finance</h3>
+        <p>
+          Facilitates lending solutions through partner institutions, connecting 
+          borrowers with suitable financing structures.
+        </p>
+        <div class="highlight">
+          Revenue Model: Commission-based (0.25% – 2.5%)
+        </div>
+      </div>
+
+      <!-- Pecos Club -->
+      <div class="firm-card">
+        <h3>Pecos Club</h3>
+        <p>
+          A lifestyle and entertainment venture focused on curated experiences, 
+          premium social environments and community engagement.
+        </p>
+        <div class="highlight">
+          Focus: Leisure, networking & premium experiences.
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <b>Mobile:</b> (+91) 8669334862<br>
+    <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+    <b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
+  </div>
+
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="firms.html">Firms</a>
+  <a href="Contact.html">Contact</a>
+</div>
+
+</div>
+
+</body>
+</html>
