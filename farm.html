@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="theme-color" content="#1F3E56">
-<title>Pecos - Firms</title>
+<title>Pecos - Can Farms</title>
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -85,55 +85,41 @@ html,body{
   justify-content:center;
 }
 
-.firms-box{
+.about-box{
   width:100%;
   max-width:1200px;
+  background:var(--card);
+  padding:60px;
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
 }
 
-.firms-box h2{
+.about-box h2{
+  margin-top:0;
   font-size:26px;
   color:var(--text);
-  margin-bottom:30px;
+  margin-bottom:20px;
 }
 
-/* GRID */
-.firms-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:25px;
-}
-
-.firm-card{
-  background:var(--card);
-  padding:30px;
-  border-radius:18px;
-  box-shadow:0 10px 25px rgba(0,0,0,.05);
-  transition:.25s;
-}
-
-.firm-card:hover{
-  transform:translateY(-5px);
-}
-
-.firm-card h3{
-  margin-top:0;
+.about-box h3{
+  margin-top:35px;
   color:var(--primary);
   font-size:18px;
 }
 
-.firm-card p{
+.about-box p{
+  line-height:1.8;
   color:var(--muted);
-  font-size:14px;
-  line-height:1.7;
+  font-size:15px;
 }
 
 .highlight{
   background:#e8f2f8;
-  padding:12px;
+  padding:15px;
   border-left:4px solid var(--primary);
-  margin-top:15px;
-  border-radius:6px;
-  font-size:13px;
+  margin:20px 0;
+  border-radius:8px;
+  line-height:1.8;
 }
 
 /* FOOTER */
@@ -157,17 +143,22 @@ html,body{
   text-decoration:none;
 }
 
+.footer a:hover{
+  text-decoration:underline;
+}
+
 .footer-right{
   align-self:flex-end;
   font-size:13px;
   opacity:.8;
 }
 
-/* MOBILE */
+/* MOBILE NAV */
 .bottom-nav{
   display:none;
 }
 
+/* RESPONSIVE */
 @media(max-width:900px){
 
   .nav{
@@ -179,8 +170,8 @@ html,body{
     padding-bottom:90px;
   }
 
-  .firms-grid{
-    grid-template-columns:1fr;
+  .about-box{
+    padding:25px;
   }
 
   .footer{
@@ -190,17 +181,20 @@ html,body{
   .bottom-nav{
     position:fixed;
     bottom:0;
+    left:0;
     width:100%;
     background:var(--text);
     display:flex;
     justify-content:space-around;
     padding:14px 0;
+    z-index:1000;
   }
 
   .bottom-nav a{
     color:white;
     text-decoration:none;
     font-size:13px;
+    font-weight:500;
   }
 }
 
@@ -211,67 +205,69 @@ html,body{
 
 <div class="wrapper">
 
-<!-- HEADER -->
 <div class="header">
   <div class="logo">PECOS</div>
   <div class="nav">
     <a href="index.html">HOME</a>
     <a href="about.html">ABOUT</a>
-    <a href="firms.html"><b>FIRMS</b></a>
+    <a href="canfarms.html"><b>CAN FARMS</b></a>
     <a href="Contact.html">CONTACT</a>
   </div>
 </div>
 
-<!-- MAIN -->
 <div class="main">
-  <div class="firms-box">
+  <div class="about-box">
 
-    <h2>Our Firms</h2>
+    <h2>Can Farms</h2>
 
-    <div class="firms-grid">
+    <p>
+      Can Farms is the agricultural division of Pecos, focused on cultivating high-quality crops
+      through disciplined farming practices and efficient land utilization.
+    </p>
 
-      <!-- Pecos Investments -->
-      <div class="firm-card">
-        <h3>Pecos Investments</h3>
-        <p>
-          Focused on long-term capital deployment across financial markets including 
-          equities, bonds and structured instruments.
-        </p>
-        <div class="highlight">
-          Objective: Wealth creation through disciplined investing.
-        </div>
-      </div>
-
-      <!-- Pecos Finance -->
-      <div class="firm-card">
-        <h3>Pecos Finance</h3>
-        <p>
-          Facilitates lending solutions through partner institutions, connecting 
-          borrowers with suitable financing structures.
-        </p>
-        <div class="highlight">
-          Revenue Model: Commission-based (0.25% – 2.5%)
-        </div>
-      </div>
-
-      <!-- Pecos Club -->
-      <div class="firm-card">
-        <h3>Pecos Club</h3>
-        <p>
-          A lifestyle and entertainment venture focused on curated experiences, 
-          premium social environments and community engagement.
-        </p>
-        <div class="highlight">
-          Focus: Leisure, networking & premium experiences.
-        </div>
-      </div>
-
+    <div class="highlight">
+      <b>Location:</b> Borgaon Manju, Akola, Maharashtra
     </div>
+
+    <h3>Our Crops</h3>
+    <p>
+      We cultivate a mix of staple and commercial crops suited to the region's climate and soil conditions.
+    </p>
+
+    <div class="highlight">
+      Cotton<br>
+      Soybean<br>
+      Wheat
+    </div>
+
+    <h3>Farming Approach</h3>
+    <p>
+      Our farming operations focus on productivity, cost efficiency, and long-term soil sustainability.
+      We adopt structured planning in crop cycles, irrigation, and input management.
+    </p>
+
+    <h3>Operations</h3>
+    <p>
+      Can Farms operates with a practical, ground-level approach — combining traditional farming knowledge
+      with modern techniques to improve yield and reduce risk.
+    </p>
+
+    <div class="highlight">
+      Focus Areas:
+      <br>Efficient Water Use
+      <br>Soil Health Management
+      <br>Crop Rotation Discipline
+    </div>
+
+    <h3>Vision</h3>
+    <p>
+      To build a reliable and scalable agricultural operation that contributes to both
+      local supply chains and long-term value creation.
+    </p>
 
   </div>
 </div>
 
-<!-- FOOTER -->
 <div class="footer">
   <div class="footer-left">
     <b>Mobile:</b> (+91) 8669334862<br>
@@ -284,11 +280,10 @@ html,body{
   </div>
 </div>
 
-<!-- MOBILE NAV -->
 <div class="bottom-nav">
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
-  <a href="firms.html">Firms</a>
+  <a href="canfarms.html">Farms</a>
   <a href="Contact.html">Contact</a>
 </div>
 
