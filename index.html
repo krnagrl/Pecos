@@ -349,7 +349,67 @@ button:active{
     font-weight:500;
   }
 }
+/* DROPDOWN */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  border-radius: 10px;
+  overflow: hidden;
+  z-index: 2000;
+}
+
+.dropdown-content a {
+  color: var(--text);
+  padding: 12px 15px;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.dropdown-content a:hover {
+  background: #f2f6fa;
+}
+
+/* SHOW ON HOVER (DESKTOP) */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* STYLE BUTTON */
+.dropbtn {
+  color: white;
+  font-weight: 500;
+  font-size: 14px;
+  opacity: .95;
+}
+
+/* MOBILE FIX (optional click behavior later if needed) */
+@media(max-width:900px){
+  .dropdown {
+    display: block;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .dropdown-content a {
+    color: white;
+    padding-left: 20px;
+  }
+}
 </style>
 </head>
 
@@ -357,14 +417,26 @@ button:active{
 
 <div class="wrapper">
 
-<div class="header">
-  <div class="logo">PECOS</div>
-  <div class="nav">
-    <a href="index.html"><b>HOME</b></a>
+<div class="nav">
 
-    <a href="about.html">ABOUT</a>
-    <a href="Contact.html">CONTACT</a>
+  <a href="index.html"><b>HOME</b></a>
+
+  <!-- DROPDOWN START -->
+  <div class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">OUR BUSINESSES ▾</a>
+
+    <div class="dropdown-content">
+      <a href="financial.html">Financial Services</a>
+      <a href="realestate.html">Real Estate</a>
+      <a href="agri.html">Agri Business</a>
+      <a href="stocks.html">Stocks & Research</a>
+    </div>
   </div>
+  <!-- DROPDOWN END -->
+
+  <a href="about.html">ABOUT</a>
+  <a href="Contact.html">CONTACT</a>
+
 </div>
 
 <div class="main">
