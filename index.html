@@ -1,11 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>PECOS - Finance | Real Estate | Stocks & Shares</title>
-  <meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+
+<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
+
+<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -32,23 +34,20 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html, body{
+html,body{
   margin:0;
   padding:0;
-  height:100%;
+  min-height:100%;
   background:var(--bg);
 }
 
-/* APP WRAPPER */
+/* WRAPPER */
 .wrapper{
   width:100%;
   min-height:100vh;
-  margin:0;
-  border-radius:0;
-  box-shadow:none;
-  background:var(--bg);
   display:flex;
   flex-direction:column;
+  background:var(--bg);
 }
 
 /* HEADER */
@@ -68,16 +67,18 @@ html, body{
   font-weight:700;
   font-size:18px;
   letter-spacing:.5px;
+  color:white;
 }
 
 .nav{
   display:flex;
+  align-items:center;
   gap:25px;
 }
 
 .nav a{
   text-decoration:none;
-  color:black;
+  color:white;
   font-weight:500;
   font-size:14px;
   opacity:.95;
@@ -89,7 +90,54 @@ html, body{
   text-decoration:underline;
 }
 
-/* MAIN CONTENT */
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropbtn{
+  color:white;
+  cursor:pointer;
+}
+
+/* DROPDOWN BOX */
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:white;
+  border:2px solid #1F3E56;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  z-index:3000;
+}
+
+.dropdown-content a{
+  display:block;
+  padding:13px 16px;
+  color:var(--text);
+  font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid #dbe4ea;
+  transition:.2s;
+}
+
+.dropdown-content a:last-child{
+  border-bottom:none;
+}
+
+.dropdown-content a:hover{
+  background:#eef4f8;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
+
+/* MAIN */
 .main{
   flex:1;
   display:flex;
@@ -129,12 +177,10 @@ html, body{
 
 .up{
   color:#16a34a;
-  transform:translateY(-2px);
 }
 
 .down{
   color:#dc2626;
-  transform:translateY(2px);
 }
 
 /* LOGIN BOX */
@@ -155,42 +201,38 @@ html, body{
   color:var(--text);
   font-size:18px;
 }
-/* Updated Password Wrapper */
-.password-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center; /* Vertically centers the icon */
-  width: 100%;
+
+/* PASSWORD */
+.password-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
 }
 
-.password-wrapper input {
-  margin-bottom: 15px; /* Keep your spacing */
-  padding-right: 45px; /* Leave space so text doesn't go under the eye */
-  width: 100%;
+.password-wrapper input{
+  padding-right:45px;
 }
 
-.toggle-password {
-  position: absolute;
-  right: 10px;
-  /* Remove the top 50% transform to let flexbox handle it */
-  top: 0; 
-  height: 45px; /* Matches the approximate height of your input */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--muted);
-  transition: all .2s ease;
-  z-index: 10;
+.toggle-password{
+  position:absolute;
+  right:10px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.2s;
 }
 
-.toggle-password:hover {
-  color: var(--primary);
+.toggle-password:hover{
+  color:var(--primary);
 }
 
 .toggle-password.active{
   color:var(--primary);
 }
+
+/* INPUTS */
 input{
   width:100%;
   padding:13px 14px;
@@ -207,6 +249,7 @@ input:focus{
   box-shadow:0 0 0 3px rgba(47,111,149,.15);
 }
 
+/* BUTTON */
 button{
   width:100%;
   padding:13px;
@@ -225,7 +268,7 @@ button:hover{
 }
 
 button:active{
-  transform:scale(0.98);
+  transform:scale(.98);
 }
 
 #msg{
@@ -275,33 +318,12 @@ button:active{
   opacity:.8;
 }
 
-/* BOTTOM NAVIGATION (MOBILE APP STYLE) */
+/* MOBILE NAV */
 .bottom-nav{
   display:none;
 }
-.business-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:14px 0;
-  border-bottom:1px solid #e2e8f0;
-  font-size:15px;
-}
 
-.view-btn{
-  text-decoration:none;
-  font-size:13px;
-  padding:6px 12px;
-  border-radius:8px;
-  background:var(--primary);
-  color:white;
-  transition:.2s;
-}
-
-.view-btn:hover{
-  background:var(--secondary);
-}
-/* RESPONSIVE DESIGN */
+/* MOBILE */
 @media(max-width:900px){
 
   .nav{
@@ -349,67 +371,7 @@ button:active{
     font-weight:500;
   }
 }
-/* DROPDOWN */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  min-width: 200px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  border-radius: 10px;
-  overflow: hidden;
-  z-index: 2000;
-}
-
-.dropdown-content a {
-  color: var(--text);
-  padding: 12px 15px;
-  display: block;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.dropdown-content a:hover {
-  background: #f2f6fa;
-}
-
-/* SHOW ON HOVER (DESKTOP) */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* STYLE BUTTON */
-.dropbtn {
-  color: white;
-  font-weight: 500;
-  font-size: 14px;
-  opacity: .95;
-}
-
-/* MOBILE FIX (optional click behavior later if needed) */
-@media(max-width:900px){
-  .dropdown {
-    display: block;
-  }
-
-  .dropdown-content {
-    position: static;
-    box-shadow: none;
-    background: transparent;
-  }
-
-  .dropdown-content a {
-    color: white;
-    padding-left: 20px;
-  }
-}
 </style>
 </head>
 
@@ -417,85 +379,107 @@ button:active{
 
 <div class="wrapper">
 
-<div class="nav">
+<!-- HEADER -->
+<div class="header">
 
-  <a href="index.html"><b>HOME</b></a>
+  <div class="logo">PECOS</div>
 
-  <!-- DROPDOWN START -->
-  <div class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">OUR BUSINESSES ▾</a>
+  <div class="nav">
 
-    <div class="dropdown-content">
-      <a href="financial.html">Financial Services</a>
-      <a href="realestate.html">Real Estate</a>
-      <a href="agri.html">Agri Business</a>
-      <a href="stocks.html">Stocks & Research</a>
+    <a href="index.html"><b>HOME</b></a>
+
+    <div class="dropdown">
+
+      <a href="javascript:void(0)" class="dropbtn">
+        OUR BUSINESSES ▾
+      </a>
+
+      <div class="dropdown-content">
+        <a href="financial.html">Finance</a>
+        <a href="realestate.html">Real Estate</a>
+        <a href="agri.html">Sports</a>
+        <a href="stocks.html">Booze</a>
+      </div>
+
     </div>
-  </div>
-  <!-- DROPDOWN END -->
 
-  <a href="about.html">ABOUT</a>
-  <a href="Contact.html">CONTACT</a>
+    <a href="about.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
+
+  </div>
 
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
-  <!-- CONTENT BOX FIXED -->
-<div class="content-box">
-  <h3>Live Rate Overview</h3>
+  <!-- CONTENT -->
+  <div class="content-box">
 
-<div class="content-box">
-  <h3>Live Market Rates</h3>
+    <h3>Live Market Rates</h3>
 
-  <div class="market-item">
-    <span>Bitcoin (₹)</span>
-    <span id="btc" class="value">Loading...</span>
+    <div class="market-item">
+      <span>Bitcoin (₹)</span>
+      <span id="btc" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Ethereum (₹)</span>
+      <span id="eth" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Gold (₹ / 10g)</span>
+      <span id="gold" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Silver (₹ / kg)</span>
+      <span id="silver" class="value">Loading...</span>
+    </div>
+
   </div>
-
-  <div class="market-item">
-    <span>Ethereum (₹)</span>
-    <span id="eth" class="value">Loading...</span>
-  </div>
-
-  <div class="market-item">
-    <span>Spot Gold (₹ / 10g)</span>
-    <span id="gold" class="value">Loading...</span>
-  </div>
-
-  <div class="market-item">
-    <span>Spot Silver (₹ / kg)</span>
-    <span id="silver" class="value">Loading...</span>
-  </div>
-</div>
-</div>
 
   <!-- LOGIN -->
   <div class="login-box">
-    <h3>Member Login</h3>
-    <input id="email" type="email" placeholder="Email">
-<div class="password-wrapper">
-  <input id="password" type="password" placeholder="Password">
-<span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
-  <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
-  </svg>
 
-  <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
-    <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
-    <path d="M1 1l22 22"/>
-  </svg>
-</span>
-</div>    <button onclick="login()">Login</button>
+    <h3>Member Login</h3>
+
+    <input id="email" type="email" placeholder="Email">
+
+    <div class="password-wrapper">
+
+      <input id="password" type="password" placeholder="Password">
+
+      <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
+
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
+          <path d="M1 1l22 22"/>
+        </svg>
+
+      </span>
+
+    </div>
+
+    <button onclick="login()">Login</button>
+
     <p id="msg"></p>
+
     <span class="link" onclick="resetPassword()">Forgot Password?</span>
+
   </div>
 
 </div>
 
-</div>
+<!-- FOOTER -->
 <div class="footer">
+
   <div class="footer-left">
     <b>Mobile:</b> (+91) 8669334862<br>
     <b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
@@ -505,14 +489,20 @@ button:active{
   <div class="footer-right">
     © 2025 PECOS. All rights reserved.
   </div>
+
 </div>
+
+<!-- MOBILE NAV -->
 <div class="bottom-nav">
   <a href="index.html">Home</a>
   <a href="about.html">About</a>
   <a href="Contact.html">Contact</a>
 </div>
+
 </div>
+
 <script>
+
 // FIREBASE CONFIG
 const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
@@ -521,173 +511,162 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.firestore();
 
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-// AUTO REDIRECT AFTER LOGIN
+// AUTO REDIRECT
 auth.onAuthStateChanged(async (user) => {
+
   if (user && user.emailVerified) {
+
     const doc = await db.collection("members").doc(user.uid).get();
-    location.href = doc.data()?.isAdmin ? "admin.html" : "member.html";
+
+    location.href = doc.data()?.isAdmin
+      ? "admin.html"
+      : "member.html";
   }
+
 });
 
 // TOGGLE PASSWORD
-function togglePassword() {
+function togglePassword(){
+
   const passwordInput = document.getElementById("password");
   const eyeOpen = document.getElementById("eyeOpen");
   const eyeClose = document.getElementById("eyeClose");
   const eyeIcon = document.getElementById("eyeIcon");
 
-  if (passwordInput.type === "password") {
+  if(passwordInput.type === "password"){
+
     passwordInput.type = "text";
     eyeOpen.style.display = "none";
     eyeClose.style.display = "block";
     eyeIcon.classList.add("active");
-  } else {
+
+  }else{
+
     passwordInput.type = "password";
     eyeOpen.style.display = "block";
     eyeClose.style.display = "none";
     eyeIcon.classList.remove("active");
+
   }
 }
 
 // LOGIN
-async function login() {
+async function login(){
+
   msg.innerText = "";
+
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value.trim();
 
-  if (!email || !password) {
+  if(!email || !password){
+
     msg.innerText = "Please fill all fields";
     return;
+
   }
 
-  try {
-    const res = await auth.signInWithEmailAndPassword(email, password);
-    if (!res.user.emailVerified)
+  try{
+
+    const res = await auth.signInWithEmailAndPassword(email,password);
+
+    if(!res.user.emailVerified){
       msg.innerText = "Please verify your email";
-  } catch (e) {
+    }
+
+  }catch(e){
+
     msg.innerText = e.message;
+
   }
 }
 
 // RESET PASSWORD
-function resetPassword() {
+function resetPassword(){
+
   const email = prompt("Enter registered email");
-  if (!email) return;
+
+  if(!email) return;
+
   auth.sendPasswordResetEmail(email);
+
   alert("Password reset link sent");
+
 }
 
-/* =========================
-   RATE ANIMATION (Interest/Deposit)
-========================= */
+// MARKET DATA
+async function fetchMarketRates(){
 
-function randomBetween(min, max, decimals = 0) {
-  let value = Math.random() * (max - min) + min;
-  return decimals ? value.toFixed(decimals) : Math.round(value);
-}
+  try{
 
-function updateRate(id, min, max, decimals = 0) {
-  const el = document.getElementById(id);
-  if (!el) return;
-
-  const oldValue = parseFloat(el.innerText) || 0;
-  const newValue = randomBetween(min, max, decimals);
-
-  el.classList.remove("up", "down");
-
-  if (parseFloat(newValue) > oldValue) {
-    el.classList.add("up");
-  } else {
-    el.classList.add("down");
-  }
-
-  el.innerText = newValue;
-}
-
-/* =========================
-   LIVE MARKET DATA (REAL API)
-========================= */
-
-async function fetchMarketRates() {
-  try {
-    // ✅ CRYPTO (CoinGecko - FREE & REALTIME)
     const cryptoRes = await fetch(
       "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
     );
+
     const cryptoData = await cryptoRes.json();
 
     updateLive("btc", cryptoData.bitcoin.inr);
     updateLive("eth", cryptoData.ethereum.inr);
 
-    // ✅ GOLD & SILVER (USD → INR)
     const goldRes = await fetch("https://api.gold-api.com/price/XAU");
     const goldData = await goldRes.json();
 
     const silverRes = await fetch("https://api.gold-api.com/price/XAG");
     const silverData = await silverRes.json();
 
-    const USDINR = 83; // you can later make this dynamic
+    const USDINR = 83;
 
-    // Convert properly
-    const goldINR = (goldData.price * USDINR) / 31.1035 * 10; // per 10g
-    const silverINR = (silverData.price * USDINR) / 31.1035 * 1000; // per kg
+    const goldINR =
+      (goldData.price * USDINR) / 31.1035 * 10;
+
+    const silverINR =
+      (silverData.price * USDINR) / 31.1035 * 1000;
 
     updateLive("gold", goldINR);
     updateLive("silver", silverINR);
 
-  } catch (e) {
+  }catch(e){
+
     console.log("Market API error:", e);
+
   }
+
 }
 
-// ANIMATION FOR LIVE RATES
-function updateLive(id, newValue) {
+// LIVE UPDATE EFFECT
+function updateLive(id,newValue){
+
   const el = document.getElementById(id);
-  if (!el) return;
+
+  if(!el) return;
 
   const oldValue = parseFloat(el.innerText) || 0;
 
-  el.classList.remove("up", "down");
+  el.classList.remove("up","down");
 
-  if (newValue > oldValue) {
+  if(newValue > oldValue){
     el.classList.add("up");
-  } else {
+  }else{
     el.classList.add("down");
   }
 
-  el.innerText = newValue.toLocaleString("en-IN", {
-    maximumFractionDigits: 0
+  el.innerText = newValue.toLocaleString("en-IN",{
+    maximumFractionDigits:0
   });
+
 }
 
-// RUN GOLD/SILVER
+// RUN
 fetchMarketRates();
-setInterval(fetchMarketRates, 10000);
+
+setInterval(fetchMarketRates,10000);
+
 </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
