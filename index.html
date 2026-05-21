@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
+<title>PECOS Goa</title>
 
-<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+<meta name="description" content="PECOS Goa - Tropical hospitality, resorts, bars and authentic Goan business experiences.">
 
 <link rel="icon" href="pecos.png">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
@@ -19,194 +19,223 @@
 <style>
 
 :root{
-  --primary:#2F6F95;
-  --secondary:#3B7EA5;
-  --accent:#2F6F95;
-  --bg:#F4F6F8;
-  --card:#FFFFFF;
-  --text:#1F3E56;
-  --muted:#5E6E7E;
+  --primary:#d97706;
+  --secondary:#7c2d12;
+  --bg:#f6f1e7;
+  --card:#ffffff;
+  --text:#2f1b12;
+  --muted:#6b7280;
 }
 
 *{
   box-sizing:border-box;
-  font-family:'Inter',sans-serif;
+  margin:0;
+  padding:0;
+  font-family:'Poppins',sans-serif;
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  background:var(--bg);
+html{
+  scroll-behavior:smooth;
 }
 
-/* WRAPPER */
-.wrapper{
-  width:100%;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
+body{
   background:var(--bg);
+  color:var(--text);
 }
 
 /* HEADER */
+
 .header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:16px 20px;
-  background:var(--text);
-  color:white;
-  position:sticky;
-  top:0;
+  padding:18px 8%;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(6px);
   z-index:1000;
 }
 
 .logo{
-  font-weight:700;
-  font-size:18px;
-  letter-spacing:.5px;
   color:white;
+  font-size:1.8rem;
+  font-weight:700;
+  letter-spacing:1px;
 }
 
 .nav{
   display:flex;
   align-items:center;
-  gap:25px;
+  gap:30px;
 }
 
 .nav a{
-  text-decoration:none;
   color:white;
-  font-weight:500;
+  text-decoration:none;
   font-size:14px;
-  opacity:.95;
-  transition:.2s;
+  font-weight:500;
+  transition:.3s;
 }
 
 .nav a:hover{
-  opacity:1;
-  text-decoration:underline;
+  color:#fbbf24;
 }
 
-/* DROPDOWN */
-.dropdown{
-  position:relative;
-}
+/* HERO */
 
-.dropbtn{
-  color:white;
-  cursor:pointer;
-}
+.hero{
+  height:100vh;
+  background:
+  linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.45)),
+  url('goa-bg.jpg') center/cover no-repeat;
 
-/* DROPDOWN BOX */
-.dropdown-content{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  min-width:220px;
-  background:white;
-  border:2px solid #1F3E56;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
-  z-index:3000;
-}
-
-.dropdown-content a{
-  display:block;
-  padding:13px 16px;
-  color:var(--text);
-  font-size:14px;
-  text-decoration:none;
-  border-bottom:1px solid #dbe4ea;
-  transition:.2s;
-}
-
-.dropdown-content a:last-child{
-  border-bottom:none;
-}
-
-.dropdown-content a:hover{
-  background:#eef4f8;
-}
-
-.dropdown:hover .dropdown-content{
-  display:block;
-}
-
-/* MAIN */
-.main{
-  flex:1;
   display:flex;
-  align-items:flex-start;
-  gap:30px;
-  padding:30px;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  color:white;
+  padding:20px;
 }
 
-/* CONTENT BOX */
-.content-box{
-  flex:2;
-  background:var(--card);
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.05);
+.hero-content{
+  max-width:750px;
 }
 
-.content-box h3{
-  margin-top:0;
-  color:var(--text);
-  font-size:20px;
+.hero h1{
+  font-size:4rem;
   margin-bottom:20px;
 }
 
-.market-item{
-  display:flex;
-  justify-content:space-between;
-  padding:14px 0;
-  border-bottom:1px solid #e2e8f0;
-  font-size:15px;
+.hero p{
+  font-size:1.2rem;
+  line-height:1.9;
+  margin-bottom:30px;
 }
 
-.value{
+.hero-btn{
+  display:inline-block;
+  padding:14px 34px;
+  background:var(--primary);
+  color:white;
+  text-decoration:none;
+  border-radius:40px;
   font-weight:600;
   transition:.3s;
 }
 
-.up{
-  color:#16a34a;
+.hero-btn:hover{
+  background:#b45309;
 }
 
-.down{
-  color:#dc2626;
+/* SECTION */
+
+section{
+  padding:90px 8%;
 }
 
-/* LOGIN BOX */
+.section-title{
+  text-align:center;
+  margin-bottom:55px;
+}
+
+.section-title h2{
+  font-size:2.6rem;
+  color:var(--secondary);
+}
+
+/* BUSINESS CARDS */
+
+.business-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:25px;
+}
+
+.business-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
+  transition:.3s;
+}
+
+.business-card:hover{
+  transform:translateY(-6px);
+}
+
+.business-card img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.business-content{
+  padding:25px;
+}
+
+.business-content h3{
+  margin-bottom:15px;
+  color:var(--secondary);
+}
+
+.business-content p{
+  color:#555;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+.business-content a{
+  display:inline-block;
+  padding:12px 24px;
+  background:var(--primary);
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+  font-size:14px;
+  font-weight:600;
+}
+
+/* LOGIN */
+
+.login-section{
+  background:#fff7ed;
+}
+
 .login-box{
-  flex:1;
-  background:var(--card);
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.05);
-  max-width:340px;
-  position:sticky;
-  top:90px;
+  max-width:420px;
+  margin:auto;
+  background:white;
+  padding:35px;
+  border-radius:20px;
+  box-shadow:0 8px 25px rgba(0,0,0,.08);
 }
 
 .login-box h3{
-  margin-top:0;
-  margin-bottom:20px;
-  color:var(--text);
-  font-size:18px;
+  text-align:center;
+  margin-bottom:25px;
+  color:var(--secondary);
 }
 
-/* PASSWORD */
+input{
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  margin-bottom:15px;
+  font-size:14px;
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--primary);
+}
+
 .password-wrapper{
   position:relative;
-  display:flex;
-  align-items:center;
 }
 
 .password-wrapper input{
@@ -215,161 +244,69 @@ html,body{
 
 .toggle-password{
   position:absolute;
-  right:10px;
-  height:45px;
-  display:flex;
-  align-items:center;
+  right:12px;
+  top:14px;
   cursor:pointer;
-  color:var(--muted);
-  transition:.2s;
+  color:#666;
 }
 
-.toggle-password:hover{
-  color:var(--primary);
-}
-
-.toggle-password.active{
-  color:var(--primary);
-}
-
-/* INPUTS */
-input{
-  width:100%;
-  padding:13px 14px;
-  margin-bottom:15px;
-  border-radius:10px;
-  border:1px solid #d6dee6;
-  font-size:14px;
-  transition:.2s;
-}
-
-input:focus{
-  outline:none;
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(47,111,149,.15);
-}
-
-/* BUTTON */
 button{
   width:100%;
-  padding:13px;
+  padding:14px;
   border:none;
   border-radius:10px;
-  background:var(--text);
+  background:var(--secondary);
   color:white;
   font-weight:600;
-  font-size:14px;
   cursor:pointer;
-  transition:.2s;
+  transition:.3s;
 }
 
 button:hover{
-  background:#2a4f6a;
-}
-
-button:active{
-  transform:scale(.98);
+  background:#5f210d;
 }
 
 #msg{
-  font-size:12px;
   color:red;
-  margin-top:6px;
+  font-size:13px;
+  margin-top:10px;
+  text-align:center;
 }
 
 .link{
-  font-size:12px;
+  display:block;
+  text-align:center;
+  margin-top:15px;
+  font-size:13px;
   color:var(--primary);
   cursor:pointer;
 }
 
-.link:hover{
-  text-decoration:underline;
-}
-
 /* FOOTER */
+
 .footer{
-  background:var(--text);
-  color:#dbe6ef;
-  padding:15px 10px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
-
-.footer-left{
-  max-width:60%;
-  line-height:1.7;
-  font-size:14px;
-}
-
-.footer a{
-  color:#7fc3ea;
-  text-decoration:none;
-}
-
-.footer a:hover{
-  text-decoration:underline;
-}
-
-.footer-right{
-  align-self:flex-end;
-  font-size:13px;
-  opacity:.8;
-}
-
-/* MOBILE NAV */
-.bottom-nav{
-  display:none;
+  background:#3b1f13;
+  color:#ddd;
+  text-align:center;
+  padding:25px;
 }
 
 /* MOBILE */
+
 @media(max-width:900px){
 
   .nav{
     display:none;
   }
 
-  .main{
-    flex-direction:column;
-    padding:20px;
-    gap:20px;
-    padding-bottom:90px;
+  .hero h1{
+    font-size:2.8rem;
   }
 
-  .content-box,
-  .login-box{
-    width:100%;
-    max-width:100%;
-    padding:25px;
+  section{
+    padding:70px 5%;
   }
 
-  .login-box{
-    position:static;
-  }
-
-  .footer{
-    padding-bottom:90px;
-  }
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:var(--text);
-    display:flex;
-    justify-content:space-around;
-    padding:14px 0;
-    z-index:1000;
-  }
-
-  .bottom-nav a{
-    color:white;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:500;
-  }
 }
 
 </style>
@@ -377,77 +314,116 @@ button:active{
 
 <body>
 
-<div class="wrapper">
-
 <!-- HEADER -->
+
 <div class="header">
 
-  <div class="logo">PECOS</div>
+  <div class="logo">PECOS GOA</div>
 
   <div class="nav">
 
-    <a href="index.html"><b>HOME</b></a>
-
-    <div class="dropdown">
-
-      <a href="javascript:void(0)" class="dropbtn">
-        OUR BUSINESSES ▾
-      </a>
-
-      <div class="dropdown-content">
-        <a href="#">Finance</a>
-        <a href="#">Plantations</a>
-        <a href="#">Media</a>
-        <a href="#">Sports</a>
-        <a href="#">Club Pecos</a>
-
-      </div>
-
-    </div>
-
-    <a href="about.html">ABOUT</a>
-    <a href="Contact.html">CONTACT</a>
+    <a href="#home">HOME</a>
+    <a href="#businesses">OUR BUSINESSES</a>
+    <a href="#login">MEMBER LOGIN</a>
 
   </div>
 
 </div>
 
-<!-- MAIN -->
-<div class="main">
+<!-- HERO -->
 
-  <!-- CONTENT -->
-  <div class="content-box">
+<section class="hero" id="home">
 
-    <h3>Live Market Rates</h3>
+  <div class="hero-content">
 
-    <div class="market-item">
-      <span>Bitcoin (₹)</span>
-      <span id="btc" class="value">Loading...</span>
+    <h1>Authentic Goan Hospitality</h1>
+
+    <p>
+      Discover tropical resorts, coastal restaurants and authentic
+      Goan lifestyle experiences inspired by nature, leisure and hospitality.
+    </p>
+
+    <a href="#businesses" class="hero-btn">
+      Explore Businesses
+    </a>
+
+  </div>
+
+</section>
+
+<!-- BUSINESSES -->
+
+<section id="businesses">
+
+  <div class="section-title">
+    <h2>Our Businesses</h2>
+  </div>
+
+  <div class="business-grid">
+
+    <!-- RESORT -->
+
+    <div class="business-card">
+
+      <img src="resort.jpg" alt="Sunkissed Resort">
+
+      <div class="business-content">
+
+        <h3>Sunkissed Resort</h3>
+
+        <p>
+          A peaceful tropical resort surrounded by coconut trees,
+          warm sunshine and authentic Goan comfort.
+        </p>
+
+        <a href="resort.html">
+          Visit Resort
+        </a>
+
+      </div>
+
     </div>
 
-    <div class="market-item">
-      <span>Ethereum (₹)</span>
-      <span id="eth" class="value">Loading...</span>
-    </div>
+    <!-- BAR -->
 
-    <div class="market-item">
-      <span>Spot Gold (₹ / 10g)</span>
-      <span id="gold" class="value">Loading...</span>
-    </div>
+    <div class="business-card">
 
-    <div class="market-item">
-      <span>Spot Silver (₹ / kg)</span>
-      <span id="silver" class="value">Loading...</span>
+      <img src="bar.jpg" alt="Tito's Bar & Restaurant">
+
+      <div class="business-content">
+
+        <h3>Tito's Bar & Restaurant</h3>
+
+        <p>
+          Coastal seafood, cocktails and local Goan nightlife
+          with a relaxed roadside tropical atmosphere.
+        </p>
+
+        <a href="bar.html">
+          Visit Restaurant
+        </a>
+
+      </div>
+
     </div>
 
   </div>
 
-  <!-- LOGIN -->
+</section>
+
+<!-- LOGIN -->
+
+<section class="login-section" id="login">
+
+  <div class="section-title">
+    <h2>Member Login</h2>
+  </div>
+
   <div class="login-box">
 
-    <h3>Member Login</h3>
+    <h3>Access Your Account</h3>
 
-    <input id="email" type="email" placeholder="Email">
+    <input id="email" type="email" placeholder="Email Address">
 
     <div class="password-wrapper">
 
@@ -455,52 +431,38 @@ button:active{
 
       <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
 
-        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-
-        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
-          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
-          <path d="M1 1l22 22"/>
-        </svg>
+        👁
 
       </span>
 
     </div>
 
-    <button onclick="login()">Login</button>
+    <button onclick="login()">
+      Login
+    </button>
 
     <p id="msg"></p>
 
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+    <span class="link" onclick="resetPassword()">
+      Forgot Password?
+    </span>
 
   </div>
 
-</div>
+</section>
 
 <!-- FOOTER -->
+
 <div class="footer">
 
-
-  <div class="footer-right">
-    © 2025 PECOS. All rights reserved.
-  </div>
-
-</div>
-
-<!-- MOBILE NAV -->
-<div class="bottom-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="Contact.html">Contact</a>
-</div>
+  © 2026 PECOS Goa • All Rights Reserved
 
 </div>
 
 <script>
 
 // FIREBASE CONFIG
+
 const firebaseConfig = {
   apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
   authDomain: "pecos-432b5.firebaseapp.com",
@@ -515,9 +477,10 @@ const db = firebase.firestore();
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 // AUTO REDIRECT
+
 auth.onAuthStateChanged(async (user) => {
 
-  if (user && user.emailVerified) {
+  if(user && user.emailVerified){
 
     const doc = await db.collection("members").doc(user.uid).get();
 
@@ -529,31 +492,24 @@ auth.onAuthStateChanged(async (user) => {
 });
 
 // TOGGLE PASSWORD
+
 function togglePassword(){
 
   const passwordInput = document.getElementById("password");
-  const eyeOpen = document.getElementById("eyeOpen");
-  const eyeClose = document.getElementById("eyeClose");
-  const eyeIcon = document.getElementById("eyeIcon");
 
   if(passwordInput.type === "password"){
 
     passwordInput.type = "text";
-    eyeOpen.style.display = "none";
-    eyeClose.style.display = "block";
-    eyeIcon.classList.add("active");
 
   }else{
 
     passwordInput.type = "password";
-    eyeOpen.style.display = "block";
-    eyeClose.style.display = "none";
-    eyeIcon.classList.remove("active");
 
   }
 }
 
 // LOGIN
+
 async function login(){
 
   msg.innerText = "";
@@ -573,7 +529,9 @@ async function login(){
     const res = await auth.signInWithEmailAndPassword(email,password);
 
     if(!res.user.emailVerified){
+
       msg.innerText = "Please verify your email";
+
     }
 
   }catch(e){
@@ -584,6 +542,7 @@ async function login(){
 }
 
 // RESET PASSWORD
+
 function resetPassword(){
 
   const email = prompt("Enter registered email");
@@ -595,73 +554,6 @@ function resetPassword(){
   alert("Password reset link sent");
 
 }
-
-// MARKET DATA
-async function fetchMarketRates(){
-
-  try{
-
-    const cryptoRes = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
-    );
-
-    const cryptoData = await cryptoRes.json();
-
-    updateLive("btc", cryptoData.bitcoin.inr);
-    updateLive("eth", cryptoData.ethereum.inr);
-
-    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
-    const goldData = await goldRes.json();
-
-    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
-    const silverData = await silverRes.json();
-
-    const USDINR = 83;
-
-    const goldINR =
-      (goldData.price * USDINR) / 31.1035 * 10;
-
-    const silverINR =
-      (silverData.price * USDINR) / 31.1035 * 1000;
-
-    updateLive("gold", goldINR);
-    updateLive("silver", silverINR);
-
-  }catch(e){
-
-    console.log("Market API error:", e);
-
-  }
-
-}
-
-// LIVE UPDATE EFFECT
-function updateLive(id,newValue){
-
-  const el = document.getElementById(id);
-
-  if(!el) return;
-
-  const oldValue = parseFloat(el.innerText) || 0;
-
-  el.classList.remove("up","down");
-
-  if(newValue > oldValue){
-    el.classList.add("up");
-  }else{
-    el.classList.add("down");
-  }
-
-  el.innerText = newValue.toLocaleString("en-IN",{
-    maximumFractionDigits:0
-  });
-
-}
-
-// RUN
-fetchMarketRates();
-
-setInterval(fetchMarketRates,10000);
 
 </script>
 
