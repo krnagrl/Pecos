@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Tito's Bar & Restaurant</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f5efe3;
+    color:#222;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(6px);
+    z-index:999;
+}
+
+.logo{
+    color:white;
+    font-size:1.8rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#fbbf24;
+}
+
+/* HERO SECTION */
+
+header{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),
+    url('bar.jpg') center/cover no-repeat;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero{
+    max-width:750px;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    line-height:1.9;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 35px;
+    border-radius:40px;
+    background:#d97706;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#b45309;
+}
+
+/* GENERAL SECTION */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h2{
+    font-size:2.6rem;
+    color:#7c2d12;
+}
+
+/* ABOUT SECTION */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.about-text p{
+    margin-bottom:20px;
+    line-height:1.9;
+    color:#444;
+}
+
+/* MENU */
+
+.menu-section{
+    background:#fff7ed;
+}
+
+.menu-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.menu-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.menu-card:hover{
+    transform:translateY(-6px);
+}
+
+.menu-card h3{
+    margin-bottom:20px;
+    color:#b45309;
+}
+
+.menu-card ul{
+    list-style:none;
+}
+
+.menu-card ul li{
+    padding:10px 0;
+    border-bottom:1px solid #eee;
+}
+
+/* GALLERY */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#7c2d12;
+    color:white;
+    border-radius:20px;
+    text-align:center;
+    padding:60px 20px;
+}
+
+.contact h2{
+    font-size:2.4rem;
+    margin-bottom:20px;
+}
+
+.contact p{
+    margin:12px 0;
+    font-size:1.05rem;
+}
+
+/* FOOTER */
+
+footer{
+    background:#3b1f13;
+    color:#ddd;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        padding:15px 5%;
+    }
+
+    nav ul{
+        gap:15px;
+    }
+
+    nav ul li a{
+        font-size:14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">Tito's</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Visit</a></li>
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<header id="home">
+
+    <div class="hero">
+
+        <h1>Tito's Bar & Restaurant</h1>
+
+        <p>
+            Authentic Goan seafood, chilled drinks, tropical vibes and roadside
+            coastal charm served fresh every day.
+        </p>
+
+        <a href="#menu" class="btn">Explore Menu</a>
+
+    </div>
+
+</header>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+        <h2>About Us</h2>
+    </div>
+
+    <div class="about">
+
+        <img src="Tito's Bar & Restaurant.png" alt="Tito's Bar & Restaurant">
+
+        <div class="about-text">
+
+            <p>
+                Tito's is a local-style Goan restaurant and bar inspired by
+                traditional coastal hospitality and relaxed tropical living.
+            </p>
+
+            <p>
+                Located beside a peaceful roadside surrounded by coconut trees,
+                our place serves fresh seafood, local Goan curries, cocktails,
+                chilled beer and authentic coastal flavours.
+            </p>
+
+            <p>
+                Whether you're stopping during a beach drive or enjoying a late-night
+                dinner with friends, Tito's brings you the natural vibe of Goa.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- MENU -->
+
+<section class="menu-section" id="menu">
+
+    <div class="section-title">
+        <h2>Popular Menu</h2>
+    </div>
+
+    <div class="menu-grid">
+
+        <div class="menu-card">
+
+            <h3>Seafood</h3>
+
+            <ul>
+                <li>Prawn Curry Rice</li>
+                <li>Kingfish Fry</li>
+                <li>Butter Garlic Crab</li>
+                <li>Goan Fish Thali</li>
+            </ul>
+
+        </div>
+
+        <div class="menu-card">
+
+            <h3>Drinks</h3>
+
+            <ul>
+                <li>Classic Cocktails</li>
+                <li>Fresh Lime Soda</li>
+                <li>Local Goan Feni</li>
+                <li>Chilled Beer</li>
+            </ul>
+
+        </div>
+
+        <div class="menu-card">
+
+            <h3>Specials</h3>
+
+            <ul>
+                <li>Chicken Cafreal</li>
+                <li>Pork Vindaloo</li>
+                <li>Goan Sausage Pulao</li>
+                <li>Bebinca Dessert</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section>
+
+    <div class="section-title">
+        <h2>Gallery</h2>
+    </div>
+
+    <div class="gallery">
+
+        <img src="bar.jpg" alt="">
+        <img src="bar.jpg" alt="">
+        <img src="bar.jpg" alt="">
+        <img src="bar.jpg" alt="">
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="contact">
+
+        <h2>Visit Tito's</h2>
+
+        <p>📍 Roadside Coastal Area, Goa</p>
+        <p>🕒 Open Daily • 11 AM - 1 AM</p>
+        <p>📞 +91 98765 43210</p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Tito's Bar & Restaurant • Goa
+
+</footer>
+
+</body>
+</html>
