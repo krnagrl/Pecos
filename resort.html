@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sunkissed Resort Goa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f6f1e7;
+    color:#222;
+}
+
+/* NAVBAR */
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    left:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px 8%;
+    background:rgba(0,0,0,0.45);
+    backdrop-filter:blur(5px);
+    z-index:999;
+}
+
+.logo{
+    color:white;
+    font-size:1.8rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:white;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#fbbf24;
+}
+
+/* HERO */
+
+header{
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+    url('resort.jpg') center/cover no-repeat;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:white;
+}
+
+.hero{
+    max-width:750px;
+    padding:20px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    font-size:1.2rem;
+    line-height:1.9;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:14px 34px;
+    border-radius:40px;
+    background:#d97706;
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.btn:hover{
+    background:#b45309;
+}
+
+/* SECTION */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:55px;
+}
+
+.section-title h2{
+    font-size:2.6rem;
+    color:#7c2d12;
+}
+
+/* ABOUT */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.about-text p{
+    line-height:1.9;
+    margin-bottom:20px;
+    color:#444;
+}
+
+/* ROOMS */
+
+.rooms-section{
+    background:#fff7ed;
+}
+
+.rooms-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+
+.room-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.room-card:hover{
+    transform:translateY(-6px);
+}
+
+.room-card h3{
+    margin-bottom:18px;
+    color:#b45309;
+}
+
+.room-card p{
+    color:#555;
+    line-height:1.7;
+}
+
+/* GALLERY */
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.gallery img{
+    width:100%;
+    height:260px;
+    object-fit:cover;
+    border-radius:18px;
+}
+
+/* FACILITIES */
+
+.facilities{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.facility-card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.facility-card h3{
+    margin-top:15px;
+    color:#7c2d12;
+}
+
+/* CONTACT */
+
+.contact{
+    background:#7c2d12;
+    color:white;
+    text-align:center;
+    padding:60px 20px;
+    border-radius:20px;
+}
+
+.contact h2{
+    font-size:2.4rem;
+    margin-bottom:20px;
+}
+
+.contact p{
+    margin:12px 0;
+    font-size:1.05rem;
+}
+
+/* FOOTER */
+
+footer{
+    background:#3b1f13;
+    color:#ddd;
+    text-align:center;
+    padding:25px;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    .hero h1{
+        font-size:2.8rem;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+    }
+
+    nav ul{
+        gap:15px;
+    }
+
+    nav ul li a{
+        font-size:14px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">Sunkissed Resort</div>
+
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#rooms">Rooms</a></li>
+        <li><a href="#contact">Visit</a></li>
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<header id="home">
+
+    <div class="hero">
+
+        <h1>Sunkissed Resort Goa</h1>
+
+        <p>
+            A peaceful tropical escape surrounded by coconut trees,
+            warm sunshine and authentic Goan hospitality.
+        </p>
+
+        <a href="#rooms" class="btn">Explore Resort</a>
+
+    </div>
+
+</header>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+    <div class="section-title">
+        <h2>About Resort</h2>
+    </div>
+
+    <div class="about">
+
+        <img src="images/resort.png" alt="Sunkissed Resort">
+
+        <div class="about-text">
+
+            <p>
+                Sunkissed Resort is a charming Goan-style tropical retreat
+                designed for travellers seeking relaxation, nature and
+                authentic coastal experiences.
+            </p>
+
+            <p>
+                Surrounded by swaying coconut trees and peaceful roadside
+                scenery, our resort combines modern comfort with traditional
+                Goan architecture.
+            </p>
+
+            <p>
+                Enjoy calm mornings, sunset evenings and a warm atmosphere
+                perfect for couples, families and vacation travellers.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ROOMS -->
+
+<section class="rooms-section" id="rooms">
+
+    <div class="section-title">
+        <h2>Our Rooms</h2>
+    </div>
+
+    <div class="rooms-grid">
+
+        <div class="room-card">
+            <h3>Deluxe Room</h3>
+            <p>
+                Spacious tropical room with garden views,
+                king-size bed and peaceful interiors.
+            </p>
+        </div>
+
+        <div class="room-card">
+            <h3>Poolside Suite</h3>
+            <p>
+                Elegant suite located beside the swimming pool
+                with luxury seating and private balcony.
+            </p>
+        </div>
+
+        <div class="room-card">
+            <h3>Family Villa</h3>
+            <p>
+                Large villa ideal for families and groups
+                with authentic Goan-style architecture.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section>
+
+    <div class="section-title">
+        <h2>Gallery</h2>
+    </div>
+
+    <div class="gallery">
+
+        <img src="resort.jpg" alt="">
+        <img src="resort.jpg" alt="">
+        <img src="resort.jpg" alt="">
+        <img src="resort.jpg" alt="">
+
+    </div>
+
+</section>
+
+<!-- FACILITIES -->
+
+<section style="background:#fff7ed;">
+
+    <div class="section-title">
+        <h2>Facilities</h2>
+    </div>
+
+    <div class="facilities">
+
+        <div class="facility-card">
+            <h3>Swimming Pool</h3>
+        </div>
+
+        <div class="facility-card">
+            <h3>Restaurant & Bar</h3>
+        </div>
+
+        <div class="facility-card">
+            <h3>Free WiFi</h3>
+        </div>
+
+        <div class="facility-card">
+            <h3>Private Parking</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+    <div class="contact">
+
+        <h2>Visit Sunkissed Resort</h2>
+
+        <p>📍 Coastal Roadside Area, Goa</p>
+        <p>🕒 Open 24 Hours</p>
+        <p>📞 +91 98765 43210</p>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    © 2026 Sunkissed Resort Goa
+
+</footer>
+
+</body>
+</html>
