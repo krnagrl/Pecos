@@ -6,7 +6,7 @@
 
 <title>PECOS</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,99 +17,155 @@
 }
 
 body{
-    background:#f8f2e8;
-    color:#2f241c;
-    font-family:'Lora',serif;
-    line-height:1.8;
-}
-
-.hero{
-    height:100vh;
-    background:
-    linear-gradient(rgba(248,242,232,0.55),
-    rgba(248,242,232,0.55)),
-    url("https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&w=1600&q=80");
-
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-}
-
-.hero-content{
-    max-width:700px;
+    font-family:'Patrick Hand',cursive;
+    background:#fafafa;
+    color:#111;
     padding:40px;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
 }
 
 .logo{
-    font-family:'Cormorant Garamond',serif;
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.logo h1{
     font-size:90px;
-    letter-spacing:8px;
-    font-weight:600;
+    line-height:1;
 }
 
-.subtitle{
-    font-size:20px;
-    margin-top:10px;
-    font-style:italic;
+.logo p{
+    font-size:32px;
 }
 
-.section{
-    padding:100px 10%;
-}
-
-.heading{
-    font-family:'Cormorant Garamond',serif;
-    font-size:52px;
-    margin-bottom:20px;
-    text-align:center;
-}
-
-.about{
-    max-width:850px;
-    margin:auto;
-    text-align:center;
-    font-size:19px;
-}
-
-.businesses{
+.hero{
     display:flex;
-    justify-content:center;
-    gap:60px;
+    gap:50px;
     flex-wrap:wrap;
-    margin-top:60px;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:80px;
+}
+
+.sketch-box{
+    width:450px;
+    min-height:300px;
+    border:4px solid #000;
+    border-radius:12px;
+    background:white;
+    padding:25px;
+    position:relative;
+}
+
+.sketch-box::before{
+    content:"";
+    position:absolute;
+    top:-12px;
+    left:20px;
+    width:80px;
+    height:20px;
+    background:#6ea8fe;
+    transform:rotate(-5deg);
+}
+
+.warehouse{
+    font-size:120px;
+    text-align:center;
+}
+
+.hero-text h2{
+    font-size:58px;
+    line-height:1.1;
+}
+
+.hero-text p{
+    font-size:28px;
+    margin-top:15px;
+}
+
+.section-title{
+    text-align:center;
+    font-size:55px;
+    margin-bottom:40px;
+}
+
+.services{
+    display:flex;
+    flex-wrap:wrap;
+    gap:40px;
+    justify-content:center;
 }
 
 .card{
-    width:380px;
+    width:420px;
+    border:4px solid black;
     background:white;
-    padding:40px;
-    border-radius:8px;
-    box-shadow:0 8px 25px rgba(0,0,0,0.08);
+    border-radius:12px;
+    padding:30px;
+    position:relative;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-12px;
+    right:20px;
+    width:90px;
+    height:20px;
+    background:#ffd54f;
+    transform:rotate(4deg);
 }
 
 .card h3{
-    font-family:'Cormorant Garamond',serif;
-    font-size:40px;
+    font-size:42px;
     margin-bottom:15px;
 }
 
-.footer{
+.card p{
+    font-size:26px;
+}
+
+.features{
+    margin-top:80px;
+    border:4px dashed black;
+    padding:40px;
+    border-radius:15px;
+}
+
+.features h2{
     text-align:center;
-    padding:80px 20px;
-    border-top:1px solid #d8cdbd;
+    font-size:50px;
+    margin-bottom:20px;
+}
+
+.features ul{
+    list-style:none;
+    font-size:30px;
+}
+
+.features li{
+    margin:12px 0;
+}
+
+.footer{
+    margin-top:80px;
+    text-align:center;
 }
 
 .footer h2{
-    font-family:'Cormorant Garamond',serif;
-    font-size:50px;
+    font-size:70px;
 }
 
 .footer p{
-    margin-top:10px;
-    font-style:italic;
+    font-size:30px;
+}
+
+.doodle{
+    color:#2f80ed;
 }
 
 </style>
@@ -117,74 +173,81 @@ body{
 
 <body>
 
-<section class="hero">
+<div class="container">
 
-    <div class="hero-content">
+<div class="logo">
+    <h1>PECOS</h1>
+    <p>Cash Management & Warehousing</p>
+</div>
 
-        <div class="logo">PECOS</div>
+<div class="hero">
 
-        <p class="subtitle">
-            Cash Management & Warehousing
+    <div class="sketch-box">
+        <div class="warehouse">🏭</div>
+        <h2 style="text-align:center;font-size:40px;">
+            Trusted Asset Management
+        </h2>
+    </div>
+
+    <div class="hero-text">
+        <h2>
+            Simple.<br>
+            Reliable.<br>
+            <span class="doodle">Built For The Long Term.</span>
+        </h2>
+
+        <p>
+            Managing capital and warehousing assets
+            with discipline and trust.
         </p>
-
     </div>
 
-</section>
+</div>
 
-<section class="section">
+<h2 class="section-title">What We Do</h2>
 
-    <h2 class="heading">About Us</h2>
+<div class="services">
 
-    <div class="about">
+    <div class="card">
+        <h3>💰 Cash Management</h3>
 
-        PECOS is a privately managed business focused on
-        cash management and warehousing. Inspired by Goa's
-        long tradition of trade, trust and simplicity,
-        we believe in preserving value, managing resources
-        responsibly and building relationships that last
-        across generations.
-
+        <p>
+            Preservation and management of capital through
+            disciplined allocation across financial assets.
+        </p>
     </div>
 
-</section>
+    <div class="card">
+        <h3>📦 Warehousing</h3>
 
-<section class="section" style="background:#fffdf9;">
-
-    <h2 class="heading">Our Businesses</h2>
-
-    <div class="businesses">
-
-        <div class="card">
-            <h3>Cash Management</h3>
-            <p>
-                Long-term capital management with emphasis on
-                stability, preservation and disciplined allocation
-                across financial assets.
-            </p>
-        </div>
-
-        <div class="card">
-            <h3>Warehousing</h3>
-            <p>
-                Secure storage and warehousing solutions for
-                commodities and commercial inventory with a
-                focus on reliability and operational efficiency.
-            </p>
-        </div>
-
+        <p>
+            Secure storage facilities for commodities,
+            inventory and commercial goods.
+        </p>
     </div>
 
-</section>
+</div>
 
-<section class="footer">
+<div class="features">
 
+    <h2>Why PECOS?</h2>
+
+    <ul>
+        <li>✓ Long-Term Thinking</li>
+        <li>✓ Conservative Approach</li>
+        <li>✓ Reliable Warehousing</li>
+        <li>✓ Asset Preservation Focus</li>
+        <li>✓ Built on Trust</li>
+    </ul>
+
+</div>
+
+<div class="footer">
     <h2>PECOS</h2>
+    <p>Cash Management • Warehousing</p>
+</div>
 
-    <p>
-        Established on Trust • Built for Generations
-    </p>
-
-</section>
+</div>
 
 </body>
 </html>
