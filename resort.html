@@ -1,272 +1,374 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>Sunkissed Resort Goa</title>
+<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
 
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
+}
+
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
 }
 
-body{
-    font-family:'Poppins',sans-serif;
-    background:#f6f1e7;
-    color:#222;
+/* WRAPPER */
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
 }
 
-/* NAVBAR */
-
-nav{
-    position:fixed;
-    width:100%;
-    top:0;
-    left:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 8%;
-    background:rgba(0,0,0,0.45);
-    backdrop-filter:blur(5px);
-    z-index:999;
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--text);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
 .logo{
-    color:white;
-    font-size:1.8rem;
-    font-weight:700;
-    letter-spacing:1px;
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:.5px;
+  color:white;
 }
 
-nav ul{
-    display:flex;
-    list-style:none;
-    gap:30px;
+.nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
-nav ul li a{
-    text-decoration:none;
-    color:white;
-    font-weight:500;
-    transition:0.3s;
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+  opacity:.95;
+  transition:.2s;
 }
 
-nav ul li a:hover{
-    color:#fbbf24;
+.nav a:hover{
+  opacity:1;
+  text-decoration:underline;
 }
 
-/* HERO */
-
-header{
-    height:100vh;
-    background:
-    linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
-    url('resort.jpg') center/cover no-repeat;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    color:white;
+/* DROPDOWN */
+.dropdown{
+  position:relative;
 }
 
-.hero{
-    max-width:750px;
-    padding:20px;
+.dropbtn{
+  color:white;
+  cursor:pointer;
 }
 
-.hero h1{
-    font-size:4rem;
-    margin-bottom:20px;
+/* DROPDOWN BOX */
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:white;
+  border:2px solid #1F3E56;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  z-index:3000;
 }
 
-.hero p{
-    font-size:1.2rem;
-    line-height:1.9;
-    margin-bottom:30px;
+.dropdown-content a{
+  display:block;
+  padding:13px 16px;
+  color:var(--text);
+  font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid #dbe4ea;
+  transition:.2s;
 }
 
-.btn{
-    display:inline-block;
-    padding:14px 34px;
-    border-radius:40px;
-    background:#d97706;
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
+.dropdown-content a:last-child{
+  border-bottom:none;
 }
 
-.btn:hover{
-    background:#b45309;
+.dropdown-content a:hover{
+  background:#eef4f8;
 }
 
-/* SECTION */
-
-section{
-    padding:90px 8%;
+.dropdown:hover .dropdown-content{
+  display:block;
 }
 
-.section-title{
-    text-align:center;
-    margin-bottom:55px;
+/* MAIN */
+.main{
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  gap:30px;
+  padding:30px;
 }
 
-.section-title h2{
-    font-size:2.6rem;
-    color:#7c2d12;
+/* CONTENT BOX */
+.content-box{
+  flex:2;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-/* ABOUT */
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
+.content-box h3{
+  margin-top:0;
+  color:var(--text);
+  font-size:20px;
+  margin-bottom:20px;
 }
 
-.about img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+.market-item{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #e2e8f0;
+  font-size:15px;
 }
 
-.about-text p{
-    line-height:1.9;
-    margin-bottom:20px;
-    color:#444;
+.value{
+  font-weight:600;
+  transition:.3s;
 }
 
-/* ROOMS */
-
-.rooms-section{
-    background:#fff7ed;
+.up{
+  color:#16a34a;
 }
 
-.rooms-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
+.down{
+  color:#dc2626;
 }
 
-.room-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
-    transition:0.3s;
+/* LOGIN BOX */
+.login-box{
+  flex:1;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
+  max-width:340px;
+  position:sticky;
+  top:90px;
 }
 
-.room-card:hover{
-    transform:translateY(-6px);
+.login-box h3{
+  margin-top:0;
+  margin-bottom:20px;
+  color:var(--text);
+  font-size:18px;
 }
 
-.room-card h3{
-    margin-bottom:18px;
-    color:#b45309;
+/* PASSWORD */
+.password-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
 }
 
-.room-card p{
-    color:#555;
-    line-height:1.7;
+.password-wrapper input{
+  padding-right:45px;
 }
 
-/* GALLERY */
-
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+.toggle-password{
+  position:absolute;
+  right:10px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.2s;
 }
 
-.gallery img{
-    width:100%;
-    height:260px;
-    object-fit:cover;
-    border-radius:18px;
+.toggle-password:hover{
+  color:var(--primary);
 }
 
-/* FACILITIES */
-
-.facilities{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
+.toggle-password.active{
+  color:var(--primary);
 }
 
-.facility-card{
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    text-align:center;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+/* INPUTS */
+input{
+  width:100%;
+  padding:13px 14px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:1px solid #d6dee6;
+  font-size:14px;
+  transition:.2s;
 }
 
-.facility-card h3{
-    margin-top:15px;
-    color:#7c2d12;
+input:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(47,111,149,.15);
 }
 
-/* CONTACT */
-
-.contact{
-    background:#7c2d12;
-    color:white;
-    text-align:center;
-    padding:60px 20px;
-    border-radius:20px;
+/* BUTTON */
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:10px;
+  background:var(--text);
+  color:white;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.contact h2{
-    font-size:2.4rem;
-    margin-bottom:20px;
+button:hover{
+  background:#2a4f6a;
 }
 
-.contact p{
-    margin:12px 0;
-    font-size:1.05rem;
+button:active{
+  transform:scale(.98);
+}
+
+#msg{
+  font-size:12px;
+  color:red;
+  margin-top:6px;
+}
+
+.link{
+  font-size:12px;
+  color:var(--primary);
+  cursor:pointer;
+}
+
+.link:hover{
+  text-decoration:underline;
 }
 
 /* FOOTER */
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:15px 10px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
 
-footer{
-    background:#3b1f13;
-    color:#ddd;
-    text-align:center;
-    padding:25px;
+.footer-left{
+  max-width:60%;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* MOBILE NAV */
+.bottom-nav{
+  display:none;
 }
 
 /* MOBILE */
-
 @media(max-width:900px){
 
-    .hero h1{
-        font-size:2.8rem;
-    }
+  .nav{
+    display:none;
+  }
 
-    .about{
-        grid-template-columns:1fr;
-    }
+  .main{
+    flex-direction:column;
+    padding:20px;
+    gap:20px;
+    padding-bottom:90px;
+  }
 
-    nav ul{
-        gap:15px;
-    }
+  .content-box,
+  .login-box{
+    width:100%;
+    max-width:100%;
+    padding:25px;
+  }
 
-    nav ul li a{
-        font-size:14px;
-    }
+  .login-box{
+    position:static;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+    z-index:1000;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+  }
 }
 
 </style>
@@ -274,153 +376,277 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
+<div class="wrapper">
 
-<nav>
+<!-- HEADER -->
+<div class="header">
 
-    <div class="logo">Sunkissed Resort</div>
+  <div class="logo">PECOS</div>
 
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#rooms">Rooms</a></li>
-        <li><a href="#contact">Visit</a></li>
-    </ul>
+  <div class="nav">
 
-</nav>
+    <a href="index.html"><b>HOME</b></a>
+    <a href="#">CLUB PECOS</a>
 
+    <a href="about.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
 
+  </div>
 
-<!-- ABOUT -->
+</div>
 
-<section id="about">
+<!-- MAIN -->
+<div class="main">
 
-    <div class="section-title">
-        <h2></h2>
+  <!-- CONTENT -->
+  <div class="content-box">
+
+    <h3>Live Market Rates</h3>
+
+    <div class="market-item">
+      <span>Bitcoin (₹)</span>
+      <span id="btc" class="value">Loading...</span>
     </div>
 
-    <div class="about">
-
-        <img src="images/resort.png" alt="Sunkissed Resort">
-
-        <div class="about-text">
-
-            <p>
-                Sunkissed Resort is a charming Goan-style tropical retreat
-                designed for travellers seeking relaxation, nature and
-                authentic coastal experiences.
-            </p>
-
-            <p>
-                Surrounded by swaying coconut trees and peaceful roadside
-                scenery, our resort combines modern comfort with traditional
-                Goan architecture.
-            </p>
-
-            <p>
-                Enjoy calm mornings, sunset evenings and a warm atmosphere
-                perfect for couples, families and vacation travellers.
-            </p>
-
-        </div>
-
+    <div class="market-item">
+      <span>Ethereum (₹)</span>
+      <span id="eth" class="value">Loading...</span>
     </div>
 
-</section>
-
-<!-- ROOMS -->
-
-<section class="rooms-section" id="rooms">
-
-    <div class="section-title">
-        <h2>Our Rooms</h2>
+    <div class="market-item">
+      <span>Spot Gold (₹ / 10g)</span>
+      <span id="gold" class="value">Loading...</span>
     </div>
 
-    <div class="rooms-grid">
+    <div class="market-item">
+      <span>Spot Silver (₹ / kg)</span>
+      <span id="silver" class="value">Loading...</span>
+    </div>
 
-        <div class="room-card">
-            <h3>Deluxe Room</h3>
-            <p>
-                Spacious tropical room with garden views,
-                king-size bed and peaceful interiors.
-            </p>
-        </div>
+  </div>
 
-        <div class="room-card">
-            <h3>Poolside Suite</h3>
-            <p>
-                Elegant suite located beside the swimming pool
-                with luxury seating and private balcony.
-            </p>
-        </div>
+  <!-- LOGIN -->
+  <div class="login-box">
 
-        <div class="room-card">
-            <h3>Family Villa</h3>
-            <p>
-                Large villa ideal for families and groups
-                with authentic Goan-style architecture.
-            </p>
-        </div>
+    <h3>Member Login</h3>
+
+    <input id="email" type="email" placeholder="Email">
+
+    <div class="password-wrapper">
+
+      <input id="password" type="password" placeholder="Password">
+
+      <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
+
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
+          <path d="M1 1l22 22"/>
+        </svg>
+
+      </span>
 
     </div>
 
-</section>
+    <button onclick="login()">Login</button>
 
+    <p id="msg"></p>
 
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
 
-<!-- FACILITIES -->
+  </div>
 
-<section style="background:#fff7ed;">
-
-    <div class="section-title">
-        <h2>Facilities</h2>
-    </div>
-
-    <div class="facilities">
-
-        <div class="facility-card">
-            <h3>Swimming Pool</h3>
-        </div>
-
-        <div class="facility-card">
-            <h3>Restaurant & Bar</h3>
-        </div>
-
-        <div class="facility-card">
-            <h3>Free WiFi</h3>
-        </div>
-
-        <div class="facility-card">
-            <h3>Private Parking</h3>
-        </div>
-
-    </div>
-
-</section>
-
-<!-- CONTACT -->
-
-<section id="contact">
-
-    <div class="contact">
-
-        <h2>Visit Sunkissed Resort</h2>
-
-        <p>📍 Coastal Roadside Area, Goa</p>
-        <p>🕒 Open 24 Hours</p>
-        <p>📞 +91 98765 43210</p>
-
-    </div>
-
-</section>
+</div>
 
 <!-- FOOTER -->
+<div class="footer">
 
-<footer>
 
-    © 2026 Sunkissed Resort Goa
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
 
-</footer>
+</div>
+
+<!-- MOBILE NAV -->
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="Contact.html">Contact</a>
+</div>
+
+</div>
+
+<script>
+
+// FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+// AUTO REDIRECT
+auth.onAuthStateChanged(async (user) => {
+
+  if (user && user.emailVerified) {
+
+    const doc = await db.collection("members").doc(user.uid).get();
+
+    location.href = doc.data()?.isAdmin
+      ? "admin.html"
+      : "member.html";
+  }
+
+});
+
+// TOGGLE PASSWORD
+function togglePassword(){
+
+  const passwordInput = document.getElementById("password");
+  const eyeOpen = document.getElementById("eyeOpen");
+  const eyeClose = document.getElementById("eyeClose");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  if(passwordInput.type === "password"){
+
+    passwordInput.type = "text";
+    eyeOpen.style.display = "none";
+    eyeClose.style.display = "block";
+    eyeIcon.classList.add("active");
+
+  }else{
+
+    passwordInput.type = "password";
+    eyeOpen.style.display = "block";
+    eyeClose.style.display = "none";
+    eyeIcon.classList.remove("active");
+
+  }
+}
+
+// LOGIN
+async function login(){
+
+  msg.innerText = "";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if(!email || !password){
+
+    msg.innerText = "Please fill all fields";
+    return;
+
+  }
+
+  try{
+
+    const res = await auth.signInWithEmailAndPassword(email,password);
+
+    if(!res.user.emailVerified){
+      msg.innerText = "Please verify your email";
+    }
+
+  }catch(e){
+
+    msg.innerText = e.message;
+
+  }
+}
+
+// RESET PASSWORD
+function resetPassword(){
+
+  const email = prompt("Enter registered email");
+
+  if(!email) return;
+
+  auth.sendPasswordResetEmail(email);
+
+  alert("Password reset link sent");
+
+}
+
+// MARKET DATA
+async function fetchMarketRates(){
+
+  try{
+
+    const cryptoRes = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
+    );
+
+    const cryptoData = await cryptoRes.json();
+
+    updateLive("btc", cryptoData.bitcoin.inr);
+    updateLive("eth", cryptoData.ethereum.inr);
+
+    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
+    const goldData = await goldRes.json();
+
+    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
+    const silverData = await silverRes.json();
+
+    const USDINR = 83;
+
+    const goldINR =
+      (goldData.price * USDINR) / 31.1035 * 10;
+
+    const silverINR =
+      (silverData.price * USDINR) / 31.1035 * 1000;
+
+    updateLive("gold", goldINR);
+    updateLive("silver", silverINR);
+
+  }catch(e){
+
+    console.log("Market API error:", e);
+
+  }
+
+}
+
+// LIVE UPDATE EFFECT
+function updateLive(id,newValue){
+
+  const el = document.getElementById(id);
+
+  if(!el) return;
+
+  const oldValue = parseFloat(el.innerText) || 0;
+
+  el.classList.remove("up","down");
+
+  if(newValue > oldValue){
+    el.classList.add("up");
+  }else{
+    el.classList.add("down");
+  }
+
+  el.innerText = newValue.toLocaleString("en-IN",{
+    maximumFractionDigits:0
+  });
+
+}
+
+// RUN
+fetchMarketRates();
+
+setInterval(fetchMarketRates,10000);
+
+</script>
 
 </body>
 </html>
