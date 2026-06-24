@@ -386,6 +386,7 @@ button:active{
   <div class="nav">
 
     <a href="index.html"><b>HOME</b></a>
+    <a href="#">CLUB PECOS</a>
 
     <a href="about.html">ABOUT</a>
     <a href="Contact.html">CONTACT</a>
@@ -398,26 +399,31 @@ button:active{
 <div class="main">
 
   <!-- CONTENT -->
-<div class="content-box">
+  <div class="content-box">
 
-  <h3>Funds Overview</h3>
+    <h3>Live Market Rates</h3>
 
-  <div class="market-item">
-    <span>Available Margin</span>
-    <span class="value">₹0.70</span>
+    <div class="market-item">
+      <span>Bitcoin (₹)</span>
+      <span id="btc" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Ethereum (₹)</span>
+      <span id="eth" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Gold (₹ / 10g)</span>
+      <span id="gold" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Silver (₹ / kg)</span>
+      <span id="silver" class="value">Loading...</span>
+    </div>
+
   </div>
-
-  <div class="market-item">
-    <span>Used Margin</span>
-    <span class="value">₹0.00</span>
-  </div>
-
-  <div class="market-item">
-    <span>Available Cash</span>
-    <span class="value">₹0.70</span>
-  </div>
-
-</div>
 
   <!-- LOGIN -->
   <div class="login-box">
@@ -573,7 +579,72 @@ function resetPassword(){
 
 }
 
+// MARKET DATA
+async function fetchMarketRates(){
 
+  try{
+
+    const cryptoRes = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
+    );
+
+    const cryptoData = await cryptoRes.json();
+
+    updateLive("btc", cryptoData.bitcoin.inr);
+    updateLive("eth", cryptoData.ethereum.inr);
+
+    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
+    const goldData = await goldRes.json();
+
+    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
+    const silverData = await silverRes.json();
+
+    const USDINR = 83;
+
+    const goldINR =
+      (goldData.price * USDINR) / 31.1035 * 10;
+
+    const silverINR =
+      (silverData.price * USDINR) / 31.1035 * 1000;
+
+    updateLive("gold", goldINR);
+    updateLive("silver", silverINR);
+
+  }catch(e){
+
+    console.log("Market API error:", e);
+
+  }
+
+}
+
+// LIVE UPDATE EFFECT
+function updateLive(id,newValue){
+
+  const el = document.getElementById(id);
+
+  if(!el) return;
+
+  const oldValue = parseFloat(el.innerText) || 0;
+
+  el.classList.remove("up","down");
+
+  if(newValue > oldValue){
+    el.classList.add("up");
+  }else{
+    el.classList.add("down");
+  }
+
+  el.innerText = newValue.toLocaleString("en-IN",{
+    maximumFractionDigits:0
+  });
+
+}
+
+// RUN
+fetchMarketRates();
+
+setInterval(fetchMarketRates,10000);
 
 </script>
 
