@@ -230,7 +230,62 @@ html,body{
 .toggle-password.active{
   color:var(--primary);
 }
+.operations-section{
+    margin-top:30px;
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
 
+.operations-section h3{
+    color:var(--text);
+    margin-top:0;
+    margin-bottom:18px;
+}
+
+.operations-section p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.operation-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-top:25px;
+}
+
+.operation-card{
+    border:1px solid #e5edf3;
+    border-radius:14px;
+    padding:22px;
+    transition:.25s;
+    background:#fff;
+}
+
+.operation-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.operation-card .icon{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.operation-card h4{
+    margin:0 0 10px;
+    color:var(--text);
+}
+
+.operation-card p{
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+}
 /* INPUTS */
 input{
   width:100%;
@@ -424,7 +479,69 @@ button:active{
     </div>
 
   </div>
+<!-- ABOUT OPERATIONS -->
+<div class="operations-section">
 
+    <h3>Our Operations</h3>
+
+    <p>
+        PECOS is a diversified credit and investment firm focused on facilitating
+        capital access and strategic asset transactions. Through our network of
+        partnered financial institutions and lending channels, we assist
+        businesses and individuals in obtaining suitable credit solutions for
+        working capital, business expansion, commercial projects, and personal
+        financial requirements.
+    </p>
+
+    <p>
+        Beyond credit facilitation, we actively participate in the acquisition,
+        sale, and advisory of real estate assets across commercial, residential,
+        and industrial sectors. Our objective is to connect investors,
+        businesses, and property owners with opportunities that create
+        long-term value.
+    </p>
+
+    <div class="operation-grid">
+
+        <div class="operation-card">
+            <div class="icon">💳</div>
+            <h4>Credit Solutions</h4>
+            <p>
+                Business loans, working capital finance, mortgage finance and
+                personal credit through trusted financial partners.
+            </p>
+        </div>
+
+        <div class="operation-card">
+            <div class="icon">🏢</div>
+            <h4>Commercial Real Estate</h4>
+            <p>
+                Offices, retail spaces, warehouses and investment-grade
+                commercial properties.
+            </p>
+        </div>
+
+        <div class="operation-card">
+            <div class="icon">🏠</div>
+            <h4>Residential Properties</h4>
+            <p>
+                Purchase, sale and investment opportunities in residential
+                developments and plotted projects.
+            </p>
+        </div>
+
+        <div class="operation-card">
+            <div class="icon">🏭</div>
+            <h4>Industrial Assets</h4>
+            <p>
+                Industrial land, factories, warehouses and logistics
+                infrastructure for business expansion.
+            </p>
+        </div>
+
+    </div>
+
+</div>
   <!-- LOGIN -->
   <div class="login-box">
 
