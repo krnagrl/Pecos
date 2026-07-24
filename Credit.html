@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#1F3E56">
+<title>Pecos - Credit Facilities</title>
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
+}
+
+*{
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
+}
+
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
+}
+
+/* HEADER */
+
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--text);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-weight:700;
+  font-size:18px;
+}
+
+.nav{
+  display:flex;
+  gap:25px;
+}
+
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+  opacity:.95;
+}
+
+.nav a:hover{
+  text-decoration:underline;
+}
+
+/* MAIN */
+
+.main{
+  flex:1;
+  padding:60px 40px;
+  display:flex;
+  justify-content:center;
+}
+
+.credit-box{
+  width:100%;
+  max-width:1200px;
+  background:var(--card);
+  padding:60px;
+  border-radius:20px;
+  box-shadow:0 12px 35px rgba(0,0,0,.06);
+}
+
+.credit-box h2{
+  margin-top:0;
+  font-size:28px;
+  color:var(--text);
+}
+
+.credit-box h3{
+  margin-top:35px;
+  color:var(--primary);
+}
+
+.credit-box p{
+  line-height:1.8;
+  color:var(--muted);
+  font-size:15px;
+}
+
+.highlight{
+  background:#e8f2f8;
+  padding:18px;
+  border-left:5px solid var(--primary);
+  border-radius:10px;
+  margin:25px 0;
+  line-height:1.9;
+}
+
+.features{
+  margin-top:20px;
+  padding-left:20px;
+}
+
+.features li{
+  margin:12px 0;
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* FOOTER */
+
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:35px 25px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:60%;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* MOBILE */
+
+.bottom-nav{
+  display:none;
+}
+
+@media(max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .main{
+    padding:20px;
+    padding-bottom:90px;
+  }
+
+  .credit-box{
+    padding:25px;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+    z-index:1000;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+  <div class="logo">PECOS</div>
+
+  <div class="nav">
+    <a href="index.html">HOME</a>
+    <a href="about.html">ABOUT</a>
+    <a href="credit.html"><b>CREDIT</b></a>
+    <a href="Contact.html">CONTACT</a>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="credit-box">
+
+<h2>Short-Term Credit Facilities</h2>
+
+<p>
+Pecos provides short-term credit facilities to businesses and individuals requiring
+temporary working capital or short-duration funding. Our objective is to provide
+fast, transparent and flexible financing solutions for short-term financial needs.
+</p>
+
+<div class="highlight">
+
+<b>Credit Terms</b><br><br>
+
+• Fixed Fee: <b>1.10% per month</b><br>
+• Credit Duration: <b>1 to 6 Months</b><br>
+• Available for: <b>Businesses & Individuals</b><br>
+• Renewal: <b>Can be renewed upon approval before expiry</b>
+
+</div>
+
+<h3>Suitable For</h3>
+
+<ul class="features">
+<li>Working capital requirements</li>
+<li>Business expansion opportunities</li>
+<li>Inventory purchases</li>
+<li>Short-term cash flow management</li>
+<li>Emergency financial requirements</li>
+<li>Bridge financing</li>
+</ul>
+
+<h3>Key Benefits</h3>
+
+<ul class="features">
+<li>Simple and transparent pricing</li>
+<li>No hidden monthly charges</li>
+<li>Flexible repayment periods</li>
+<li>Quick processing and approval</li>
+<li>Renewal option available at maturity, subject to review</li>
+</ul>
+
+<div class="highlight">
+<b>Fee Structure</b><br><br>
+
+A fixed fee of <b>1.10% per month</b> is applicable on the sanctioned credit amount
+for the approved duration. Credit facilities may be renewed before the expiry
+date after review and approval.
+</div>
+
+<h3>Disclaimer</h3>
+
+<p>
+Credit approval is subject to internal assessment, documentation, eligibility
+verification and applicable terms and conditions. Pecos reserves the right to
+approve or decline any application at its sole discretion.
+</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+
+<div class="footer-left">
+<b>Mobile:</b> (+91) 8669334862<br>
+<b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
+<b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
+</div>
+
+<div class="footer-right">
+© 2025 PECOS. All rights reserved.
+</div>
+
+</div>
+
+<div class="bottom-nav">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="credit.html">Credit</a>
+<a href="Contact.html">Contact</a>
+</div>
+
+</div>
+
+</body>
+</html>
