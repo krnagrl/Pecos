@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <meta name="theme-color" content="#1F3E56">
 
-<title>Pecos - Recovery Services</title>
+<title>Pecos - Money Recovery Services</title>
 
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+
 <style>
 
 /* =========================
-   ROOT
+   BASIC
 ========================= */
 
 :root{
   --primary:#2F6F95;
-  --secondary:#3B7EA5;
-  --accent:#2F6F95;
   --bg:#F4F6F8;
   --card:#FFFFFF;
   --text:#1F3E56;
@@ -34,13 +34,17 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
   margin:0;
   padding:0;
   min-height:100%;
   background:var(--bg);
 }
+
+body{
+  color:var(--text);
+}
+
 
 /* =========================
    WRAPPER
@@ -51,8 +55,8 @@ body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  background:var(--bg);
 }
+
 
 /* =========================
    HEADER
@@ -70,13 +74,12 @@ body{
 
   position:sticky;
   top:0;
-
   z-index:1000;
 }
 
 .logo{
-  font-weight:700;
   font-size:18px;
+  font-weight:700;
 }
 
 .nav{
@@ -85,18 +88,16 @@ body{
 }
 
 .nav a{
-  text-decoration:none;
   color:white;
-
-  font-weight:500;
+  text-decoration:none;
   font-size:14px;
-
-  opacity:.95;
+  font-weight:500;
 }
 
 .nav a:hover{
   text-decoration:underline;
 }
+
 
 /* =========================
    MAIN
@@ -104,8 +105,7 @@ body{
 
 .main{
   flex:1;
-
-  padding:60px 40px;
+  padding:55px 30px;
 
   display:flex;
   justify-content:center;
@@ -113,70 +113,87 @@ body{
 
 .recovery-box{
   width:100%;
-  max-width:1200px;
+  max-width:1050px;
 
   background:var(--card);
 
-  padding:60px;
+  padding:55px;
 
-  border-radius:20px;
+  border-radius:18px;
 
-  box-shadow:
-    0 12px 35px rgba(0,0,0,.06);
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
+
 
 /* =========================
    HEADINGS
 ========================= */
 
-.recovery-box h2{
-  margin-top:0;
-  margin-bottom:20px;
+.recovery-box h1{
+  margin:0 0 18px;
 
-  font-size:28px;
+  font-size:30px;
 
   color:var(--text);
 }
 
-.recovery-box h3{
-  margin-top:35px;
+.recovery-box h2{
+  margin-top:38px;
+  margin-bottom:15px;
+
+  font-size:20px;
 
   color:var(--primary);
-
-  font-size:18px;
 }
+
 
 /* =========================
    TEXT
 ========================= */
 
 .recovery-box p{
-  line-height:1.8;
-
   color:var(--muted);
 
   font-size:15px;
+
+  line-height:1.8;
+
+  margin:0 0 15px;
 }
+
+
+/* =========================
+   INTRO
+========================= */
+
+.intro{
+  font-size:16px !important;
+  color:var(--text) !important;
+}
+
 
 /* =========================
    HIGHLIGHT
 ========================= */
 
 .highlight{
-  background:#e8f2f8;
+  margin:25px 0;
 
-  padding:18px;
+  padding:20px;
+
+  background:#e8f2f8;
 
   border-left:4px solid var(--primary);
 
-  margin:22px 0;
-
   border-radius:8px;
 
-  line-height:1.8;
+  color:var(--text);
 
-  color:var(--muted);
+  font-size:15px;
+
+  line-height:1.7;
 }
+
 
 /* =========================
    SERVICES
@@ -186,25 +203,25 @@ body{
   display:grid;
 
   grid-template-columns:
-    repeat(2,1fr);
+  repeat(2,1fr);
 
-  gap:18px;
+  gap:16px;
 
   margin-top:20px;
 }
 
 .service{
+  padding:22px;
+
   background:#f7f9fb;
 
-  border:1px solid #e4ebf0;
+  border:1px solid #e5ebef;
 
   border-radius:12px;
-
-  padding:22px;
 }
 
-.service h4{
-  margin:0 0 10px 0;
+.service h3{
+  margin:0 0 9px;
 
   color:var(--text);
 
@@ -219,19 +236,20 @@ body{
   line-height:1.7;
 }
 
+
 /* =========================
-   PROCESS
+   HOW IT WORKS
 ========================= */
 
-.process{
-  margin-top:20px;
-
+.steps{
   display:grid;
 
   grid-template-columns:
-    repeat(4,1fr);
+  repeat(4,1fr);
 
   gap:15px;
+
+  margin-top:20px;
 }
 
 .step{
@@ -244,29 +262,29 @@ body{
   border-radius:12px;
 }
 
-.step-number{
+.number{
   width:34px;
   height:34px;
 
   margin:0 auto 12px;
 
-  border-radius:50%;
-
   background:var(--primary);
 
   color:white;
+
+  border-radius:50%;
 
   display:flex;
 
   align-items:center;
   justify-content:center;
 
-  font-weight:600;
-
   font-size:14px;
+
+  font-weight:600;
 }
 
-.step h4{
+.step h3{
   margin:0 0 8px;
 
   color:var(--text);
@@ -282,6 +300,36 @@ body{
   line-height:1.6;
 }
 
+
+/* =========================
+   CONTACT BOX
+========================= */
+
+.contact-box{
+  margin-top:35px;
+
+  padding:25px;
+
+  background:var(--text);
+
+  color:white;
+
+  border-radius:12px;
+}
+
+.contact-box h2{
+  margin:0 0 12px;
+
+  color:white;
+}
+
+.contact-box p{
+  color:#dbe6ef;
+
+  margin-bottom:8px;
+}
+
+
 /* =========================
    NOTICE
 ========================= */
@@ -293,9 +341,9 @@ body{
 
   background:#f8f9fa;
 
-  border:1px solid #e2e6ea;
+  border:1px solid #e1e5e8;
 
-  border-radius:10px;
+  border-radius:8px;
 
   color:#657381;
 
@@ -303,6 +351,7 @@ body{
 
   line-height:1.7;
 }
+
 
 /* =========================
    FOOTER
@@ -325,9 +374,9 @@ body{
 .footer-left{
   max-width:60%;
 
-  line-height:1.7;
-
   font-size:14px;
+
+  line-height:1.8;
 }
 
 .footer a{
@@ -348,6 +397,7 @@ body{
   opacity:.8;
 }
 
+
 /* =========================
    MOBILE NAV
 ========================= */
@@ -356,8 +406,9 @@ body{
   display:none;
 }
 
+
 /* =========================
-   TABLET / MOBILE
+   MOBILE
 ========================= */
 
 @media(max-width:900px){
@@ -376,13 +427,17 @@ body{
     padding:25px;
   }
 
+  .recovery-box h1{
+    font-size:25px;
+  }
+
   .services{
     grid-template-columns:1fr;
   }
 
-  .process{
+  .steps{
     grid-template-columns:
-      1fr 1fr;
+    1fr 1fr;
   }
 
   .footer{
@@ -424,18 +479,15 @@ body{
 
 }
 
+
 /* =========================
    SMALL MOBILE
 ========================= */
 
 @media(max-width:500px){
 
-  .process{
+  .steps{
     grid-template-columns:1fr;
-  }
-
-  .recovery-box h2{
-    font-size:24px;
   }
 
 }
@@ -446,6 +498,7 @@ body{
 
 
 <body>
+
 
 <div class="wrapper">
 
@@ -483,258 +536,380 @@ body{
 </div>
 
 
+
 <!-- =========================
-     MAIN CONTENT
+     MAIN
 ========================= -->
 
 <div class="main">
 
-  <div class="recovery-box">
+<div class="recovery-box">
 
 
-    <h2>
-      Debt & Receivables Recovery
-    </h2>
+<h1>
+  Money Recovery Services
+</h1>
 
 
-    <p>
-      Pecos provides professional
-      <b>commercial receivables and payment recovery services</b>
-      to businesses seeking assistance with overdue and outstanding payments.
-    </p>
+<p class="intro">
 
+  Someone owes you money?
 
-    <div class="highlight">
+  <br>
 
-      Our objective is simple:
+  <b>
+    Pecos can help you follow up and recover the amount payable to you.
+  </b>
 
-      <b>
-        help businesses recover legitimate outstanding amounts
-        through structured, professional and lawful communication.
-      </b>
+</p>
 
-    </div>
 
+<div class="highlight">
 
-    <!-- SERVICES -->
+  <b>
+    We help businesses and individuals recover genuine outstanding
+    payments that are due to them.
+  </b>
 
-    <h3>
-      Our Recovery Services
-    </h3>
+  <br>
 
-
-    <div class="services">
-
-
-      <div class="service">
-
-        <h4>
-          Commercial Debt Recovery
-        </h4>
-
-        <p>
-          Assistance with the follow-up and recovery of legitimate
-          outstanding commercial dues owed to our clients.
-        </p>
-
-      </div>
-
-
-      <div class="service">
-
-        <h4>
-          Invoice Recovery
-        </h4>
-
-        <p>
-          Structured follow-up for overdue invoices and unpaid
-          business receivables.
-        </p>
-
-      </div>
-
-
-      <div class="service">
-
-        <h4>
-          Payment Follow-Up
-        </h4>
-
-        <p>
-          Professional communication with customers regarding
-          pending payments and agreed payment schedules.
-        </p>
-
-      </div>
-
-
-      <div class="service">
-
-        <h4>
-          Settlement Assistance
-        </h4>
-
-        <p>
-          Assistance in facilitating communication between creditors
-          and debtors regarding mutually acceptable payment arrangements.
-        </p>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- PROCESS -->
-
-    <h3>
-      How We Work
-    </h3>
-
-
-    <div class="process">
-
-
-      <div class="step">
-
-        <div class="step-number">
-          1
-        </div>
-
-        <h4>
-          Case Review
-        </h4>
-
-        <p>
-          We review the outstanding amount and supporting
-          documentation provided by the client.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          2
-        </div>
-
-        <h4>
-          Verification
-        </h4>
-
-        <p>
-          We establish the relevant payment details and
-          communication requirements.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          3
-        </div>
-
-        <h4>
-          Recovery
-        </h4>
-
-        <p>
-          We communicate with the concerned party and pursue
-          an appropriate payment resolution.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          4
-        </div>
-
-        <h4>
-          Reporting
-        </h4>
-
-        <p>
-          The client receives updates regarding communication,
-          commitments and recovery progress.
-        </p>
-
-      </div>
-
-
-    </div>
-
-
-    <!-- APPROACH -->
-
-    <h3>
-      Our Approach
-    </h3>
-
-
-    <p>
-      Pecos believes that effective recovery should be professional,
-      documented and respectful. We focus on communication,
-      verification and practical payment solutions rather than
-      unnecessary confrontation.
-    </p>
-
-
-    <div class="highlight">
-
-      <b>
-        Professional. Structured. Transparent.
-      </b>
-
-      <br>
-
-      Our services are intended to assist businesses in managing
-      and recovering legitimate outstanding receivables.
-
-    </div>
-
-
-    <!-- BUSINESS -->
-
-    <h3>
-      For Businesses
-    </h3>
-
-
-    <p>
-      If your business has overdue invoices, unpaid commercial dues
-      or outstanding customer payments, you may contact Pecos to
-      discuss your recovery requirements.
-    </p>
-
-
-    <!-- LEGAL NOTICE -->
-
-    <div class="notice">
-
-      <b>
-        Important:
-      </b>
-
-      Pecos operates as a recovery and receivables service provider.
-      Recovery activities are undertaken only on the basis of
-      appropriate client authorization and applicable law.
-
-      We do not represent ourselves as police, courts, government
-      authorities or any other statutory authority, and we do not
-      use coercive or unlawful recovery practices.
-
-    </div>
-
-
-  </div>
+  Our work is based on proper communication, documentation
+  and lawful recovery practices.
 
 </div>
+
+
+
+<!-- =========================
+     WHAT WE DO
+========================= -->
+
+<h2>
+  What We Do
+</h2>
+
+
+<p>
+
+  Pecos provides money recovery services for clients who have
+  outstanding payments from their customers, buyers, borrowers
+  or other parties.
+
+</p>
+
+
+<p>
+
+  If someone has a genuine payment due to you and you need
+  assistance in following up with them, you can appoint Pecos
+  to handle the recovery process on your behalf.
+
+</p>
+
+
+
+<!-- =========================
+     SERVICES
+========================= -->
+
+<h2>
+  Our Services
+</h2>
+
+
+<div class="services">
+
+
+<div class="service">
+
+  <h3>
+    Unpaid Bills & Invoices
+  </h3>
+
+  <p>
+    Follow-up and recovery of unpaid business bills,
+    invoices and other outstanding payments.
+  </p>
+
+</div>
+
+
+<div class="service">
+
+  <h3>
+    Customer Dues
+  </h3>
+
+  <p>
+    Assistance in recovering money that customers
+    have not paid within the agreed time.
+  </p>
+
+</div>
+
+
+<div class="service">
+
+  <h3>
+    Business Payments
+  </h3>
+
+  <p>
+    Recovery assistance for outstanding amounts
+    payable between businesses and their customers.
+  </p>
+
+</div>
+
+
+<div class="service">
+
+  <h3>
+    Payment Follow-Up
+  </h3>
+
+  <p>
+    We communicate with the concerned party regarding
+    pending payments and possible payment arrangements.
+  </p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     HOW IT WORKS
+========================= -->
+
+<h2>
+  How It Works
+</h2>
+
+
+<div class="steps">
+
+
+<div class="step">
+
+  <div class="number">
+    1
+  </div>
+
+  <h3>
+    Give Us Details
+  </h3>
+
+  <p>
+    Tell us about the outstanding payment
+    and provide the available documents.
+  </p>
+
+</div>
+
+
+<div class="step">
+
+  <div class="number">
+    2
+  </div>
+
+  <h3>
+    We Review
+  </h3>
+
+  <p>
+    We review the information and understand
+    the amount and reason for the payment.
+  </p>
+
+</div>
+
+
+<div class="step">
+
+  <div class="number">
+    3
+  </div>
+
+  <h3>
+    We Follow Up
+  </h3>
+
+  <p>
+    We contact the concerned party and
+    follow up regarding the outstanding amount.
+  </p>
+
+</div>
+
+
+<div class="step">
+
+  <div class="number">
+    4
+  </div>
+
+  <h3>
+    Recovery
+  </h3>
+
+  <p>
+    We keep you informed about the progress
+    and payment received, where applicable.
+  </p>
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     WHO CAN USE
+========================= -->
+
+<h2>
+  Who Can Use Our Services?
+</h2>
+
+
+<p>
+  Our recovery services can be useful for businesses,
+  traders, professionals and individuals who have
+  genuine outstanding payments payable to them.
+</p>
+
+
+<div class="highlight">
+
+  <b>
+    Examples:
+  </b>
+
+  <br><br>
+
+  • Unpaid business invoices
+
+  <br>
+
+  • Outstanding customer payments
+
+  <br>
+
+  • Pending payments for goods or services
+
+  <br>
+
+  • Other genuine dues payable to our client
+
+</div>
+
+
+
+<!-- =========================
+     APPROACH
+========================= -->
+
+<h2>
+  Our Approach
+</h2>
+
+
+<p>
+
+  We believe money recovery should be handled
+  professionally and respectfully.
+
+</p>
+
+
+<p>
+
+  Pecos focuses on proper communication, documentation
+  and finding practical payment solutions.
+
+</p>
+
+
+<p>
+
+  We do not use threats, physical force, harassment,
+  intimidation or false claims of authority.
+
+</p>
+
+
+
+<!-- =========================
+     CONTACT
+========================= -->
+
+<div class="contact-box">
+
+  <h2>
+    Need Help Recovering Money?
+  </h2>
+
+  <p>
+    Contact Pecos and tell us about your outstanding payment.
+  </p>
+
+  <p>
+    <b>
+      Mobile:
+    </b>
+
+    (+91) 8669334862
+  </p>
+
+  <p>
+    <b>
+      Email:
+    </b>
+
+    <a href="mailto:karan@pecos.in"
+       style="color:#7fc3ea;">
+
+      karan@pecos.in
+
+    </a>
+  </p>
+
+</div>
+
+
+
+<!-- =========================
+     NOTICE
+========================= -->
+
+<div class="notice">
+
+  <b>
+    Important:
+  </b>
+
+  Pecos provides recovery and payment follow-up services
+  on behalf of its clients. Recovery activities are carried
+  out only with appropriate client authorization and in
+  accordance with applicable law.
+
+  <br><br>
+
+  Pecos does not represent itself as a police authority,
+  court, government authority or statutory enforcement agency.
+
+</div>
+
+
+</div>
+
+</div>
+
 
 
 <!-- =========================
@@ -744,50 +919,51 @@ body{
 <div class="footer">
 
 
-  <div class="footer-left">
+<div class="footer-left">
 
-    <b>
-      Mobile:
-    </b>
+  <b>
+    Mobile:
+  </b>
 
-    (+91) 8669334862
+  (+91) 8669334862
 
-    <br>
-
-
-    <b>
-      Email:
-    </b>
-
-    <a href="mailto:karan@pecos.in">
-      karan@pecos.in
-    </a>
-
-    <br>
+  <br>
 
 
-    <b>
-      Office:
-    </b>
+  <b>
+    Email:
+  </b>
 
-    210 Yamuna Business Park,
-    Akola MH 444001
+  <a href="mailto:karan@pecos.in">
+    karan@pecos.in
+  </a>
 
-  </div>
+  <br>
 
 
-  <div class="footer-right">
+  <b>
+    Office:
+  </b>
 
-    © 2026 PECOS. All rights reserved.
+  210 Yamuna Business Park,
+  Akola MH 444001
 
-  </div>
+</div>
+
+
+<div class="footer-right">
+
+  © 2026 PECOS. All rights reserved.
+
+</div>
 
 
 </div>
 
 
+
 <!-- =========================
-     MOBILE BOTTOM NAV
+     MOBILE NAV
 ========================= -->
 
 <div class="bottom-nav">
@@ -812,6 +988,7 @@ body{
 
 
 </div>
+
 
 </body>
 </html>
