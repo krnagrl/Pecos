@@ -161,11 +161,6 @@ body{
   margin:0 0 15px;
 }
 
-
-/* =========================
-   INTRO
-========================= */
-
 .intro{
   font-size:16px !important;
   color:var(--text) !important;
@@ -230,6 +225,64 @@ body{
 
 .service p{
   margin:0;
+
+  font-size:14px;
+
+  line-height:1.7;
+}
+
+
+/* =========================
+   FEES
+========================= */
+
+.fees{
+  margin-top:20px;
+
+  background:#f7f9fb;
+
+  border:1px solid #e5ebef;
+
+  border-radius:12px;
+
+  overflow:hidden;
+}
+
+.fee-row{
+  display:flex;
+
+  justify-content:space-between;
+  align-items:center;
+
+  padding:17px 20px;
+
+  border-bottom:1px solid #e5ebef;
+
+  font-size:14px;
+
+  color:var(--muted);
+}
+
+.fee-row:last-child{
+  border-bottom:none;
+}
+
+.fee-row strong{
+  color:var(--text);
+}
+
+.fee-note{
+  margin-top:18px;
+
+  padding:18px;
+
+  background:#e8f2f8;
+
+  border-left:4px solid var(--primary);
+
+  border-radius:8px;
+
+  color:var(--text);
 
   font-size:14px;
 
@@ -419,7 +472,6 @@ body{
 
   .main{
     padding:20px;
-
     padding-bottom:90px;
   }
 
@@ -488,6 +540,11 @@ body{
 
   .steps{
     grid-template-columns:1fr;
+  }
+
+  .fee-row{
+    padding:15px;
+    font-size:13px;
   }
 
 }
@@ -681,6 +738,91 @@ body{
 
 
 <!-- =========================
+     FEES
+========================= -->
+
+<h2>
+  Our Fees
+</h2>
+
+
+<p>
+
+  We generally work on a success-based fee.
+  The fee is agreed with the client before we begin
+  the recovery assignment.
+
+</p>
+
+
+<div class="fees">
+
+
+<div class="fee-row">
+
+  <span>
+    Typical Recovery Fee
+  </span>
+
+  <strong>
+    5% – 15%
+  </strong>
+
+</div>
+
+
+<div class="fee-row">
+
+  <span>
+    Fee Basis
+  </span>
+
+  <strong>
+    Amount Successfully Recovered
+  </strong>
+
+</div>
+
+
+<div class="fee-row">
+
+  <span>
+    No Recovery
+  </span>
+
+  <strong>
+    No Success Fee*
+  </strong>
+
+</div>
+
+
+</div>
+
+
+<div class="fee-note">
+
+  <b>
+    Please Note:
+  </b>
+
+  Our typical success-based fee is between
+  <b>5% and 15%</b> of the amount successfully recovered.
+
+  The final fee may vary depending on the amount involved,
+  age of the outstanding payment, available documentation
+  and complexity of the case.
+
+  <br><br>
+
+  *No-recovery, no-success-fee arrangements are subject
+  to the agreed terms of the individual assignment.
+
+</div>
+
+
+
+<!-- =========================
      HOW IT WORKS
 ========================= -->
 
@@ -778,9 +920,11 @@ body{
 
 
 <p>
+
   Our recovery services can be useful for businesses,
   traders, professionals and individuals who have
   genuine outstanding payments payable to them.
+
 </p>
 
 
@@ -859,14 +1003,17 @@ body{
   </p>
 
   <p>
+
     <b>
       Mobile:
     </b>
 
     (+91) 8669334862
+
   </p>
 
   <p>
+
     <b>
       Email:
     </b>
@@ -877,6 +1024,7 @@ body{
       karan@pecos.in
 
     </a>
+
   </p>
 
 </div>
@@ -894,9 +1042,10 @@ body{
   </b>
 
   Pecos provides recovery and payment follow-up services
-  on behalf of its clients. Recovery activities are carried
-  out only with appropriate client authorization and in
-  accordance with applicable law.
+  on behalf of its clients.
+
+  Recovery activities are carried out only with appropriate
+  client authorization and in accordance with applicable law.
 
   <br><br>
 
