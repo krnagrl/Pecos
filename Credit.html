@@ -1,13 +1,19 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#1F3E56">
-<title>Pecos - Credit Facilities</title>
+
+<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
+
+<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+
 <link rel="icon" href="pecos.png">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
 
@@ -34,6 +40,7 @@ html,body{
   background:var(--bg);
 }
 
+/* WRAPPER */
 .wrapper{
   width:100%;
   min-height:100vh;
@@ -43,7 +50,6 @@ html,body{
 }
 
 /* HEADER */
-
 .header{
   display:flex;
   justify-content:space-between;
@@ -59,10 +65,13 @@ html,body{
 .logo{
   font-weight:700;
   font-size:18px;
+  letter-spacing:.5px;
+  color:white;
 }
 
 .nav{
   display:flex;
+  align-items:center;
   gap:25px;
 }
 
@@ -72,73 +81,271 @@ html,body{
   font-weight:500;
   font-size:14px;
   opacity:.95;
+  transition:.2s;
 }
 
 .nav a:hover{
+  opacity:1;
   text-decoration:underline;
 }
 
-/* MAIN */
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
 
+.dropbtn{
+  color:white;
+  cursor:pointer;
+}
+
+/* DROPDOWN BOX */
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:white;
+  border:2px solid #1F3E56;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  z-index:3000;
+}
+
+.dropdown-content a{
+  display:block;
+  padding:13px 16px;
+  color:var(--text);
+  font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid #dbe4ea;
+  transition:.2s;
+}
+
+.dropdown-content a:last-child{
+  border-bottom:none;
+}
+
+.dropdown-content a:hover{
+  background:#eef4f8;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
+
+/* MAIN */
 .main{
   flex:1;
-  padding:60px 40px;
   display:flex;
-  justify-content:center;
+  align-items:flex-start;
+  gap:30px;
+  padding:30px;
 }
 
-.credit-box{
-  width:100%;
-  max-width:1200px;
+/* CONTENT BOX */
+.content-box{
+  flex:2;
   background:var(--card);
-  padding:60px;
-  border-radius:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.06);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-.credit-box h2{
+.content-box h3{
   margin-top:0;
-  font-size:28px;
   color:var(--text);
+  font-size:20px;
+  margin-bottom:20px;
 }
 
-.credit-box h3{
-  margin-top:35px;
-  color:var(--primary);
-}
-
-.credit-box p{
-  line-height:1.8;
-  color:var(--muted);
+.market-item{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #e2e8f0;
   font-size:15px;
 }
 
-.highlight{
-  background:#e8f2f8;
-  padding:18px;
-  border-left:5px solid var(--primary);
-  border-radius:10px;
-  margin:25px 0;
-  line-height:1.9;
+.value{
+  font-weight:600;
+  transition:.3s;
 }
 
-.features{
-  margin-top:20px;
-  padding-left:20px;
+.up{
+  color:#16a34a;
 }
 
-.features li{
-  margin:12px 0;
+.down{
+  color:#dc2626;
+}
+
+/* LOGIN BOX */
+.login-box{
+  flex:1;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
+  max-width:340px;
+  position:sticky;
+  top:90px;
+}
+
+.login-box h3{
+  margin-top:0;
+  margin-bottom:20px;
+  color:var(--text);
+  font-size:18px;
+}
+
+/* PASSWORD */
+.password-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.password-wrapper input{
+  padding-right:45px;
+}
+
+.toggle-password{
+  position:absolute;
+  right:10px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
   color:var(--muted);
-  line-height:1.8;
+  transition:.2s;
+}
+
+.toggle-password:hover{
+  color:var(--primary);
+}
+
+.toggle-password.active{
+  color:var(--primary);
+}
+.operations-section{
+    margin-top:30px;
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.operations-section h3{
+    color:var(--text);
+    margin-top:0;
+    margin-bottom:18px;
+}
+
+.operations-section p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.operation-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-top:25px;
+}
+
+.operation-card{
+    border:1px solid #e5edf3;
+    border-radius:14px;
+    padding:22px;
+    transition:.25s;
+    background:#fff;
+}
+
+.operation-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
+
+.operation-card .icon{
+    font-size:32px;
+    margin-bottom:12px;
+}
+
+.operation-card h4{
+    margin:0 0 10px;
+    color:var(--text);
+}
+
+.operation-card p{
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+}
+/* INPUTS */
+input{
+  width:100%;
+  padding:13px 14px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:1px solid #d6dee6;
+  font-size:14px;
+  transition:.2s;
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(47,111,149,.15);
+}
+
+/* BUTTON */
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:10px;
+  background:var(--text);
+  color:white;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+button:hover{
+  background:#2a4f6a;
+}
+
+button:active{
+  transform:scale(.98);
+}
+
+#msg{
+  font-size:12px;
+  color:red;
+  margin-top:6px;
+}
+
+.link{
+  font-size:12px;
+  color:var(--primary);
+  cursor:pointer;
+}
+
+.link:hover{
+  text-decoration:underline;
 }
 
 /* FOOTER */
-
 .footer{
   background:var(--text);
   color:#dbe6ef;
-  padding:35px 25px;
+  padding:15px 10px;
   display:flex;
   justify-content:space-between;
   flex-wrap:wrap;
@@ -165,12 +372,12 @@ html,body{
   opacity:.8;
 }
 
-/* MOBILE */
-
+/* MOBILE NAV */
 .bottom-nav{
   display:none;
 }
 
+/* MOBILE */
 @media(max-width:900px){
 
   .nav{
@@ -178,12 +385,21 @@ html,body{
   }
 
   .main{
+    flex-direction:column;
     padding:20px;
+    gap:20px;
     padding-bottom:90px;
   }
 
-  .credit-box{
+  .content-box,
+  .login-box{
+    width:100%;
+    max-width:100%;
     padding:25px;
+  }
+
+  .login-box{
+    position:static;
   }
 
   .footer{
@@ -208,7 +424,6 @@ html,body{
     font-size:13px;
     font-weight:500;
   }
-
 }
 
 </style>
@@ -218,103 +433,276 @@ html,body{
 
 <div class="wrapper">
 
+<!-- HEADER -->
 <div class="header">
+
   <div class="logo">PECOS</div>
 
   <div class="nav">
-    <a href="index.html">HOME</a>
+
+    <a href="index.html"><b>HOME</b></a>
+    <a href="Credit.html">CREDIT</a>
+    <a href="recovery.html">RECOVERY</a>
     <a href="about.html">ABOUT</a>
-    <a href="credit.html"><b>CREDIT</b></a>
     <a href="Contact.html">CONTACT</a>
+
   </div>
+
 </div>
 
+<!-- MAIN -->
 <div class="main">
 
-<div class="credit-box">
+  <!-- CONTENT -->
+  <div class="content-box">
 
-<h2>Short-Term Credit Facilities</h2>
+    <h3>Live Market Rates</h3>
 
-<p>
-Pecos provides short-term credit facilities to businesses and individuals requiring
-temporary working capital or short-duration funding. Our objective is to provide
-fast, transparent and flexible financing solutions for short-term financial needs.
-</p>
+    <div class="market-item">
+      <span>Bitcoin (₹)</span>
+      <span id="btc" class="value">Loading...</span>
+    </div>
 
-<div class="highlight">
+    <div class="market-item">
+      <span>Ethereum (₹)</span>
+      <span id="eth" class="value">Loading...</span>
+    </div>
 
-<b>Credit Terms</b><br><br>
+    <div class="market-item">
+      <span>Spot Gold (₹ / 10g)</span>
+      <span id="gold" class="value">Loading...</span>
+    </div>
 
-• Fixed Fee: <b>1.10% per month</b><br>
-• Credit Duration: <b>1 to 6 Months</b><br>
-• Available for: <b>Businesses & Individuals</b><br>
-• Renewal: <b>Can be renewed upon approval before expiry</b>
+    <div class="market-item">
+      <span>Spot Silver (₹ / kg)</span>
+      <span id="silver" class="value">Loading...</span>
+    </div>
+
+  </div>
+
+
+  <!-- LOGIN -->
+  <div class="login-box">
+
+    <h3>Member Login</h3>
+
+    <input id="email" type="email" placeholder="Email">
+
+    <div class="password-wrapper">
+
+      <input id="password" type="password" placeholder="Password">
+
+      <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
+
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
+          <path d="M1 1l22 22"/>
+        </svg>
+
+      </span>
+
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <p id="msg"></p>
+
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+
+  </div>
 
 </div>
 
-<h3>Suitable For</h3>
-
-<ul class="features">
-<li>Working capital requirements</li>
-<li>Business expansion opportunities</li>
-<li>Inventory purchases</li>
-<li>Short-term cash flow management</li>
-<li>Emergency financial requirements</li>
-<li>Bridge financing</li>
-</ul>
-
-<h3>Key Benefits</h3>
-
-<ul class="features">
-<li>Simple and transparent pricing</li>
-<li>No hidden monthly charges</li>
-<li>Flexible repayment periods</li>
-<li>Quick processing and approval</li>
-<li>Renewal option available at maturity, subject to review</li>
-</ul>
-
-<div class="highlight">
-<b>Fee Structure</b><br><br>
-
-A fixed fee of <b>1.10% per month</b> is applicable on the sanctioned credit amount
-for the approved duration. Credit facilities may be renewed before the expiry
-date after review and approval.
-</div>
-
-<h3>Disclaimer</h3>
-
-<p>
-Credit approval is subject to internal assessment, documentation, eligibility
-verification and applicable terms and conditions. Pecos reserves the right to
-approve or decline any application at its sole discretion.
-</p>
-
-</div>
-
-</div>
-
+<!-- FOOTER -->
 <div class="footer">
 
-<div class="footer-left">
-<b>Mobile:</b> (+91) 8669334862<br>
-<b>Email:</b> <a href="mailto:karan@pecos.in">karan@pecos.in</a><br>
-<b>Office:</b> 210 Yamuna Business Park, Akola MH 444001
-</div>
 
-<div class="footer-right">
-© 2025 PECOS. All rights reserved.
-</div>
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
 
 </div>
 
+<!-- MOBILE NAV -->
 <div class="bottom-nav">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="credit.html">Credit</a>
-<a href="Contact.html">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="Contact.html">Contact</a>
 </div>
 
 </div>
+
+<script>
+
+// FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+// AUTO REDIRECT
+auth.onAuthStateChanged(async (user) => {
+
+  if (user && user.emailVerified) {
+
+    const doc = await db.collection("members").doc(user.uid).get();
+
+    location.href = doc.data()?.isAdmin
+      ? "admin.html"
+      : "member.html";
+  }
+
+});
+
+// TOGGLE PASSWORD
+function togglePassword(){
+
+  const passwordInput = document.getElementById("password");
+  const eyeOpen = document.getElementById("eyeOpen");
+  const eyeClose = document.getElementById("eyeClose");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  if(passwordInput.type === "password"){
+
+    passwordInput.type = "text";
+    eyeOpen.style.display = "none";
+    eyeClose.style.display = "block";
+    eyeIcon.classList.add("active");
+
+  }else{
+
+    passwordInput.type = "password";
+    eyeOpen.style.display = "block";
+    eyeClose.style.display = "none";
+    eyeIcon.classList.remove("active");
+
+  }
+}
+
+// LOGIN
+async function login(){
+
+  msg.innerText = "";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if(!email || !password){
+
+    msg.innerText = "Please fill all fields";
+    return;
+
+  }
+
+  try{
+
+    const res = await auth.signInWithEmailAndPassword(email,password);
+
+    if(!res.user.emailVerified){
+      msg.innerText = "Please verify your email";
+    }
+
+  }catch(e){
+
+    msg.innerText = e.message;
+
+  }
+}
+
+// RESET PASSWORD
+function resetPassword(){
+
+  const email = prompt("Enter registered email");
+
+  if(!email) return;
+
+  auth.sendPasswordResetEmail(email);
+
+  alert("Password reset link sent");
+
+}
+
+// MARKET DATA
+async function fetchMarketRates(){
+
+  try{
+
+    const cryptoRes = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
+    );
+
+    const cryptoData = await cryptoRes.json();
+
+    updateLive("btc", cryptoData.bitcoin.inr);
+    updateLive("eth", cryptoData.ethereum.inr);
+
+    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
+    const goldData = await goldRes.json();
+
+    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
+    const silverData = await silverRes.json();
+
+    const USDINR = 83;
+
+    const goldINR =
+      (goldData.price * USDINR) / 31.1035 * 10;
+
+    const silverINR =
+      (silverData.price * USDINR) / 31.1035 * 1000;
+
+    updateLive("gold", goldINR);
+    updateLive("silver", silverINR);
+
+  }catch(e){
+
+    console.log("Market API error:", e);
+
+  }
+
+}
+
+// LIVE UPDATE EFFECT
+function updateLive(id,newValue){
+
+  const el = document.getElementById(id);
+
+  if(!el) return;
+
+  const oldValue = parseFloat(el.innerText) || 0;
+
+  el.classList.remove("up","down");
+
+  if(newValue > oldValue){
+    el.classList.add("up");
+  }else{
+    el.classList.add("down");
+  }
+
+  el.innerText = newValue.toLocaleString("en-IN",{
+    maximumFractionDigits:0
+  });
+
+}
+
+// RUN
+fetchMarketRates();
+
+setInterval(fetchMarketRates,10000);
+
+</script>
 
 </body>
 </html>
