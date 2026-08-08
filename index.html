@@ -6,298 +6,302 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pecos - Lending & Recovery Services</title>
+<title>Pecos - Debt Collection & Recovery Services</title>
 
 <style>
 
-    body {
-        margin: 0;
-        background: #ffffff;
-        color: #222222;
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 13px;
-    }
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
 
-    a {
-        color: #003399;
-        text-decoration: underline;
-    }
+a {
+    color: #003399;
+    text-decoration: underline;
+}
 
-    a:hover {
-        color: #cc0000;
-    }
+a:hover {
+    color: #cc0000;
+}
+
+.page {
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+/* Header */
+
+.header {
+    height: 72px;
+    border-bottom: 1px solid #999999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366;
+}
+
+.tagline {
+    color: #666666;
+    font-size: 12px;
+}
+
+
+/* Navigation */
+
+.nav {
+    background: #eeeeee;
+    border: 1px solid #cccccc;
+    margin-top: 8px;
+    padding: 7px 10px;
+}
+
+.nav a {
+    margin-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* Main */
+
+.main {
+    margin-top: 18px;
+}
+
+.welcome {
+    border: 1px solid #cccccc;
+    padding: 15px;
+    background: #fafafa;
+}
+
+.welcome h1 {
+    margin: 0 0 8px 0;
+    font-size: 22px;
+    color: #003366;
+}
+
+.welcome p {
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+h2 {
+    font-size: 17px;
+    color: #003366;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 5px;
+    margin-top: 25px;
+}
+
+
+/* Statistics */
+
+.stats {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.stats th {
+    background: #e5e5e5;
+    border: 1px solid #999999;
+    padding: 8px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.stats td {
+    border: 1px solid #bbbbbb;
+    padding: 12px 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #003366;
+}
+
+.stats td small {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: #555555;
+    margin-top: 3px;
+}
+
+
+/* Services */
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.content-table td {
+    border: 1px solid #cccccc;
+    padding: 9px;
+}
+
+.content-table td:first-child {
+    width: 40%;
+    background: #f1f1f1;
+    font-weight: bold;
+}
+
+
+/* Service Boxes */
+
+.service-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.service-table td {
+    width: 50%;
+    vertical-align: top;
+    border: 1px solid #999999;
+    padding: 18px;
+}
+
+.service-table td:first-child {
+    background: #f5f8fc;
+}
+
+.service-table td:last-child {
+    background: #f7f7f7;
+}
+
+.service-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 8px;
+}
+
+.service-table p {
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+
+/* Activity */
+
+.activity {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.activity th {
+    background: #dddddd;
+    border: 1px solid #999999;
+    padding: 7px;
+    text-align: left;
+}
+
+.activity td {
+    border: 1px solid #cccccc;
+    padding: 7px;
+}
+
+.activity tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+
+/* Contact */
+
+.contact-box {
+    border: 1px solid #999999;
+    background: #f5f5f5;
+    padding: 15px;
+    margin-top: 12px;
+}
+
+.contact-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #003366;
+}
+
+
+/* Footer */
+
+.footer {
+    margin-top: 35px;
+    padding: 15px 0 30px 0;
+    border-top: 1px solid #999999;
+    color: #666666;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 920px) {
 
     .page {
-        width: 900px;
-        margin: 0 auto;
+        width: 94%;
     }
 
-    /* Header */
+}
+
+@media (max-width: 600px) {
 
     .header {
-        height: 72px;
-        border-bottom: 1px solid #999999;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .logo {
-        font-size: 28px;
-        font-weight: bold;
-        color: #003366;
+        height: auto;
+        padding: 15px 0;
+        display: block;
     }
 
     .tagline {
-        color: #666666;
-        font-size: 12px;
-    }
-
-    /* Navigation */
-
-    .nav {
-        background: #eeeeee;
-        border: 1px solid #cccccc;
-        margin-top: 8px;
-        padding: 7px 10px;
+        margin-top: 5px;
     }
 
     .nav a {
-        margin-right: 25px;
-        font-weight: bold;
-        text-decoration: none;
+        display: inline-block;
+        margin-bottom: 5px;
     }
 
-    /* Main */
-
-    .main {
-        margin-top: 18px;
-    }
-
-    .welcome {
-        border: 1px solid #cccccc;
-        padding: 15px;
-        background: #fafafa;
-    }
-
-    .welcome h1 {
-        margin: 0 0 8px 0;
-        font-size: 22px;
-        color: #003366;
-    }
-
-    .welcome p {
-        margin: 5px 0;
-        line-height: 1.5;
-    }
-
-    h2 {
-        font-size: 17px;
-        color: #003366;
-        border-bottom: 1px solid #999999;
-        padding-bottom: 5px;
-        margin-top: 25px;
-    }
-
-    /* Statistics */
-
-    .stats {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-    }
-
+    .stats,
+    .stats tbody,
+    .stats tr,
+    .stats td,
     .stats th {
-        background: #e5e5e5;
-        border: 1px solid #999999;
-        padding: 8px;
-        text-align: left;
-        font-size: 12px;
+        display: block;
+        width: auto;
     }
 
     .stats td {
-        border: 1px solid #bbbbbb;
-        padding: 12px 8px;
-        font-size: 20px;
-        font-weight: bold;
-        color: #003366;
+        margin-bottom: -1px;
     }
 
-    .stats td small {
+    .service-table,
+    .service-table tbody,
+    .service-table tr,
+    .service-table td {
         display: block;
-        font-size: 11px;
-        font-weight: normal;
-        color: #555555;
-        margin-top: 3px;
+        width: auto;
     }
 
-    /* Borrow / Lend */
-
-    .choice-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
+    .service-table td {
+        margin-bottom: -1px;
     }
 
-    .choice-table td {
-        width: 50%;
-        vertical-align: top;
-        border: 1px solid #999999;
-        padding: 18px;
-    }
-
-    .choice-table td:first-child {
-        background: #f5f8fc;
-    }
-
-    .choice-table td:last-child {
-        background: #f7f7f7;
-    }
-
-    .choice-title {
-        font-size: 18px;
-        font-weight: bold;
-        color: #003366;
-        margin-bottom: 8px;
-    }
-
-    .choice-table p {
-        line-height: 1.5;
-        margin-bottom: 15px;
-    }
-
-    .button {
-        display: inline-block;
-        padding: 7px 15px;
-        background: #003399;
-        border: 1px solid #001f66;
-        color: white;
-        text-decoration: none;
-        font-weight: bold;
-    }
-
-    .button:hover {
-        background: #cc0000;
-    }
-
-    /* General Tables */
-
-    .content-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-    }
-
-    .content-table td {
-        border: 1px solid #cccccc;
-        padding: 9px;
-    }
-
-    .content-table td:first-child {
-        width: 55%;
-        background: #f1f1f1;
-        font-weight: bold;
-    }
-
-    /* Recent Activity */
-
-    .activity {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 12px;
-    }
-
-    .activity th {
-        background: #dddddd;
-        border: 1px solid #999999;
-        padding: 7px;
-        text-align: left;
-    }
-
-    .activity td {
-        border: 1px solid #cccccc;
-        padding: 7px;
-    }
-
-    .activity tr:nth-child(even) {
-        background: #f8f8f8;
-    }
-
-    /* Recovery */
-
-    .recovery-note {
-        margin-top: 12px;
-        line-height: 1.5;
-    }
-
-    /* Footer */
-
-    .footer {
-        margin-top: 35px;
-        padding: 15px 0 30px 0;
-        border-top: 1px solid #999999;
-        color: #666666;
-        font-size: 11px;
-        line-height: 1.6;
-    }
-
-    .footer-links {
-        margin-bottom: 10px;
-    }
-
-    /* Mobile */
-
-    @media (max-width: 920px) {
-
-        .page {
-            width: 94%;
-        }
-
-    }
-
-    @media (max-width: 600px) {
-
-        .header {
-            height: auto;
-            padding: 15px 0;
-            display: block;
-        }
-
-        .tagline {
-            margin-top: 5px;
-        }
-
-        .nav a {
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-
-        .stats,
-        .stats tbody,
-        .stats tr,
-        .stats td,
-        .stats th {
-            display: block;
-            width: auto;
-        }
-
-        .stats td {
-            margin-bottom: -1px;
-        }
-
-        .choice-table,
-        .choice-table tbody,
-        .choice-table tr,
-        .choice-table td {
-            display: block;
-            width: auto;
-        }
-
-        .choice-table td {
-            margin-bottom: -1px;
-        }
-
-    }
+}
 
 </style>
 
@@ -318,7 +322,7 @@
         </div>
 
         <div class="tagline">
-            Lending & Recovery Services
+            Debt Collection & Recovery Services
         </div>
 
     </div>
@@ -330,11 +334,9 @@
 
         <a href="#">Home</a>
 
-        <a href="#borrow">Borrow</a>
+        <a href="#services">Services</a>
 
-        <a href="#lend">Lend</a>
-
-        <a href="#recovery">Recovery</a>
+        <a href="#process">Process</a>
 
         <a href="#activity">Activity</a>
 
@@ -359,23 +361,28 @@
             </h1>
 
             <p>
-                Pecos is engaged in loan facilitation and recovery
-                services for individuals, businesses, lenders and
-                financial institutions.
+                Pecos is engaged in debt collection and recovery
+                services for lenders, businesses and other parties
+                with outstanding dues.
             </p>
 
             <p>
-                Just give us a call and tell us whether you want
-                to borrow, lend or require recovery assistance.
+                We assist with customer contact, payment follow-up,
+                field visits and other recovery activities.
+            </p>
+
+            <p>
+                For recovery assistance, give us a call at
+                <strong>3434343</strong>.
             </p>
 
         </div>
 
 
-        <!-- CURRENT MONTH -->
+        <!-- MONTHLY ACTIVITY -->
 
         <h2>
-            Current Month
+            Recovery Activity
         </h2>
 
 
@@ -384,15 +391,15 @@
             <tr>
 
                 <th>
-                    Transactions
+                    Accounts Handled
                 </th>
 
                 <th>
-                    Amount Lent
+                    Amount Under Recovery
                 </th>
 
                 <th>
-                    Average Interest Rate
+                    Amount Recovered
                 </th>
 
             </tr>
@@ -401,29 +408,35 @@
             <tr>
 
                 <td>
-                    42
+
+                    126
 
                     <small>
-                        Transactions completed
+                        Accounts handled this month
                     </small>
+
                 </td>
 
 
                 <td>
-                    ₹1.82 Crore
+
+                    ₹82.40 Lakh
 
                     <small>
-                        Total amount lent
+                        Outstanding amount handled
                     </small>
+
                 </td>
 
 
                 <td>
-                    1.05%
+
+                    ₹18.65 Lakh
 
                     <small>
-                        Average monthly rate
+                        Amount recovered this month
                     </small>
+
                 </td>
 
             </tr>
@@ -431,167 +444,42 @@
         </table>
 
 
-        <!-- BORROW / LEND -->
+        <!-- SERVICES -->
 
-        <h2 id="borrow">
-            Looking to Borrow or Lend?
-        </h2>
-
-
-        <table class="choice-table">
-
-            <tr>
-
-
-                <td>
-
-                    <div class="choice-title">
-                        Looking to Borrow?
-                    </div>
-
-                    <p>
-                        Individuals and businesses looking for
-                        funding can contact Pecos with their
-                        borrowing requirements.
-                    </p>
-
-                    <a href="tel:3434343" class="button">
-                        Call Pecos
-                    </a>
-
-                </td>
-
-
-                <td id="lend">
-
-                    <div class="choice-title">
-                        Looking to Lend?
-                    </div>
-
-                    <p>
-                        Individuals or businesses interested in
-                        lending capital can contact Pecos to discuss
-                        available lending arrangements.
-                    </p>
-
-                    <a href="tel:3434343" class="button">
-                        Call Pecos
-                    </a>
-
-                </td>
-
-
-            </tr>
-
-        </table>
-
-
-        <!-- LENDING OVERVIEW -->
-
-        <h2>
-            Our Lending Activity
-        </h2>
-
-
-        <table class="content-table">
-
-            <tr>
-
-                <td>
-                    Transactions this month
-                </td>
-
-                <td>
-                    42
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Total amount lent this month
-                </td>
-
-                <td>
-                    ₹1.82 Crore
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Average transaction size
-                </td>
-
-                <td>
-                    ₹2.5 Lakh
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Average monthly interest rate
-                </td>
-
-                <td>
-                    1.05%
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Average lending period
-                </td>
-
-                <td>
-                    3 Months
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Active lending accounts
-                </td>
-
-                <td>
-                    327
-                </td>
-
-            </tr>
-
-        </table>
-
-
-        <!-- RECOVERY SERVICES -->
-
-        <h2 id="recovery">
+        <h2 id="services">
             Recovery Services
         </h2>
 
 
-        <table class="content-table">
+        <table class="service-table">
 
             <tr>
 
                 <td>
-                    Loan Recovery
+
+                    <div class="service-title">
+                        Loan Recovery
+                    </div>
+
+                    <p>
+                        Follow-up and recovery of overdue loan
+                        instalments and outstanding loan amounts.
+                    </p>
+
                 </td>
 
+
                 <td>
-                    Recovery of outstanding loan payments
+
+                    <div class="service-title">
+                        EMI Recovery
+                    </div>
+
+                    <p>
+                        Customer contact and payment follow-up
+                        for overdue EMIs and instalments.
+                    </p>
+
                 </td>
 
             </tr>
@@ -600,50 +488,30 @@
             <tr>
 
                 <td>
-                    Business Recovery
+
+                    <div class="service-title">
+                        Business Dues
+                    </div>
+
+                    <p>
+                        Recovery of outstanding payments and
+                        receivables from business customers.
+                    </p>
+
                 </td>
 
-                <td>
-                    Recovery of outstanding business dues
-                </td>
-
-            </tr>
-
-
-            <tr>
 
                 <td>
-                    EMI Recovery
-                </td>
 
-                <td>
-                    Follow-up and recovery of overdue instalments
-                </td>
+                    <div class="service-title">
+                        Field Recovery
+                    </div>
 
-            </tr>
+                    <p>
+                        Field visits and direct customer contact
+                        for recovery and payment follow-up.
+                    </p>
 
-
-            <tr>
-
-                <td>
-                    Payment Recovery
-                </td>
-
-                <td>
-                    Recovery of pending payments and receivables
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Other Recovery
-                </td>
-
-                <td>
-                    Recovery services for other outstanding dues
                 </td>
 
             </tr>
@@ -651,22 +519,162 @@
         </table>
 
 
-        <p class="recovery-note">
+        <!-- TYPES -->
 
-            Pecos provides recovery and collection services for
-            lenders, businesses and other parties with outstanding
-            dues.
-
-            For recovery assistance, call
-            <strong>3434343</strong>.
-
-        </p>
+        <h2>
+            Types of Recovery
+        </h2>
 
 
-        <!-- RECENT ACTIVITY -->
+        <table class="content-table">
+
+            <tr>
+
+                <td>
+                    Loan & EMI Recovery
+                </td>
+
+                <td>
+                    Follow-up of overdue loans and instalments
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Business Receivables
+                </td>
+
+                <td>
+                    Recovery of outstanding business payments
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Customer Dues
+                </td>
+
+                <td>
+                    Follow-up for pending customer payments
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Field Collection
+                </td>
+
+                <td>
+                    Customer visits and payment follow-up
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Other Outstanding Dues
+                </td>
+
+                <td>
+                    Recovery assistance for other eligible outstanding amounts
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- PROCESS -->
+
+        <h2 id="process">
+            Our Process
+        </h2>
+
+
+        <table class="content-table">
+
+            <tr>
+
+                <td>
+                    1. Account Information
+                </td>
+
+                <td>
+                    Details of the outstanding account are received
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    2. Customer Contact
+                </td>
+
+                <td>
+                    Customer is contacted regarding the outstanding payment
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    3. Payment Follow-up
+                </td>
+
+                <td>
+                    Payment arrangements and follow-up are carried out
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    4. Field Visit
+                </td>
+
+                <td>
+                    Field visits may be carried out where required
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    5. Recovery Update
+                </td>
+
+                <td>
+                    Payment and recovery status is reported to the client
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- ACTIVITY -->
 
         <h2 id="activity">
-            Recent Lending Activity
+            Recent Recovery Activity
         </h2>
 
 
@@ -683,15 +691,11 @@
                 </th>
 
                 <th>
-                    Amount
+                    Accounts
                 </th>
 
                 <th>
-                    Rate
-                </th>
-
-                <th>
-                    Period
+                    Amount Recovered
                 </th>
 
             </tr>
@@ -704,19 +708,15 @@
                 </td>
 
                 <td>
-                    Business Lending
+                    EMI Recovery
                 </td>
 
                 <td>
-                    ₹15,00,000
+                    18
                 </td>
 
                 <td>
-                    13.00%
-                </td>
-
-                <td>
-                    18 Months
+                    ₹3,25,000
                 </td>
 
             </tr>
@@ -729,19 +729,15 @@
                 </td>
 
                 <td>
-                    Lending Facility
+                    Business Recovery
                 </td>
 
                 <td>
-                    ₹8,50,000
+                    9
                 </td>
 
                 <td>
-                    11.50%
-                </td>
-
-                <td>
-                    12 Months
+                    ₹4,80,000
                 </td>
 
             </tr>
@@ -754,19 +750,15 @@
                 </td>
 
                 <td>
-                    Working Capital
+                    Loan Recovery
                 </td>
 
                 <td>
-                    ₹5,25,000
+                    14
                 </td>
 
                 <td>
-                    12.00%
-                </td>
-
-                <td>
-                    12 Months
+                    ₹2,65,000
                 </td>
 
             </tr>
@@ -779,19 +771,15 @@
                 </td>
 
                 <td>
-                    Short Term Lending
+                    Field Recovery
                 </td>
 
                 <td>
-                    ₹3,75,000
+                    11
                 </td>
 
                 <td>
-                    14.00%
-                </td>
-
-                <td>
-                    6 Months
+                    ₹1,95,000
                 </td>
 
             </tr>
@@ -807,108 +795,57 @@
 
 
         <p>
-            Pecos operates in loan facilitation and recovery
-            services. The business works with individuals,
-            businesses, lenders and other parties in connection
-            with lending requirements and recovery of outstanding
-            dues.
+            Pecos is engaged in debt collection and recovery
+            services. The business works with lenders, businesses
+            and other parties for the follow-up and recovery of
+            outstanding dues.
         </p>
 
 
         <p>
-            Lending and recovery arrangements are subject to
-            applicable terms, documentation and applicable laws.
+            Recovery activities are carried out through communication,
+            customer contact, payment follow-up, field visits and
+            other appropriate recovery processes.
         </p>
 
 
         <!-- CONTACT -->
 
         <h2 id="contact">
-            Contact
+            Contact Pecos
         </h2>
 
 
-        <table class="content-table">
+        <div class="contact-box">
 
-            <tr>
+            <div>
+                For debt collection and recovery assistance:
+            </div>
 
-                <td>
-                    Business
-                </td>
+            <br>
 
-                <td>
-                    Pecos
-                </td>
+            <div class="contact-number">
+                <a href="tel:3434343">
+                    3434343
+                </a>
+            </div>
 
-            </tr>
+            <br>
 
+            <div>
+                Akola, Maharashtra, India
+            </div>
 
-            <tr>
+            <br>
 
-                <td>
-                    Location
-                </td>
+            <div>
+                Email:
+                <a href="mailto:contact@pecos.in">
+                    contact@pecos.in
+                </a>
+            </div>
 
-                <td>
-                    Akola, Maharashtra, India
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Phone
-                </td>
-
-                <td>
-
-                    <strong>
-                        <a href="tel:3434343">
-                            3434343
-                        </a>
-                    </strong>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Email
-                </td>
-
-                <td>
-
-                    <a href="mailto:contact@pecos.in">
-                        contact@pecos.in
-                    </a>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Website
-                </td>
-
-                <td>
-
-                    <a href="https://pecos.in">
-                        pecos.in
-                    </a>
-
-                </td>
-
-            </tr>
-
-        </table>
+        </div>
 
 
     </div>
@@ -927,20 +864,14 @@
 
             |
 
-            <a href="#borrow">
-                Borrow
+            <a href="#services">
+                Services
             </a>
 
             |
 
-            <a href="#lend">
-                Lend
-            </a>
-
-            |
-
-            <a href="#recovery">
-                Recovery
+            <a href="#process">
+                Process
             </a>
 
             |
@@ -965,9 +896,9 @@
 
 
         Information displayed on this website is for general
-        information purposes. Lending arrangements and recovery
-        services are subject to applicable terms, documentation
-        and applicable laws.
+        information purposes. Recovery and collection services
+        are subject to applicable terms, documentation and
+        applicable laws.
 
 
     </div>
