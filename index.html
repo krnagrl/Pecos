@@ -1,13 +1,15 @@
 ```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pecos - Lending & Finance</title>
+<title>Pecos - Lending & Recovery Services</title>
 
 <style>
+
     body {
         margin: 0;
         background: #ffffff;
@@ -50,6 +52,8 @@
         color: #666666;
         font-size: 12px;
     }
+
+    /* Navigation */
 
     .nav {
         background: #eeeeee;
@@ -176,7 +180,7 @@
         background: #cc0000;
     }
 
-    /* Overview */
+    /* General Tables */
 
     .content-table {
         width: 100%;
@@ -195,7 +199,7 @@
         font-weight: bold;
     }
 
-    /* Recent activity */
+    /* Recent Activity */
 
     .activity {
         width: 100%;
@@ -219,6 +223,13 @@
         background: #f8f8f8;
     }
 
+    /* Recovery */
+
+    .recovery-note {
+        margin-top: 12px;
+        line-height: 1.5;
+    }
+
     /* Footer */
 
     .footer {
@@ -234,13 +245,18 @@
         margin-bottom: 10px;
     }
 
+    /* Mobile */
+
     @media (max-width: 920px) {
+
         .page {
             width: 94%;
         }
+
     }
 
     @media (max-width: 600px) {
+
         .header {
             height: auto;
             padding: 15px 0;
@@ -280,51 +296,77 @@
         .choice-table td {
             margin-bottom: -1px;
         }
+
     }
+
 </style>
+
 </head>
+
 
 <body>
 
 <div class="page">
 
+
     <!-- HEADER -->
 
     <div class="header">
-        <div class="logo">PECOS</div>
+
+        <div class="logo">
+            PECOS
+        </div>
 
         <div class="tagline">
-            Lending & Financial Services
+            Lending & Recovery Services
         </div>
+
     </div>
+
 
     <!-- NAVIGATION -->
 
     <div class="nav">
+
         <a href="#">Home</a>
+
         <a href="#borrow">Borrow</a>
+
         <a href="#lend">Lend</a>
+
+        <a href="#recovery">Recovery</a>
+
         <a href="#activity">Activity</a>
+
         <a href="#about">About Pecos</a>
+
         <a href="#contact">Contact</a>
+
     </div>
+
 
     <!-- MAIN -->
 
     <div class="main">
 
+
+        <!-- WELCOME -->
+
         <div class="welcome">
 
-            <h1>Welcome to Pecos</h1>
+            <h1>
+                Welcome to Pecos
+            </h1>
 
             <p>
-                Pecos is engaged in lending and financial activities
-                for individuals and businesses.
+                Pecos is engaged in loan facilitation and recovery
+                services for individuals, businesses, lenders and
+                financial institutions.
             </p>
 
             <p>
-                Information about current lending activity and
-                available opportunities is provided below.
+                Just give us a call and tell us whether you want
+                to borrow, lend or require recovery assistance.
             </p>
 
         </div>
@@ -332,31 +374,58 @@
 
         <!-- CURRENT MONTH -->
 
-        <h2>Current Month</h2>
+        <h2>
+            Current Month
+        </h2>
+
 
         <table class="stats">
 
             <tr>
-                <th>Transactions</th>
-                <th>Amount Lent</th>
-                <th>Average Interest Rate</th>
+
+                <th>
+                    Transactions
+                </th>
+
+                <th>
+                    Amount Lent
+                </th>
+
+                <th>
+                    Average Interest Rate
+                </th>
+
             </tr>
 
+
             <tr>
+
                 <td>
                     42
-                    <small>Transactions completed</small>
+
+                    <small>
+                        Transactions completed
+                    </small>
                 </td>
+
 
                 <td>
                     ₹1.82 Crore
-                    <small>Total amount lent</small>
+
+                    <small>
+                        Total amount lent
+                    </small>
                 </td>
+
 
                 <td>
                     1.05%
-                    <small>Average monthly rate</small>
+
+                    <small>
+                        Average monthly rate
+                    </small>
                 </td>
+
             </tr>
 
         </table>
@@ -364,11 +433,15 @@
 
         <!-- BORROW / LEND -->
 
-        <h2 id="borrow">Looking to Borrow or Lend?</h2>
+        <h2 id="borrow">
+            Looking to Borrow or Lend?
+        </h2>
+
 
         <table class="choice-table">
 
             <tr>
+
 
                 <td>
 
@@ -378,12 +451,12 @@
 
                     <p>
                         Individuals and businesses looking for
-                        funding can submit their lending requirements
-                        to Pecos for consideration.
+                        funding can contact Pecos with their
+                        borrowing requirements.
                     </p>
 
-                    <a href="#" class="button">
-                        Submit Borrowing Requirement
+                    <a href="tel:3434343" class="button">
+                        Call Pecos
                     </a>
 
                 </td>
@@ -401,11 +474,12 @@
                         available lending arrangements.
                     </p>
 
-                    <a href="#" class="button">
-                        Enquire About Lending
+                    <a href="tel:3434343" class="button">
+                        Call Pecos
                     </a>
 
                 </td>
+
 
             </tr>
 
@@ -414,87 +488,312 @@
 
         <!-- LENDING OVERVIEW -->
 
-        <h2>Our Lending Activity</h2>
+        <h2>
+            Our Lending Activity
+        </h2>
+
 
         <table class="content-table">
 
             <tr>
-                <td>Transactions this month</td>
-                <td>42</td>
+
+                <td>
+                    Transactions this month
+                </td>
+
+                <td>
+                    42
+                </td>
+
             </tr>
 
-            <tr>
-                <td>Total amount lent this month</td>
-                <td>₹1.82 Crore</td>
-            </tr>
 
             <tr>
-                <td>Average transaction size</td>
-                <td>₹2.5 Lakh</td>
+
+                <td>
+                    Total amount lent this month
+                </td>
+
+                <td>
+                    ₹1.82 Crore
+                </td>
+
             </tr>
 
-            <tr>
-                <td>Average monthly interest rate</td>
-                <td>1.05%</td>
-            </tr>
 
             <tr>
-                <td>Average lending period</td>
-                <td>3 Months</td>
+
+                <td>
+                    Average transaction size
+                </td>
+
+                <td>
+                    ₹2.5 Lakh
+                </td>
+
             </tr>
 
+
             <tr>
-                <td>Active lending accounts</td>
-                <td>327</td>
+
+                <td>
+                    Average monthly interest rate
+                </td>
+
+                <td>
+                    1.05%
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Average lending period
+                </td>
+
+                <td>
+                    3 Months
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Active lending accounts
+                </td>
+
+                <td>
+                    327
+                </td>
+
             </tr>
 
         </table>
 
 
+        <!-- RECOVERY SERVICES -->
+
+        <h2 id="recovery">
+            Recovery Services
+        </h2>
+
+
+        <table class="content-table">
+
+            <tr>
+
+                <td>
+                    Loan Recovery
+                </td>
+
+                <td>
+                    Recovery of outstanding loan payments
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Business Recovery
+                </td>
+
+                <td>
+                    Recovery of outstanding business dues
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    EMI Recovery
+                </td>
+
+                <td>
+                    Follow-up and recovery of overdue instalments
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Payment Recovery
+                </td>
+
+                <td>
+                    Recovery of pending payments and receivables
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Other Recovery
+                </td>
+
+                <td>
+                    Recovery services for other outstanding dues
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <p class="recovery-note">
+
+            Pecos provides recovery and collection services for
+            lenders, businesses and other parties with outstanding
+            dues.
+
+            For recovery assistance, call
+            <strong>3434343</strong>.
+
+        </p>
+
+
         <!-- RECENT ACTIVITY -->
 
-        <h2 id="activity">Recent Lending Activity</h2>
+        <h2 id="activity">
+            Recent Lending Activity
+        </h2>
+
 
         <table class="activity">
 
             <tr>
-                <th>Date</th>
-                <th>Type</th>
-                <th>Amount</th>
-                <th>Rate</th>
-                <th>Period</th>
+
+                <th>
+                    Date
+                </th>
+
+                <th>
+                    Type
+                </th>
+
+                <th>
+                    Amount
+                </th>
+
+                <th>
+                    Rate
+                </th>
+
+                <th>
+                    Period
+                </th>
+
             </tr>
 
-            <tr>
-                <td>08 Aug 2026</td>
-                <td>Business Lending</td>
-                <td>₹15,00,000</td>
-                <td>13.00%</td>
-                <td>18 Months</td>
-            </tr>
 
             <tr>
-                <td>07 Aug 2026</td>
-                <td>Lending Facility</td>
-                <td>₹8,50,000</td>
-                <td>11.50%</td>
-                <td>12 Months</td>
+
+                <td>
+                    08 Aug 2026
+                </td>
+
+                <td>
+                    Business Lending
+                </td>
+
+                <td>
+                    ₹15,00,000
+                </td>
+
+                <td>
+                    13.00%
+                </td>
+
+                <td>
+                    18 Months
+                </td>
+
             </tr>
 
-            <tr>
-                <td>06 Aug 2026</td>
-                <td>Working Capital</td>
-                <td>₹5,25,000</td>
-                <td>12.00%</td>
-                <td>12 Months</td>
-            </tr>
 
             <tr>
-                <td>05 Aug 2026</td>
-                <td>Short Term Lending</td>
-                <td>₹3,75,000</td>
-                <td>14.00%</td>
-                <td>6 Months</td>
+
+                <td>
+                    07 Aug 2026
+                </td>
+
+                <td>
+                    Lending Facility
+                </td>
+
+                <td>
+                    ₹8,50,000
+                </td>
+
+                <td>
+                    11.50%
+                </td>
+
+                <td>
+                    12 Months
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    06 Aug 2026
+                </td>
+
+                <td>
+                    Working Capital
+                </td>
+
+                <td>
+                    ₹5,25,000
+                </td>
+
+                <td>
+                    12.00%
+                </td>
+
+                <td>
+                    12 Months
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    05 Aug 2026
+                </td>
+
+                <td>
+                    Short Term Lending
+                </td>
+
+                <td>
+                    ₹3,75,000
+                </td>
+
+                <td>
+                    14.00%
+                </td>
+
+                <td>
+                    6 Months
+                </td>
+
             </tr>
 
         </table>
@@ -502,56 +801,115 @@
 
         <!-- ABOUT -->
 
-        <h2 id="about">About Pecos</h2>
+        <h2 id="about">
+            About Pecos
+        </h2>
+
 
         <p>
-            Pecos operates in the lending and financial services
-            sector. The business works with individuals and
-            businesses in connection with lending requirements
-            and capital deployment.
+            Pecos operates in loan facilitation and recovery
+            services. The business works with individuals,
+            businesses, lenders and other parties in connection
+            with lending requirements and recovery of outstanding
+            dues.
         </p>
 
+
         <p>
-            All lending arrangements are subject to applicable
-            terms, documentation and approval.
+            Lending and recovery arrangements are subject to
+            applicable terms, documentation and applicable laws.
         </p>
 
 
         <!-- CONTACT -->
 
-        <h2 id="contact">Contact</h2>
+        <h2 id="contact">
+            Contact
+        </h2>
+
 
         <table class="content-table">
 
             <tr>
-                <td>Business</td>
-                <td>Pecos</td>
-            </tr>
 
-            <tr>
-                <td>Location</td>
-                <td>Akola, Maharashtra, India</td>
-            </tr>
-
-            <tr>
-                <td>Email</td>
                 <td>
+                    Business
+                </td>
+
+                <td>
+                    Pecos
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Location
+                </td>
+
+                <td>
+                    Akola, Maharashtra, India
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Phone
+                </td>
+
+                <td>
+
+                    <strong>
+                        <a href="tel:3434343">
+                            3434343
+                        </a>
+                    </strong>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Email
+                </td>
+
+                <td>
+
                     <a href="mailto:contact@pecos.in">
                         contact@pecos.in
                     </a>
+
                 </td>
+
             </tr>
 
+
             <tr>
-                <td>Website</td>
+
                 <td>
+                    Website
+                </td>
+
+                <td>
+
                     <a href="https://pecos.in">
                         pecos.in
                     </a>
+
                 </td>
+
             </tr>
 
         </table>
+
 
     </div>
 
@@ -560,26 +918,64 @@
 
     <div class="footer">
 
+
         <div class="footer-links">
-            <a href="#">Home</a> |
-            <a href="#borrow">Borrow</a> |
-            <a href="#lend">Lend</a> |
-            <a href="#about">About</a> |
-            <a href="#contact">Contact</a>
+
+            <a href="#">
+                Home
+            </a>
+
+            |
+
+            <a href="#borrow">
+                Borrow
+            </a>
+
+            |
+
+            <a href="#lend">
+                Lend
+            </a>
+
+            |
+
+            <a href="#recovery">
+                Recovery
+            </a>
+
+            |
+
+            <a href="#about">
+                About
+            </a>
+
+            |
+
+            <a href="#contact">
+                Contact
+            </a>
+
         </div>
+
 
         © 2026 Pecos. All rights reserved.
 
+
         <br><br>
 
+
         Information displayed on this website is for general
-        information purposes. Lending arrangements are subject
-        to applicable terms, documentation and applicable laws.
+        information purposes. Lending arrangements and recovery
+        services are subject to applicable terms, documentation
+        and applicable laws.
+
 
     </div>
+
 
 </div>
 
 </body>
+
 </html>
 ```
