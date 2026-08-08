@@ -1,708 +1,585 @@
+```html
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
-
-<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
-
-<link rel="icon" href="pecos.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<title>Pecos - Lending & Finance</title>
 
 <style>
+    body {
+        margin: 0;
+        background: #ffffff;
+        color: #222222;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+    }
 
-:root{
-  --primary:#2F6F95;
-  --secondary:#3B7EA5;
-  --accent:#2F6F95;
-  --bg:#F4F6F8;
-  --card:#FFFFFF;
-  --text:#1F3E56;
-  --muted:#5E6E7E;
-}
+    a {
+        color: #003399;
+        text-decoration: underline;
+    }
 
-*{
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  -webkit-tap-highlight-color:transparent;
-}
+    a:hover {
+        color: #cc0000;
+    }
 
-html,body{
-  margin:0;
-  padding:0;
-  min-height:100%;
-  background:var(--bg);
-}
+    .page {
+        width: 900px;
+        margin: 0 auto;
+    }
 
-/* WRAPPER */
-.wrapper{
-  width:100%;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  background:var(--bg);
-}
+    /* Header */
 
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 20px;
-  background:var(--text);
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+    .header {
+        height: 72px;
+        border-bottom: 1px solid #999999;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-.logo{
-  font-weight:700;
-  font-size:18px;
-  letter-spacing:.5px;
-  color:white;
-}
+    .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #003366;
+    }
 
-.nav{
-  display:flex;
-  align-items:center;
-  gap:25px;
-}
+    .tagline {
+        color: #666666;
+        font-size: 12px;
+    }
 
-.nav a{
-  text-decoration:none;
-  color:white;
-  font-weight:500;
-  font-size:14px;
-  opacity:.95;
-  transition:.2s;
-}
+    .nav {
+        background: #eeeeee;
+        border: 1px solid #cccccc;
+        margin-top: 8px;
+        padding: 7px 10px;
+    }
 
-.nav a:hover{
-  opacity:1;
-  text-decoration:underline;
-}
+    .nav a {
+        margin-right: 25px;
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-/* DROPDOWN */
-.dropdown{
-  position:relative;
-}
+    /* Main */
 
-.dropbtn{
-  color:white;
-  cursor:pointer;
-}
+    .main {
+        margin-top: 18px;
+    }
 
-/* DROPDOWN BOX */
-.dropdown-content{
-  display:none;
-  position:absolute;
-  top:100%;
-  left:0;
-  min-width:220px;
-  background:white;
-  border:2px solid #1F3E56;
-  border-radius:12px;
-  overflow:hidden;
-  box-shadow:0 12px 30px rgba(0,0,0,.15);
-  z-index:3000;
-}
+    .welcome {
+        border: 1px solid #cccccc;
+        padding: 15px;
+        background: #fafafa;
+    }
 
-.dropdown-content a{
-  display:block;
-  padding:13px 16px;
-  color:var(--text);
-  font-size:14px;
-  text-decoration:none;
-  border-bottom:1px solid #dbe4ea;
-  transition:.2s;
-}
+    .welcome h1 {
+        margin: 0 0 8px 0;
+        font-size: 22px;
+        color: #003366;
+    }
 
-.dropdown-content a:last-child{
-  border-bottom:none;
-}
+    .welcome p {
+        margin: 5px 0;
+        line-height: 1.5;
+    }
 
-.dropdown-content a:hover{
-  background:#eef4f8;
-}
+    h2 {
+        font-size: 17px;
+        color: #003366;
+        border-bottom: 1px solid #999999;
+        padding-bottom: 5px;
+        margin-top: 25px;
+    }
 
-.dropdown:hover .dropdown-content{
-  display:block;
-}
+    /* Statistics */
 
-/* MAIN */
-.main{
-  flex:1;
-  display:flex;
-  align-items:flex-start;
-  gap:30px;
-  padding:30px;
-}
+    .stats {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+    }
 
-/* CONTENT BOX */
-.content-box{
-  flex:2;
-  background:var(--card);
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
+    .stats th {
+        background: #e5e5e5;
+        border: 1px solid #999999;
+        padding: 8px;
+        text-align: left;
+        font-size: 12px;
+    }
 
-.content-box h3{
-  margin-top:0;
-  color:var(--text);
-  font-size:20px;
-  margin-bottom:20px;
-}
+    .stats td {
+        border: 1px solid #bbbbbb;
+        padding: 12px 8px;
+        font-size: 20px;
+        font-weight: bold;
+        color: #003366;
+    }
 
-.market-item{
-  display:flex;
-  justify-content:space-between;
-  padding:14px 0;
-  border-bottom:1px solid #e2e8f0;
-  font-size:15px;
-}
+    .stats td small {
+        display: block;
+        font-size: 11px;
+        font-weight: normal;
+        color: #555555;
+        margin-top: 3px;
+    }
 
-.value{
-  font-weight:600;
-  transition:.3s;
-}
+    /* Borrow / Lend */
 
-.up{
-  color:#16a34a;
-}
+    .choice-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+    }
 
-.down{
-  color:#dc2626;
-}
+    .choice-table td {
+        width: 50%;
+        vertical-align: top;
+        border: 1px solid #999999;
+        padding: 18px;
+    }
 
-/* LOGIN BOX */
-.login-box{
-  flex:1;
-  background:var(--card);
-  padding:30px;
-  border-radius:16px;
-  box-shadow:0 8px 25px rgba(0,0,0,.05);
-  max-width:340px;
-  position:sticky;
-  top:90px;
-}
+    .choice-table td:first-child {
+        background: #f5f8fc;
+    }
 
-.login-box h3{
-  margin-top:0;
-  margin-bottom:20px;
-  color:var(--text);
-  font-size:18px;
-}
+    .choice-table td:last-child {
+        background: #f7f7f7;
+    }
 
-/* PASSWORD */
-.password-wrapper{
-  position:relative;
-  display:flex;
-  align-items:center;
-}
+    .choice-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #003366;
+        margin-bottom: 8px;
+    }
 
-.password-wrapper input{
-  padding-right:45px;
-}
+    .choice-table p {
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
 
-.toggle-password{
-  position:absolute;
-  right:10px;
-  height:45px;
-  display:flex;
-  align-items:center;
-  cursor:pointer;
-  color:var(--muted);
-  transition:.2s;
-}
+    .button {
+        display: inline-block;
+        padding: 7px 15px;
+        background: #003399;
+        border: 1px solid #001f66;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-.toggle-password:hover{
-  color:var(--primary);
-}
+    .button:hover {
+        background: #cc0000;
+    }
 
-.toggle-password.active{
-  color:var(--primary);
-}
-.operations-section{
-    margin-top:30px;
-    background:#fff;
-    border-radius:16px;
-    padding:30px;
-    box-shadow:0 8px 25px rgba(0,0,0,.05);
-}
+    /* Overview */
 
-.operations-section h3{
-    color:var(--text);
-    margin-top:0;
-    margin-bottom:18px;
-}
+    .content-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+    }
 
-.operations-section p{
-    color:var(--muted);
-    line-height:1.8;
-    font-size:15px;
-    margin-bottom:18px;
-}
+    .content-table td {
+        border: 1px solid #cccccc;
+        padding: 9px;
+    }
 
-.operation-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:18px;
-    margin-top:25px;
-}
+    .content-table td:first-child {
+        width: 55%;
+        background: #f1f1f1;
+        font-weight: bold;
+    }
 
-.operation-card{
-    border:1px solid #e5edf3;
-    border-radius:14px;
-    padding:22px;
-    transition:.25s;
-    background:#fff;
-}
+    /* Recent activity */
 
-.operation-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 10px 22px rgba(0,0,0,.08);
-}
+    .activity {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+    }
 
-.operation-card .icon{
-    font-size:32px;
-    margin-bottom:12px;
-}
+    .activity th {
+        background: #dddddd;
+        border: 1px solid #999999;
+        padding: 7px;
+        text-align: left;
+    }
 
-.operation-card h4{
-    margin:0 0 10px;
-    color:var(--text);
-}
+    .activity td {
+        border: 1px solid #cccccc;
+        padding: 7px;
+    }
 
-.operation-card p{
-    margin:0;
-    font-size:14px;
-    line-height:1.6;
-}
-/* INPUTS */
-input{
-  width:100%;
-  padding:13px 14px;
-  margin-bottom:15px;
-  border-radius:10px;
-  border:1px solid #d6dee6;
-  font-size:14px;
-  transition:.2s;
-}
+    .activity tr:nth-child(even) {
+        background: #f8f8f8;
+    }
 
-input:focus{
-  outline:none;
-  border-color:var(--primary);
-  box-shadow:0 0 0 3px rgba(47,111,149,.15);
-}
+    /* Footer */
 
-/* BUTTON */
-button{
-  width:100%;
-  padding:13px;
-  border:none;
-  border-radius:10px;
-  background:var(--text);
-  color:white;
-  font-weight:600;
-  font-size:14px;
-  cursor:pointer;
-  transition:.2s;
-}
+    .footer {
+        margin-top: 35px;
+        padding: 15px 0 30px 0;
+        border-top: 1px solid #999999;
+        color: #666666;
+        font-size: 11px;
+        line-height: 1.6;
+    }
 
-button:hover{
-  background:#2a4f6a;
-}
+    .footer-links {
+        margin-bottom: 10px;
+    }
 
-button:active{
-  transform:scale(.98);
-}
+    @media (max-width: 920px) {
+        .page {
+            width: 94%;
+        }
+    }
 
-#msg{
-  font-size:12px;
-  color:red;
-  margin-top:6px;
-}
+    @media (max-width: 600px) {
+        .header {
+            height: auto;
+            padding: 15px 0;
+            display: block;
+        }
 
-.link{
-  font-size:12px;
-  color:var(--primary);
-  cursor:pointer;
-}
+        .tagline {
+            margin-top: 5px;
+        }
 
-.link:hover{
-  text-decoration:underline;
-}
+        .nav a {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-/* FOOTER */
-.footer{
-  background:var(--text);
-  color:#dbe6ef;
-  padding:15px 10px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-}
+        .stats,
+        .stats tbody,
+        .stats tr,
+        .stats td,
+        .stats th {
+            display: block;
+            width: auto;
+        }
 
-.footer-left{
-  max-width:60%;
-  line-height:1.7;
-  font-size:14px;
-}
+        .stats td {
+            margin-bottom: -1px;
+        }
 
-.footer a{
-  color:#7fc3ea;
-  text-decoration:none;
-}
+        .choice-table,
+        .choice-table tbody,
+        .choice-table tr,
+        .choice-table td {
+            display: block;
+            width: auto;
+        }
 
-.footer a:hover{
-  text-decoration:underline;
-}
-
-.footer-right{
-  align-self:flex-end;
-  font-size:13px;
-  opacity:.8;
-}
-
-/* MOBILE NAV */
-.bottom-nav{
-  display:none;
-}
-
-/* MOBILE */
-@media(max-width:900px){
-
-  .nav{
-    display:none;
-  }
-
-  .main{
-    flex-direction:column;
-    padding:20px;
-    gap:20px;
-    padding-bottom:90px;
-  }
-
-  .content-box,
-  .login-box{
-    width:100%;
-    max-width:100%;
-    padding:25px;
-  }
-
-  .login-box{
-    position:static;
-  }
-
-  .footer{
-    padding-bottom:90px;
-  }
-
-  .bottom-nav{
-    position:fixed;
-    bottom:0;
-    left:0;
-    width:100%;
-    background:var(--text);
-    display:flex;
-    justify-content:space-around;
-    padding:14px 0;
-    z-index:1000;
-  }
-
-  .bottom-nav a{
-    color:white;
-    text-decoration:none;
-    font-size:13px;
-    font-weight:500;
-  }
-}
-
+        .choice-table td {
+            margin-bottom: -1px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="page">
 
-<!-- HEADER -->
-<div class="header">
+    <!-- HEADER -->
 
-  <div class="logo">PECOS</div>
+    <div class="header">
+        <div class="logo">PECOS</div>
 
-  <div class="nav">
-
-    <a href="index.html"><b>HOME</b></a>
-    <a href="Credit.html">CREDIT</a>
-    <a href="recovery.html">RECOVERY</a>
-    <a href="about.html">ABOUT</a>
-    <a href="Contact.html">CONTACT</a>
-
-  </div>
-
-</div>
-
-<!-- MAIN -->
-<div class="main">
-
-  <!-- CONTENT -->
-  <div class="content-box">
-
-    <h3>Live Market Rates</h3>
-
-    <div class="market-item">
-      <span>Bitcoin (₹)</span>
-      <span id="btc" class="value">Loading...</span>
+        <div class="tagline">
+            Lending & Financial Services
+        </div>
     </div>
 
-    <div class="market-item">
-      <span>Ethereum (₹)</span>
-      <span id="eth" class="value">Loading...</span>
+    <!-- NAVIGATION -->
+
+    <div class="nav">
+        <a href="#">Home</a>
+        <a href="#borrow">Borrow</a>
+        <a href="#lend">Lend</a>
+        <a href="#activity">Activity</a>
+        <a href="#about">About Pecos</a>
+        <a href="#contact">Contact</a>
     </div>
 
-    <div class="market-item">
-      <span>Spot Gold (₹ / 10g)</span>
-      <span id="gold" class="value">Loading...</span>
+    <!-- MAIN -->
+
+    <div class="main">
+
+        <div class="welcome">
+
+            <h1>Welcome to Pecos</h1>
+
+            <p>
+                Pecos is engaged in lending and financial activities
+                for individuals and businesses.
+            </p>
+
+            <p>
+                Information about current lending activity and
+                available opportunities is provided below.
+            </p>
+
+        </div>
+
+
+        <!-- CURRENT MONTH -->
+
+        <h2>Current Month</h2>
+
+        <table class="stats">
+
+            <tr>
+                <th>Transactions</th>
+                <th>Amount Lent</th>
+                <th>Average Interest Rate</th>
+            </tr>
+
+            <tr>
+                <td>
+                    42
+                    <small>Transactions completed</small>
+                </td>
+
+                <td>
+                    ₹1.82 Crore
+                    <small>Total amount lent</small>
+                </td>
+
+                <td>
+                    1.05%
+                    <small>Average monthly rate</small>
+                </td>
+            </tr>
+
+        </table>
+
+
+        <!-- BORROW / LEND -->
+
+        <h2 id="borrow">Looking to Borrow or Lend?</h2>
+
+        <table class="choice-table">
+
+            <tr>
+
+                <td>
+
+                    <div class="choice-title">
+                        Looking to Borrow?
+                    </div>
+
+                    <p>
+                        Individuals and businesses looking for
+                        funding can submit their lending requirements
+                        to Pecos for consideration.
+                    </p>
+
+                    <a href="#" class="button">
+                        Submit Borrowing Requirement
+                    </a>
+
+                </td>
+
+
+                <td id="lend">
+
+                    <div class="choice-title">
+                        Looking to Lend?
+                    </div>
+
+                    <p>
+                        Individuals or businesses interested in
+                        lending capital can contact Pecos to discuss
+                        available lending arrangements.
+                    </p>
+
+                    <a href="#" class="button">
+                        Enquire About Lending
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- LENDING OVERVIEW -->
+
+        <h2>Our Lending Activity</h2>
+
+        <table class="content-table">
+
+            <tr>
+                <td>Transactions this month</td>
+                <td>42</td>
+            </tr>
+
+            <tr>
+                <td>Total amount lent this month</td>
+                <td>₹1.82 Crore</td>
+            </tr>
+
+            <tr>
+                <td>Average transaction size</td>
+                <td>₹2.5 Lakh</td>
+            </tr>
+
+            <tr>
+                <td>Average monthly interest rate</td>
+                <td>1.05%</td>
+            </tr>
+
+            <tr>
+                <td>Average lending period</td>
+                <td>3 Months</td>
+            </tr>
+
+            <tr>
+                <td>Active lending accounts</td>
+                <td>327</td>
+            </tr>
+
+        </table>
+
+
+        <!-- RECENT ACTIVITY -->
+
+        <h2 id="activity">Recent Lending Activity</h2>
+
+        <table class="activity">
+
+            <tr>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Rate</th>
+                <th>Period</th>
+            </tr>
+
+            <tr>
+                <td>08 Aug 2026</td>
+                <td>Business Lending</td>
+                <td>₹15,00,000</td>
+                <td>13.00%</td>
+                <td>18 Months</td>
+            </tr>
+
+            <tr>
+                <td>07 Aug 2026</td>
+                <td>Lending Facility</td>
+                <td>₹8,50,000</td>
+                <td>11.50%</td>
+                <td>12 Months</td>
+            </tr>
+
+            <tr>
+                <td>06 Aug 2026</td>
+                <td>Working Capital</td>
+                <td>₹5,25,000</td>
+                <td>12.00%</td>
+                <td>12 Months</td>
+            </tr>
+
+            <tr>
+                <td>05 Aug 2026</td>
+                <td>Short Term Lending</td>
+                <td>₹3,75,000</td>
+                <td>14.00%</td>
+                <td>6 Months</td>
+            </tr>
+
+        </table>
+
+
+        <!-- ABOUT -->
+
+        <h2 id="about">About Pecos</h2>
+
+        <p>
+            Pecos operates in the lending and financial services
+            sector. The business works with individuals and
+            businesses in connection with lending requirements
+            and capital deployment.
+        </p>
+
+        <p>
+            All lending arrangements are subject to applicable
+            terms, documentation and approval.
+        </p>
+
+
+        <!-- CONTACT -->
+
+        <h2 id="contact">Contact</h2>
+
+        <table class="content-table">
+
+            <tr>
+                <td>Business</td>
+                <td>Pecos</td>
+            </tr>
+
+            <tr>
+                <td>Location</td>
+                <td>Akola, Maharashtra, India</td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td>
+                    <a href="mailto:contact@pecos.in">
+                        contact@pecos.in
+                    </a>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Website</td>
+                <td>
+                    <a href="https://pecos.in">
+                        pecos.in
+                    </a>
+                </td>
+            </tr>
+
+        </table>
+
     </div>
 
-    <div class="market-item">
-      <span>Spot Silver (₹ / kg)</span>
-      <span id="silver" class="value">Loading...</span>
-    </div>
 
-  </div>
+    <!-- FOOTER -->
 
+    <div class="footer">
 
-  <!-- LOGIN -->
-  <div class="login-box">
+        <div class="footer-links">
+            <a href="#">Home</a> |
+            <a href="#borrow">Borrow</a> |
+            <a href="#lend">Lend</a> |
+            <a href="#about">About</a> |
+            <a href="#contact">Contact</a>
+        </div>
 
-    <h3>Member Login</h3>
+        © 2026 Pecos. All rights reserved.
 
-    <input id="email" type="email" placeholder="Email">
+        <br><br>
 
-    <div class="password-wrapper">
-
-      <input id="password" type="password" placeholder="Password">
-
-      <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
-
-        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-          <circle cx="12" cy="12" r="3"/>
-        </svg>
-
-        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
-          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
-          <path d="M1 1l22 22"/>
-        </svg>
-
-      </span>
+        Information displayed on this website is for general
+        information purposes. Lending arrangements are subject
+        to applicable terms, documentation and applicable laws.
 
     </div>
 
-    <button onclick="login()">Login</button>
-
-    <p id="msg"></p>
-
-    <span class="link" onclick="resetPassword()">Forgot Password?</span>
-
-  </div>
-
 </div>
-
-<!-- FOOTER -->
-<div class="footer">
-
-
-  <div class="footer-right">
-    © 2025 PECOS. All rights reserved.
-  </div>
-
-</div>
-
-<!-- MOBILE NAV -->
-<div class="bottom-nav">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="Contact.html">Contact</a>
-</div>
-
-</div>
-
-<script>
-
-// FIREBASE CONFIG
-const firebaseConfig = {
-  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
-  authDomain: "pecos-432b5.firebaseapp.com",
-  projectId: "pecos-432b5"
-};
-
-firebase.initializeApp(firebaseConfig);
-
-const auth = firebase.auth();
-const db = firebase.firestore();
-
-auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-
-// AUTO REDIRECT
-auth.onAuthStateChanged(async (user) => {
-
-  if (user && user.emailVerified) {
-
-    const doc = await db.collection("members").doc(user.uid).get();
-
-    location.href = doc.data()?.isAdmin
-      ? "admin.html"
-      : "member.html";
-  }
-
-});
-
-// TOGGLE PASSWORD
-function togglePassword(){
-
-  const passwordInput = document.getElementById("password");
-  const eyeOpen = document.getElementById("eyeOpen");
-  const eyeClose = document.getElementById("eyeClose");
-  const eyeIcon = document.getElementById("eyeIcon");
-
-  if(passwordInput.type === "password"){
-
-    passwordInput.type = "text";
-    eyeOpen.style.display = "none";
-    eyeClose.style.display = "block";
-    eyeIcon.classList.add("active");
-
-  }else{
-
-    passwordInput.type = "password";
-    eyeOpen.style.display = "block";
-    eyeClose.style.display = "none";
-    eyeIcon.classList.remove("active");
-
-  }
-}
-
-// LOGIN
-async function login(){
-
-  msg.innerText = "";
-
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value.trim();
-
-  if(!email || !password){
-
-    msg.innerText = "Please fill all fields";
-    return;
-
-  }
-
-  try{
-
-    const res = await auth.signInWithEmailAndPassword(email,password);
-
-    if(!res.user.emailVerified){
-      msg.innerText = "Please verify your email";
-    }
-
-  }catch(e){
-
-    msg.innerText = e.message;
-
-  }
-}
-
-// RESET PASSWORD
-function resetPassword(){
-
-  const email = prompt("Enter registered email");
-
-  if(!email) return;
-
-  auth.sendPasswordResetEmail(email);
-
-  alert("Password reset link sent");
-
-}
-
-// MARKET DATA
-async function fetchMarketRates(){
-
-  try{
-
-    const cryptoRes = await fetch(
-      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
-    );
-
-    const cryptoData = await cryptoRes.json();
-
-    updateLive("btc", cryptoData.bitcoin.inr);
-    updateLive("eth", cryptoData.ethereum.inr);
-
-    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
-    const goldData = await goldRes.json();
-
-    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
-    const silverData = await silverRes.json();
-
-    const USDINR = 83;
-
-    const goldINR =
-      (goldData.price * USDINR) / 31.1035 * 10;
-
-    const silverINR =
-      (silverData.price * USDINR) / 31.1035 * 1000;
-
-    updateLive("gold", goldINR);
-    updateLive("silver", silverINR);
-
-  }catch(e){
-
-    console.log("Market API error:", e);
-
-  }
-
-}
-
-// LIVE UPDATE EFFECT
-function updateLive(id,newValue){
-
-  const el = document.getElementById(id);
-
-  if(!el) return;
-
-  const oldValue = parseFloat(el.innerText) || 0;
-
-  el.classList.remove("up","down");
-
-  if(newValue > oldValue){
-    el.classList.add("up");
-  }else{
-    el.classList.add("down");
-  }
-
-  el.innerText = newValue.toLocaleString("en-IN",{
-    maximumFractionDigits:0
-  });
-
-}
-
-// RUN
-fetchMarketRates();
-
-setInterval(fetchMarketRates,10000);
-
-</script>
 
 </body>
 </html>
+```
