@@ -1,0 +1,807 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>1BHK Apartment - Shivani, Akola</title>
+
+<style>
+
+body {
+    margin: 0;
+    background: #ffffff;
+    color: #222222;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+}
+
+a {
+    color: #003399;
+    text-decoration: underline;
+}
+
+a:hover {
+    color: #cc0000;
+}
+
+.page {
+    width: 900px;
+    margin: 0 auto;
+}
+
+
+/* Header */
+
+.header {
+    height: 72px;
+    border-bottom: 1px solid #999999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #003366;
+}
+
+.tagline {
+    color: #666666;
+    font-size: 12px;
+}
+
+
+/* Navigation */
+
+.nav {
+    background: #eeeeee;
+    border: 1px solid #cccccc;
+    margin-top: 8px;
+    padding: 7px 10px;
+}
+
+.nav a {
+    margin-right: 25px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* Main */
+
+.main {
+    margin-top: 18px;
+}
+
+
+/* Welcome */
+
+.welcome {
+    border: 1px solid #cccccc;
+    padding: 20px;
+    background: #fafafa;
+}
+
+.welcome h1 {
+    margin: 0 0 12px 0;
+    font-size: 24px;
+    color: #003366;
+}
+
+.welcome p {
+    margin: 8px 0;
+    line-height: 1.7;
+    font-size: 15px;
+    color: #333333;
+}
+
+
+/* Headings */
+
+h2 {
+    font-size: 17px;
+    color: #003366;
+    border-bottom: 1px solid #999999;
+    padding-bottom: 5px;
+    margin-top: 25px;
+}
+
+
+/* Property Information */
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.content-table td {
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.content-table td:first-child {
+    width: 40%;
+    background: #f1f1f1;
+    font-weight: bold;
+}
+
+
+/* Price */
+
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.price-table th {
+    background: #e5e5e5;
+    border: 1px solid #999999;
+    padding: 8px;
+    text-align: left;
+    font-size: 12px;
+}
+
+.price-table td {
+    border: 1px solid #bbbbbb;
+    padding: 12px 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #003366;
+}
+
+.price-table td small {
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    color: #555555;
+    margin-top: 3px;
+}
+
+
+/* Booking */
+
+.booking {
+    border: 1px solid #999999;
+    background: #f5f5f5;
+    padding: 18px;
+    margin-top: 12px;
+}
+
+.booking-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 8px;
+}
+
+.booking p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.button {
+    display: inline-block;
+    padding: 8px 18px;
+    background: #003399;
+    border: 1px solid #001f66;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #cc0000;
+}
+
+
+/* Apartment Details */
+
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.details-table td {
+    width: 50%;
+    vertical-align: top;
+    border: 1px solid #999999;
+    padding: 16px;
+}
+
+.details-table td:first-child {
+    background: #f5f8fc;
+}
+
+.details-table td:last-child {
+    background: #f7f7f7;
+}
+
+.details-title {
+    font-size: 17px;
+    font-weight: bold;
+    color: #003366;
+    margin-bottom: 8px;
+}
+
+.details-table p {
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+
+/* About */
+
+.about-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333333;
+}
+
+
+/* Contact */
+
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+}
+
+.contact-table td {
+    border: 1px solid #cccccc;
+    padding: 10px;
+}
+
+.contact-table td:first-child {
+    width: 40%;
+    background: #f1f1f1;
+    font-weight: bold;
+}
+
+
+/* Footer */
+
+.footer {
+    margin-top: 35px;
+    padding: 15px 0 30px 0;
+    border-top: 1px solid #999999;
+    color: #666666;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.footer-links {
+    margin-bottom: 10px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 920px) {
+
+    .page {
+        width: 94%;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .header {
+        height: auto;
+        padding: 15px 0;
+        display: block;
+    }
+
+    .tagline {
+        margin-top: 5px;
+    }
+
+    .nav a {
+        display: inline-block;
+        margin-bottom: 5px;
+    }
+
+    .price-table,
+    .price-table tbody,
+    .price-table tr,
+    .price-table td,
+    .price-table th {
+        display: block;
+        width: auto;
+    }
+
+    .details-table,
+    .details-table tbody,
+    .details-table tr,
+    .details-table td {
+        display: block;
+        width: auto;
+    }
+
+    .details-table td {
+        margin-bottom: -1px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="page">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="logo">
+            APARTMENT
+        </div>
+
+        <div class="tagline">
+            1BHK Apartment for Daily Stay
+        </div>
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <div class="nav">
+
+        <a href="#">Home</a>
+
+        <a href="#property">Property</a>
+
+        <a href="#details">Details</a>
+
+        <a href="#booking">Booking</a>
+
+        <a href="#about">About</a>
+
+        <a href="#contact">Contact</a>
+
+    </div>
+
+
+    <!-- MAIN -->
+
+    <div class="main">
+
+
+        <!-- WELCOME -->
+
+        <div class="welcome">
+
+            <h1>
+                Welcome
+            </h1>
+
+            <p>
+                A simple and comfortable 1BHK apartment available
+                for daily stay in Shivani, Akola.
+            </p>
+
+            <p>
+                The apartment can be booked on a daily basis for
+                short stays.
+            </p>
+
+            <p>
+                For availability and booking, give us a call at
+                <strong>8664974944</strong>.
+            </p>
+
+        </div>
+
+
+        <!-- PROPERTY -->
+
+        <h2 id="property">
+            Property Information
+        </h2>
+
+
+        <table class="content-table">
+
+            <tr>
+
+                <td>
+                    Apartment Type
+                </td>
+
+                <td>
+                    1BHK
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Location
+                </td>
+
+                <td>
+                    Shivani, Akola, Maharashtra - 444001
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Availability
+                </td>
+
+                <td>
+                    Daily Booking
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Suitable For
+                </td>
+
+                <td>
+                    Short stays and daily accommodation
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- PRICE -->
+
+        <h2>
+            Daily Rate
+        </h2>
+
+
+        <table class="price-table">
+
+            <tr>
+
+                <th>
+                    Stay
+                </th>
+
+                <th>
+                    Rate
+                </th>
+
+                <th>
+                    Booking
+                </th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    1 Day
+
+                    <small>
+                        Daily accommodation
+                    </small>
+
+                </td>
+
+
+                <td>
+                    ₹1,200
+
+                    <small>
+                        Per day
+                    </small>
+
+                </td>
+
+
+                <td>
+
+                    <a href="tel:8664974944" class="button">
+                        Call to Book
+                    </a>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- DETAILS -->
+
+        <h2 id="details">
+            Apartment Details
+        </h2>
+
+
+        <table class="details-table">
+
+            <tr>
+
+                <td>
+
+                    <div class="details-title">
+                        1BHK Apartment
+                    </div>
+
+                    <p>
+                        A private 1BHK apartment suitable for
+                        individuals, couples and small families.
+                    </p>
+
+                </td>
+
+
+                <td>
+
+                    <div class="details-title">
+                        Daily Stay
+                    </div>
+
+                    <p>
+                        The apartment is available for booking
+                        on a daily basis at ₹1,200 per day.
+                    </p>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+
+                    <div class="details-title">
+                        Location
+                    </div>
+
+                    <p>
+                        Shivani, Akola, Maharashtra - 444001.
+                    </p>
+
+                </td>
+
+
+                <td>
+
+                    <div class="details-title">
+                        Booking
+                    </div>
+
+                    <p>
+                        Contact us to check availability and
+                        confirm your booking.
+                    </p>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+
+        <!-- BOOKING -->
+
+        <h2 id="booking">
+            Booking
+        </h2>
+
+
+        <div class="booking">
+
+            <div class="booking-title">
+                Want to book the apartment?
+            </div>
+
+            <p>
+                Call us to check availability and book the
+                apartment for your required dates.
+            </p>
+
+            <p>
+                <strong>
+                    ₹1,200 per day
+                </strong>
+            </p>
+
+            <a href="tel:8664974944" class="button">
+                Call 8664974944
+            </a>
+
+        </div>
+
+
+        <!-- ABOUT -->
+
+        <h2 id="about">
+            About the Apartment
+        </h2>
+
+
+        <p class="about-text">
+            This is a 1BHK apartment available for daily stay
+            in Shivani, Akola.
+        </p>
+
+
+        <p class="about-text">
+            The apartment is offered for short-term accommodation
+            and can be booked according to availability.
+        </p>
+
+
+        <p class="about-text">
+            For booking, availability or any other information,
+            please contact us directly.
+        </p>
+
+
+        <!-- CONTACT -->
+
+        <h2 id="contact">
+            Contact
+        </h2>
+
+
+        <table class="contact-table">
+
+            <tr>
+
+                <td>
+                    Apartment
+                </td>
+
+                <td>
+                    1BHK Apartment
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Location
+                </td>
+
+                <td>
+                    Shivani, Akola, Maharashtra - 444001
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Daily Rate
+                </td>
+
+                <td>
+                    ₹1,200 per day
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Phone
+                </td>
+
+                <td>
+
+                    <strong>
+
+                        <a href="tel:8664974944">
+                            8664974944
+                        </a>
+
+                    </strong>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    Booking
+                </td>
+
+                <td>
+                    Call to check availability
+                </td>
+
+            </tr>
+
+        </table>
+
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+
+        <div class="footer-links">
+
+            <a href="#">
+                Home
+            </a>
+
+            |
+
+            <a href="#property">
+                Property
+            </a>
+
+            |
+
+            <a href="#details">
+                Details
+            </a>
+
+            |
+
+            <a href="#booking">
+                Booking
+            </a>
+
+            |
+
+            <a href="#contact">
+                Contact
+            </a>
+
+        </div>
+
+
+        © 2026. All rights reserved.
+
+
+        <br><br>
+
+
+        Daily rate: ₹1,200. Availability is subject to
+        confirmation at the time of booking.
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+</html>
+```
