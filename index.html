@@ -1,735 +1,708 @@
-```html
-<!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<title>Pecos - Debt Collection & Recovery Services</title>
+<title>PECOS - Finance | Real Estate | Stocks & Shares</title>
+
+<meta name="description" content="PECOS offers disciplined financial services and strategic investment operations. We facilitate expert lending solutions and research-driven capital deployment in stocks, bonds, and real estate.">
+
+<link rel="icon" href="pecos.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
 
 <style>
 
-body {
-    margin: 0;
-    background: #ffffff;
-    color: #222222;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
+:root{
+  --primary:#2F6F95;
+  --secondary:#3B7EA5;
+  --accent:#2F6F95;
+  --bg:#F4F6F8;
+  --card:#FFFFFF;
+  --text:#1F3E56;
+  --muted:#5E6E7E;
 }
 
-a {
-    color: #003399;
-    text-decoration: underline;
+*{
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+  -webkit-tap-highlight-color:transparent;
 }
 
-a:hover {
-    color: #cc0000;
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  background:var(--bg);
 }
 
-.page {
-    width: 900px;
-    margin: 0 auto;
+/* WRAPPER */
+.wrapper{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  background:var(--bg);
 }
 
-
-/* Header */
-
-.header {
-    height: 72px;
-    border-bottom: 1px solid #999999;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+/* HEADER */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 20px;
+  background:var(--text);
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: #003366;
+.logo{
+  font-weight:700;
+  font-size:18px;
+  letter-spacing:.5px;
+  color:white;
 }
 
-.tagline {
-    color: #666666;
-    font-size: 12px;
+.nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
 }
 
-
-/* Navigation */
-
-.nav {
-    background: #eeeeee;
-    border: 1px solid #cccccc;
-    margin-top: 8px;
-    padding: 7px 10px;
+.nav a{
+  text-decoration:none;
+  color:white;
+  font-weight:500;
+  font-size:14px;
+  opacity:.95;
+  transition:.2s;
 }
 
-.nav a {
-    margin-right: 25px;
-    font-weight: bold;
-    text-decoration: none;
+.nav a:hover{
+  opacity:1;
+  text-decoration:underline;
 }
 
-
-/* Main */
-
-.main {
-    margin-top: 18px;
+/* DROPDOWN */
+.dropdown{
+  position:relative;
 }
 
-.welcome {
-    border: 1px solid #cccccc;
-    padding: 15px;
-    background: #fafafa;
+.dropbtn{
+  color:white;
+  cursor:pointer;
 }
 
-.welcome h1 {
-    margin: 0 0 8px 0;
-    font-size: 22px;
-    color: #003366;
+/* DROPDOWN BOX */
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:white;
+  border:2px solid #1F3E56;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 12px 30px rgba(0,0,0,.15);
+  z-index:3000;
 }
 
-.welcome p { margin: 8px 0; line-height: 1.7; font-size: 14px; color: #333333; }
-
-h2 {
-    font-size: 17px;
-    color: #003366;
-    border-bottom: 1px solid #999999;
-    padding-bottom: 5px;
-    margin-top: 25px;
+.dropdown-content a{
+  display:block;
+  padding:13px 16px;
+  color:var(--text);
+  font-size:14px;
+  text-decoration:none;
+  border-bottom:1px solid #dbe4ea;
+  transition:.2s;
 }
 
-
-/* Statistics */
-
-.stats {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
+.dropdown-content a:last-child{
+  border-bottom:none;
 }
 
-.stats th {
-    background: #e5e5e5;
-    border: 1px solid #999999;
-    padding: 8px;
-    text-align: left;
-    font-size: 12px;
+.dropdown-content a:hover{
+  background:#eef4f8;
 }
 
-.stats td {
-    border: 1px solid #bbbbbb;
-    padding: 12px 8px;
-    font-size: 20px;
-    font-weight: bold;
-    color: #003366;
+.dropdown:hover .dropdown-content{
+  display:block;
 }
 
-.stats td small {
-    display: block;
-    font-size: 11px;
-    font-weight: normal;
-    color: #555555;
-    margin-top: 3px;
+/* MAIN */
+.main{
+  flex:1;
+  display:flex;
+  align-items:flex-start;
+  gap:30px;
+  padding:30px;
 }
 
-
-/* General Tables */
-
-.content-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
+/* CONTENT BOX */
+.content-box{
+  flex:2;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-.content-table td {
-    border: 1px solid #cccccc;
-    padding: 9px;
+.content-box h3{
+  margin-top:0;
+  color:var(--text);
+  font-size:20px;
+  margin-bottom:20px;
 }
 
-.content-table td:first-child {
-    width: 40%;
-    background: #f1f1f1;
-    font-weight: bold;
+.market-item{
+  display:flex;
+  justify-content:space-between;
+  padding:14px 0;
+  border-bottom:1px solid #e2e8f0;
+  font-size:15px;
 }
 
-
-/* Service Boxes */
-
-.service-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
+.value{
+  font-weight:600;
+  transition:.3s;
 }
 
-.service-table td {
-    width: 50%;
-    vertical-align: top;
-    border: 1px solid #999999;
-    padding: 18px;
+.up{
+  color:#16a34a;
 }
 
-.service-table td:first-child {
-    background: #f5f8fc;
+.down{
+  color:#dc2626;
 }
 
-.service-table td:last-child {
-    background: #f7f7f7;
+/* LOGIN BOX */
+.login-box{
+  flex:1;
+  background:var(--card);
+  padding:30px;
+  border-radius:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.05);
+  max-width:340px;
+  position:sticky;
+  top:90px;
 }
 
-.service-title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #003366;
-    margin-bottom: 8px;
+.login-box h3{
+  margin-top:0;
+  margin-bottom:20px;
+  color:var(--text);
+  font-size:18px;
 }
 
-.service-table p {
-    line-height: 1.5;
-    margin-bottom: 10px;
+/* PASSWORD */
+.password-wrapper{
+  position:relative;
+  display:flex;
+  align-items:center;
 }
 
-
-/* Recent Activity */
-
-.activity {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
+.password-wrapper input{
+  padding-right:45px;
 }
 
-.activity th {
-    background: #dddddd;
-    border: 1px solid #999999;
-    padding: 7px;
-    text-align: left;
+.toggle-password{
+  position:absolute;
+  right:10px;
+  height:45px;
+  display:flex;
+  align-items:center;
+  cursor:pointer;
+  color:var(--muted);
+  transition:.2s;
 }
 
-.activity td {
-    border: 1px solid #cccccc;
-    padding: 7px;
+.toggle-password:hover{
+  color:var(--primary);
 }
 
-.activity tr:nth-child(even) {
-    background: #f8f8f8;
+.toggle-password.active{
+  color:var(--primary);
+}
+.operations-section{
+    margin-top:30px;
+    background:#fff;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-
-/* Footer */
-
-.footer {
-    margin-top: 35px;
-    padding: 15px 0 30px 0;
-    border-top: 1px solid #999999;
-    color: #666666;
-    font-size: 11px;
-    line-height: 1.6;
+.operations-section h3{
+    color:var(--text);
+    margin-top:0;
+    margin-bottom:18px;
 }
 
-.footer-links {
-    margin-bottom: 10px;
+.operations-section p{
+    color:var(--muted);
+    line-height:1.8;
+    font-size:15px;
+    margin-bottom:18px;
 }
 
-
-/* Mobile */
-
-@media (max-width: 920px) {
-
-    .page {
-        width: 94%;
-    }
-
+.operation-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-top:25px;
 }
 
-@media (max-width: 600px) {
+.operation-card{
+    border:1px solid #e5edf3;
+    border-radius:14px;
+    padding:22px;
+    transition:.25s;
+    background:#fff;
+}
 
-    .header {
-        height: auto;
-        padding: 15px 0;
-        display: block;
-    }
+.operation-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+}
 
-    .tagline {
-        margin-top: 5px;
-    }
+.operation-card .icon{
+    font-size:32px;
+    margin-bottom:12px;
+}
 
-    .nav a {
-        display: inline-block;
-        margin-bottom: 5px;
-    }
+.operation-card h4{
+    margin:0 0 10px;
+    color:var(--text);
+}
 
-    .stats,
-    .stats tbody,
-    .stats tr,
-    .stats td,
-    .stats th {
-        display: block;
-        width: auto;
-    }
+.operation-card p{
+    margin:0;
+    font-size:14px;
+    line-height:1.6;
+}
+/* INPUTS */
+input{
+  width:100%;
+  padding:13px 14px;
+  margin-bottom:15px;
+  border-radius:10px;
+  border:1px solid #d6dee6;
+  font-size:14px;
+  transition:.2s;
+}
 
-    .stats td {
-        margin-bottom: -1px;
-    }
+input:focus{
+  outline:none;
+  border-color:var(--primary);
+  box-shadow:0 0 0 3px rgba(47,111,149,.15);
+}
 
-    .service-table,
-    .service-table tbody,
-    .service-table tr,
-    .service-table td {
-        display: block;
-        width: auto;
-    }
+/* BUTTON */
+button{
+  width:100%;
+  padding:13px;
+  border:none;
+  border-radius:10px;
+  background:var(--text);
+  color:white;
+  font-weight:600;
+  font-size:14px;
+  cursor:pointer;
+  transition:.2s;
+}
 
-    .service-table td {
-        margin-bottom: -1px;
-    }
+button:hover{
+  background:#2a4f6a;
+}
 
+button:active{
+  transform:scale(.98);
+}
+
+#msg{
+  font-size:12px;
+  color:red;
+  margin-top:6px;
+}
+
+.link{
+  font-size:12px;
+  color:var(--primary);
+  cursor:pointer;
+}
+
+.link:hover{
+  text-decoration:underline;
+}
+
+/* FOOTER */
+.footer{
+  background:var(--text);
+  color:#dbe6ef;
+  padding:15px 10px;
+  display:flex;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+.footer-left{
+  max-width:60%;
+  line-height:1.7;
+  font-size:14px;
+}
+
+.footer a{
+  color:#7fc3ea;
+  text-decoration:none;
+}
+
+.footer a:hover{
+  text-decoration:underline;
+}
+
+.footer-right{
+  align-self:flex-end;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* MOBILE NAV */
+.bottom-nav{
+  display:none;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+
+  .nav{
+    display:none;
+  }
+
+  .main{
+    flex-direction:column;
+    padding:20px;
+    gap:20px;
+    padding-bottom:90px;
+  }
+
+  .content-box,
+  .login-box{
+    width:100%;
+    max-width:100%;
+    padding:25px;
+  }
+
+  .login-box{
+    position:static;
+  }
+
+  .footer{
+    padding-bottom:90px;
+  }
+
+  .bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:var(--text);
+    display:flex;
+    justify-content:space-around;
+    padding:14px 0;
+    z-index:1000;
+  }
+
+  .bottom-nav a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:500;
+  }
 }
 
 </style>
-
 </head>
-
 
 <body>
 
-<div class="page">
+<div class="wrapper">
 
+<!-- HEADER -->
+<div class="header">
 
-    <!-- HEADER -->
+  <div class="logo">PECOS</div>
 
-    <div class="header">
+  <div class="nav">
 
-        <div class="logo">
-            PECOS
-        </div>
+    <a href="index.html"><b>HOME</b></a>
+    <a href="Credit.html">FINANCE</a>
+    <a href="recovery.html">RECOVERY</a>
+    <a href="about.html">ABOUT</a>
+    <a href="Contact.html">CONTACT</a>
 
-        <div class="tagline">
-            Debt Collection & Recovery Services
-        </div>
-
-    </div>
-
-
-    <!-- NAVIGATION -->
-
-    <div class="nav">
-
-        <a href="#">Home</a>
-
-        <a href="#services">Services</a>
-
-        <a href="#process">Process</a>
-
-        <a href="#activity">Activity</a>
-
-        <a href="#about">About Pecos</a>
-
-        <a href="#contact">Contact</a>
-
-    </div>
-
-
-    <!-- MAIN -->
-
-    <div class="main">
-
-
-        <!-- WELCOME -->
-
-        <div class="welcome">
-
-            <h1>
-                Welcome to Pecos
-            </h1>
-
-            <p>
-                Pecos is engaged in debt collection and recovery
-                services for lenders, businesses and other parties
-                with outstanding dues.
-            </p>
-
-            <p>
-                We assist with customer contact, payment follow-up,
-                field visits and other recovery activities.
-            </p>
-
-            <p>
-                For recovery assistance, give us a call at
-                <strong>8669334862</strong>.
-            </p>
-
-        </div>
-
-
-        <!-- RECOVERY ACTIVITY -->
-
-        <h2>
-            Recovery Activity
-        </h2>
-
-
-        <table class="stats">
-
-            <tr>
-
-                <th>
-                    Accounts Handled
-                </th>
-
-                <th>
-                    Amount Under Recovery
-                </th>
-
-                <th>
-                    Amount Recovered
-                </th>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-
-                    46
-
-                    <small>
-                        Accounts handled 
-                    </small>
-
-                </td>
-
-
-                <td>
-
-                    ₹82.40 Lakh
-
-                    <small>
-                        Outstanding amount handled
-                    </small>
-
-                </td>
-
-
-                <td>
-
-                    ₹18.65 Lakh
-
-                    <small>
-                        Amount recovered 
-                    </small>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-
-        <!-- SERVICES -->
-
-        <h2 id="services">
-            Recovery Services
-        </h2>
-
-
-        <table class="service-table">
-
-            <tr>
-
-                <td>
-
-                    <div class="service-title">
-                        Loan Recovery
-                    </div>
-
-                    <p>
-                        Follow-up and recovery of overdue loan
-                        instalments and outstanding loan amounts.
-                    </p>
-
-                </td>
-
-
-                <td>
-
-                    <div class="service-title">
-                        EMI Recovery
-                    </div>
-
-                    <p>
-                        Customer contact and payment follow-up
-                        for overdue EMIs and instalments.
-                    </p>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-
-                    <div class="service-title">
-                        Business Dues
-                    </div>
-
-                    <p>
-                        Recovery of outstanding payments and
-                        receivables from business customers.
-                    </p>
-
-                </td>
-
-
-                <td>
-
-                    <div class="service-title">
-                        Field Recovery
-                    </div>
-
-                    <p>
-                        Field visits and direct customer contact
-                        for recovery and payment follow-up.
-                    </p>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-
-        <!-- PROCESS -->
-
-        <h2 id="process">
-            Our Process
-        </h2>
-
-
-        <table class="content-table">
-
-            <tr>
-
-                <td>
-                    1. Account Information
-                </td>
-
-                <td>
-                    Details of the outstanding account are received
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    2. Customer Contact
-                </td>
-
-                <td>
-                    Customer is contacted regarding the outstanding payment
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    3. Payment Follow-up
-                </td>
-
-                <td>
-                    Payment arrangements and follow-up are carried out
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    4. Field Visit
-                </td>
-
-                <td>
-                    Field visits may be carried out where required
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    5. Recovery Update
-                </td>
-
-                <td>
-                    Payment and recovery status is reported to the client
-                </td>
-
-            </tr>
-
-        </table>
-
-
-    
-
-
-        <!-- CONTACT -->
-
-        <h2 id="contact">
-            Contact
-        </h2>
-
-
-        <table class="content-table">
-
-            <tr>
-
-                <td>
-                    Business
-                </td>
-
-                <td>
-                    Pecos
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Location
-                </td>
-
-                <td>
-                    210, Yamuna Business Park, Akola In 444001
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Phone
-                </td>
-
-                <td>
-
-                    <strong>
-
-                        <a href="tel:8669334862">
-                            8669334862
-                        </a>
-
-                    </strong>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Email
-                </td>
-
-                <td>
-
-                    <a href="mailto:contact@pecos.in">
-                        contact@pecos.in
-                    </a>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>
-                    Website
-                </td>
-
-                <td>
-
-                    <a href="https://pecos.in">
-                        pecos.in
-                    </a>
-
-                </td>
-
-            </tr>
-
-        </table>
-
-
-    </div>
-
-
-    <!-- FOOTER -->
-
-    <div class="footer">
-
-
-        <div class="footer-links">
-
-            <a href="#">
-                Home
-            </a>
-
-            |
-
-            <a href="#services">
-                Services
-            </a>
-
-            |
-
-            <a href="#process">
-                Process
-            </a>
-
-            |
-
-            <a href="#about">
-                About
-            </a>
-
-            |
-
-            <a href="#contact">
-                Contact
-            </a>
-
-        </div>
-
-
-        © 2026 Pecos. All rights reserved.
-
-
-        <br><br>
-
-
-        Information displayed on this website is for general
-        information purposes. Recovery and collection services
-        are subject to applicable terms, documentation and
-        applicable laws.
-
-
-    </div>
-
+  </div>
 
 </div>
 
-</body>
+<!-- MAIN -->
+<div class="main">
 
+  <!-- CONTENT -->
+  <div class="content-box">
+
+    <h3>Live Market Rates</h3>
+
+    <div class="market-item">
+      <span>Bitcoin (₹)</span>
+      <span id="btc" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Ethereum (₹)</span>
+      <span id="eth" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Gold (₹ / 10g)</span>
+      <span id="gold" class="value">Loading...</span>
+    </div>
+
+    <div class="market-item">
+      <span>Spot Silver (₹ / kg)</span>
+      <span id="silver" class="value">Loading...</span>
+    </div>
+
+  </div>
+
+
+  <!-- LOGIN -->
+  <div class="login-box">
+
+    <h3>Member Login</h3>
+
+    <input id="email" type="email" placeholder="Email">
+
+    <div class="password-wrapper">
+
+      <input id="password" type="password" placeholder="Password">
+
+      <span class="toggle-password" onclick="togglePassword()" id="eyeIcon">
+
+        <svg id="eyeOpen" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+          <circle cx="12" cy="12" r="3"/>
+        </svg>
+
+        <svg id="eyeClose" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="display:none;">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20C5 20 1 12 1 12a21.91 21.91 0 0 1 5.06-6.94"/>
+          <path d="M1 1l22 22"/>
+        </svg>
+
+      </span>
+
+    </div>
+
+    <button onclick="login()">Login</button>
+
+    <p id="msg"></p>
+
+    <span class="link" onclick="resetPassword()">Forgot Password?</span>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+
+  <div class="footer-right">
+    © 2025 PECOS. All rights reserved.
+  </div>
+
+</div>
+
+<!-- MOBILE NAV -->
+<div class="bottom-nav">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="Contact.html">Contact</a>
+</div>
+
+</div>
+
+<script>
+
+// FIREBASE CONFIG
+const firebaseConfig = {
+  apiKey: "AIzaSyDnbqKwqvg9BoAjpgMBFCr3ZBOFOcuvZxs",
+  authDomain: "pecos-432b5.firebaseapp.com",
+  projectId: "pecos-432b5"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+// AUTO REDIRECT
+auth.onAuthStateChanged(async (user) => {
+
+  if (user && user.emailVerified) {
+
+    const doc = await db.collection("members").doc(user.uid).get();
+
+    location.href = doc.data()?.isAdmin
+      ? "admin.html"
+      : "member.html";
+  }
+
+});
+
+// TOGGLE PASSWORD
+function togglePassword(){
+
+  const passwordInput = document.getElementById("password");
+  const eyeOpen = document.getElementById("eyeOpen");
+  const eyeClose = document.getElementById("eyeClose");
+  const eyeIcon = document.getElementById("eyeIcon");
+
+  if(passwordInput.type === "password"){
+
+    passwordInput.type = "text";
+    eyeOpen.style.display = "none";
+    eyeClose.style.display = "block";
+    eyeIcon.classList.add("active");
+
+  }else{
+
+    passwordInput.type = "password";
+    eyeOpen.style.display = "block";
+    eyeClose.style.display = "none";
+    eyeIcon.classList.remove("active");
+
+  }
+}
+
+// LOGIN
+async function login(){
+
+  msg.innerText = "";
+
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
+
+  if(!email || !password){
+
+    msg.innerText = "Please fill all fields";
+    return;
+
+  }
+
+  try{
+
+    const res = await auth.signInWithEmailAndPassword(email,password);
+
+    if(!res.user.emailVerified){
+      msg.innerText = "Please verify your email";
+    }
+
+  }catch(e){
+
+    msg.innerText = e.message;
+
+  }
+}
+
+// RESET PASSWORD
+function resetPassword(){
+
+  const email = prompt("Enter registered email");
+
+  if(!email) return;
+
+  auth.sendPasswordResetEmail(email);
+
+  alert("Password reset link sent");
+
+}
+
+// MARKET DATA
+async function fetchMarketRates(){
+
+  try{
+
+    const cryptoRes = await fetch(
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=inr"
+    );
+
+    const cryptoData = await cryptoRes.json();
+
+    updateLive("btc", cryptoData.bitcoin.inr);
+    updateLive("eth", cryptoData.ethereum.inr);
+
+    const goldRes = await fetch("https://api.gold-api.com/price/XAU");
+    const goldData = await goldRes.json();
+
+    const silverRes = await fetch("https://api.gold-api.com/price/XAG");
+    const silverData = await silverRes.json();
+
+    const USDINR = 83;
+
+    const goldINR =
+      (goldData.price * USDINR) / 31.1035 * 10;
+
+    const silverINR =
+      (silverData.price * USDINR) / 31.1035 * 1000;
+
+    updateLive("gold", goldINR);
+    updateLive("silver", silverINR);
+
+  }catch(e){
+
+    console.log("Market API error:", e);
+
+  }
+
+}
+
+// LIVE UPDATE EFFECT
+function updateLive(id,newValue){
+
+  const el = document.getElementById(id);
+
+  if(!el) return;
+
+  const oldValue = parseFloat(el.innerText) || 0;
+
+  el.classList.remove("up","down");
+
+  if(newValue > oldValue){
+    el.classList.add("up");
+  }else{
+    el.classList.add("down");
+  }
+
+  el.innerText = newValue.toLocaleString("en-IN",{
+    maximumFractionDigits:0
+  });
+
+}
+
+// RUN
+fetchMarketRates();
+
+setInterval(fetchMarketRates,10000);
+
+</script>
+
+</body>
 </html>
-```
