@@ -1,432 +1,827 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>PECOS — Credit | Investment | Club</title>
+    <title>PECOS | Credit | Investment | Club | AllBold Beers</title>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    body {
-        font-family: "Trebuchet MS", Arial, sans-serif;
-        background: #f6f1e7;
-        color: #222;
-        line-height: 1.5;
-    }
+        body {
+            font-family: Georgia, "Times New Roman", serif;
+            background: #eee9df;
+            color: #222;
+            line-height: 1.6;
+        }
 
-  .topbar {
-    background: #222;
-    color: white;
-    padding: 20px 6%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 4px solid #000;
-}
+        a {
+            color: #17365d;
+            text-decoration: none;
+        }
 
-.logo {
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 5px;
-}
+        a:hover {
+            text-decoration: underline;
+        }
 
-.topbar nav {
-    display: flex;
-    gap: 35px;
-}
+        /* TOP HEADER */
 
-.topbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 900;
-    letter-spacing: 1.5px;
-    transition: 0.2s;
-}
+        .top-header {
+            background: #17365d;
+            color: white;
+            border-bottom: 5px solid #8b1e1e;
+        }
 
-.topbar nav a:hover {
-    color: #ffd84d;
-}
-    /* HERO */
-    .hero {
-        max-width: 1100px;
-        margin: auto;
-        padding: 80px 25px 70px;
-        display: grid;
-        grid-template-columns: 1.3fr 0.7fr;
-        gap: 50px;
-        align-items: center;
-    }
+        .header-inner {
+            width: 92%;
+            max-width: 1150px;
+            margin: auto;
+            padding: 22px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .hero h1 {
-        font-size: clamp(48px, 8vw, 90px);
-        line-height: 0.9;
-        letter-spacing: -4px;
-        margin-bottom: 25px;
-    }
+        .logo {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 38px;
+            font-weight: bold;
+            letter-spacing: 5px;
+        }
 
-    .hero h1 span {
-        background: #ffd84d;
-        padding: 0 12px;
-        display: inline-block;
-        transform: rotate(-2deg);
-    }
-
-    .hero p {
-        font-size: 20px;
-        max-width: 600px;
-        color: #555;
-    }
-
-    .hero-button {
-        display: inline-block;
-        margin-top: 30px;
-        background: #222;
-        color: white;
-        padding: 14px 25px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        box-shadow: 4px 4px 0 #d4a900;
-    }
-
-    /* CARTOON */
-    .doodle {
-        background: #fff;
-        border: 3px solid #222;
-        border-radius: 25px;
-        padding: 30px;
-        min-height: 270px;
-        position: relative;
-        box-shadow: 8px 8px 0 #222;
-        transform: rotate(2deg);
-    }
-
-    .face {
-        width: 140px;
-        height: 140px;
-        background: #ffd84d;
-        border: 4px solid #222;
-        border-radius: 50%;
-        margin: 20px auto;
-        position: relative;
-    }
-
-    .eye {
-        position: absolute;
-        width: 14px;
-        height: 20px;
-        background: #222;
-        border-radius: 50%;
-        top: 45px;
-    }
-
-    .eye.left {
-        left: 38px;
-    }
-
-    .eye.right {
-        right: 38px;
-    }
-
-    .smile {
-        position: absolute;
-        width: 55px;
-        height: 25px;
-        border-bottom: 5px solid #222;
-        border-radius: 50%;
-        left: 39px;
-        top: 70px;
-    }
-
-    .speech {
-        position: absolute;
-        right: -20px;
-        top: 20px;
-        background: white;
-        border: 3px solid #222;
-        padding: 10px 15px;
-        border-radius: 15px;
-        font-weight: bold;
-        transform: rotate(-5deg);
-    }
-
-    /* SERVICES */
-    .services {
-        padding: 60px 6% 90px;
-        background: #fff;
-        border-top: 3px solid #222;
-        border-bottom: 3px solid #222;
-    }
-
-    .section-title {
-        text-align: center;
-        font-size: 42px;
-        margin-bottom: 45px;
-        letter-spacing: -1px;
-    }
-
-    .cards {
-        max-width: 1100px;
-        margin: auto;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 25px;
-    }
-
-    .card {
-        border: 3px solid #222;
-        border-radius: 18px;
-        padding: 30px;
-        min-height: 270px;
-        box-shadow: 6px 6px 0 #222;
-        transition: 0.2s;
-    }
-
-    .card:hover {
-        transform: translate(-3px, -3px) rotate(-1deg);
-        box-shadow: 10px 10px 0 #222;
-    }
-
-    .card:nth-child(1) {
-        background: #ffd84d;
-        transform: rotate(-1deg);
-    }
-
-    .card:nth-child(2) {
-        background: #b9e8ff;
-        transform: rotate(1deg);
-    }
-
-    .card:nth-child(3) {
-        background: #c9f5b3;
-        transform: rotate(-1deg);
-    }
-
-    .icon {
-        font-size: 48px;
-        margin-bottom: 15px;
-    }
-
-    .card h3 {
-        font-size: 27px;
-        margin-bottom: 12px;
-    }
-
-    .card p {
-        color: #333;
-        font-size: 16px;
-    }
-
-    .card a {
-        display: inline-block;
-        margin-top: 20px;
-        color: #222;
-        font-weight: bold;
-    }
-
-    /* ABOUT */
-    .about {
-        max-width: 850px;
-        margin: auto;
-        padding: 90px 25px;
-        text-align: center;
-    }
-
-    .about h2 {
-        font-size: 40px;
-        margin-bottom: 20px;
-    }
-
-    .about p {
-        font-size: 18px;
-        color: #555;
-    }
-
-    /* FOOTER */
-    footer {
-        background: #222;
-        color: white;
-        padding: 35px 6%;
-        text-align: center;
-    }
-
-    footer .footer-logo {
-        font-size: 25px;
-        font-weight: bold;
-        letter-spacing: 3px;
-        margin-bottom: 10px;
-    }
-
-    footer p {
-        font-size: 13px;
-        color: #bbb;
-    }
-
-    /* MOBILE */
-    @media (max-width: 750px) {
-
-        header {
-            padding: 15px 20px;
+        .tagline {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #d9e1eb;
+            margin-top: 2px;
         }
 
         nav {
-            display: none;
+            display: flex;
+            gap: 0;
         }
 
+        nav a {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 9px 15px;
+            border-left: 1px solid #5b7290;
+        }
+
+        nav a:last-child {
+            border-right: 1px solid #5b7290;
+        }
+
+        nav a:hover {
+            background: #8b1e1e;
+            text-decoration: none;
+        }
+
+        /* PAGE */
+
+        .page {
+            width: 92%;
+            max-width: 1150px;
+            margin: 22px auto;
+            background: #fff;
+            border: 1px solid #c7c0b4;
+        }
+
+        /* NOTICE BAR */
+
+        .notice {
+            background: #f3eee5;
+            border-bottom: 1px solid #c7c0b4;
+            padding: 8px 18px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* HERO */
+
         .hero {
-            grid-template-columns: 1fr;
-            padding-top: 55px;
+            padding: 55px 45px;
+            background:
+                linear-gradient(to bottom, #ffffff, #f7f4ee);
+            border-bottom: 1px solid #c7c0b4;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+            align-items: center;
         }
 
         .hero h1 {
-            font-size: 60px;
+            font-size: 50px;
+            line-height: 1.1;
+            color: #17365d;
+            margin-bottom: 18px;
         }
 
-        .cards {
-            grid-template-columns: 1fr;
+        .hero h1 span {
+            color: #8b1e1e;
         }
 
-        .card {
-            transform: none !important;
+        .hero p {
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #555;
+            max-width: 680px;
         }
 
-        .doodle {
-            max-width: 320px;
+        .hero-buttons {
+            margin-top: 25px;
+        }
+
+        .button {
+            display: inline-block;
+            background: #17365d;
+            color: white;
+            padding: 9px 18px;
+            margin-right: 7px;
+            border: 1px solid #0d243e;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: #8b1e1e;
+            text-decoration: none;
+        }
+
+        /* BUSINESS BOX */
+
+        .business-box {
+            border: 1px solid #aaa;
+            background: #f5f1e8;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .business-box .small-title {
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #777;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .business-box h2 {
+            font-size: 29px;
+            color: #17365d;
+            margin-bottom: 5px;
+        }
+
+        .business-box p {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .business-box .line {
+            width: 55px;
+            height: 2px;
+            background: #8b1e1e;
+            margin: 15px auto;
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 40px 45px;
+            border-bottom: 1px solid #c7c0b4;
+        }
+
+        .section-title {
+            color: #17365d;
+            font-size: 30px;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #8b1e1e;
+            padding-bottom: 8px;
+        }
+
+        .section-intro {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 28px;
+        }
+
+        /* SERVICES */
+
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .service {
+            border: 1px solid #bbb;
+            background: #fafafa;
+            padding: 22px;
+        }
+
+        .service h3 {
+            font-size: 22px;
+            color: #17365d;
+            margin-bottom: 9px;
+        }
+
+        .service p {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .service .number {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #8b1e1e;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ALLBOLD */
+
+        .allbold {
+            background: #f4efe7;
+        }
+
+        .allbold-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .allbold h2 {
+            color: #651b1b;
+            font-size: 38px;
+            margin-bottom: 5px;
+        }
+
+        .allbold .subtitle {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #777;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .allbold p {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .allbold-box {
+            border: 2px solid #651b1b;
+            padding: 25px;
+            background: #fff;
+            text-align: center;
+        }
+
+        .allbold-logo {
+            font-size: 31px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #651b1b;
+        }
+
+        .allbold-logo span {
+            display: block;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        /* ABOUT */
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .about-column h3 {
+            color: #17365d;
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .about-column p {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* CONTACT */
+
+        .contact {
+            background: #f5f1e8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .contact h3 {
+            color: #17365d;
+            font-size: 21px;
+            margin-bottom: 12px;
+        }
+
+        .contact p {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .contact strong {
+            color: #333;
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #17365d;
+            color: white;
+            border-top: 5px solid #8b1e1e;
+            padding: 30px 45px;
+        }
+
+        .footer-grid {
+            width: 100%;
+            max-width: 1150px;
             margin: auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
         }
-    }
-</style>
+
+        footer h3 {
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        footer p,
+        footer a {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            color: #d7dce3;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #506987;
+            margin-top: 25px;
+            padding-top: 15px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #aeb9c6;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .header-inner {
+                display: block;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 18px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 11px;
+                padding: 7px 9px;
+            }
+
+            .hero {
+                padding: 35px 25px;
+            }
+
+            .hero-grid,
+            .allbold-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 39px;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 30px 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<header class="topbar">
-    <div class="logo">PECOS</div>
+    <!-- HEADER -->
 
-    <nav>
-        <a href="#credit">CREDIT</a>
-        <a href="#investment">INVESTMENT</a>
-        <a href="#club">CLUB</a>
-    </nav>
-</header>
+    <header class="top-header">
 
+        <div class="header-inner">
 
-<section class="hero">
+            <div>
+                <div class="logo">PECOS</div>
+                <div class="tagline">
+                    CREDIT &nbsp; | &nbsp; INVESTMENT &nbsp; | &nbsp; BUSINESS
+                </div>
+            </div>
 
-    <div>
-        <h1>
-            Business,<br>
-            <span>made simple.</span>
-        </h1>
+            <nav>
+                <a href="#home">HOME</a>
+                <a href="#services">SERVICES</a>
+                <a href="#investment">INVESTMENT</a>
+                <a href="#allbold">ALLBOLD BEERS</a>
+                <a href="#about">ABOUT</a>
+                <a href="#contact">CONTACT</a>
+            </nav>
 
-        <p>
-            PECOS operates across Credit, Investment and Club —
-            bringing together money, opportunities and people.
-        </p>
-
-        <a href="#services" class="hero-button">
-            Explore PECOS →
-        </a>
-    </div>
-
-    <div class="doodle">
-        <div class="speech">Let's do business!</div>
-
-        <div class="face">
-            <div class="eye left"></div>
-            <div class="eye right"></div>
-            <div class="smile"></div>
         </div>
-    </div>
 
-</section>
+    </header>
 
 
-<section class="services" id="services">
+    <div class="page">
 
-    <h2 class="section-title">What we do</h2>
+        <div class="notice">
+            Welcome to PECOS — Financial, investment and business opportunities.
+        </div>
 
-    <div class="cards">
 
-        <div class="card" id="credit">
-            <div class="icon">💰</div>
+        <!-- HERO -->
 
-            <h3>Credit</h3>
+        <section class="hero" id="home">
 
-            <p>
-                Credit, lending and financial opportunities
-                for businesses and individuals.
+            <div class="hero-grid">
+
+                <div>
+
+                    <h1>
+                        Practical Business.<br>
+                        <span>Long-Term Opportunities.</span>
+                    </h1>
+
+                    <p>
+                        PECOS is a privately operated business focused on
+                        credit, investments and business opportunities.
+                        Our approach is simple — build relationships,
+                        understand opportunities and create long-term value.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#services" class="button">
+                            OUR SERVICES
+                        </a>
+
+                        <a href="#contact" class="button">
+                            CONTACT US
+                        </a>
+                    </div>
+
+                </div>
+
+
+                <div class="business-box">
+
+                    <div class="small-title">
+                        Our Business
+                    </div>
+
+                    <h2>PECOS</h2>
+
+                    <div class="line"></div>
+
+                    <p>
+                        Credit<br>
+                        Investment<br>
+                        Business Opportunities
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SERVICES -->
+
+        <section class="section" id="services">
+
+            <h2 class="section-title">
+                Our Services
+            </h2>
+
+            <p class="section-intro">
+                PECOS operates across financial and business-related activities.
             </p>
 
-            <a href="#">Learn more →</a>
-        </div>
+
+            <div class="services">
+
+                <div class="service" id="credit">
+
+                    <div class="number">
+                        01 — CREDIT
+                    </div>
+
+                    <h3>Credit & Lending</h3>
+
+                    <p>
+                        Financial and credit-related opportunities for
+                        individuals and businesses, with a practical
+                        approach to lending and capital requirements.
+                    </p>
+
+                </div>
 
 
-        <div class="card" id="investment">
-            <div class="icon">📈</div>
+                <div class="service" id="investment">
 
-            <h3>Investment</h3>
+                    <div class="number">
+                        02 — INVESTMENT
+                    </div>
 
-            <p>
-                Investments across markets, assets and
-                long-term opportunities.
-            </p>
+                    <h3>Investments</h3>
 
-            <a href="#">Learn more →</a>
-        </div>
+                    <p>
+                        Research-driven participation in financial markets,
+                        investments and selected long-term opportunities.
+                    </p>
+
+                </div>
 
 
-        <div class="card" id="club">
-            <div class="icon">🏠</div>
+                <div class="service" id="club">
 
-            <h3>Club</h3>
+                    <div class="number">
+                        03 — BUSINESS
+                    </div>
 
-            <p>
-                A private club bringing together people,
-                business and leisure.
-            </p>
+                    <h3>Business Opportunities</h3>
 
-            <a href="#">Visit the Club →</a>
-        </div>
+                    <p>
+                        Development and participation in businesses,
+                        partnerships and opportunities across different
+                        sectors.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ALLBOLD BEERS -->
+
+        <section class="section allbold" id="allbold">
+
+            <div class="allbold-grid">
+
+                <div>
+
+                    <div class="allbold .subtitle">
+                        A PECOS Business
+                    </div>
+
+                    <h2>AllBold Beers</h2>
+
+                    <div class="subtitle">
+                        Beverage Business
+                    </div>
+
+                    <p>
+                        AllBold Beers is a beverage business associated with
+                        the PECOS group. The brand is being developed with
+                        an emphasis on strong branding, business discipline
+                        and a straightforward approach to the beverage market.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        Our objective is to develop AllBold into a distinctive
+                        beverage brand with a clear identity and a long-term
+                        business vision.
+                    </p>
+
+                    <br>
+
+                    <a href="#contact" class="button">
+                        BUSINESS ENQUIRIES
+                    </a>
+
+                </div>
+
+
+                <div class="allbold-box">
+
+                    <div class="allbold-logo">
+                        ALLBOLD
+                        <span>BEERS</span>
+                    </div>
+
+                    <div class="line"
+                         style="width:55px;height:2px;background:#651b1b;margin:18px auto;">
+                    </div>
+
+                    <p>
+                        Strong Brand.<br>
+                        Straightforward Business.<br>
+                        Long-Term Vision.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ABOUT -->
+
+        <section class="section" id="about">
+
+            <h2 class="section-title">
+                About PECOS
+            </h2>
+
+            <div class="about-grid">
+
+                <div class="about-column">
+
+                    <h3>Who We Are</h3>
+
+                    <p>
+                        PECOS is a privately operated business built around
+                        relationships, capital and opportunities.
+                        We believe business should remain practical,
+                        transparent and focused on the long term.
+                    </p>
+
+                </div>
+
+
+                <div class="about-column">
+
+                    <h3>Our Approach</h3>
+
+                    <p>
+                        We look for opportunities where sound business
+                        fundamentals, disciplined capital and strong
+                        relationships can create sustainable value.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT -->
+
+        <section class="section contact" id="contact">
+
+            <h2 class="section-title">
+                Contact Us
+            </h2>
+
+            <div class="contact-grid">
+
+                <div>
+
+                    <h3>PECOS</h3>
+
+                    <p>
+                        <strong>Business:</strong>
+                        Credit | Investment | Business Opportunities
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        Akola, Maharashtra, India
+                    </p>
+
+                </div>
+
+
+                <div>
+
+                    <h3>Business Enquiries</h3>
+
+                    <p>
+                        For investment, business and partnership enquiries,
+                        please contact PECOS directly.
+                    </p>
+
+                    <br>
+
+                    <a href="mailto:info@pecos.in">
+                        info@pecos.in
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
 
     </div>
 
-</section>
 
+    <!-- FOOTER -->
 
-<section class="about">
+    <footer>
 
-    <h2>Money. People. Opportunities.</h2>
+        <div class="footer-grid">
 
-    <p>
-        PECOS is a privately operated business built around
-        relationships, capital and opportunities.
-        We keep things practical, personal and straightforward.
-    </p>
+            <div>
+                <h3>PECOS</h3>
+                <p>
+                    Credit | Investment | Business
+                </p>
+            </div>
 
-</section>
+            <div>
+                <h3>Businesses</h3>
+                <p>
+                    <a href="#credit">Credit & Lending</a>
+                </p>
+                <p>
+                    <a href="#investment">Investment</a>
+                </p>
+                <p>
+                    <a href="#allbold">AllBold Beers</a>
+                </p>
+            </div>
 
+            <div>
+                <h3>Contact</h3>
+                <p>
+                    Akola, Maharashtra, India
+                </p>
+                <p>
+                    <a href="mailto:info@pecos.in">
+                        info@pecos.in
+                    </a>
+                </p>
+            </div>
 
-<footer>
+        </div>
 
-    <div class="footer-logo">PECOS</div>
+        <div class="copyright">
+            © 2026 PECOS. All rights reserved.
+            &nbsp; | &nbsp;
+            AllBold Beers is a business associated with PECOS.
+        </div>
 
-    <p>
-        Credit | Investment | Club
-    </p>
-
-    <p style="margin-top:12px;">
-        © 2026 PECOS. All rights reserved.
-    </p>
-
-</footer>
+    </footer>
 
 </body>
 </html>
+```
