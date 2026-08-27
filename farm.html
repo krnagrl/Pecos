@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AllBold Farms | Fruits & Cotton | Babhulgaon, Akola</title>
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: #e9edf2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    font-size: 14px;
+}
+
+a { color: #315d39; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.page {
+    width: 98%;
+    max-width: 1320px;
+    margin: 4px auto;
+    background: #fff;
+    border: 1px solid #aeb5bd;
+    box-shadow: 0 0 7px rgba(0,0,0,0.15);
+}
+
+/* HEADER */
+.header {
+    min-height: 130px;
+    background: linear-gradient(#ffffff, #fafafa);
+    border-bottom: 1px solid #bfc5cc;
+    position: relative;
+    padding: 22px 45px;
+}
+
+.logo {
+    color: #315d39;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    color: #777;
+    font-size: 22px;
+    margin-top: 2px;
+}
+
+.header-contact {
+    position: absolute;
+    right: 35px;
+    top: 28px;
+    text-align: right;
+}
+
+.header-contact .place {
+    color: #315d39;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.header-contact .hours {
+    color: #333;
+    font-size: 16px;
+    margin-top: 7px;
+}
+
+/* NAVIGATION */
+.navbar {
+    min-height: 49px;
+    background: linear-gradient(#50785a, #315d39);
+    border-top: 1px solid #75937b;
+    border-bottom: 1px solid #25472c;
+    display: flex;
+}
+
+.navbar a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 28px;
+    min-width: 145px;
+    border-right: 1px solid rgba(255,255,255,0.22);
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+}
+
+.navbar a:hover,
+.navbar a.active { background: #24482c; }
+
+/* CONTENT */
+.content {
+    display: flex;
+    padding: 28px 20px 20px;
+    gap: 22px;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.main { flex: 1; min-width: 0; }
+
+/* SIDEBAR */
+.side-box {
+    border: 1px solid #b2c1b4;
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.side-title {
+    background: linear-gradient(#557b5e, #315d39);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 15px;
+}
+
+.farm-list { list-style: none; }
+
+.farm-list li {
+    border-bottom: 1px solid #d5d5d5;
+    padding: 8px 13px;
+    background: linear-gradient(to right, #fff, #fafafa);
+}
+
+.farm-list li:last-child { border-bottom: none; }
+
+.farm-list li a {
+    color: #27332a;
+    font-size: 14px;
+}
+
+.farm-list li a:before {
+    content: "›";
+    color: #315d39;
+    font-weight: bold;
+    font-size: 19px;
+    margin-right: 9px;
+}
+
+.farm-list li:hover { background: #edf5ee; }
+
+.why-title {
+    background: linear-gradient(#e2eee3, #ccdfce);
+    color: #315d39;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 14px;
+}
+
+.why-list {
+    list-style: none;
+    padding: 10px 14px;
+}
+
+.why-list li { margin: 8px 0; font-size: 14px; }
+
+.why-list li:before {
+    content: "✓";
+    color: #527258;
+    font-weight: bold;
+    margin-right: 9px;
+}
+
+.contact-box {
+    border: 1px solid #b2c1b4;
+    background: #f7faf7;
+}
+
+.contact-title {
+    background: linear-gradient(#e2eee3, #ccdfce);
+    color: #315d39;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 14px;
+}
+
+.contact-content { padding: 15px; }
+
+.contact-row {
+    margin-bottom: 13px;
+    font-size: 14px;
+}
+
+.contact-icon {
+    display: inline-block;
+    width: 27px;
+    color: #333;
+    font-size: 17px;
+}
+
+.callback {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* HERO */
+.hero {
+    min-height: 360px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 25px 45px;
+    background: linear-gradient(to right, #fff, #f7faf7);
+}
+
+.hero-text {
+    width: 56%;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 32px;
+    font-weight: normal;
+    line-height: 1.25;
+    color: #111;
+    margin-bottom: 23px;
+}
+
+.hero-title span { color: #315d39; }
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #30343a;
+    max-width: 550px;
+}
+
+.hero-button {
+    display: inline-block;
+    background: linear-gradient(#557b5e, #315d39);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 14px 25px;
+    margin-top: 26px;
+    border: 1px solid #25472c;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+    text-decoration: none;
+}
+
+.hero-button:hover {
+    background: #24482c;
+    text-decoration: none;
+}
+
+/* FARM ILLUSTRATION */
+.farm-art {
+    position: absolute;
+    right: 18px;
+    bottom: 15px;
+    width: 450px;
+    height: 305px;
+}
+
+.sun {
+    position: absolute;
+    right: 75px;
+    top: 25px;
+    width: 68px;
+    height: 68px;
+    background: #e6c96a;
+    border-radius: 50%;
+    box-shadow: 0 0 0 12px rgba(230,201,106,0.14);
+}
+
+.hill {
+    position: absolute;
+    left: -30px;
+    bottom: 72px;
+    width: 520px;
+    height: 130px;
+    background: #b7cfaa;
+    border-radius: 50% 50% 0 0;
+}
+
+.field {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 470px;
+    height: 115px;
+    background: repeating-linear-gradient(
+        170deg,
+        #8eae75 0px,
+        #8eae75 10px,
+        #76985f 11px,
+        #76985f 17px
+    );
+    border-top: 2px solid #6f8f5a;
+}
+
+.tree {
+    position: absolute;
+    bottom: 90px;
+    width: 100px;
+    height: 150px;
+}
+
+.tree.one { left: 75px; }
+.tree.two { left: 175px; transform: scale(.8); }
+
+.trunk {
+    position: absolute;
+    left: 44px;
+    bottom: 0;
+    width: 17px;
+    height: 75px;
+    background: #76563b;
+}
+
+.leaves {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    height: 95px;
+    background: #557b4a;
+    border-radius: 50%;
+    box-shadow:
+        35px -12px 0 #638953,
+        65px 12px 0 #4f7444,
+        18px 30px 0 #6b9257;
+}
+
+.fruit {
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #e4c45d;
+    z-index: 2;
+}
+
+.fruit.f1 { left: 23px; top: 36px; }
+.fruit.f2 { left: 65px; top: 28px; }
+.fruit.f3 { left: 45px; top: 60px; }
+.fruit.f4 { left: 80px; top: 52px; }
+
+.cotton {
+    position: absolute;
+    bottom: 65px;
+    right: 45px;
+    width: 155px;
+    height: 105px;
+}
+
+.cotton-stem {
+    position: absolute;
+    left: 75px;
+    bottom: 0;
+    width: 7px;
+    height: 92px;
+    background: #55704d;
+    transform: rotate(-4deg);
+}
+
+.boll {
+    position: absolute;
+    width: 37px;
+    height: 37px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: inset -5px -3px 0 #e4e7e0;
+}
+
+.boll:before, .boll:after {
+    content: "";
+    position: absolute;
+    background: #6f8d60;
+    width: 18px;
+    height: 10px;
+    bottom: -3px;
+}
+
+.boll:before { left: 1px; transform: rotate(30deg); }
+.boll:after { right: 1px; transform: rotate(-30deg); }
+
+.boll.one { left: 22px; top: 15px; }
+.boll.two { left: 83px; top: 2px; }
+.boll.three { left: 100px; top: 48px; }
+
+/* INFO */
+.info-panel {
+    margin: 0 0 20px;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    min-height: 275px;
+}
+
+.info-column {
+    padding: 25px;
+    flex: 1;
+}
+
+.info-column + .info-column { border-left: 1px solid #ddd; }
+
+.info-title {
+    color: #315d39;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.info-text {
+    color: #30343a;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.learn {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* PRODUCE CARDS */
+.products {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: linear-gradient(#fafafa, #f4f4f4);
+}
+
+.products-title {
+    color: #315d39;
+    font-size: 20px;
+    margin-bottom: 17px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.product-card {
+    border: 1px solid #cbd5cb;
+    background: #fff;
+    padding: 16px 10px;
+    text-align: center;
+}
+
+.product-icon {
+    font-size: 34px;
+    margin-bottom: 8px;
+}
+
+.product-name {
+    font-weight: bold;
+    color: #294b31;
+    font-size: 15px;
+}
+
+.product-note {
+    color: #777;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* EXPORT */
+.export-box {
+    border: 1px solid #c7d3c8;
+    background: #f7faf7;
+    padding: 22px 25px;
+    margin-bottom: 20px;
+}
+
+.export-title {
+    color: #315d39;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.export-text {
+    font-size: 15px;
+    line-height: 1.65;
+    color: #30343a;
+}
+
+/* FOOTER */
+.footer {
+    background: linear-gradient(#3c6846, #294d32);
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    min-height: 93px;
+    border-top: 1px solid #23432b;
+}
+
+.footer-links { margin-bottom: 20px; }
+
+.footer-links a {
+    color: #dce9de;
+    font-size: 13px;
+    margin: 0 7px;
+}
+
+.footer-links a:hover { color: white; }
+
+.copyright { font-size: 14px; }
+
+/* RESPONSIVE */
+@media (max-width: 1000px) {
+    .header { padding-left: 25px; }
+    .logo { font-size: 38px; }
+    .tagline { font-size: 18px; }
+    .header-contact { right: 20px; }
+    .header-contact .place { font-size: 17px; }
+    .header-contact .hours { font-size: 14px; }
+
+    .navbar a {
+        min-width: auto;
+        flex: 1;
+        padding: 15px 10px;
+        font-size: 13px;
+    }
+
+    .content { flex-direction: column; }
+    .sidebar { width: 100%; }
+
+    .farm-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .farm-list li { border-right: 1px solid #ddd; }
+
+    .hero { min-height: 420px; }
+    .hero-text { width: 65%; }
+    .farm-art { opacity: .55; }
+
+    .product-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 700px) {
+    body { font-size: 13px; }
+    .page { width: 100%; margin: 0; border: none; }
+
+    .header {
+        min-height: 145px;
+        text-align: center;
+        padding: 18px 10px;
+    }
+
+    .logo { font-size: 34px; }
+    .tagline { font-size: 17px; }
+
+    .header-contact {
+        position: static;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    .header-contact .place { font-size: 16px; }
+    .header-contact .hours { font-size: 13px; }
+
+    .navbar {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar a {
+        min-width: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 12px 5px;
+    }
+
+    .content { padding: 15px 12px; }
+
+    .farm-list { grid-template-columns: 1fr; }
+
+    .hero {
+        min-height: 500px;
+        padding: 25px;
+    }
+
+    .hero-text {
+        width: 100%;
+        position: relative;
+        z-index: 5;
+    }
+
+    .hero-title { font-size: 28px; }
+    .hero-description { font-size: 16px; }
+
+    .farm-art {
+        right: -100px;
+        opacity: .25;
+    }
+
+    .info-panel { display: block; }
+
+    .info-column + .info-column {
+        border-left: none;
+        border-top: 1px solid #ddd;
+    }
+
+    .product-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .footer-links a {
+        display: inline-block;
+        margin: 4px 3px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header class="header">
+    <div class="logo">AllBold Farms</div>
+    <div class="tagline">Fresh Produce &amp; Cotton from Our Farms</div>
+
+    <div class="header-contact">
+        <div class="place">Babhulgaon, Akola, Maharashtra</div>
+        <div class="hours">Farm • Produce • Export</div>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#produce">Our Produce</a>
+    <a href="#cotton">Cotton</a>
+    <a href="#export">Exports</a>
+    <a href="#contact">Contact Us</a>
+</nav>
+
+<div class="content">
+
+<aside class="sidebar">
+
+    <div class="side-box">
+        <div class="side-title">Our Produce</div>
+        <ul class="farm-list">
+            <li><a href="#chikoo">Chikoo</a></li>
+            <li><a href="#papaya">Papaya</a></li>
+            <li><a href="#guava">Guava</a></li>
+            <li><a href="#sitaphal">Sitaphal</a></li>
+            <li><a href="#cotton">Cotton</a></li>
+        </ul>
+    </div>
+
+    <div class="side-box">
+        <div class="why-title">Why AllBold Farms?</div>
+        <ul class="why-list">
+            <li>Farm-Grown Produce</li>
+            <li>Quality-Focused Cultivation</li>
+            <li>Akola Region Farming</li>
+            <li>Domestic &amp; Export Supply</li>
+        </ul>
+    </div>
+
+    <div class="contact-box" id="contact">
+        <div class="contact-title">Farm Contact</div>
+        <div class="contact-content">
+            <div class="contact-row">
+                <span class="contact-icon">⌖</span>
+                Babhulgaon, Akola, Maharashtra
+            </div>
+            <div class="contact-row">
+                <span class="contact-icon">✉</span>
+                pecos.origin@gmail.com
+            </div>
+            <a href="mailto:pecos.origin@gmail.com" class="callback">
+                Enquire About Supply
+            </a>
+        </div>
+    </div>
+
+</aside>
+
+<main class="main" id="home">
+
+<section class="hero">
+    <div class="hero-text">
+        <h1 class="hero-title">
+            From Our Farms<br>
+            to <span>Markets Around the World</span>
+        </h1>
+
+        <p class="hero-description">
+            AllBold Farms cultivates fruits and cotton in Babhulgaon,
+            Akola, with a focus on quality, dependable agricultural
+            production and supply to domestic and international markets.
+        </p>
+
+        <a href="#produce" class="hero-button">Explore Our Produce</a>
+    </div>
+
+    <div class="farm-art" aria-hidden="true">
+        <div class="sun"></div>
+        <div class="hill"></div>
+        <div class="field"></div>
+
+        <div class="tree one">
+            <div class="leaves"></div>
+            <div class="trunk"></div>
+            <div class="fruit f1"></div>
+            <div class="fruit f2"></div>
+            <div class="fruit f3"></div>
+            <div class="fruit f4"></div>
+        </div>
+
+        <div class="tree two">
+            <div class="leaves"></div>
+            <div class="trunk"></div>
+        </div>
+
+        <div class="cotton">
+            <div class="cotton-stem"></div>
+            <div class="boll one"></div>
+            <div class="boll two"></div>
+            <div class="boll three"></div>
+        </div>
+    </div>
+</section>
+
+<section class="info-panel" id="about">
+
+    <div class="info-column">
+        <h2 class="info-title">Welcome to AllBold Farms</h2>
+        <p class="info-text">
+            AllBold Farms is an agricultural venture based in Babhulgaon,
+            Akola, Maharashtra. Our farms focus on fruit cultivation and
+            cotton plantations, with produce prepared for both domestic
+            markets and export opportunities.
+        </p>
+        <p class="info-text" style="margin-top:12px;">
+            We aim to combine traditional farming knowledge with
+            disciplined cultivation, harvesting and supply practices.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">From Farm to Market</h2>
+        <ul class="why-list" style="padding:0; list-style:none;">
+            <li>1. Cultivate and maintain our crops</li>
+            <li>2. Harvest at suitable maturity</li>
+            <li>3. Sort and prepare produce for supply</li>
+            <li>4. Serve domestic and export markets</li>
+        </ul>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">Our Location</h2>
+        <p class="info-text">
+            <strong>Babhulgaon, Akola</strong><br>
+            Maharashtra, India
+        </p>
+        <p class="info-text" style="margin-top:12px;">
+            Located in the agricultural region of Akola, our operations
+            are connected to the surrounding farming and trading network.
+        </p>
+    </div>
+
+</section>
+
+<section class="products" id="produce">
+    <h2 class="products-title">Our Agricultural Produce</h2>
+
+    <div class="product-grid">
+        <div class="product-card" id="chikoo">
+            <div class="product-icon">🥭</div>
+            <div class="product-name">Chikoo</div>
+            <div class="product-note">Fruit cultivation</div>
+        </div>
+
+        <div class="product-card" id="papaya">
+            <div class="product-icon">🍈</div>
+            <div class="product-name">Papaya</div>
+            <div class="product-note">Fresh farm produce</div>
+        </div>
+
+        <div class="product-card" id="guava">
+            <div class="product-icon">🍐</div>
+            <div class="product-name">Guava</div>
+            <div class="product-note">Fresh farm produce</div>
+        </div>
+
+        <div class="product-card" id="sitaphal">
+            <div class="product-icon">🍈</div>
+            <div class="product-name">Sitaphal</div>
+            <div class="product-note">Seasonal fruit</div>
+        </div>
+
+        <div class="product-card" id="cotton">
+            <div class="product-icon">☁</div>
+            <div class="product-name">Cotton</div>
+            <div class="product-note">Cotton plantation</div>
+        </div>
+    </div>
+</section>
+
+<section class="export-box" id="export">
+    <h2 class="export-title">Domestic &amp; Export Supply</h2>
+    <p class="export-text">
+        Our agricultural produce is intended for supply beyond the farm,
+        including domestic trade and export markets. We focus on consistent
+        cultivation and careful handling so that suitable produce can move
+        efficiently from Babhulgaon to buyers and markets.
+    </p>
+</section>
+
+<section class="info-panel" id="cotton">
+
+    <div class="info-column">
+        <h2 class="info-title">Fruit Cultivation</h2>
+        <p class="info-text">
+            Chikoo, papaya, guava and sitaphal form the fruit portfolio of
+            AllBold Farms. Our objective is to maintain healthy plantations
+            and provide quality seasonal produce to the market.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">Cotton Plantation</h2>
+        <p class="info-text">
+            Cotton is an important part of our agricultural activity.
+            Production is focused on cultivation and supply of cotton from
+            the Akola region to appropriate buyers and markets.
+        </p>
+    </div>
+
+</section>
+
+</main>
+</div>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="#home">Home</a> |
+        <a href="#about">About Us</a> |
+        <a href="#produce">Our Produce</a> |
+        <a href="#cotton">Cotton</a> |
+        <a href="#export">Exports</a> |
+        <a href="#contact">Contact Us</a> |
+        <a href="#privacy">Privacy Policy</a> |
+        <a href="#terms">Terms &amp; Conditions</a>
+    </div>
+
+    <div class="copyright">
+        © 2005 - 2026 AllBold Farms. All Rights Reserved.
+    </div>
+</footer>
+
+</div>
+
+<script>
+document.querySelectorAll('.navbar a').forEach(function(link) {
+    link.addEventListener('click', function() {
+        document.querySelectorAll('.navbar a').forEach(function(item) {
+            item.classList.remove('active');
+        });
+        this.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>
