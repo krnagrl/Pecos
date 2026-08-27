@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PECOS Properties | Income-Generating Real Estate</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#e9edf2;font-family:Arial,Helvetica,sans-serif;color:#222;font-size:14px}
+a{color:#3b5064;text-decoration:none}
+a:hover{text-decoration:underline}
+.page{width:98%;max-width:1320px;margin:4px auto;background:#fff;border:1px solid #aeb5bd;box-shadow:0 0 7px rgba(0,0,0,.15)}
+
+.header{min-height:130px;background:linear-gradient(#fff,#fafafa);border-bottom:1px solid #bfc5cc;position:relative;padding:22px 45px}
+.logo{color:#3b5064;font-family:"Times New Roman",Times,serif;font-size:50px;line-height:48px;font-weight:bold;letter-spacing:3px}
+.tagline{color:#777;font-size:21px;margin-top:3px}
+.header-contact{position:absolute;right:35px;top:28px;text-align:right}
+.header-contact .place{color:#3b5064;font-size:20px;font-weight:bold}
+.header-contact .hours{color:#333;font-size:16px;margin-top:7px}
+
+.navbar{min-height:49px;background:linear-gradient(#60758a,#3b5064);border-top:1px solid #8495a5;border-bottom:1px solid #2e4051;display:flex}
+.navbar a{color:#fff;font-size:16px;font-weight:bold;text-align:center;padding:14px 25px;min-width:145px;border-right:1px solid rgba(255,255,255,.22);text-decoration:none;text-shadow:1px 1px 1px rgba(0,0,0,.25)}
+.navbar a:hover,.navbar a.active{background:#2f4355}
+
+.content{display:flex;padding:28px 20px 20px;gap:22px}
+.sidebar{width:260px;flex-shrink:0}
+.main{flex:1;min-width:0}
+
+.side-box{border:1px solid #b9c2ca;margin-bottom:20px;background:#fff}
+.side-title{background:linear-gradient(#60758a,#3b5064);color:#fff;font-size:16px;font-weight:bold;padding:9px 15px}
+.property-list{list-style:none}
+.property-list li{border-bottom:1px solid #d5d5d5;padding:8px 13px;background:linear-gradient(to right,#fff,#fafafa)}
+.property-list li:last-child{border-bottom:none}
+.property-list li a{color:#27333d;font-size:14px}
+.property-list li a:before{content:"›";color:#3b5064;font-weight:bold;font-size:19px;margin-right:9px}
+.property-list li:hover{background:#edf1f4}
+
+.why-title{background:linear-gradient(#e3e9ee,#d0d9e1);color:#3b5064;font-size:16px;font-weight:bold;padding:9px 14px}
+.why-list{list-style:none;padding:10px 14px}
+.why-list li{margin:8px 0;font-size:14px}
+.why-list li:before{content:"✓";color:#536a7d;font-weight:bold;margin-right:9px}
+
+.contact-box{border:1px solid #b9c2ca;background:#f7f8f9}
+.contact-title{background:linear-gradient(#e3e9ee,#d0d9e1);color:#3b5064;font-size:16px;font-weight:bold;padding:9px 14px}
+.contact-content{padding:15px}
+.contact-row{margin-bottom:13px;font-size:14px}
+.contact-icon{display:inline-block;width:27px;color:#333;font-size:17px}
+.callback{display:inline-block;margin-top:4px;font-weight:bold;text-decoration:underline}
+
+.hero{min-height:365px;border-bottom:1px solid #ddd;display:flex;align-items:center;position:relative;overflow:hidden;padding:25px 45px;background:linear-gradient(to right,#fff,#f6f7f8)}
+.hero-text{width:57%;z-index:2}
+.hero-title{font-size:32px;font-weight:normal;line-height:1.25;color:#111;margin-bottom:23px}
+.hero-title span{color:#3b5064}
+.hero-description{font-size:18px;line-height:1.65;color:#30343a;max-width:560px}
+.hero-button{display:inline-block;background:linear-gradient(#60758a,#3b5064);color:#fff;font-size:17px;font-weight:bold;padding:14px 25px;margin-top:26px;border:1px solid #2e4051;box-shadow:inset 0 1px 0 rgba(255,255,255,.2);text-decoration:none}
+.hero-button:hover{background:#2f4355;text-decoration:none}
+
+.building-art{position:absolute;right:25px;bottom:0;width:435px;height:315px}
+.skyline{position:absolute;bottom:0;left:0;width:435px;height:245px}
+.building{position:absolute;bottom:0;background:#c9d0d5;border:2px solid #8996a0;box-shadow:inset 0 0 0 5px rgba(255,255,255,.22)}
+.building.a{left:20px;width:105px;height:155px}
+.building.b{left:128px;width:135px;height:225px;background:#d6dade}
+.building.c{left:267px;width:120px;height:185px}
+.window{position:absolute;width:17px;height:23px;background:#758795;border:2px solid #eef1f3}
+.b1{left:20px;top:25px}.b2{left:60px;top:25px}.b3{left:20px;top:72px}.b4{left:60px;top:72px}.b5{left:20px;top:119px}.b6{left:60px;top:119px}
+.c1{left:22px;top:28px}.c2{left:67px;top:28px}.c3{left:22px;top:76px}.c4{left:67px;top:76px}.c5{left:22px;top:124px}.c6{left:67px;top:124px}
+.a1{left:25px;top:30px}.a2{left:68px;top:30px}.a3{left:25px;top:78px}.a4{left:68px;top:78px}
+.roof{position:absolute;left:125px;bottom:225px;width:141px;height:16px;background:#667987;border:2px solid #566874}
+.tree{position:absolute;bottom:0;left:370px;width:50px;height:105px}
+.tree:before{content:"";position:absolute;bottom:0;left:21px;width:8px;height:57px;background:#765d47}
+.tree:after{content:"";position:absolute;top:0;left:0;width:50px;height:65px;background:#718274;border-radius:50%;box-shadow:18px 8px 0 #657869,-15px 13px 0 #7c8b7d}
+
+.info-panel{margin:0 0 20px;border:1px solid #d1d1d1;display:flex;min-height:270px}
+.info-column{padding:25px;flex:1}
+.info-column+.info-column{border-left:1px solid #ddd}
+.info-title{color:#3b5064;font-size:20px;margin-bottom:18px}
+.info-text{color:#30343a;font-size:15px;line-height:1.65}
+
+.assets{border:1px solid #ddd;margin-bottom:20px;padding:20px;background:linear-gradient(#fafafa,#f4f4f4)}
+.assets-title{color:#3b5064;font-size:20px;margin-bottom:17px}
+.asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.asset-card{border:1px solid #c8d0d6;background:#fff;padding:18px 10px;text-align:center;min-height:135px}
+.asset-icon{font-size:34px;margin-bottom:8px}
+.asset-name{font-weight:bold;color:#304557;font-size:15px}
+.asset-note{color:#777;font-size:12px;margin-top:6px;line-height:1.45}
+
+.income-box{border:1px solid #c7d0d7;background:#f7f8f9;padding:22px 25px;margin-bottom:20px}
+.income-title{color:#3b5064;font-size:20px;margin-bottom:10px}
+.income-text{font-size:15px;line-height:1.65;color:#30343a}
+
+.footer{background:linear-gradient(#4c6173,#304657);color:#fff;text-align:center;padding:20px 15px;min-height:93px;border-top:1px solid #263947}
+.footer-links{margin-bottom:20px}
+.footer-links a{color:#dce4ea;font-size:13px;margin:0 7px}
+.footer-links a:hover{color:#fff}
+.copyright{font-size:14px}
+
+@media(max-width:1000px){
+.header{padding-left:25px}.logo{font-size:40px}.tagline{font-size:18px}.header-contact{right:20px}.header-contact .place{font-size:17px}.header-contact .hours{font-size:14px}
+.navbar a{min-width:auto;flex:1;padding:15px 10px;font-size:13px}
+.content{flex-direction:column}.sidebar{width:100%}.property-list{display:grid;grid-template-columns:repeat(2,1fr)}
+.property-list li{border-right:1px solid #ddd}
+.hero{min-height:420px}.hero-text{width:65%}.building-art{opacity:.55}
+.asset-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+body{font-size:13px}.page{width:100%;margin:0;border:none}
+.header{min-height:145px;text-align:center;padding:18px 10px}.logo{font-size:34px}.tagline{font-size:17px}
+.header-contact{position:static;text-align:center;margin-top:12px}.header-contact .place{font-size:16px}.header-contact .hours{font-size:13px}
+.navbar{height:auto;display:grid;grid-template-columns:repeat(2,1fr)}.navbar a{min-width:0;border-bottom:1px solid rgba(255,255,255,.2);padding:12px 5px}
+.content{padding:15px 12px}.property-list{grid-template-columns:1fr}
+.hero{min-height:505px;padding:25px}.hero-text{width:100%;position:relative;z-index:5}.hero-title{font-size:28px}.hero-description{font-size:16px}
+.building-art{right:-90px;opacity:.25}.info-panel{display:block}.info-column+.info-column{border-left:none;border-top:1px solid #ddd}
+.asset-grid{grid-template-columns:repeat(2,1fr)}
+.footer-links a{display:inline-block;margin:4px 3px}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<header class="header">
+    <div class="logo">PECOS</div>
+    <div class="tagline">Properties • Rentals • Income</div>
+    <div class="header-contact">
+        <div class="place">Real Estate Assets</div>
+        <div class="hours">Long-Term Rental • Appreciation</div>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="#home" class="active">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#properties">Properties</a>
+    <a href="#income">Rental Income</a>
+    <a href="#approach">Our Approach</a>
+    <a href="#contact">Contact Us</a>
+</nav>
+
+<div class="content">
+
+<aside class="sidebar">
+    <div class="side-box">
+        <div class="side-title">Property Portfolio</div>
+        <ul class="property-list">
+            <li><a href="#commercial">Commercial</a></li>
+            <li><a href="#office">Office Premises</a></li>
+            <li><a href="#retail">Retail Spaces</a></li>
+            <li><a href="#industrial">Industrial / Warehouse</a></li>
+            <li><a href="#residential">Residential</a></li>
+        </ul>
+    </div>
+
+    <div class="side-box">
+        <div class="why-title">Our Property Model</div>
+        <ul class="why-list">
+            <li>Income-Generating Assets</li>
+            <li>Long-Term Contracts</li>
+            <li>Reliable Tenants</li>
+            <li>Capital Appreciation</li>
+        </ul>
+    </div>
+
+    <div class="contact-box" id="contact">
+        <div class="contact-title">Property Enquiries</div>
+        <div class="contact-content">
+            <div class="contact-row"><span class="contact-icon">⌖</span>Properties available for selected tenants</div>
+            <div class="contact-row"><span class="contact-icon">✉</span>pecos.origin@gmail.com</div>
+            <a href="mailto:pecos.origin@gmail.com" class="callback">Enquire About a Property</a>
+        </div>
+    </div>
+</aside>
+
+<main class="main" id="home">
+
+<section class="hero">
+    <div class="hero-text">
+        <h1 class="hero-title">
+            Real Estate Built for<br>
+            <span>Long-Term Income &amp; Growth</span>
+        </h1>
+        <p class="hero-description">
+            PECOS owns and manages income-generating properties that are
+            leased to businesses and individuals under structured,
+            long-term rental arrangements. Our focus is recurring rental
+            income, asset ownership and long-term appreciation.
+        </p>
+        <a href="#properties" class="hero-button">View Our Property Portfolio</a>
+    </div>
+
+    <div class="building-art" aria-hidden="true">
+        <div class="skyline">
+            <div class="building a">
+                <div class="window a1"></div><div class="window a2"></div>
+                <div class="window a3"></div><div class="window a4"></div>
+            </div>
+            <div class="building b">
+                <div class="window b1"></div><div class="window b2"></div>
+                <div class="window b3"></div><div class="window b4"></div>
+                <div class="window b5"></div><div class="window b6"></div>
+            </div>
+            <div class="building c">
+                <div class="window c1"></div><div class="window c2"></div>
+                <div class="window c3"></div><div class="window c4"></div>
+                <div class="window c5"></div><div class="window c6"></div>
+            </div>
+            <div class="roof"></div>
+            <div class="tree"></div>
+        </div>
+    </div>
+</section>
+
+<section class="info-panel" id="about">
+    <div class="info-column">
+        <h2 class="info-title">About PECOS Properties</h2>
+        <p class="info-text">
+            PECOS Properties is focused on building a portfolio of
+            real estate assets that generate recurring rental income.
+            We acquire and hold suitable properties and lease them to
+            businesses and individuals on yearly or other agreed
+            long-term contracts.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">Our Objective</h2>
+        <p class="info-text">
+            Our objective is simple: own productive real estate, keep
+            suitable properties occupied, collect dependable rent and
+            allow the underlying assets to appreciate over time.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">Long-Term Ownership</h2>
+        <p class="info-text">
+            We view property primarily as a long-term asset rather than
+            a short-term trading opportunity. Rental cash flow and
+            potential capital appreciation form the foundation of the
+            portfolio.
+        </p>
+    </div>
+</section>
+
+<section class="assets" id="properties">
+    <h2 class="assets-title">Our Property Portfolio</h2>
+    <div class="asset-grid">
+        <div class="asset-card" id="commercial">
+            <div class="asset-icon">🏢</div>
+            <div class="asset-name">Commercial</div>
+            <div class="asset-note">Properties leased to businesses and commercial occupants.</div>
+        </div>
+        <div class="asset-card" id="office">
+            <div class="asset-icon">▦</div>
+            <div class="asset-name">Office Premises</div>
+            <div class="asset-note">Workspaces held for recurring long-term rental income.</div>
+        </div>
+        <div class="asset-card" id="retail">
+            <div class="asset-icon">▣</div>
+            <div class="asset-name">Retail Spaces</div>
+            <div class="asset-note">Suitable properties positioned for established tenants.</div>
+        </div>
+        <div class="asset-card" id="industrial">
+            <div class="asset-icon">▤</div>
+            <div class="asset-name">Industrial / Warehouse</div>
+            <div class="asset-note">Functional assets serving storage, trading and business needs.</div>
+        </div>
+    </div>
+</section>
+
+<section class="income-box" id="income">
+    <h2 class="income-title">Rental Income</h2>
+    <p class="income-text">
+        Properties are generally offered under yearly or other mutually
+        agreed contracts. Rental receipts provide recurring cash flow
+        while the property remains part of the long-term asset portfolio.
+        Tenant selection, documentation, maintenance and contractual
+        terms are considered as part of responsible property management.
+    </p>
+</section>
+
+<section class="info-panel" id="approach">
+    <div class="info-column" id="residential">
+        <h2 class="info-title">For Businesses</h2>
+        <p class="info-text">
+            We can provide suitable commercial premises for businesses
+            looking for stable locations under structured rental
+            arrangements, subject to availability and agreed terms.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">For Individuals</h2>
+        <p class="info-text">
+            Selected residential and other suitable properties may be
+            leased to individuals under documented rental arrangements.
+        </p>
+    </div>
+
+    <div class="info-column">
+        <h2 class="info-title">Our Approach</h2>
+        <p class="info-text">
+            Acquire carefully. Lease responsibly. Maintain the asset.
+            Collect recurring income. Hold for the long term.
+        </p>
+    </div>
+</section>
+
+</main>
+</div>
+
+<footer class="footer">
+    <div class="footer-links">
+        <a href="#home">Home</a> |
+        <a href="#about">About Us</a> |
+        <a href="#properties">Properties</a> |
+        <a href="#income">Rental Income</a> |
+        <a href="#approach">Our Approach</a> |
+        <a href="#contact">Contact Us</a> |
+        <a href="#privacy">Privacy Policy</a> |
+        <a href="#terms">Terms &amp; Conditions</a>
+    </div>
+    <div class="copyright">© 2005 - 2026 PECOS. All Rights Reserved.</div>
+</footer>
+
+</div>
+</body>
+</html>
