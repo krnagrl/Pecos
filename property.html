@@ -1,330 +1,1782 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PECOS Properties | Income-Generating Real Estate</title>
+
+<title>Pecos | Business Interests</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:#e9edf2;font-family:Arial,Helvetica,sans-serif;color:#222;font-size:14px}
-a{color:#3b5064;text-decoration:none}
-a:hover{text-decoration:underline}
-.page{width:98%;max-width:1320px;margin:4px auto;background:#fff;border:1px solid #aeb5bd;box-shadow:0 0 7px rgba(0,0,0,.15)}
 
-.header{min-height:130px;background:linear-gradient(#fff,#fafafa);border-bottom:1px solid #bfc5cc;position:relative;padding:22px 45px}
-.logo{color:#3b5064;font-family:"Times New Roman",Times,serif;font-size:50px;line-height:48px;font-weight:bold;letter-spacing:3px}
-.tagline{color:#777;font-size:21px;margin-top:3px}
-.header-contact{position:absolute;right:35px;top:28px;text-align:right}
-.header-contact .place{color:#3b5064;font-size:20px;font-weight:bold}
-.header-contact .hours{color:#333;font-size:16px;margin-top:7px}
+/* =========================================================
+   RESET
+========================================================= */
 
-.navbar{min-height:49px;background:linear-gradient(#60758a,#3b5064);border-top:1px solid #8495a5;border-bottom:1px solid #2e4051;display:flex}
-.navbar a{color:#fff;font-size:16px;font-weight:bold;text-align:center;padding:14px 25px;min-width:145px;border-right:1px solid rgba(255,255,255,.22);text-decoration:none;text-shadow:1px 1px 1px rgba(0,0,0,.25)}
-.navbar a:hover,.navbar a.active{background:#2f4355}
-
-.content{display:flex;padding:28px 20px 20px;gap:22px}
-.sidebar{width:260px;flex-shrink:0}
-.main{flex:1;min-width:0}
-
-.side-box{border:1px solid #b9c2ca;margin-bottom:20px;background:#fff}
-.side-title{background:linear-gradient(#60758a,#3b5064);color:#fff;font-size:16px;font-weight:bold;padding:9px 15px}
-.property-list{list-style:none}
-.property-list li{border-bottom:1px solid #d5d5d5;padding:8px 13px;background:linear-gradient(to right,#fff,#fafafa)}
-.property-list li:last-child{border-bottom:none}
-.property-list li a{color:#27333d;font-size:14px}
-.property-list li a:before{content:"›";color:#3b5064;font-weight:bold;font-size:19px;margin-right:9px}
-.property-list li:hover{background:#edf1f4}
-
-.why-title{background:linear-gradient(#e3e9ee,#d0d9e1);color:#3b5064;font-size:16px;font-weight:bold;padding:9px 14px}
-.why-list{list-style:none;padding:10px 14px}
-.why-list li{margin:8px 0;font-size:14px}
-.why-list li:before{content:"✓";color:#536a7d;font-weight:bold;margin-right:9px}
-
-.contact-box{border:1px solid #b9c2ca;background:#f7f8f9}
-.contact-title{background:linear-gradient(#e3e9ee,#d0d9e1);color:#3b5064;font-size:16px;font-weight:bold;padding:9px 14px}
-.contact-content{padding:15px}
-.contact-row{margin-bottom:13px;font-size:14px}
-.contact-icon{display:inline-block;width:27px;color:#333;font-size:17px}
-.callback{display:inline-block;margin-top:4px;font-weight:bold;text-decoration:underline}
-
-.hero{min-height:365px;border-bottom:1px solid #ddd;display:flex;align-items:center;position:relative;overflow:hidden;padding:25px 45px;background:linear-gradient(to right,#fff,#f6f7f8)}
-.hero-text{width:57%;z-index:2}
-.hero-title{font-size:32px;font-weight:normal;line-height:1.25;color:#111;margin-bottom:23px}
-.hero-title span{color:#3b5064}
-.hero-description{font-size:18px;line-height:1.65;color:#30343a;max-width:560px}
-.hero-button{display:inline-block;background:linear-gradient(#60758a,#3b5064);color:#fff;font-size:17px;font-weight:bold;padding:14px 25px;margin-top:26px;border:1px solid #2e4051;box-shadow:inset 0 1px 0 rgba(255,255,255,.2);text-decoration:none}
-.hero-button:hover{background:#2f4355;text-decoration:none}
-
-.building-art{position:absolute;right:25px;bottom:0;width:435px;height:315px}
-.skyline{position:absolute;bottom:0;left:0;width:435px;height:245px}
-.building{position:absolute;bottom:0;background:#c9d0d5;border:2px solid #8996a0;box-shadow:inset 0 0 0 5px rgba(255,255,255,.22)}
-.building.a{left:20px;width:105px;height:155px}
-.building.b{left:128px;width:135px;height:225px;background:#d6dade}
-.building.c{left:267px;width:120px;height:185px}
-.window{position:absolute;width:17px;height:23px;background:#758795;border:2px solid #eef1f3}
-.b1{left:20px;top:25px}.b2{left:60px;top:25px}.b3{left:20px;top:72px}.b4{left:60px;top:72px}.b5{left:20px;top:119px}.b6{left:60px;top:119px}
-.c1{left:22px;top:28px}.c2{left:67px;top:28px}.c3{left:22px;top:76px}.c4{left:67px;top:76px}.c5{left:22px;top:124px}.c6{left:67px;top:124px}
-.a1{left:25px;top:30px}.a2{left:68px;top:30px}.a3{left:25px;top:78px}.a4{left:68px;top:78px}
-.roof{position:absolute;left:125px;bottom:225px;width:141px;height:16px;background:#667987;border:2px solid #566874}
-.tree{position:absolute;bottom:0;left:370px;width:50px;height:105px}
-.tree:before{content:"";position:absolute;bottom:0;left:21px;width:8px;height:57px;background:#765d47}
-.tree:after{content:"";position:absolute;top:0;left:0;width:50px;height:65px;background:#718274;border-radius:50%;box-shadow:18px 8px 0 #657869,-15px 13px 0 #7c8b7d}
-
-.info-panel{margin:0 0 20px;border:1px solid #d1d1d1;display:flex;min-height:270px}
-.info-column{padding:25px;flex:1}
-.info-column+.info-column{border-left:1px solid #ddd}
-.info-title{color:#3b5064;font-size:20px;margin-bottom:18px}
-.info-text{color:#30343a;font-size:15px;line-height:1.65}
-
-.assets{border:1px solid #ddd;margin-bottom:20px;padding:20px;background:linear-gradient(#fafafa,#f4f4f4)}
-.assets-title{color:#3b5064;font-size:20px;margin-bottom:17px}
-.asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.asset-card{border:1px solid #c8d0d6;background:#fff;padding:18px 10px;text-align:center;min-height:135px}
-.asset-icon{font-size:34px;margin-bottom:8px}
-.asset-name{font-weight:bold;color:#304557;font-size:15px}
-.asset-note{color:#777;font-size:12px;margin-top:6px;line-height:1.45}
-
-.income-box{border:1px solid #c7d0d7;background:#f7f8f9;padding:22px 25px;margin-bottom:20px}
-.income-title{color:#3b5064;font-size:20px;margin-bottom:10px}
-.income-text{font-size:15px;line-height:1.65;color:#30343a}
-
-.footer{background:linear-gradient(#4c6173,#304657);color:#fff;text-align:center;padding:20px 15px;min-height:93px;border-top:1px solid #263947}
-.footer-links{margin-bottom:20px}
-.footer-links a{color:#dce4ea;font-size:13px;margin:0 7px}
-.footer-links a:hover{color:#fff}
-.copyright{font-size:14px}
-
-@media(max-width:1000px){
-.header{padding-left:25px}.logo{font-size:40px}.tagline{font-size:18px}.header-contact{right:20px}.header-contact .place{font-size:17px}.header-contact .hours{font-size:14px}
-.navbar a{min-width:auto;flex:1;padding:15px 10px;font-size:13px}
-.content{flex-direction:column}.sidebar{width:100%}.property-list{display:grid;grid-template-columns:repeat(2,1fr)}
-.property-list li{border-right:1px solid #ddd}
-.hero{min-height:420px}.hero-text{width:65%}.building-art{opacity:.55}
-.asset-grid{grid-template-columns:repeat(2,1fr)}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-@media(max-width:700px){
-body{font-size:13px}.page{width:100%;margin:0;border:none}
-.header{min-height:145px;text-align:center;padding:18px 10px}.logo{font-size:34px}.tagline{font-size:17px}
-.header-contact{position:static;text-align:center;margin-top:12px}.header-contact .place{font-size:16px}.header-contact .hours{font-size:13px}
-.navbar{height:auto;display:grid;grid-template-columns:repeat(2,1fr)}.navbar a{min-width:0;border-bottom:1px solid rgba(255,255,255,.2);padding:12px 5px}
-.content{padding:15px 12px}.property-list{grid-template-columns:1fr}
-.hero{min-height:505px;padding:25px}.hero-text{width:100%;position:relative;z-index:5}.hero-title{font-size:28px}.hero-description{font-size:16px}
-.building-art{right:-90px;opacity:.25}.info-panel{display:block}.info-column+.info-column{border-left:none;border-top:1px solid #ddd}
-.asset-grid{grid-template-columns:repeat(2,1fr)}
-.footer-links a{display:inline-block;margin:4px 3px}
+
+html {
+    scroll-behavior: smooth;
 }
+
+body {
+    background: #e9edf2;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    font-size: 14px;
+}
+
+a {
+    color: #234d88;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   MAIN PAGE
+========================================================= */
+
+.page {
+    width: 98%;
+    max-width: 1320px;
+    margin: 4px auto;
+    background: #fff;
+    border: 1px solid #aeb5bd;
+    box-shadow: 0 0 7px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header {
+    min-height: 130px;
+    background: linear-gradient(#ffffff, #fafafa);
+    border-bottom: 1px solid #bfc5cc;
+    position: relative;
+    padding: 22px 45px;
+}
+
+.logo {
+    color: #244b82;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 48px;
+    line-height: 48px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.tagline {
+    color: #777;
+    font-size: 21px;
+    margin-top: 2px;
+    letter-spacing: 0.2px;
+}
+
+.header-right {
+    position: absolute;
+    right: 35px;
+    top: 30px;
+    text-align: right;
+}
+
+.header-right .title {
+    color: #244b82;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-right .sub {
+    color: #555;
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.navbar {
+    height: 49px;
+    background: linear-gradient(#456da4, #2e5287);
+    border-top: 1px solid #6d89ae;
+    border-bottom: 1px solid #1c3d69;
+    display: flex;
+}
+
+.navbar a {
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 28px;
+    min-width: 145px;
+    border-right: 1px solid rgba(255,255,255,0.22);
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+}
+
+.navbar a:hover,
+.navbar a.active {
+    background: #193b6d;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content {
+    display: flex;
+    padding: 28px 20px 20px;
+    gap: 22px;
+}
+
+.sidebar {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.main {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.side-box {
+    border: 1px solid #aebbd0;
+    margin-bottom: 20px;
+    background: #fff;
+}
+
+.side-title {
+    background: linear-gradient(#315b94, #234a80);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 15px;
+}
+
+.interest-list {
+    list-style: none;
+}
+
+.interest-list li {
+    border-bottom: 1px solid #d5d5d5;
+    padding: 8px 13px;
+    background: linear-gradient(to right, #fff, #fafafa);
+}
+
+.interest-list li:last-child {
+    border-bottom: none;
+}
+
+.interest-list li a {
+    color: #27313d;
+    font-size: 14px;
+}
+
+.interest-list li a:before {
+    content: "›";
+    color: #2c5288;
+    font-weight: bold;
+    font-size: 19px;
+    margin-right: 9px;
+}
+
+.interest-list li:hover {
+    background: #edf3fa;
+}
+
+
+/* =========================================================
+   BUSINESS PHILOSOPHY
+========================================================= */
+
+.philosophy-title {
+    background: linear-gradient(#dce8f8, #c7d7ed);
+    color: #1f477e;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 14px;
+}
+
+.philosophy-list {
+    list-style: none;
+    padding: 10px 14px;
+}
+
+.philosophy-list li {
+    margin: 9px 0;
+    font-size: 14px;
+}
+
+.philosophy-list li:before {
+    content: "✓";
+    color: #555;
+    font-weight: bold;
+    margin-right: 9px;
+}
+
+
+/* =========================================================
+   COMPANY BOX
+========================================================= */
+
+.company-box {
+    border: 1px solid #adb9cb;
+    background: #f7f9fc;
+}
+
+.company-title {
+    background: linear-gradient(#dce8f8, #c6d6ed);
+    color: #234b82;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 14px;
+}
+
+.company-content {
+    padding: 15px;
+}
+
+.company-row {
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.company-label {
+    display: block;
+    color: #666;
+    font-size: 12px;
+    margin-bottom: 2px;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    min-height: 350px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 25px 45px;
+    background:
+        linear-gradient(
+            to right,
+            #ffffff 0%,
+            #ffffff 60%,
+            #f4f6f9 100%
+        );
+}
+
+.hero-text {
+    width: 60%;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 1.25;
+    color: #111;
+    margin-bottom: 22px;
+}
+
+.hero-title span {
+    color: #23518d;
+}
+
+.hero-description {
+    font-size: 18px;
+    line-height: 1.65;
+    color: #30343a;
+    max-width: 600px;
+}
+
+
+/* =========================================================
+   HERO BUSINESS GRAPHIC
+========================================================= */
+
+.business-graphic {
+    position: absolute;
+    right: 35px;
+    bottom: 25px;
+    width: 390px;
+    height: 280px;
+}
+
+.graphic-shadow {
+    position: absolute;
+    bottom: 25px;
+    right: 30px;
+    width: 310px;
+    height: 40px;
+    background: rgba(0,0,0,0.12);
+    border-radius: 50%;
+    filter: blur(9px);
+}
+
+
+/* Building */
+
+.graphic-building {
+    position: absolute;
+    right: 40px;
+    bottom: 50px;
+    width: 225px;
+    height: 170px;
+    background: linear-gradient(
+        90deg,
+        #dce2e8,
+        #f8fafc
+    );
+    border: 3px solid #777;
+    box-shadow: 5px 7px 8px rgba(0,0,0,0.15);
+}
+
+.graphic-roof {
+    position: absolute;
+    top: -24px;
+    left: -3px;
+    width: 225px;
+    height: 24px;
+    background: #4d5967;
+    border: 2px solid #555;
+}
+
+
+/* Windows */
+
+.g-window {
+    position: absolute;
+    width: 38px;
+    height: 43px;
+    background: #c7dce8;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #888;
+}
+
+.g-window:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    border-top: 2px solid #888;
+}
+
+.g-window.one {
+    left: 20px;
+    top: 28px;
+}
+
+.g-window.two {
+    left: 80px;
+    top: 28px;
+}
+
+.g-window.three {
+    right: 20px;
+    top: 28px;
+}
+
+.g-window.four {
+    left: 20px;
+    top: 92px;
+}
+
+.g-window.five {
+    left: 80px;
+    top: 92px;
+}
+
+.g-window.six {
+    right: 20px;
+    top: 92px;
+}
+
+
+/* Document */
+
+.document {
+    position: absolute;
+    left: 15px;
+    bottom: 38px;
+    width: 125px;
+    height: 155px;
+    background: #fff;
+    border: 2px solid #999;
+    transform: rotate(-9deg);
+    box-shadow: 4px 5px 7px rgba(0,0,0,0.18);
+}
+
+.document:before {
+    content: "PECOS";
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    color: #294f88;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.document:after {
+    content: "BUSINESS";
+    position: absolute;
+    top: 48px;
+    left: 16px;
+    color: #777;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+
+/* =========================================================
+   INTRODUCTION
+========================================================= */
+
+.intro {
+    border: 1px solid #d1d1d1;
+    margin: 20px 0;
+    padding: 24px;
+    background: linear-gradient(#fafafa, #f5f5f5);
+}
+
+.intro h2 {
+    color: #173e73;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.intro p {
+    color: #30343a;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   BUSINESS INTERESTS
+========================================================= */
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.interest-card {
+    border: 1px solid #c6ced8;
+    background: #fff;
+    min-height: 160px;
+}
+
+.interest-card-title {
+    background: linear-gradient(#e4edf8, #d0deef);
+    color: #214a81;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 10px 14px;
+    border-bottom: 1px solid #bdc8d5;
+}
+
+.interest-card-content {
+    padding: 15px;
+}
+
+.interest-card-content p {
+    color: #34383d;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   COMPANY INFORMATION
+========================================================= */
+
+.info-panel {
+    margin: 0 0 20px;
+    border: 1px solid #d1d1d1;
+    display: flex;
+    min-height: 270px;
+}
+
+.info-column {
+    padding: 25px;
+    flex: 1;
+}
+
+.info-column + .info-column {
+    border-left: 1px solid #ddd;
+}
+
+.info-title {
+    color: #173e73;
+    font-size: 20px;
+    margin-bottom: 18px;
+}
+
+.info-text {
+    color: #30343a;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   BUSINESS MODEL
+========================================================= */
+
+.business-model {
+    border: 1px solid #d1d1d1;
+    background: #fafafa;
+    padding: 23px;
+    margin-bottom: 20px;
+}
+
+.business-model h2 {
+    color: #173e73;
+    font-size: 21px;
+    margin-bottom: 13px;
+}
+
+.business-model p {
+    color: #30343a;
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+
+/* =========================================================
+   PORTFOLIO
+========================================================= */
+
+.portfolio {
+    border: 1px solid #ddd;
+    background: linear-gradient(#fafafa, #f4f4f4);
+    padding: 18px 20px 20px;
+    margin-bottom: 20px;
+}
+
+.portfolio-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 18px;
+}
+
+.portfolio-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.portfolio-item {
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    border: 1px solid #c4c4c4;
+    padding: 9px 13px;
+    background: #eee;
+}
+
+
+/* =========================================================
+   CONTACT / COMPANY DETAILS
+========================================================= */
+
+.details {
+    border: 1px solid #c4cbd4;
+    background: #f6f8fb;
+    padding: 23px;
+    margin-bottom: 20px;
+}
+
+.details h2 {
+    color: #173e73;
+    font-size: 21px;
+    margin-bottom: 12px;
+}
+
+.details p {
+    color: #333;
+    line-height: 1.6;
+}
+
+.detail-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.detail-item {
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer {
+    background: linear-gradient(#294f88, #1d3e70);
+    color: white;
+    text-align: center;
+    padding: 20px 15px;
+    min-height: 125px;
+    border-top: 1px solid #17365e;
+}
+
+.footer-links {
+    margin-bottom: 18px;
+}
+
+.footer-links a {
+    color: #d9e4f4;
+    font-size: 13px;
+    margin: 0 7px;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.footer-note {
+    max-width: 950px;
+    margin: 0 auto 13px;
+    color: #dce5f2;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.copyright {
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .header {
+        padding-left: 25px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+
+    .tagline {
+        font-size: 18px;
+    }
+
+    .header-right {
+        right: 20px;
+    }
+
+    .navbar a {
+        min-width: auto;
+        flex: 1;
+        padding: 15px 8px;
+        font-size: 12px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .interest-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .interest-list li {
+        border-right: 1px solid #ddd;
+    }
+
+    .hero {
+        min-height: 420px;
+    }
+
+    .hero-text {
+        width: 65%;
+    }
+
+    .business-graphic {
+        opacity: 0.55;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    body {
+        font-size: 13px;
+    }
+
+    .page {
+        width: 100%;
+        margin: 0;
+        border: none;
+    }
+
+    .header {
+        min-height: 150px;
+        text-align: center;
+        padding: 18px 10px;
+    }
+
+    .logo {
+        font-size: 34px;
+    }
+
+    .tagline {
+        font-size: 16px;
+    }
+
+    .header-right {
+        position: static;
+        text-align: center;
+        margin-top: 12px;
+    }
+
+    .header-right .title {
+        font-size: 15px;
+    }
+
+    .header-right .sub {
+        font-size: 12px;
+    }
+
+    .navbar {
+        height: auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar a {
+        min-width: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 12px 5px;
+    }
+
+    .content {
+        padding: 15px 12px;
+    }
+
+    .interest-list {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        min-height: 470px;
+        padding: 25px;
+    }
+
+    .hero-text {
+        width: 100%;
+        position: relative;
+        z-index: 5;
+    }
+
+    .hero-title {
+        font-size: 28px;
+    }
+
+    .hero-description {
+        font-size: 16px;
+    }
+
+    .business-graphic {
+        right: -100px;
+        opacity: 0.18;
+    }
+
+    .interests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-panel {
+        display: block;
+    }
+
+    .info-column + .info-column {
+        border-left: none;
+        border-top: 1px solid #ddd;
+    }
+
+    .portfolio-list {
+        justify-content: center;
+    }
+
+    .footer-links a {
+        display: inline-block;
+        margin: 4px 3px;
+    }
+}
+
 </style>
 </head>
 
+
 <body>
+
 <div class="page">
 
+
+<!-- =====================================================
+     HEADER
+====================================================== -->
+
 <header class="header">
-    <div class="logo">PECOS</div>
-    <div class="tagline">Properties • Rentals • Income</div>
-    <div class="header-contact">
-        <div class="place">Real Estate Assets</div>
-        <div class="hours">Long-Term Rental • Appreciation</div>
+
+    <div class="logo">
+        Pecos
     </div>
+
+    <div class="tagline">
+        Finance • Investments • Business Interests
+    </div>
+
+    <div class="header-right">
+
+        <div class="title">
+            Independent Business Enterprise
+        </div>
+
+        <div class="sub">
+            Established 2018
+        </div>
+
+    </div>
+
 </header>
 
+
+
+<!-- =====================================================
+     NAVIGATION
+====================================================== -->
+
 <nav class="navbar">
-    <a href="#home" class="active">Home</a>
-    <a href="#about">About Us</a>
-    <a href="#properties">Properties</a>
-    <a href="#income">Rental Income</a>
-    <a href="#approach">Our Approach</a>
-    <a href="#contact">Contact Us</a>
+
+    <a href="#home" class="active">
+        Home
+    </a>
+
+    <a href="#about">
+        About Us
+    </a>
+
+    <a href="#interests">
+        Business Interests
+    </a>
+
+    <a href="#approach">
+        Our Approach
+    </a>
+
+    <a href="#portfolio">
+        Portfolio
+    </a>
+
+    <a href="#company">
+        Company
+    </a>
+
 </nav>
+
+
+
+<!-- =====================================================
+     CONTENT
+====================================================== -->
 
 <div class="content">
 
+
+<!-- =====================================================
+     SIDEBAR
+====================================================== -->
+
 <aside class="sidebar">
-    <div class="side-box">
-        <div class="side-title">Property Portfolio</div>
-        <ul class="property-list">
-            <li><a href="#commercial">Commercial</a></li>
-            <li><a href="#office">Office Premises</a></li>
-            <li><a href="#retail">Retail Spaces</a></li>
-            <li><a href="#industrial">Industrial / Warehouse</a></li>
-            <li><a href="#residential">Residential</a></li>
-        </ul>
-    </div>
+
+
+    <!-- BUSINESS INTERESTS -->
 
     <div class="side-box">
-        <div class="why-title">Our Property Model</div>
-        <ul class="why-list">
-            <li>Income-Generating Assets</li>
-            <li>Long-Term Contracts</li>
-            <li>Reliable Tenants</li>
-            <li>Capital Appreciation</li>
-        </ul>
-    </div>
 
-    <div class="contact-box" id="contact">
-        <div class="contact-title">Property Enquiries</div>
-        <div class="contact-content">
-            <div class="contact-row"><span class="contact-icon">⌖</span>Properties available for selected tenants</div>
-            <div class="contact-row"><span class="contact-icon">✉</span>pecos.origin@gmail.com</div>
-            <a href="mailto:pecos.origin@gmail.com" class="callback">Enquire About a Property</a>
+        <div class="side-title">
+            Business Interests
         </div>
+
+        <ul class="interest-list">
+
+            <li>
+                <a href="#finance">
+                    Finance & Credit
+                </a>
+            </li>
+
+            <li>
+                <a href="#investment">
+                    Investment Management
+                </a>
+            </li>
+
+            <li>
+                <a href="#recovery">
+                    Debt Recovery
+                </a>
+            </li>
+
+            <li>
+                <a href="#realestate">
+                    Real Estate
+                </a>
+            </li>
+
+            <li>
+                <a href="#forex">
+                    Forex
+                </a>
+            </li>
+
+            <li>
+                <a href="#facility">
+                    Facility Management
+                </a>
+            </li>
+
+            <li>
+                <a href="#defence">
+                    Defence Services
+                </a>
+            </li>
+
+            <li>
+                <a href="#club">
+                    Hospitality & Leisure
+                </a>
+            </li>
+
+        </ul>
+
     </div>
+
+
+
+    <!-- BUSINESS PHILOSOPHY -->
+
+    <div class="side-box">
+
+        <div class="philosophy-title">
+            Our Philosophy
+        </div>
+
+        <ul class="philosophy-list">
+
+            <li>
+                Long-Term Thinking
+            </li>
+
+            <li>
+                Prudent Decisions
+            </li>
+
+            <li>
+                Diversified Interests
+            </li>
+
+            <li>
+                Sustainable Growth
+            </li>
+
+            <li>
+                Professional Conduct
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <!-- COMPANY -->
+
+    <div class="company-box">
+
+        <div class="company-title">
+            Pecos
+        </div>
+
+        <div class="company-content">
+
+            <div class="company-row">
+
+                <span class="company-label">
+                    Business
+                </span>
+
+                Finance & Business Interests
+
+            </div>
+
+
+            <div class="company-row">
+
+                <span class="company-label">
+                    Location
+                </span>
+
+                Maharashtra, India
+
+            </div>
+
+
+            <div class="company-row">
+
+                <span class="company-label">
+                    Email
+                </span>
+
+                pecos.origin@gmail.com
+
+            </div>
+
+        </div>
+
+    </div>
+
 </aside>
+
+
+
+<!-- =====================================================
+     MAIN
+====================================================== -->
 
 <main class="main" id="home">
 
+
+<!-- =====================================================
+     HERO
+====================================================== -->
+
 <section class="hero">
+
     <div class="hero-text">
+
         <h1 class="hero-title">
-            Real Estate Built for<br>
-            <span>Long-Term Income &amp; Growth</span>
+
+            Building Businesses Across
+            <br>
+
+            <span>Finance & Investments</span>
+
         </h1>
+
+
         <p class="hero-description">
-            PECOS owns and manages income-generating properties that are
-            leased to businesses and individuals under structured,
-            long-term rental arrangements. Our focus is recurring rental
-            income, asset ownership and long-term appreciation.
+
+            Pecos is an independent business enterprise
+            with interests across finance, credit,
+            investments, debt recovery, real estate and
+            other complementary business activities.
+
         </p>
-        <a href="#properties" class="hero-button">View Our Property Portfolio</a>
+
     </div>
 
-    <div class="building-art" aria-hidden="true">
-        <div class="skyline">
-            <div class="building a">
-                <div class="window a1"></div><div class="window a2"></div>
-                <div class="window a3"></div><div class="window a4"></div>
-            </div>
-            <div class="building b">
-                <div class="window b1"></div><div class="window b2"></div>
-                <div class="window b3"></div><div class="window b4"></div>
-                <div class="window b5"></div><div class="window b6"></div>
-            </div>
-            <div class="building c">
-                <div class="window c1"></div><div class="window c2"></div>
-                <div class="window c3"></div><div class="window c4"></div>
-                <div class="window c5"></div><div class="window c6"></div>
-            </div>
-            <div class="roof"></div>
-            <div class="tree"></div>
+
+    <!-- BUSINESS GRAPHIC -->
+
+    <div class="business-graphic">
+
+        <div class="graphic-shadow"></div>
+
+        <div class="graphic-building">
+
+            <div class="graphic-roof"></div>
+
+            <div class="g-window one"></div>
+            <div class="g-window two"></div>
+            <div class="g-window three"></div>
+
+            <div class="g-window four"></div>
+            <div class="g-window five"></div>
+            <div class="g-window six"></div>
+
         </div>
+
+        <div class="document"></div>
+
     </div>
+
 </section>
 
-<section class="info-panel" id="about">
-    <div class="info-column">
-        <h2 class="info-title">About PECOS Properties</h2>
-        <p class="info-text">
-            PECOS Properties is focused on building a portfolio of
-            real estate assets that generate recurring rental income.
-            We acquire and hold suitable properties and lease them to
-            businesses and individuals on yearly or other agreed
-            long-term contracts.
-        </p>
-    </div>
 
-    <div class="info-column">
-        <h2 class="info-title">Our Objective</h2>
-        <p class="info-text">
-            Our objective is simple: own productive real estate, keep
-            suitable properties occupied, collect dependable rent and
-            allow the underlying assets to appreciate over time.
-        </p>
-    </div>
 
-    <div class="info-column">
-        <h2 class="info-title">Long-Term Ownership</h2>
-        <p class="info-text">
-            We view property primarily as a long-term asset rather than
-            a short-term trading opportunity. Rental cash flow and
-            potential capital appreciation form the foundation of the
-            portfolio.
-        </p>
-    </div>
-</section>
+<!-- =====================================================
+     INTRODUCTION
+====================================================== -->
 
-<section class="assets" id="properties">
-    <h2 class="assets-title">Our Property Portfolio</h2>
-    <div class="asset-grid">
-        <div class="asset-card" id="commercial">
-            <div class="asset-icon">🏢</div>
-            <div class="asset-name">Commercial</div>
-            <div class="asset-note">Properties leased to businesses and commercial occupants.</div>
-        </div>
-        <div class="asset-card" id="office">
-            <div class="asset-icon">▦</div>
-            <div class="asset-name">Office Premises</div>
-            <div class="asset-note">Workspaces held for recurring long-term rental income.</div>
-        </div>
-        <div class="asset-card" id="retail">
-            <div class="asset-icon">▣</div>
-            <div class="asset-name">Retail Spaces</div>
-            <div class="asset-note">Suitable properties positioned for established tenants.</div>
-        </div>
-        <div class="asset-card" id="industrial">
-            <div class="asset-icon">▤</div>
-            <div class="asset-name">Industrial / Warehouse</div>
-            <div class="asset-note">Functional assets serving storage, trading and business needs.</div>
-        </div>
-    </div>
-</section>
+<section class="intro">
 
-<section class="income-box" id="income">
-    <h2 class="income-title">Rental Income</h2>
-    <p class="income-text">
-        Properties are generally offered under yearly or other mutually
-        agreed contracts. Rental receipts provide recurring cash flow
-        while the property remains part of the long-term asset portfolio.
-        Tenant selection, documentation, maintenance and contractual
-        terms are considered as part of responsible property management.
+    <h2>
+        About Pecos
+    </h2>
+
+    <p>
+
+        Pecos is a diversified business enterprise
+        focused primarily on finance, credit and
+        investment-related activities, with additional
+        interests in property, recovery and other
+        complementary sectors.
+
+        <br><br>
+
+        This website provides an overview of the
+        business interests and activities associated
+        with Pecos. It is intended as a corporate
+        information website and does not constitute
+        an offer or solicitation for services.
+
     </p>
+
 </section>
+
+
+
+<!-- =====================================================
+     BUSINESS INTERESTS
+====================================================== -->
+
+<section id="interests">
+
+    <div class="interests-grid">
+
+
+        <!-- FINANCE -->
+
+        <div class="interest-card" id="finance">
+
+            <div class="interest-card-title">
+                Finance & Credit
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Pecos has interests in finance and
+                    credit-related activities, including
+                    lending, credit facilitation and
+                    related financial business activities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- INVESTMENTS -->
+
+        <div class="interest-card" id="investment">
+
+            <div class="interest-card-title">
+                Investment Management
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Investment activities covering
+                    securities, mutual funds and other
+                    permitted investment opportunities,
+                    with a focus on long-term capital
+                    allocation.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RECOVERY -->
+
+        <div class="interest-card" id="recovery">
+
+            <div class="interest-card-title">
+                Debt Recovery
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Interest in receivables management,
+                    payment follow-up and debt recovery
+                    activities undertaken in accordance
+                    with applicable laws and regulations.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REAL ESTATE -->
+
+        <div class="interest-card" id="realestate">
+
+            <div class="interest-card-title">
+                Real Estate
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Property-related investments and
+                    activities including acquisition,
+                    leasing, brokerage and development
+                    of income-generating properties.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FOREX -->
+
+        <div class="interest-card" id="forex">
+
+            <div class="interest-card-title">
+                Forex
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Interest in foreign-exchange related
+                    business activities and opportunities,
+                    undertaken through appropriate
+                    authorised arrangements where required.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FACILITY -->
+
+        <div class="interest-card" id="facility">
+
+            <div class="interest-card-title">
+                Facility Management
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Business interests involving the
+                    management and maintenance of
+                    commercial and other properties and
+                    their associated facilities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DEFENCE -->
+
+        <div class="interest-card" id="defence">
+
+            <div class="interest-card-title">
+                Defence Services
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Interest in defence-sector supply,
+                    support, logistics and related
+                    business opportunities, subject to
+                    applicable government requirements.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CLUB -->
+
+        <div class="interest-card" id="club">
+
+            <div class="interest-card-title">
+                Hospitality & Leisure
+            </div>
+
+            <div class="interest-card-content">
+
+                <p>
+
+                    Hospitality and leisure interests
+                    including Club Pecos and related
+                    recreational and entertainment
+                    activities.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     OUR APPROACH
+====================================================== -->
 
 <section class="info-panel" id="approach">
-    <div class="info-column" id="residential">
-        <h2 class="info-title">For Businesses</h2>
-        <p class="info-text">
-            We can provide suitable commercial premises for businesses
-            looking for stable locations under structured rental
-            arrangements, subject to availability and agreed terms.
-        </p>
-    </div>
+
 
     <div class="info-column">
-        <h2 class="info-title">For Individuals</h2>
+
+        <h2 class="info-title">
+            Our Approach
+        </h2>
+
         <p class="info-text">
-            Selected residential and other suitable properties may be
-            leased to individuals under documented rental arrangements.
+
+            Pecos focuses on building businesses with
+            long-term potential rather than pursuing
+            short-term opportunities.
+
+            <br><br>
+
+            We look for businesses where disciplined
+            capital allocation, practical operations and
+            long-term relationships can create sustainable
+            value.
+
         </p>
+
     </div>
 
+
+
     <div class="info-column">
-        <h2 class="info-title">Our Approach</h2>
+
+        <h2 class="info-title">
+            Diversification
+        </h2>
+
         <p class="info-text">
-            Acquire carefully. Lease responsibly. Maintain the asset.
-            Collect recurring income. Hold for the long term.
+
+            Our interests span several sectors. Finance
+            and investments form the core of our business
+            interests, while property, recovery,
+            facilities and other activities provide
+            additional diversification.
+
         </p>
+
     </div>
+
+
+
+    <div class="info-column">
+
+        <h2 class="info-title">
+            Long-Term Vision
+        </h2>
+
+        <p class="info-text">
+
+            The objective is to gradually develop a
+            diversified portfolio of businesses and
+            assets capable of generating sustainable
+            income and long-term capital value.
+
+        </p>
+
+    </div>
+
 </section>
 
+
+
+<!-- =====================================================
+     BUSINESS MODEL
+====================================================== -->
+
+<section class="business-model">
+
+    <h2>
+        Business Model
+    </h2>
+
+    <p>
+
+        Pecos combines operating businesses with
+        investment and asset-based interests. Depending
+        on the activity, the business may operate
+        independently, invest directly, work with
+        business partners or participate through
+        appropriately authorised entities.
+
+        <br><br>
+
+        The overall objective is diversification of
+        income, disciplined deployment of capital and
+        gradual development of long-term business assets.
+
+    </p>
+
+</section>
+
+
+
+<!-- =====================================================
+     PORTFOLIO
+====================================================== -->
+
+<section class="portfolio" id="portfolio">
+
+    <div class="portfolio-title">
+        PECOS BUSINESS PORTFOLIO
+    </div>
+
+    <div class="portfolio-list">
+
+        <div class="portfolio-item">
+            Finance
+        </div>
+
+        <div class="portfolio-item">
+            Investments
+        </div>
+
+        <div class="portfolio-item">
+            Debt Recovery
+        </div>
+
+        <div class="portfolio-item">
+            Real Estate
+        </div>
+
+        <div class="portfolio-item">
+            Forex
+        </div>
+
+        <div class="portfolio-item">
+            Facility Management
+        </div>
+
+        <div class="portfolio-item">
+            Defence
+        </div>
+
+        <div class="portfolio-item">
+            Hospitality
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     COMPANY
+====================================================== -->
+
+<section class="details" id="company">
+
+    <h2>
+        Company Information
+    </h2>
+
+    <p>
+
+        Pecos maintains a diversified set of business
+        interests with finance and investments forming
+        the principal areas of focus.
+
+    </p>
+
+
+    <div class="detail-grid">
+
+        <div class="detail-item">
+
+            <strong>
+                Business Name:
+            </strong>
+
+            Pecos
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Primary Areas:
+            </strong>
+
+            Finance & Investments
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Location:
+            </strong>
+
+            Maharashtra, India
+
+        </div>
+
+
+        <div class="detail-item">
+
+            <strong>
+                Email:
+            </strong>
+
+            pecos.origin@gmail.com
+
+        </div>
+
+    </div>
+
+</section>
+
+
 </main>
+
 </div>
+
+
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
 
 <footer class="footer">
+
     <div class="footer-links">
-        <a href="#home">Home</a> |
-        <a href="#about">About Us</a> |
-        <a href="#properties">Properties</a> |
-        <a href="#income">Rental Income</a> |
-        <a href="#approach">Our Approach</a> |
-        <a href="#contact">Contact Us</a> |
-        <a href="#privacy">Privacy Policy</a> |
-        <a href="#terms">Terms &amp; Conditions</a>
+
+        <a href="#home">
+            Home
+        </a>
+
+        |
+
+        <a href="#about">
+            About Us
+        </a>
+
+        |
+
+        <a href="#interests">
+            Business Interests
+        </a>
+
+        |
+
+        <a href="#approach">
+            Our Approach
+        </a>
+
+        |
+
+        <a href="#portfolio">
+            Portfolio
+        </a>
+
+        |
+
+        <a href="#company">
+            Company
+        </a>
+
+        |
+
+        <a href="https://www.pecos.in/Club.html">
+            Club Pecos
+        </a>
+
     </div>
-    <div class="copyright">© 2005 - 2026 PECOS. All Rights Reserved.</div>
+
+
+    <div class="footer-note">
+
+        This website is provided for general corporate
+        information and to present the business interests
+        of Pecos. It is not intended to constitute an
+        offer, invitation or solicitation for financial,
+        investment, foreign-exchange, recovery, defence,
+        real-estate or other regulated services.
+
+        <br><br>
+
+        Regulated activities, where applicable, are
+        undertaken only in accordance with the relevant
+        laws, registrations, licences, permissions and
+        authorised arrangements.
+
+    </div>
+
+
+    <div class="copyright">
+
+        © 2018 - 2026 PECOS. All Rights Reserved.
+
+    </div>
+
 </footer>
 
+
 </div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+document.querySelectorAll('.navbar a').forEach(function(link) {
+
+    link.addEventListener('click', function() {
+
+        document
+            .querySelectorAll('.navbar a')
+            .forEach(function(item) {
+                item.classList.remove('active');
+            });
+
+        this.classList.add('active');
+
+    });
+
+});
+
+
+/* Scroll-based navigation highlighting */
+
+window.addEventListener('scroll', function() {
+
+    const sections =
+        document.querySelectorAll(
+            'main section[id]'
+        );
+
+    let current = 'home';
+
+    sections.forEach(function(section) {
+
+        const sectionTop =
+            section.offsetTop - 160;
+
+        if (window.scrollY >= sectionTop) {
+
+            current =
+                section.getAttribute('id');
+
+        }
+
+    });
+
+    document
+        .querySelectorAll('.navbar a')
+        .forEach(function(link) {
+
+            link.classList.remove('active');
+
+            if (
+                link.getAttribute('href') ===
+                '#' + current
+            ) {
+
+                link.classList.add('active');
+
+            }
+
+        });
+
+});
+
+</script>
+
 </body>
 </html>
+```
