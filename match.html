@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TrueHearts — Simple Dating</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#eeeae2;color:#3d3934;font:14px Arial,Helvetica,sans-serif}
+a{color:#24527a;text-decoration:none}
+a:hover{text-decoration:underline}
+.page{width:960px;max-width:calc(100% - 24px);margin:18px auto;background:#fff;border:1px solid #aaa;box-shadow:0 2px 7px #aaa}
+.header{background:linear-gradient(#5e7890,#3e5c75);color:#fff;padding:15px 22px;border-bottom:4px solid #c7a96b}
+.logo{font: bold 30px Georgia,serif;letter-spacing:-1px}
+.tagline{font-size:12px;margin-top:3px;color:#e5edf3}
+.nav{background:#e8e3da;border-bottom:1px solid #bbb;padding:0 14px}
+.nav a{display:inline-block;padding:10px 14px;border-right:1px solid #ccc;color:#333;font-weight:bold;font-size:12px}
+.nav a:first-child{border-left:1px solid #ccc}
+.nav a:hover{background:#d8d1c5;text-decoration:none}
+.content{display:grid;grid-template-columns:650px 250px;gap:18px;padding:18px}
+.hero{background:#f5f1e8;border:1px solid #c8c0b3;padding:20px}
+.hero h1{font:normal 27px Georgia,serif;margin:0 0 8px;color:#4b4a46}
+.hero p{line-height:1.6;margin:6px 0}
+.btn{display:inline-block;border:1px solid #777;background:linear-gradient(#fafafa,#d8d8d8);padding:8px 14px;color:#333;font-weight:bold;border-radius:3px;cursor:pointer}
+.btn.primary{background:linear-gradient(#7895ad,#4b6981);color:white;border-color:#385269}
+.section{margin-top:16px}
+.section h2{font:normal 20px Georgia,serif;margin:0;padding:8px 10px;background:#e9e3d8;border:1px solid #c5bdb0;color:#4b4741}
+.profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.profile{border:1px solid #bbb;background:#fafafa;padding:9px}
+.avatar{height:135px;background:#ddd8cf;display:flex;align-items:center;justify-content:center;color:#888;font:40px Georgia,serif}
+.profile h3{margin:8px 0 3px;font:18px Georgia,serif;color:#31536d}
+.profile p{margin:3px 0;color:#666;font-size:12px;line-height:1.4}
+.sidebox{border:1px solid #bbb;background:#f7f5f0;margin-bottom:14px;padding:12px}
+.sidebox h3{margin:0 -12px 10px;padding:7px 10px;background:#e3ddd3;border-bottom:1px solid #c4bdb3;font:17px Georgia,serif}
+.sidebox label{display:block;font-size:12px;font-weight:bold;margin:8px 0 4px}
+input,select{width:100%;padding:7px;border:1px solid #aaa;background:#fff;font:13px Arial}
+.small{font-size:11px;color:#777;line-height:1.5}
+.notice{background:#fff9dc;border:1px solid #d8c985;padding:10px;font-size:12px;line-height:1.5}
+.footer{border-top:1px solid #bbb;background:#eeeae2;text-align:center;padding:14px;color:#777;font-size:11px}
+.modal{display:none;position:fixed;inset:0;background:#0008;align-items:center;justify-content:center;padding:15px}
+.modal-box{width:460px;max-width:100%;background:#fff;border:1px solid #777;box-shadow:0 4px 20px #333;padding:18px}
+.modal-box h2{font:22px Georgia,serif;margin:0 0 12px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.formgrid .full{grid-column:1/-1}
+.close{float:right;font-size:20px;color:#777;cursor:pointer}
+@media(max-width:760px){.content{grid-template-columns:1fr}.profiles{grid-template-columns:1fr 1fr}.page{width:auto}}
+@media(max-width:480px){.profiles{grid-template-columns:1fr}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div class="logo">TrueHearts</div>
+    <div class="tagline">Simple introductions. Genuine conversations. Lasting relationships.</div>
+  </header>
+
+  <nav class="nav">
+    <a href="#">Home</a><a href="#browse">Browse Profiles</a><a href="#how">How It Works</a><a href="#safety">Safety</a><a href="#" onclick="openModal();return false">Create Account</a>
+  </nav>
+
+  <main class="content">
+    <section>
+      <div class="hero">
+        <h1>Meet someone who is looking for something real.</h1>
+        <p>TrueHearts is a simple, respectful dating community designed for people who value honest profiles, meaningful conversations and genuine relationships.</p>
+        <p><strong>No complicated feeds. No endless noise. Just people getting to know people.</strong></p>
+        <br>
+        <a class="btn primary" href="#" onclick="openModal();return false">Create Your Free Profile</a>
+        <a class="btn" href="#browse">Browse Profiles</a>
+      </div>
+
+      <div class="section" id="browse">
+        <h2>Featured Members</h2>
+        <div class="profiles">
+          <article class="profile"><div class="avatar">A</div><h3>Aditya, 29</h3><p>Pune, Maharashtra</p><p>Software professional · Cricket · Travel</p><p><strong>Looking for:</strong> A serious relationship</p></article>
+          <article class="profile"><div class="avatar">N</div><h3>Neha, 27</h3><p>Nagpur, Maharashtra</p><p>Teacher · Books · Music · Family</p><p><strong>Looking for:</strong> Friendship &amp; marriage</p></article>
+          <article class="profile"><div class="avatar">R</div><h3>Rahul, 31</h3><p>Mumbai, Maharashtra</p><p>Business owner · Food · Weekend trips</p><p><strong>Looking for:</strong> A meaningful relationship</p></article>
+          <article class="profile"><div class="avatar">P</div><h3>Priya, 28</h3><p>Nashik, Maharashtra</p><p>Designer · Art · Cooking · Nature</p><p><strong>Looking for:</strong> Someone genuine</p></article>
+          <article class="profile"><div class="avatar">K</div><h3>Karan, 30</h3><p>Thane, Maharashtra</p><p>Finance · Fitness · Movies</p><p><strong>Looking for:</strong> Long-term partner</p></article>
+          <article class="profile"><div class="avatar">S</div><h3>Sneha, 26</h3><p>Aurangabad, Maharashtra</p><p>Marketing · Dance · Family time</p><p><strong>Looking for:</strong> A serious relationship</p></article>
+        </div>
+      </div>
+
+      <div class="section" id="how">
+        <h2>How TrueHearts Works</h2>
+        <div style="padding:12px;border:1px solid #ccc;line-height:1.7">
+          <strong>1. Create your profile</strong> — Tell people about yourself, your interests and what you are looking for.<br>
+          <strong>2. Browse thoughtfully</strong> — Search by age, location and relationship goals.<br>
+          <strong>3. Send a message</strong> — Start with a polite introduction and see where the conversation goes.
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="sidebox">
+        <h3>Member Login</h3>
+        <label>Email</label><input type="email" placeholder="your@email.com">
+        <label>Password</label><input type="password" placeholder="Password">
+        <br><br><button class="btn primary" style="width:100%" onclick="alert('Demo only — no backend is connected.')">Sign In</button>
+        <p class="small"><a href="#">Forgot password?</a></p>
+      </div>
+
+      <div class="sidebox">
+        <h3>Find People</h3>
+        <label>I am</label><select><option>Looking for a woman</option><option>Looking for a man</option><option>Looking for anyone</option></select>
+        <label>Age</label><div style="display:flex;gap:6px"><select><option>21</option><option>25</option><option>30</option></select><span style="padding-top:7px">to</span><select><option>35</option><option>40</option><option>50</option></select></div>
+        <label>Location</label><input placeholder="City or state">
+        <br><br><button class="btn" style="width:100%" onclick="alert('Demo search — backend not connected.')">Search Profiles</button>
+      </div>
+
+      <div class="sidebox" id="safety">
+        <h3>Your Privacy Matters</h3>
+        <div class="notice"><strong>Safety first.</strong><br>Never share passwords, financial information or your home address with someone you have just met online. Take your time and meet in a public place.</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">
+    © 2026 TrueHearts &nbsp;|&nbsp; About Us &nbsp;|&nbsp; Terms &nbsp;|&nbsp; Privacy &nbsp;|&nbsp; Safety &nbsp;|&nbsp; Contact
+  </footer>
+</div>
+
+<div class="modal" id="signup">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2>Create Your TrueHearts Account</h2>
+    <p class="small">This is a front-end demonstration. Information is not saved.</p>
+    <div class="formgrid">
+      <div><label>First name</label><input placeholder="First name"></div>
+      <div><label>Last name</label><input placeholder="Last name"></div>
+      <div><label>Email</label><input type="email" placeholder="Email address"></div>
+      <div><label>Password</label><input type="password" placeholder="Create password"></div>
+      <div><label>Date of birth</label><input type="date"></div>
+      <div><label>City</label><input placeholder="Your city"></div>
+      <div><label>Gender</label><select><option>Man</option><option>Woman</option><option>Prefer not to say</option></select></div>
+      <div><label>Looking for</label><select><option>Serious relationship</option><option>Marriage</option><option>Friendship</option><option>Dating</option></select></div>
+      <div class="full"><label>About me</label><textarea style="width:100%;height:70px;border:1px solid #aaa;padding:7px;font:13px Arial" placeholder="A few words about yourself..."></textarea></div>
+      <div class="full"><button class="btn primary" style="width:100%" onclick="alert('Account creation is a demo only. No information has been stored.');closeModal()">Create Account</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+function openModal(){document.getElementById('signup').style.display='flex'}
+function closeModal(){document.getElementById('signup').style.display='none'}
+window.onclick=function(e){if(e.target===document.getElementById('signup'))closeModal()}
+</script>
+</body>
+</html>
