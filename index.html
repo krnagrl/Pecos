@@ -1,1 +1,879 @@
-Under Maintainance
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PECOS | Business Group | Akola, Maharashtra</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: #d7d7d7;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #222;
+        font-size: 13px;
+    }
+
+    a {
+        color: #064f8c;
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    .page {
+        width: 960px;
+        margin: 15px auto;
+        background: #ffffff;
+        border: 1px solid #777;
+        box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    }
+
+    /* TOP HEADER */
+
+    .topbar {
+        height: 7px;
+        background: #1e5d87;
+    }
+
+    header {
+        height: 105px;
+        background: linear-gradient(#f8f8f8, #d9e4eb);
+        border-bottom: 1px solid #888;
+        padding: 17px 22px;
+        position: relative;
+    }
+
+    .logo {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: #164f75;
+        text-shadow: 1px 1px #fff;
+    }
+
+    .tagline {
+        margin-top: 2px;
+        font-family: Georgia, serif;
+        font-size: 13px;
+        color: #555;
+    }
+
+    .location {
+        position: absolute;
+        right: 22px;
+        top: 23px;
+        text-align: right;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    .location strong {
+        color: #164f75;
+    }
+
+    /* NAVIGATION */
+
+    nav {
+        height: 34px;
+        background: #234f6e;
+        border-top: 1px solid #396e8e;
+        border-bottom: 1px solid #122f43;
+        padding-left: 10px;
+    }
+
+    nav a {
+        display: inline-block;
+        color: white;
+        padding: 9px 17px;
+        border-right: 1px solid #51728a;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    nav a:hover {
+        background: #3e7194;
+        text-decoration: none;
+    }
+
+    /* NOTICE */
+
+    .notice {
+        background: #f3f3d7;
+        border-bottom: 1px solid #c5c5a4;
+        height: 27px;
+        line-height: 27px;
+        padding: 0 12px;
+        color: #444;
+    }
+
+    .notice span {
+        color: #9a1b1b;
+        font-weight: bold;
+    }
+
+    /* LAYOUT */
+
+    .content {
+        display: flex;
+        padding: 12px;
+        gap: 12px;
+    }
+
+    .left {
+        width: 205px;
+    }
+
+    .middle {
+        width: 500px;
+    }
+
+    .right {
+        width: 205px;
+    }
+
+    /* BOXES */
+
+    .box {
+        border: 1px solid #999;
+        margin-bottom: 12px;
+        background: #fafafa;
+    }
+
+    .box-title {
+        background: linear-gradient(#5b86a2, #315d78);
+        color: white;
+        font-weight: bold;
+        padding: 7px 9px;
+        border-bottom: 1px solid #23485e;
+        font-size: 13px;
+    }
+
+    .box-body {
+        padding: 10px;
+        line-height: 1.55;
+    }
+
+    /* SIDE MENU */
+
+    .side-menu a {
+        display: block;
+        padding: 7px 9px;
+        border-bottom: 1px solid #ddd;
+        background: #f3f3f3;
+        color: #174f73;
+    }
+
+    .side-menu a:hover {
+        background: #e1ebf0;
+        text-decoration: none;
+    }
+
+    /* HERO */
+
+    .hero {
+        border: 1px solid #999;
+        background: linear-gradient(120deg, #edf4f7, #ffffff);
+        padding: 18px;
+        min-height: 210px;
+    }
+
+    .hero h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #174f73;
+        font-size: 29px;
+        margin: 0 0 7px;
+    }
+
+    .hero h2 {
+        font-size: 15px;
+        font-weight: normal;
+        color: #555;
+        margin: 0 0 15px;
+    }
+
+    .hero p {
+        line-height: 1.65;
+        color: #333;
+    }
+
+    .button {
+        display: inline-block;
+        margin-top: 8px;
+        padding: 7px 14px;
+        background: #315f7c;
+        border: 1px solid #183e55;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    .button:hover {
+        text-decoration: none;
+        background: #234b65;
+    }
+
+    /* BUSINESS AREAS */
+
+    .business-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .business {
+        border: 1px solid #aaa;
+        background: #f5f5f5;
+        padding: 10px;
+        min-height: 105px;
+    }
+
+    .business h3 {
+        margin: 0 0 5px;
+        color: #1d5578;
+        font-size: 14px;
+    }
+
+    .business p {
+        margin: 0;
+        line-height: 1.45;
+        color: #555;
+        font-size: 12px;
+    }
+
+    /* SERVICES */
+
+    .service-list {
+        margin: 0;
+        padding-left: 19px;
+        line-height: 1.8;
+    }
+
+    /* STATS */
+
+    .stats {
+        display: flex;
+        border: 1px solid #aaa;
+        margin-top: 12px;
+    }
+
+    .stat {
+        flex: 1;
+        text-align: center;
+        padding: 12px 5px;
+        border-right: 1px solid #ccc;
+        background: #f5f7f8;
+    }
+
+    .stat:last-child {
+        border-right: none;
+    }
+
+    .stat strong {
+        display: block;
+        color: #174f73;
+        font-size: 20px;
+        font-family: Georgia, serif;
+    }
+
+    .stat small {
+        color: #666;
+    }
+
+    /* CONTACT */
+
+    .contact-row {
+        padding: 6px 0;
+        border-bottom: 1px dotted #bbb;
+    }
+
+    .contact-row:last-child {
+        border-bottom: none;
+    }
+
+    .contact-label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+    }
+
+    /* SOCIAL */
+
+    .social a {
+        display: block;
+        padding: 6px 0;
+        border-bottom: 1px dotted #bbb;
+    }
+
+    /* FOOTER */
+
+    footer {
+        border-top: 1px solid #777;
+        background: #e8e8e8;
+        padding: 18px 20px;
+        color: #555;
+    }
+
+    .footer-main {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .footer-logo {
+        font-family: Georgia, serif;
+        color: #174f73;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .copyright {
+        margin-top: 15px;
+        padding-top: 10px;
+        border-top: 1px solid #c4c4c4;
+        text-align: center;
+        font-size: 11px;
+    }
+
+    /* SMALL INTERNET-ERA DETAILS */
+
+    .counter {
+        font-family: "Courier New", monospace;
+        background: #111;
+        color: #00ff66;
+        display: inline-block;
+        padding: 3px 6px;
+        letter-spacing: 1px;
+    }
+
+    .online {
+        color: #177b34;
+        font-weight: bold;
+    }
+
+    .small {
+        font-size: 11px;
+        color: #777;
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 980px) {
+        .page {
+            width: 96%;
+        }
+
+        .content {
+            flex-wrap: wrap;
+        }
+
+        .left,
+        .right {
+            width: 48%;
+        }
+
+        .middle {
+            width: 100%;
+            order: -1;
+        }
+    }
+
+    @media(max-width: 600px) {
+        .location {
+            position: static;
+            text-align: left;
+            margin-top: 5px;
+        }
+
+        header {
+            height: auto;
+        }
+
+        nav {
+            height: auto;
+        }
+
+        nav a {
+            padding: 8px 9px;
+        }
+
+        .left,
+        .middle,
+        .right {
+            width: 100%;
+        }
+
+        .business-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="topbar"></div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">PECOS</div>
+
+        <div class="tagline">
+            Business • Finance • Investments • Enterprise
+        </div>
+
+        <div class="location">
+            <strong>PECOS</strong><br>
+            Akola, Maharashtra - 444001<br>
+            India
+        </div>
+
+    </header>
+
+    <!-- NAVIGATION -->
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#business">Business Areas</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <!-- NOTICE -->
+
+    <div class="notice">
+        <span>WELCOME:</span>
+        Welcome to the official website of PECOS.
+        Building businesses and creating opportunities from Akola, Maharashtra.
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="content">
+
+        <!-- LEFT SIDEBAR -->
+
+        <aside class="left">
+
+            <div class="box">
+                <div class="box-title">QUICK LINKS</div>
+
+                <div class="side-menu">
+                    <a href="#about">About PECOS</a>
+                    <a href="#business">Our Businesses</a>
+                    <a href="#services">Our Services</a>
+                    <a href="#investment">Investments</a>
+                    <a href="#contact">Contact Us</a>
+                    <a href="#social">Social Media</a>
+                </div>
+            </div>
+
+            <div class="box">
+
+                <div class="box-title">OUR LOCATION</div>
+
+                <div class="box-body">
+
+                    <strong>PECOS</strong><br><br>
+
+                    Akola, Maharashtra<br>
+                    PIN - 444001<br>
+                    India
+
+                    <br><br>
+
+                    <a href="#contact">
+                        View Contact Details »
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="box">
+
+                <div class="box-title">ONLINE</div>
+
+                <div class="box-body">
+
+                    <span class="online">● Website Online</span>
+
+                    <br><br>
+
+                    Visitors:
+                    <span class="counter">000184</span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <!-- CENTER -->
+
+        <main class="middle" id="home">
+
+            <section class="hero">
+
+                <h1>Welcome to PECOS</h1>
+
+                <h2>
+                    A diversified business enterprise based in Akola.
+                </h2>
+
+                <p>
+                    PECOS is a business platform focused on building,
+                    supporting and developing opportunities across multiple
+                    sectors of the economy.
+                </p>
+
+                <p>
+                    Our activities cover financial services, investments,
+                    lending solutions, business services, real estate and
+                    other commercial opportunities.
+                </p>
+
+                <a href="#business" class="button">
+                    EXPLORE OUR BUSINESS »
+                </a>
+
+            </section>
+
+
+            <!-- ABOUT -->
+
+            <div class="box" id="about">
+
+                <div class="box-title">ABOUT PECOS</div>
+
+                <div class="box-body">
+
+                    <p>
+                        <strong>PECOS</strong> is an independent business
+                        enterprise based in Akola, Maharashtra.
+                    </p>
+
+                    <p>
+                        We aim to connect capital, businesses, people and
+                        opportunities through practical business solutions.
+                    </p>
+
+                    <p>
+                        Our long-term vision is to establish PECOS as a
+                        diversified business group with interests in several
+                        growing sectors.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- BUSINESS AREAS -->
+
+            <div class="box" id="business">
+
+                <div class="box-title">BUSINESS AREAS</div>
+
+                <div class="box-body">
+
+                    <div class="business-grid">
+
+                        <div class="business">
+                            <h3>Finance</h3>
+                            <p>
+                                Financial distribution, lending assistance,
+                                credit solutions and business finance.
+                            </p>
+                        </div>
+
+                        <div class="business">
+                            <h3>Investments</h3>
+                            <p>
+                                Investment products, mutual funds, market
+                                opportunities and wealth-related services.
+                            </p>
+                        </div>
+
+                        <div class="business">
+                            <h3>Real Estate</h3>
+                            <p>
+                                Property opportunities, commercial property,
+                                land and real estate-related services.
+                            </p>
+                        </div>
+
+                        <div class="business">
+                            <h3>Business Services</h3>
+                            <p>
+                                Business support, documentation, consultancy
+                                and commercial assistance.
+                            </p>
+                        </div>
+
+                        <div class="business">
+                            <h3>Private Funding</h3>
+                            <p>
+                                Connecting eligible businesses and projects
+                                with appropriate funding opportunities.
+                            </p>
+                        </div>
+
+                        <div class="business">
+                            <h3>Hospitality & Leisure</h3>
+                            <p>
+                                Future opportunities in hospitality, leisure,
+                                stays, food, entertainment and tourism.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SERVICES -->
+
+            <div class="box" id="services">
+
+                <div class="box-title">OUR SERVICES</div>
+
+                <div class="box-body">
+
+                    <ul class="service-list">
+                        <li>Investment & Mutual Fund Services</li>
+                        <li>Loan & Credit Assistance</li>
+                        <li>Private Funding Solutions</li>
+                        <li>Financial Product Distribution</li>
+                        <li>Real Estate Assistance</li>
+                        <li>Business & Commercial Services</li>
+                        <li>Claim Management Assistance</li>
+                        <li>Debt Recovery Support</li>
+                        <li>Business Opportunity Development</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATS -->
+
+            <div class="stats">
+
+                <div class="stat">
+                    <strong>01</strong>
+                    <small>Home City</small>
+                </div>
+
+                <div class="stat">
+                    <strong>06+</strong>
+                    <small>Business Areas</small>
+                </div>
+
+                <div class="stat">
+                    <strong>24×7</strong>
+                    <small>Online Presence</small>
+                </div>
+
+            </div>
+
+        </main>
+
+
+        <!-- RIGHT SIDEBAR -->
+
+        <aside class="right">
+
+            <!-- CONTACT -->
+
+            <div class="box" id="contact">
+
+                <div class="box-title">CONTACT PECOS</div>
+
+                <div class="box-body">
+
+                    <div class="contact-row">
+                        <span class="contact-label">
+                            Telephone
+                        </span>
+
+                        <a href="tel:8669334862">
+                            8669334862
+                        </a>
+                    </div>
+
+                    <div class="contact-row">
+
+                        <span class="contact-label">
+                            Email
+                        </span>
+
+                        <a href="mailto:info@pecos.in">
+                            info@pecos.in
+                        </a>
+
+                    </div>
+
+                    <div class="contact-row">
+
+                        <span class="contact-label">
+                            Address
+                        </span>
+
+                        Akola,<br>
+                        Maharashtra - 444001,<br>
+                        India
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SOCIAL -->
+
+            <div class="box" id="social">
+
+                <div class="box-title">SOCIAL MEDIA</div>
+
+                <div class="box-body social">
+
+                    <a href="#" target="_blank">
+                        Facebook
+                    </a>
+
+                    <a href="#" target="_blank">
+                        Instagram
+                    </a>
+
+                    <a href="#" target="_blank">
+                        LinkedIn
+                    </a>
+
+                    <a href="#" target="_blank">
+                        X / Twitter
+                    </a>
+
+                    <a href="#" target="_blank">
+                        YouTube
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- WHY PECOS -->
+
+            <div class="box">
+
+                <div class="box-title">WHY PECOS?</div>
+
+                <div class="box-body">
+
+                    <strong>Local Presence</strong><br>
+                    Based in Akola and connected to the local market.
+
+                    <br><br>
+
+                    <strong>Diversified</strong><br>
+                    Multiple business sectors under one platform.
+
+                    <br><br>
+
+                    <strong>Long-Term Vision</strong><br>
+                    Focused on sustainable business development.
+
+                </div>
+
+            </div>
+
+
+            <!-- DISCLAIMER -->
+
+            <div class="box">
+
+                <div class="box-title">IMPORTANT</div>
+
+                <div class="box-body small">
+
+                    Services are subject to applicable laws,
+                    regulations, eligibility and documentation.
+
+                    <br><br>
+
+                    Investment products are subject to market risks.
+                    Please read all relevant documents carefully before
+                    investing.
+
+                </div>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-main">
+
+            <div>
+                <div class="footer-logo">PECOS</div>
+
+                <p>
+                    Finance • Investments • Real Estate • Business
+                </p>
+            </div>
+
+            <div style="text-align:right;">
+
+                <strong>PECOS</strong><br>
+
+                Akola, Maharashtra - 444001<br>
+
+                India<br>
+
+                Tel: <a href="tel:8669334862">
+                    8669334862
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            © 2000s–2026 PECOS. All Rights Reserved.
+            &nbsp; | &nbsp;
+            Akola, Maharashtra, India.
+
+        </div>
+
+    </footer>
+
+</div>
+
+</body>
+</html>
