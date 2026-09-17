@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aaditi Industries | Tur Dal Processing | Akola</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;background:#d7d7d7;font-family:Arial,Helvetica,sans-serif;
+    color:#222;font-size:13px
+}
+a{color:#7a1f17;text-decoration:none}
+a:hover{text-decoration:underline}
+.page{
+    width:960px;margin:15px auto;background:#fff;border:1px solid #777;
+    box-shadow:0 0 8px rgba(0,0,0,.25)
+}
+.topbar{height:7px;background:#8b2418}
+header{
+    min-height:105px;background:linear-gradient(#fffaf2,#eadcc8);
+    border-bottom:1px solid #888;padding:17px 22px;position:relative
+}
+.logo{
+    font-family:Georgia,"Times New Roman",serif;font-size:39px;font-weight:bold;
+    letter-spacing:3px;color:#8b2418;text-shadow:1px 1px #fff
+}
+.tagline{margin-top:3px;font-family:Georgia,serif;font-size:13px;color:#666}
+.location{
+    position:absolute;right:22px;top:23px;text-align:right;color:#555;line-height:1.5
+}
+.location strong{color:#8b2418}
+
+nav{
+    min-height:34px;background:#6d2018;border-top:1px solid #96362a;
+    border-bottom:1px solid #42100c;padding-left:10px
+}
+nav a{
+    display:inline-block;color:#fff;padding:9px 17px;border-right:1px solid #955248;
+    font-weight:bold;font-size:12px
+}
+nav a:hover{background:#8d3329;text-decoration:none}
+
+.notice{
+    background:#f4efd8;border-bottom:1px solid #c8bd91;min-height:27px;
+    line-height:27px;padding:0 12px;color:#444
+}
+.notice span{color:#8b2418;font-weight:bold}
+
+.content{display:flex;padding:12px;gap:12px}
+.left{width:205px}.middle{width:500px}.right{width:205px}
+
+.box{border:1px solid #999;margin-bottom:12px;background:#fafafa}
+.box-title{
+    background:linear-gradient(#a55a3c,#7a2b1e);color:#fff;font-weight:bold;
+    padding:7px 9px;border-bottom:1px solid #5b1c14;font-size:13px
+}
+.box-body{padding:10px;line-height:1.55}
+
+.side-menu a{
+    display:block;padding:7px 9px;border-bottom:1px solid #ddd;
+    background:#f5f2ed;color:#722217
+}
+.side-menu a:hover{background:#eadfd5;text-decoration:none}
+
+.hero{
+    border:1px solid #999;background:linear-gradient(120deg,#f7eee3,#fff);
+    padding:18px;min-height:230px
+}
+.hero h1{
+    font-family:Georgia,"Times New Roman",serif;color:#7a2418;
+    font-size:29px;margin:0 0 7px
+}
+.hero h2{font-size:15px;font-weight:normal;color:#555;margin:0 0 15px}
+.hero p{line-height:1.65;color:#333}
+.button{
+    display:inline-block;margin-top:8px;padding:8px 14px;background:#7a2b1e;
+    border:1px solid #4f1711;color:#fff;font-weight:bold;font-size:12px
+}
+.button:hover{background:#5e1e16;text-decoration:none}
+
+.business-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.business{
+    border:1px solid #aaa;background:#f7f5f1;padding:10px;min-height:105px
+}
+.business h3{margin:0 0 5px;color:#7a2b1e;font-size:14px}
+.business p{margin:0;line-height:1.45;color:#555;font-size:12px}
+
+.product{
+    border:1px solid #aaa;background:#fffaf5;padding:10px;margin-bottom:8px
+}
+.product:last-child{margin-bottom:0}
+.product h3{margin:0 0 4px;color:#7a2b1e;font-size:15px}
+.product p{margin:0;color:#555;line-height:1.5}
+.badge{
+    display:inline-block;margin-top:6px;padding:3px 7px;background:#eee2d5;
+    border:1px solid #d2bba8;color:#6d2018;font-size:11px;font-weight:bold
+}
+
+.stats{display:flex;border:1px solid #aaa;margin-top:12px}
+.stat{
+    flex:1;text-align:center;padding:12px 5px;border-right:1px solid #ccc;background:#f7f5f1
+}
+.stat:last-child{border-right:none}
+.stat strong{
+    display:block;color:#7a2b1e;font-size:20px;font-family:Georgia,serif
+}
+.stat small{color:#666}
+
+.contact-row{padding:6px 0;border-bottom:1px dotted #bbb}
+.contact-row:last-child{border-bottom:none}
+.contact-label{display:block;font-weight:bold;color:#555}
+
+.highlight{
+    background:#f8efdf;border:1px solid #d8c19e;padding:10px;
+    color:#4c3328;line-height:1.55
+}
+.small{font-size:11px;color:#777}
+
+footer{border-top:1px solid #777;background:#e8e4df;padding:18px 20px;color:#555}
+.footer-main{display:flex;justify-content:space-between}
+.footer-logo{
+    font-family:Georgia,serif;color:#7a2b1e;font-size:24px;font-weight:bold;letter-spacing:2px
+}
+.copyright{
+    margin-top:15px;padding-top:10px;border-top:1px solid #c4c4c4;
+    text-align:center;font-size:11px
+}
+
+@media(max-width:980px){
+    .page{width:96%}
+    .content{flex-wrap:wrap}
+    .left,.right{width:48%}
+    .middle{width:100%;order:-1}
+}
+@media(max-width:600px){
+    .location{position:static;text-align:left;margin-top:7px}
+    header{height:auto}
+    nav{height:auto}
+    nav a{padding:8px 9px}
+    .left,.middle,.right{width:100%}
+    .business-grid{grid-template-columns:1fr}
+    .footer-main{display:block}
+}
+</style>
+</head>
+
+<body>
+<div class="page">
+
+<div class="topbar"></div>
+
+<header>
+    <div class="logo">AADITI INDUSTRIES</div>
+    <div class="tagline">Tur Dal Processing • Pulses • Quality Food Products • Animal Feed</div>
+
+    <div class="location">
+        <strong>AADITI INDUSTRIES</strong><br>
+        MIDC III, Akola<br>
+        Maharashtra, India
+    </div>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Us</a>
+    <a href="#products">Our Products</a>
+    <a href="#quality">Quality</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<div class="notice">
+    <span>WELCOME:</span>
+    Welcome to Aaditi Industries — Tur Dal processing and food products from Akola, Maharashtra.
+</div>
+
+<div class="content">
+
+<aside class="left">
+
+    <div class="box">
+        <div class="box-title">QUICK LINKS</div>
+        <div class="side-menu">
+            <a href="#about">About Aaditi Industries</a>
+            <a href="#products">Our Products</a>
+            <a href="#quality">Quality & Processing</a>
+            <a href="#contact">Contact Us</a>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">OUR LOCATION</div>
+        <div class="box-body">
+            <strong>Aaditi Industries</strong><br><br>
+            MIDC III, Akola<br>
+            Maharashtra, India<br><br>
+            <a href="#contact">View Contact Details »</a>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="box-title">PRODUCT RANGE</div>
+        <div class="box-body">
+            <strong>05</strong> Products<br>
+            Tur Dal • Chilka Dal<br>
+            Animal Feed
+        </div>
+    </div>
+
+</aside>
+
+<main class="middle" id="home">
+
+<section class="hero">
+    <h1>Welcome to Aaditi Industries</h1>
+    <h2>Quality Tur Dal Processing from Akola.</h2>
+
+    <p>
+        Aaditi Industries is a tur dal processing business based in
+        MIDC III, Akola, Maharashtra, offering a range of quality dal
+        and animal feed products.
+    </p>
+
+    <p>
+        Our product range includes unpolished and polished tur dal,
+        chilka dal and animal feed, supplied under established product
+        names for different customer requirements.
+    </p>
+
+    <a href="#products" class="button">VIEW OUR PRODUCTS »</a>
+</section>
+
+<div class="box" id="about">
+    <div class="box-title">ABOUT AADITI INDUSTRIES</div>
+    <div class="box-body">
+        <p>
+            <strong>Aaditi Industries</strong> is a tur dal processing
+            business located at MIDC III, Akola, Maharashtra.
+        </p>
+        <p>
+            We focus on processing and supplying dal products in
+            different varieties and pack sizes, along with animal feed.
+        </p>
+        <p>
+            Our product portfolio is designed to serve customers looking
+            for quality tur dal and related food products.
+        </p>
+    </div>
+</div>
+
+<div class="box" id="products">
+    <div class="box-title">OUR PRODUCTS</div>
+    <div class="box-body">
+
+        <div class="product">
+            <h3>Godfather</h3>
+            <p><strong>30 kg</strong> — Best Quality Unpolished Tur Dal</p>
+            <span class="badge">UNPOLISHED TUR DAL</span>
+        </div>
+
+        <div class="product">
+            <h3>Global</h3>
+            <p><strong>30 kg</strong> — Best Quality Polished Tur Dal</p>
+            <span class="badge">POLISHED TUR DAL</span>
+        </div>
+
+        <div class="product">
+            <h3>Angoor</h3>
+            <p><strong>30 kg</strong> — Best Quality Polished Tur Dal</p>
+            <span class="badge">POLISHED TUR DAL</span>
+        </div>
+
+        <div class="product">
+            <h3>3Ekka</h3>
+            <p>Chilka Dal</p>
+            <span class="badge">CHILKA DAL</span>
+        </div>
+
+        <div class="product">
+            <h3>Godmother</h3>
+            <p>Animal Feed</p>
+            <span class="badge">ANIMAL FEED</span>
+        </div>
+
+    </div>
+</div>
+
+<div class="box" id="quality">
+    <div class="box-title">QUALITY & PROCESSING</div>
+    <div class="box-body">
+        <div class="highlight">
+            <strong>Quality-focused processing</strong><br>
+            Aaditi Industries processes tur dal into different product
+            varieties, including unpolished, polished and chilka dal.
+            Product specifications and packaging can vary according to
+            the individual product.
+        </div>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <strong>05</strong>
+        <small>Product Names</small>
+    </div>
+    <div class="stat">
+        <strong>30 KG</strong>
+        <small>Dal Pack Size</small>
+    </div>
+    <div class="stat">
+        <strong>AKOLA</strong>
+        <small>Processing Location</small>
+    </div>
+</div>
+
+</main>
+
+<aside class="right">
+
+<div class="box" id="contact">
+    <div class="box-title">CONTACT AADITI INDUSTRIES</div>
+    <div class="box-body">
+
+        <div class="contact-row">
+            <span class="contact-label">Telephone</span>
+            <a href="tel:8669334862">8669334862</a>
+        </div>
+
+        <div class="contact-row">
+            <span class="contact-label">Address</span>
+            Aaditi Industries,<br>
+            MIDC III, Akola,<br>
+            Maharashtra, India
+        </div>
+
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-title">OUR PRODUCTS</div>
+    <div class="box-body">
+        <strong>Godfather</strong><br>
+        30 kg Unpolished<br><br>
+
+        <strong>Global</strong><br>
+        30 kg Polished<br><br>
+
+        <strong>Angoor</strong><br>
+        30 kg Polished<br><br>
+
+        <strong>3Ekka</strong><br>
+        Chilka Dal<br><br>
+
+        <strong>Godmother</strong><br>
+        Animal Feed
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-title">WHY AADITI INDUSTRIES?</div>
+    <div class="box-body">
+        <strong>Akola Location</strong><br>
+        Based in MIDC III, Akola.
+
+        <br><br>
+
+        <strong>Multiple Dal Varieties</strong><br>
+        Unpolished, polished and chilka dal products.
+
+        <br><br>
+
+        <strong>Product Range</strong><br>
+        Dal products plus animal feed.
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-title">ENQUIRIES</div>
+    <div class="box-body small">
+        For product enquiries, bulk orders and
+        business requirements, contact Aaditi Industries
+        on the telephone number provided above.
+    </div>
+</div>
+
+</aside>
+
+</div>
+
+<footer>
+    <div class="footer-main">
+        <div>
+            <div class="footer-logo">AADITI INDUSTRIES</div>
+            <p>Tur Dal Processing • Pulses • Animal Feed</p>
+        </div>
+
+        <div style="text-align:right;">
+            <strong>Aaditi Industries</strong><br>
+            MIDC III, Akola<br>
+            Maharashtra, India<br>
+            Tel: <a href="tel:8669334862">8669334862</a>
+        </div>
+    </div>
+
+    <div class="copyright">
+        © 2026 Aaditi Industries. All Rights Reserved.
+        &nbsp; | &nbsp; MIDC III, Akola, Maharashtra, India.
+    </div>
+</footer>
+
+</div>
+</body>
+</html>
