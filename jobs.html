@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PECOS | Jobs</title>
+<style>
+    * { box-sizing: border-box; }
+
+    body {
+        margin: 0;
+        background: #d7d7d7;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #222;
+        font-size: 13px;
+    }
+
+    a { color: #064f8c; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .page {
+        width: 960px;
+        max-width: 96%;
+        margin: 15px auto;
+        background: #fff;
+        border: 1px solid #777;
+        box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    }
+
+    .topbar {
+        height: 7px;
+        background: #1e5d87;
+    }
+
+    header {
+        min-height: 105px;
+        background: linear-gradient(#f8f8f8, #d9e4eb);
+        border-bottom: 1px solid #888;
+        padding: 17px 22px;
+        position: relative;
+    }
+
+    .logo {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 42px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: #164f75;
+        text-shadow: 1px 1px #fff;
+    }
+
+    .tagline {
+        margin-top: 2px;
+        font-family: Georgia, serif;
+        font-size: 13px;
+        color: #555;
+    }
+
+    .location {
+        position: absolute;
+        right: 22px;
+        top: 23px;
+        text-align: right;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    .location strong { color: #164f75; }
+
+    nav {
+        min-height: 34px;
+        background: #234f6e;
+        border-top: 1px solid #396e8e;
+        border-bottom: 1px solid #122f43;
+        padding-left: 10px;
+    }
+
+    nav a {
+        display: inline-block;
+        color: white;
+        padding: 9px 17px;
+        border-right: 1px solid #51728a;
+        font-weight: bold;
+        font-size: 12px;
+    }
+
+    nav a:hover {
+        background: #3e7194;
+        text-decoration: none;
+    }
+
+    .notice {
+        background: #f3f3d7;
+        border-bottom: 1px solid #c5c5a4;
+        min-height: 27px;
+        line-height: 27px;
+        padding: 0 12px;
+        color: #444;
+    }
+
+    .notice span {
+        color: #9a1b1b;
+        font-weight: bold;
+    }
+
+    .content {
+        padding: 12px;
+    }
+
+    .box {
+        border: 1px solid #999;
+        margin-bottom: 12px;
+        background: #fafafa;
+    }
+
+    .box-title {
+        background: linear-gradient(#5b86a2, #315d78);
+        color: white;
+        font-weight: bold;
+        padding: 8px 10px;
+        border-bottom: 1px solid #23485e;
+        font-size: 13px;
+    }
+
+    .box-body {
+        padding: 12px;
+        line-height: 1.55;
+    }
+
+    .intro {
+        border: 1px solid #999;
+        background: linear-gradient(120deg, #edf4f7, #fff);
+        padding: 18px;
+        margin-bottom: 12px;
+    }
+
+    .intro h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        color: #174f73;
+        font-size: 29px;
+        margin: 0 0 6px;
+    }
+
+    .intro p {
+        margin: 4px 0;
+        color: #555;
+    }
+
+    .job {
+        border: 1px solid #aaa;
+        background: #f5f5f5;
+        margin-bottom: 10px;
+        padding: 12px;
+    }
+
+    .job:last-child { margin-bottom: 0; }
+
+    .job h2 {
+        margin: 0 0 8px;
+        color: #174f73;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 20px;
+    }
+
+    .job p {
+        margin: 5px 0;
+    }
+
+    .label {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .contact {
+        margin-top: 12px;
+        padding: 12px;
+        border: 1px solid #aaa;
+        background: #eef3f6;
+        text-align: center;
+    }
+
+    .contact strong {
+        color: #174f73;
+        font-size: 16px;
+    }
+
+    footer {
+        border-top: 1px solid #777;
+        background: #e8e8e8;
+        padding: 18px 20px;
+        color: #555;
+        text-align: center;
+    }
+
+    .footer-logo {
+        font-family: Georgia, serif;
+        color: #174f73;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+
+    .copyright {
+        margin-top: 12px;
+        padding-top: 10px;
+        border-top: 1px solid #c4c4c4;
+        font-size: 11px;
+    }
+
+    @media(max-width: 600px) {
+        .location {
+            position: static;
+            text-align: left;
+            margin-top: 5px;
+        }
+
+        header { height: auto; }
+
+        nav a { padding: 8px 9px; }
+    }
+</style>
+</head>
+
+<body>
+<div class="page">
+
+    <div class="topbar"></div>
+
+    <header>
+        <div class="logo">PECOS</div>
+        <div class="tagline">Business • Finance • Investments • Enterprise</div>
+
+        <div class="location">
+            <strong>PECOS</strong><br>
+            Akola, Maharashtra - 444001<br>
+            India
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#business">Business Areas</a>
+        <a href="index.html#services">Services</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="notice">
+        <span>CAREERS:</span>
+        Current openings at PECOS Foods.
+    </div>
+
+    <div class="content">
+
+        <div class="intro">
+            <h1>Jobs at PECOS Foods</h1>
+            <p><strong>Location:</strong> MIDC III, Akola</p>
+            <p>Experience is not mandatory. We will provide training for the work.</p>
+        </div>
+
+        <div class="box">
+            <div class="box-title">CURRENT JOB OPENINGS</div>
+
+            <div class="box-body">
+
+                <div class="job">
+                    <h2>Tally Accountant</h2>
+                    <p><span class="label">Location:</span> MIDC III, Akola</p>
+                    <p><span class="label">Experience:</span> Not mandatory — training will be provided.</p>
+                    <p><span class="label">Posted by:</span> PECOS Foods</p>
+                </div>
+
+                <div class="job">
+                    <h2>Supervisor</h2>
+                    <p><span class="label">Location:</span> MIDC III, Akola</p>
+                    <p><span class="label">Experience:</span> Not mandatory — training will be provided.</p>
+                    <p><span class="label">Posted by:</span> PECOS Foods</p>
+                </div>
+
+                <div class="job">
+                    <h2>Coordinator</h2>
+                    <p><span class="label">Location:</span> MIDC III, Akola</p>
+                    <p><span class="label">Experience:</span> Not mandatory — training will be provided.</p>
+                    <p><span class="label">Posted by:</span> PECOS Foods</p>
+                </div>
+
+                <div class="contact">
+                    <strong>For Job Enquiries: 8669334862</strong><br>
+                    Please contact us for further details.
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-logo">PECOS</div>
+        <p>PECOS Foods • MIDC III, Akola</p>
+        <div class="copyright">
+            © 2018–2026 PECOS. All Rights Reserved.
+        </div>
+    </footer>
+
+</div>
+</body>
+</html>
