@@ -1,177 +1,198 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="theme-color" content="#1F3E56">
-<title>404 | Page Not Found | PECOS</title>
-<link rel="icon" href="pecos.png">
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PECOS | Page Not Found</title>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
 
-:root{
-  --primary:#2F6F95;
-  --bg:#F4F6F8;
-  --card:#FFFFFF;
-  --text:#1F3E56;
-  --muted:#5E6E7E;
-}
+    body {
+        margin: 0;
+        background: #d7d7d7;
+        font-family: Arial, Helvetica, sans-serif;
+        color: #222;
+        font-size: 13px;
+    }
 
-*{
-  box-sizing:border-box;
-  font-family:'Inter',sans-serif;
-  -webkit-tap-highlight-color:transparent;
-}
+    .page {
+        width: 700px;
+        max-width: 94%;
+        margin: 60px auto;
+        background: #ffffff;
+        border: 1px solid #777;
+        box-shadow: 0 0 8px rgba(0,0,0,0.25);
+    }
 
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-}
+    .topbar {
+        height: 7px;
+        background: #1e5d87;
+    }
 
-.wrapper{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-}
+    header {
+        padding: 18px 22px;
+        background: linear-gradient(#f8f8f8, #d9e4eb);
+        border-bottom: 1px solid #888;
+    }
 
-/* HEADER */
-.header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 20px;
-  background:var(--text);
-  color:white;
-}
+    .logo {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 40px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        color: #164f75;
+        text-shadow: 1px 1px #fff;
+    }
 
-.logo{
-  font-weight:700;
-  font-size:18px;
-}
+    .tagline {
+        margin-top: 2px;
+        font-family: Georgia, serif;
+        font-size: 13px;
+        color: #555;
+    }
 
-.nav a{
-  text-decoration:none;
-  color:white;
-  font-size:14px;
-  margin-left:20px;
-  opacity:.9;
-}
+    nav {
+        background: #234f6e;
+        border-top: 1px solid #396e8e;
+        border-bottom: 1px solid #122f43;
+        padding-left: 10px;
+    }
 
-.nav a:hover{
-  text-decoration:underline;
-}
+    nav a {
+        display: inline-block;
+        color: white;
+        padding: 9px 17px;
+        border-right: 1px solid #51728a;
+        font-weight: bold;
+        font-size: 12px;
+        text-decoration: none;
+    }
 
-/* MAIN */
-.main{
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:40px 20px;
-}
+    nav a:hover {
+        background: #3e7194;
+    }
 
-.card{
-  background:var(--card);
-  padding:60px 40px;
-  border-radius:20px;
-  box-shadow:0 12px 35px rgba(0,0,0,.06);
-  text-align:center;
-  max-width:600px;
-  width:100%;
-}
+    .error {
+        padding: 45px 30px;
+        text-align: center;
+    }
 
-.card h1{
-  font-size:72px;
-  margin:0;
-  color:var(--primary);
-}
+    .error-code {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 72px;
+        font-weight: bold;
+        color: #174f73;
+        margin: 0;
+    }
 
-.card h2{
-  margin:10px 0 20px 0;
-  font-weight:600;
-  color:var(--text);
-}
+    .error h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+        color: #174f73;
+        margin: 5px 0 10px;
+    }
 
-.card p{
-  color:var(--muted);
-  line-height:1.7;
-  margin-bottom:30px;
-}
+    .error p {
+        color: #555;
+        line-height: 1.6;
+        margin: 6px 0;
+    }
 
-.btn{
-  display:inline-block;
-  background:var(--primary);
-  color:white;
-  padding:12px 28px;
-  border-radius:8px;
-  text-decoration:none;
-  font-weight:500;
-  transition:.2s ease;
-}
+    .button {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 8px 18px;
+        background: #315f7c;
+        border: 1px solid #183e55;
+        color: white;
+        font-weight: bold;
+        font-size: 12px;
+        text-decoration: none;
+    }
 
-.btn:hover{
-  opacity:.9;
-}
+    .button:hover {
+        background: #234b65;
+    }
 
-/* FOOTER */
-.footer{
-  background:var(--text);
-  color:#dbe6ef;
-  padding:25px;
-  text-align:center;
-  font-size:13px;
-}
+    footer {
+        border-top: 1px solid #777;
+        background: #e8e8e8;
+        padding: 15px 20px;
+        text-align: center;
+        color: #555;
+        font-size: 11px;
+    }
 
-.footer a{
-  color:#7fc3ea;
-  text-decoration:none;
-}
+    @media(max-width: 600px) {
+        .error {
+            padding: 35px 20px;
+        }
 
-.footer a:hover{
-  text-decoration:underline;
-}
+        .error-code {
+            font-size: 58px;
+        }
 
-@media(max-width:600px){
-  .card{
-    padding:40px 20px;
-  }
-  .card h1{
-    font-size:56px;
-  }
-}
-
+        nav a {
+            padding: 8px 9px;
+        }
+    }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="page">
 
-  <div class="header">
-    <div class="logo">PECOS</div>
+    <div class="topbar"></div>
 
-  </div>
+    <header>
+        <div class="logo">PECOS</div>
+        <div class="tagline">
+            Business • Finance • Investments • Enterprise
+        </div>
+    </header>
 
-  <div class="main">
-    <div class="card">
-      <h1>404</h1>
-      <h2>Page Not Found</h2>
-      <p>
-        The page you are looking for may have been removed,
-        renamed, or is temporarily unavailable.
-      </p>
-      <a href="index.html" class="btn">Return to Home</a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#business">Business Areas</a>
+        <a href="index.html#services">Services</a>
+        <a href="jobs.html">Jobs</a>
+        <a href="index.html#contact">Contact</a>
+    </nav>
+
+    <div class="error">
+
+        <div class="error-code">404</div>
+
+        <h1>Page Not Found</h1>
+
+        <p>
+            Sorry, the page you are looking for could not be found.
+        </p>
+
+        <p>
+            The page may have been moved, removed, or the address may be incorrect.
+        </p>
+
+        <a href="index.html" class="button">
+            « RETURN TO PECOS HOME
+        </a>
+
     </div>
-  </div>
 
-  <div class="footer">
-    © 2025 PECOS. All rights reserved.
-  </div>
+    <footer>
+        PECOS • Akola, Maharashtra - 444001, India
+        <br><br>
+        © 2018–2026 PECOS. All Rights Reserved.
+    </footer>
 
 </div>
 
 </body>
 </html>
+```
